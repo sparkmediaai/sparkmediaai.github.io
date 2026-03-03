@@ -1,524 +1,387 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.157.0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SparkMedia.ai</title>
-    <meta name="description" content="We help local service businesses turn high intent Google searches into booked customers">
+    <title>SparkMedia.ai - AI-Powered Marketing & Automation</title>
+    <meta name="description" content="SparkMedia.ai delivers AI-powered marketing and automation for local service businesses. We turn high-intent Google searches into booked customers.">
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <style>
-        :root {
-            --primary: #FF00FF;
-            --secondary: #00FFFF;
-            --accent: #333333;
-            --light: #F8F9FA;
-            --white: #ffffff;
-            --dark: #212529;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: var(--white);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-         
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            text-decoration: none;
-        }
-        
-        .logo span {
-            color: var(--secondary);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        nav a {
-            text-decoration: none;
-            color: var(--accent);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav a:hover {
-            color: var(--primary);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--accent);
-        }
-        
-         
-        footer {
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 3rem 0;
-            margin-top: 4rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .footer-section h3 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .footer-section a {
-            color: var(--white);
-            text-decoration: none;
-        }
-        
-        .footer-section a:hover {
-            color: var(--secondary);
-        }
-        
-        .copyright {
-            text-align: center;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-         
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .btn-secondary {
-            background: var(--accent);
-        }
-        
-         
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: var(--white);
-                flex-direction: column;
-                padding: 1rem;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-        }
-        
-         
-        .text-center { text-align: center; }
-        .mt-1 { margin-top: 1rem; }
-        .mt-2 { margin-top: 2rem; }
-        .mt-3 { margin-top: 3rem; }
-        .mb-1 { margin-bottom: 1rem; }
-        .mb-2 { margin-bottom: 2rem; }
-        .mb-3 { margin-bottom: 3rem; }
-        .py-3 { padding-top: 3rem; padding-bottom: 3rem; }
-        .px-2 { padding-left: 2rem; padding-right: 2rem; }
-    </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
     
-    
-    
-    
-        <link rel="stylesheet" href="/css/main.css">
-    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 </head>
 <body>
-    <header>
-        <div class="container header-container">
-            <a href="/" class="logo">Spark<span>Media</span>.ai</a>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
-            
-            <nav>
-                <ul id="mainMenu">
-                    
-                    <li><a href="/">Home</a></li>
-                    
-                    <li><a href="/services/">Services</a></li>
-                    
-                    <li><a href="/free-audit/">Free Audit</a></li>
-                    
-                    <li><a href="/about/">About</a></li>
-                    
-                    <li><a href="/contact/">Contact</a></li>
-                    
-                </ul>
+    <!-- ==========================================================================
+         HEADER & NAVIGATION
+         ========================================================================== -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo">
+                    <span class="logo-text">Spark</span>
+                    <span class="logo-accent">Media</span>
+                    <span class="logo-ai">.ai</span>
+                </a>
+                
+                <div class="nav-links">
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#ai-systems" class="nav-link">AI Systems</a>
+                    <a href="#results" class="nav-link">Results</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                
+                <button class="cta-button nav-cta">Get Started</button>
+                
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </nav>
         </div>
     </header>
 
-    <main>
-        
-  <p>Laborum voluptate pariatur ex culpa magna nostrud est incididunt fugiat
-pariatur do dolor ipsum enim. Consequat tempor do dolor eu. Non id id anim anim
-excepteur excepteur pariatur nostrud qui irure ullamco.</p>
+    <!-- ==========================================================================
+         HERO SECTION - SPLIT LAYOUT
+         ========================================================================== -->
+    <section class="hero">
+        <div class="container hero-container">
+            <!-- LEFT SIDE - HEADLINE & CTAs -->
+            <div class="hero-content">
+                <div class="hero-badge">AI-Powered Marketing</div>
+                
+                <h1 class="hero-title">
+                    Scale Your Revenue with 
+                    <span class="hero-highlight">Intelligent</span> 
+                    Automation
+                </h1>
+                
+                <p class="hero-subtitle">
+                    SparkMedia.ai delivers AI-powered marketing and automation for local service businesses. 
+                    We turn high-intent Google searches into booked customers.
+                </p>
+                
+                <div class="hero-cta">
+                    <button class="btn-primary">
+                        <span>Get Free Audit</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    
+                    <button class="btn-secondary">
+                        <span>View Case Studies</span>
+                    </button>
+                </div>
+            </div>
 
-  
-    <section>
-      <h2><a href="/about/">About Us</a></h2>
-      <h2 id="our-mission">Our Mission</h2>
-<p>At SparkMedia.ai, we have one simple mission: <strong>Help local service businesses turn high intent Google searches into booked customers.</strong></p>
-<p>We started with a focus on plumbing businesses because we saw a gap in the market. Most digital marketing agencies treat all businesses the same, but plumbing has unique challenges and opportunities that require specialized expertise.</p>
-<h3 id="why-we-focus-on-plumbing">Why We Focus on Plumbing</h3>
-<p>Plumbing businesses face specific challenges in digital marketing:</p>
-    </section>
-  
-    <section>
-      <h2><a href="/contact/">Contact Us</a></h2>
-      <h2 id="lets-talk-about-growing-your-plumbing-business">Let&rsquo;s Talk About Growing Your Plumbing Business</h2>
-<p>Whether you&rsquo;re ready to get started, have questions about our services, or want to schedule your free audit, we&rsquo;re here to help.</p>
-<h3 id="contact-information">Contact Information</h3>
-<!-- raw HTML omitted -->
-<pre><code>&lt;div style=&quot;text-align: center; padding: 2rem; background-color: var(--light); border-radius: 10px;&quot;&gt;
-    &lt;div style=&quot;font-size: 2rem; color: var(--primary); margin-bottom: 1rem;&quot;&gt;📱&lt;/div&gt;
-    &lt;h3 style=&quot;color: var(--accent);&quot;&gt;Phone&lt;/h3&gt;
-    &lt;p&gt;&lt;a href=&quot;tel:5551234567&quot;&gt;(555) 123-4567&lt;/a&gt;&lt;/p&gt;
-    &lt;p style=&quot;font-size: 0.875rem; color: var(--accent);&quot;&gt;Mon-Fri, 9am-5pm EST&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;text-align: center; padding: 2rem; background-color: var(--light); border-radius: 10px;&quot;&gt;
-    &lt;div style=&quot;font-size: 2rem; color: var(--primary); margin-bottom: 1rem;&quot;&gt;📍&lt;/div&gt;
-    &lt;h3 style=&quot;color: var(--accent);&quot;&gt;Office&lt;/h3&gt;
-    &lt;p&gt;123 Marketing Ave&lt;br&gt;Suite 100&lt;br&gt;Digital City, DC 12345&lt;/p&gt;
-    &lt;p style=&quot;font-size: 0.875rem; color: var(--accent);&quot;&gt;By appointment only&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-<!-- raw HTML omitted -->
-<h3 id="send-us-a-message">Send Us a Message</h3>
-<!-- raw HTML omitted -->
-<pre><code>    &lt;div&gt;
-        &lt;label for=&quot;email&quot; style=&quot;display: block; margin-bottom: 0.5rem; font-weight: 500;&quot;&gt;Email *&lt;/label&gt;
-        &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; required style=&quot;width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;&quot;&gt;
-    &lt;/div&gt;
-    
-    &lt;div&gt;
-        &lt;label for=&quot;phone&quot; style=&quot;display: block; margin-bottom: 0.5rem; font-weight: 500;&quot;&gt;Phone&lt;/label&gt;
-        &lt;input type=&quot;tel&quot; id=&quot;phone&quot; name=&quot;phone&quot; style=&quot;width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;&quot;&gt;
-    &lt;/div&gt;
-    
-    &lt;div&gt;
-        &lt;label for=&quot;business&quot; style=&quot;display: block; margin-bottom: 0.5rem; font-weight: 500;&quot;&gt;Business Name *&lt;/label&gt;
-        &lt;input type=&quot;text&quot; id=&quot;business&quot; name=&quot;business&quot; required style=&quot;width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;&quot;&gt;
-    &lt;/div&gt;
-    
-    &lt;div&gt;
-        &lt;label for=&quot;service&quot; style=&quot;display: block; margin-bottom: 0.5rem; font-weight: 500;&quot;&gt;Primary Service&lt;/label&gt;
-        &lt;select id=&quot;service&quot; name=&quot;service&quot; style=&quot;width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;&quot;&gt;
-            &lt;option value=&quot;&quot;&gt;Select a service...&lt;/option&gt;
-            &lt;option value=&quot;residential&quot;&gt;Residential Plumbing&lt;/option&gt;
-            &lt;option value=&quot;commercial&quot;&gt;Commercial Plumbing&lt;/option&gt;
-            &lt;option value=&quot;emergency&quot;&gt;Emergency Plumbing&lt;/option&gt;
-            &lt;option value=&quot;drain&quot;&gt;Drain Cleaning&lt;/option&gt;
-            &lt;option value=&quot;water-heater&quot;&gt;Water Heater Services&lt;/option&gt;
-            &lt;option value=&quot;sewer&quot;&gt;Sewer Line Services&lt;/option&gt;
-            &lt;option value=&quot;other&quot;&gt;Other&lt;/option&gt;
-        &lt;/select&gt;
-    &lt;/div&gt;
-    
-    &lt;div&gt;
-        &lt;label for=&quot;message&quot; style=&quot;display: block; margin-bottom: 0.5rem; font-weight: 500;&quot;&gt;Message *&lt;/label&gt;
-        &lt;textarea id=&quot;message&quot; name=&quot;message&quot; rows=&quot;5&quot; required style=&quot;width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;&quot;&gt;&lt;/textarea&gt;
-    &lt;/div&gt;
-    
-    &lt;div&gt;
-        &lt;label style=&quot;display: flex; align-items: start; gap: 0.5rem;&quot;&gt;
-            &lt;input type=&quot;checkbox&quot; id=&quot;audit&quot; name=&quot;audit&quot; style=&quot;margin-top: 0.25rem;&quot;&gt;
-            &lt;span&gt;I'd like to schedule a free Google Ads audit&lt;/span&gt;
-        &lt;/label&gt;
-    &lt;/div&gt;
-    
-    &lt;div style=&quot;text-align: center;&quot;&gt;
-        &lt;button type=&quot;submit&quot; class=&quot;btn&quot; style=&quot;width: 100%; max-width: 300px;&quot;&gt;Send Message&lt;/button&gt;
-    &lt;/div&gt;
-&lt;/form&gt;
-
-&lt;div id=&quot;formMessage&quot; style=&quot;display: none; text-align: center; padding: 1rem; margin-top: 1rem; border-radius: 5px;&quot;&gt;&lt;/div&gt;
-
-{{ partial &quot;contact-form.html&quot; . }}
-</code></pre>
-<!-- raw HTML omitted -->
-<h3 id="what-happens-next">What Happens Next</h3>
-<ol>
-<li><strong>Initial Response</strong>: We&rsquo;ll acknowledge your message within 24 hours</li>
-<li><strong>Information Gathering</strong>: We may ask a few follow-up questions about your business</li>
-<li><strong>Consultation Scheduling</strong>: We&rsquo;ll schedule a call to discuss your needs in detail</li>
-<li><strong>Custom Proposal</strong>: If appropriate, we&rsquo;ll prepare a customized strategy for your business</li>
-</ol>
-<h3 id="best-ways-to-reach-us">Best Ways to Reach Us</h3>
-<p><strong>For urgent inquiries</strong>: Call us at (555) 123-4567
-<strong>For audit requests</strong>: Use the <a href="/free-audit/">Free Audit page</a>
-<strong>For general questions</strong>: Email <a href="mailto:hello@sparkmedia.ai">hello@sparkmedia.ai</a>
-<strong>For existing clients</strong>: Contact your dedicated account manager</p>
-    </section>
-  
-    <section>
-      <h2><a href="/free-audit/">Free Audit</a></h2>
-      <h2 id="free-30-minute-google-ads--seo-audit-for-plumbing-businesses">Free 30-Minute Google Ads &amp; SEO Audit for Plumbing Businesses</h2>
-<p>Discover exactly how your plumbing business is performing on Google and identify opportunities to get more high-quality leads.</p>
-<h3 id="whats-included-in-your-free-audit">What&rsquo;s Included in Your Free Audit</h3>
-<h4 id="1-google-ads-performance-analysis">1. <strong>Google Ads Performance Analysis</strong></h4>
-<ul>
-<li>Campaign structure review</li>
-<li>Keyword targeting assessment</li>
-<li>Ad copy effectiveness</li>
-<li>Landing page conversion rates</li>
-<li>Cost-per-lead analysis</li>
-<li>Competitor benchmarking</li>
-</ul>
-<h4 id="2-local-seo-health-check">2. <strong>Local SEO Health Check</strong></h4>
-<ul>
-<li>Google Business Profile optimization score</li>
-<li>Local search ranking analysis</li>
-<li>Citation consistency audit</li>
-<li>Review presence assessment</li>
-<li>Mobile optimization check</li>
-</ul>
-<h4 id="3-website-conversion-audit">3. <strong>Website Conversion Audit</strong></h4>
-<ul>
-<li>Lead capture form analysis</li>
-<li>Call-to-action effectiveness</li>
-<li>Page load speed assessment</li>
-<li>Mobile responsiveness check</li>
-<li>Trust signal evaluation</li>
-</ul>
-<h3 id="how-it-works">How It Works</h3>
-<ol>
-<li><strong>Schedule Your Audit</strong> - Book a 30-minute slot below</li>
-<li><strong>Share Access</strong> - Provide temporary access to your Google Ads account and website analytics</li>
-<li><strong>Receive Analysis</strong> - We&rsquo;ll prepare a detailed audit before our call</li>
-<li><strong>Strategy Session</strong> - 30-minute video call to review findings and discuss next steps</li>
-</ol>
-<h3 id="what-youll-receive">What You&rsquo;ll Receive</h3>
-<ul>
-<li><strong>PDF Audit Report</strong> with specific findings and recommendations</li>
-<li><strong>Competitive Analysis</strong> showing how you stack up against local competitors</li>
-<li><strong>Quick Win Opportunities</strong> that can be implemented immediately</li>
-<li><strong>Customized Strategy</strong> for improving your Google presence</li>
-<li><strong>No Obligation</strong> - This is a free consultation with no strings attached</li>
-</ul>
-<h3 id="schedule-your-free-audit">Schedule Your Free Audit</h3>
-<!-- raw HTML omitted -->
-<pre><code>&lt;div style=&quot;display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;&quot;&gt;
-    &lt;div style=&quot;background: var(--white); padding: 1rem; border-radius: 5px; text-align: center;&quot;&gt;
-        &lt;div style=&quot;font-weight: bold; color: var(--primary);&quot;&gt;Monday - Friday&lt;/div&gt;
-        &lt;div&gt;9:00 AM - 5:00 PM EST&lt;/div&gt;
-    &lt;/div&gt;
-    
-    &lt;div style=&quot;background: var(--white); padding: 1rem; border-radius: 5px; text-align: center;&quot;&gt;
-        &lt;div style=&quot;font-weight: bold; color: var(--primary);&quot;&gt;Video Call&lt;/div&gt;
-        &lt;div&gt;Google Meet or Zoom&lt;/div&gt;
-    &lt;/div&gt;
-    
-    &lt;div style=&quot;background: var(--white); padding: 1rem; border-radius: 5px; text-align: center;&quot;&gt;
-        &lt;div style=&quot;font-weight: bold; color: var(--primary);&quot;&gt;Preparation&lt;/div&gt;
-        &lt;div&gt;15 minutes required&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;text-align: center;&quot;&gt;
-    &lt;a href=&quot;mailto:hello@sparkmedia.ai?subject=Free%20Google%20Ads%20Audit%20Request&amp;body=Hi%20SparkMedia.ai%20team,%0A%0AI'd%20like%20to%20schedule%20a%20free%2030-minute%20audit%20of%20my%20plumbing%20business%20Google%20Ads%20and%20SEO%20performance.%0A%0APlease%20send%20available%20times.%0A%0ABusiness%20Name:%0AWebsite:%0ACurrent%20Monthly%20Ad%20Spend:%0A%0AThank you!&quot; class=&quot;btn&quot;&gt;Email to Schedule&lt;/a&gt;
-    &lt;p style=&quot;margin-top: 1rem; font-size: 0.875rem; color: var(--accent);&quot;&gt;Or call us at (555) 123-4567&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-<!-- raw HTML omitted -->
-<h3 id="who-this-audit-is-for">Who This Audit Is For</h3>
-<ul>
-<li><strong>Plumbing business owners</strong> spending $1,000+/month on Google Ads</li>
-<li><strong>Marketing managers</strong> at plumbing companies looking to improve ROI</li>
-<li><strong>Businesses</strong> not getting enough qualified leads from Google</li>
-<li><strong>Companies</strong> wanting to understand their competitive position</li>
-<li><strong>Businesses</strong> considering hiring a Google Ads management agency</li>
-</ul>
-<h3 id="frequently-asked-questions">Frequently Asked Questions</h3>
-<p><strong>Q: Is this really free?</strong>
-A: Yes, absolutely. This is a no-obligation consultation to help you understand your current performance and opportunities.</p>
-    </section>
-  
-    <section>
-      <h2><a href="/services/">Services</a></h2>
-      <h2 id="specialized-google-ads-management-for-plumbing-companies">Specialized Google Ads Management for Plumbing Companies</h2>
-<p>At SparkMedia.ai, we focus exclusively on helping plumbing businesses dominate Google search results. We understand the unique challenges and opportunities in the plumbing industry, from emergency services to routine maintenance.</p>
-<h3 id="our-core-services">Our Core Services</h3>
-<h4 id="1-strategic-google-ads-campaigns">1. <strong>Strategic Google Ads Campaigns</strong></h4>
-<ul>
-<li><strong>Emergency Plumbing Keywords</strong>: Target customers searching for &ldquo;emergency plumber near me&rdquo;, &ldquo;burst pipe repair&rdquo;, &ldquo;water leak emergency&rdquo;</li>
-<li><strong>Service-Specific Campaigns</strong>: Drain cleaning, water heater installation/repair, toilet repair, sewer line services</li>
-<li><strong>Geographic Targeting</strong>: Focus on your service areas with radius targeting and location extensions</li>
-<li><strong>Call Tracking &amp; Optimization</strong>: Track which keywords lead to phone calls and optimize accordingly</li>
-</ul>
-<h4 id="2-local-seo-optimization">2. <strong>Local SEO Optimization</strong></h4>
-<ul>
-<li><strong>Google Business Profile Management</strong>: Complete optimization of your GBP listing</li>
-<li><strong>Local Citation Building</strong>: Ensure consistent NAP (Name, Address, Phone) across directories</li>
-<li><strong>Localized Content Creation</strong>: Service area pages and location-specific content</li>
-<li><strong>Review Management</strong>: Strategies to generate and respond to customer reviews</li>
-</ul>
-<h4 id="3-conversion-rate-optimization">3. <strong>Conversion Rate Optimization</strong></h4>
-<ul>
-<li><strong>High-Converting Landing Pages</strong>: Mobile-optimized pages designed for plumbing leads</li>
-<li><strong>Call-to-Action Optimization</strong>: Clear paths to contact, quote requests, and emergency calls</li>
-<li><strong>Form Optimization</strong>: Reduce friction in lead capture forms</li>
-<li><strong>Trust Signals</strong>: Licenses, certifications, and customer testimonials</li>
-</ul>
-<h4 id="4-performance-analytics--reporting">4. <strong>Performance Analytics &amp; Reporting</strong></h4>
-<ul>
-<li><strong>Transparent Dashboard</strong>: Real-time access to campaign performance</li>
-<li><strong>Monthly Strategy Reviews</strong>: Deep dive into what&rsquo;s working and optimization opportunities</li>
-<li><strong>ROI Tracking</strong>: Clear measurement of advertising spend to booked jobs</li>
-<li><strong>Competitive Analysis</strong>: Monitor competitor positioning and adjust strategy</li>
-</ul>
-<h3 id="why-choose-sparkmediaai-for-your-plumbing-business">Why Choose SparkMedia.ai for Your Plumbing Business?</h3>
-<p><strong>Industry Expertise</strong>: We understand plumbing-specific search behavior and customer intent
-<strong>Proven Results</strong>: Average 3-5x ROI increase for our plumbing clients
-<strong>Transparent Pricing</strong>: No hidden fees, clear monthly management fees
-<strong>Dedicated Account Manager</strong>: Single point of contact who understands your business
-<strong>24/7 Campaign Monitoring</strong>: We watch your campaigns around the clock</p>
-    </section>
-  
-    <section>
-      <h2><a href="/posts/post-3/">Post 3</a></h2>
-      <p>Occaecat aliqua consequat laborum ut ex aute aliqua culpa quis irure esse magna dolore quis. Proident fugiat labore eu laboris officia Lorem enim. Ipsum occaecat cillum ut tempor id sint aliqua incididunt nisi incididunt reprehenderit. Voluptate ad minim sint est aute aliquip esse occaecat tempor officia qui sunt. Aute ex ipsum id ut in est velit est laborum incididunt. Aliqua qui id do esse sunt eiusmod id deserunt eu nostrud aute sit ipsum. Deserunt esse cillum Lorem non magna adipisicing mollit amet consequat.</p>
-    </section>
-  
-    <section>
-      <h2><a href="/posts/post-2/">Post 2</a></h2>
-      <p>Anim eiusmod irure incididunt sint cupidatat. Incididunt irure irure irure nisi ipsum do ut quis fugiat consectetur proident cupidatat incididunt cillum. Dolore voluptate occaecat qui mollit laborum ullamco et. Ipsum laboris officia anim laboris culpa eiusmod ex magna ex cupidatat anim ipsum aute. Mollit aliquip occaecat qui sunt velit ut cupidatat reprehenderit enim sunt laborum. Velit veniam in officia nulla adipisicing ut duis officia.</p>
-<p>Exercitation voluptate irure in irure tempor mollit Lorem nostrud ad officia. Velit id fugiat occaecat do tempor. Sit officia Lorem aliquip eu deserunt consectetur. Aute proident deserunt in nulla aliquip dolore ipsum Lorem ut cupidatat consectetur sit sint laborum. Esse cupidatat sit sint sunt tempor exercitation deserunt. Labore dolor duis laborum est do nisi ut veniam dolor et nostrud nostrud.</p>
-    </section>
-  
-    <section>
-      <h2><a href="/posts/post-1/">Post 1</a></h2>
-      <p>Tempor proident minim aliquip reprehenderit dolor et ad anim Lorem duis sint eiusmod. Labore ut ea duis dolor. Incididunt consectetur proident qui occaecat incididunt do nisi Lorem. Tempor do laborum elit laboris excepteur eiusmod do. Eiusmod nisi excepteur ut amet pariatur adipisicing Lorem.</p>
-<p>Occaecat nulla excepteur dolore excepteur duis eiusmod ullamco officia anim in voluptate ea occaecat officia. Cillum sint esse velit ea officia minim fugiat. Elit ea esse id aliquip pariatur cupidatat id duis minim incididunt ea ea. Anim ut duis sunt nisi. Culpa cillum sit voluptate voluptate eiusmod dolor. Enim nisi Lorem ipsum irure est excepteur voluptate eu in enim nisi. Nostrud ipsum Lorem anim sint labore consequat do.</p>
-    </section>
-  
-
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>SparkMedia.ai</h3>
-                    <p>We help local service businesses turn high intent Google searches into booked customers</p>
+            <!-- RIGHT SIDE - GRADIENT ARTWORK & FLOATING CARDS -->
+            <div class="hero-visual">
+                <div class="gradient-artwork"></div>
+                
+                <!-- Floating UI Cards -->
+                <div class="floating-card card-1">
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">Lead Capture</h3>
+                    <p class="card-desc">AI-powered lead qualification and routing</p>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul style="list-style: none;">
-                        
-                        <li><a href="/">Home</a></li>
-                        
-                        <li><a href="/services/">Services</a></li>
-                        
-                        <li><a href="/free-audit/">Free Audit</a></li>
-                        
-                        <li><a href="/about/">About</a></li>
-                        
-                        <li><a href="/contact/">Contact</a></li>
-                        
+                <div class="floating-card card-2">
+                    <div class="card-icon">⚙️</div>
+                    <h3 class="card-title">Automation Workflows</h3>
+                    <p class="card-desc">End-to-end process automation</p>
+                </div>
+                
+                <div class="floating-card card-3">
+                    <div class="card-icon">🎤</div>
+                    <h3 class="card-title">AI Voice Agent</h3>
+                    <p class="card-desc">24/7 customer service automation</p>
+                </div>
+                
+                <div class="floating-card card-4">
+                    <div class="card-icon">📈</div>
+                    <h3 class="card-title">Analytics Dashboard</h3>
+                    <p class="card-desc">Real-time performance insights</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         TRUST STRIP
+         ========================================================================== -->
+    <section class="trust-strip">
+        <div class="container">
+            <p class="trust-title">Trusted by growing brands and operators</p>
+            <div class="trust-logos">
+                <div class="trust-logo">PLUMBCO</div>
+                <div class="trust-logo">HVAC PROS</div>
+                <div class="trust-logo">ROOFMASTERS</div>
+                <div class="trust-logo">ELECTRO TECH</div>
+                <div class="trust-logo">PIPE SOLUTIONS</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         CORE SERVICES - 4 COLUMN GRID
+         ========================================================================== -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Our Core Services</div>
+                <h2 class="section-title">AI-Powered Marketing Infrastructure</h2>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service 1: Paid Acquisition -->
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3 class="service-title">Paid Acquisition</h3>
+                    <p class="service-description">
+                        AI-optimized Google Ads campaigns targeting high-intent local service searches.
+                    </p>
+                    <ul class="service-features">
+                        <li>Emergency service keyword targeting</li>
+                        <li>Local geographic optimization</li>
+                        <li>Competitor bid analysis</li>
+                        <li>24/7 campaign monitoring</li>
                     </ul>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>Contact Us</h3>
-                    <p>Email: hello@sparkmedia.ai</p>
-                    <p>Phone: (555) 123-4567</p>
+                <!-- Service 2: AI Automation Systems -->
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3 class="service-title">AI Automation Systems</h3>
+                    <p class="service-description">
+                        Custom automation workflows built with OpenClaw for operational efficiency.
+                    </p>
+                    <ul class="service-features">
+                        <li>Lead qualification automation</li>
+                        <li>Customer follow-up sequences</li>
+                        <li>Reporting automation</li>
+                        <li>Integration with existing tools</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3: CRM & Pipeline Engineering -->
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <h3 class="service-title">CRM & Pipeline Engineering</h3>
+                    <p class="service-description">
+                        Custom CRM solutions and pipeline optimization for maximum conversion.
+                    </p>
+                    <ul class="service-features">
+                        <li>Custom pipeline design</li>
+                        <li>Automated lead scoring</li>
+                        <li>Integration with marketing tools</li>
+                        <li>Performance analytics</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 4: Conversion Optimization -->
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h3 class="service-title">Conversion Optimization</h3>
+                    <p class="service-description">
+                        Data-driven optimization of landing pages, forms, and user journeys.
+                    </p>
+                    <ul class="service-features">
+                        <li>A/B testing framework</li>
+                        <li>User behavior analysis</li>
+                        <li>Conversion rate optimization</li>
+                        <li>Performance tracking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         AI SYSTEMS HIGHLIGHT - OPENCLAW INTEGRATION
+         ========================================================================== -->
+    <section id="ai-systems" class="ai-systems">
+        <div class="container ai-container">
+            <div class="ai-content">
+                <div class="section-subtitle">Powered by OpenClaw</div>
+                <h2 class="section-title">Enterprise-Grade AI Infrastructure</h2>
+                
+                <p class="ai-description">
+                    SparkMedia.ai runs on OpenClaw, a sophisticated AI automation platform that powers 
+                    our marketing and operational systems. This infrastructure enables:
+                </p>
+                
+                <ul class="ai-features">
+                    <li>
+                        <strong>Real-time campaign optimization</strong>
+                        <p>AI continuously adjusts bids and targeting based on performance data.</p>
+                    </li>
+                    <li>
+                        <strong>Automated lead qualification</strong>
+                        <p>Machine learning algorithms score and route leads instantly.</p>
+                    </li>
+                    <li>
+                        <strong>Predictive analytics</strong>
+                        <p>Forecast ROI and optimize budget allocation with AI models.</p>
+                    </li>
+                    <li>
+                        <strong>24/7 monitoring</strong>
+                        <p>AI systems watch your campaigns around the clock.</p>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="ai-visual">
+                <div class="dashboard-mockup">
+                    <div class="dashboard-header">
+                        <div class="dashboard-title">OpenClaw Dashboard</div>
+                        <div class="dashboard-stats">
+                            <div class="stat">
+                                <div class="stat-value">98%</div>
+                                <div class="stat-label">Uptime</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">24/7</div>
+                                <div class="stat-label">Monitoring</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-content">
+                        <div class="chart"></div>
+                        <div class="metrics">
+                            <div class="metric">
+                                <div class="metric-label">Campaigns Active</div>
+                                <div class="metric-value">42</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-label">Leads Today</div>
+                                <div class="metric-value">187</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-label">Conversion Rate</div>
+                                <div class="metric-value">34%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         RESULTS SECTION - ANIMATED METRICS
+         ========================================================================== -->
+    <section id="results" class="results">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Measurable Impact</div>
+                <h2 class="section-title">Real Results for Our Clients</h2>
+            </div>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-icon">💰</div>
+                    <div class="result-value" data-count="1250000">$1,250,000+</div>
+                    <div class="result-label">Revenue Generated</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-icon">📞</div>
+                    <div class="result-value" data-count="8500">8,500+</div>
+                    <div class="result-label">Leads Processed</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-icon">⏱️</div>
+                    <div class="result-value" data-count="12000">12,000+</div>
+                    <div class="result-label">Automation Hours Saved</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         FINAL CTA SECTION
+         ========================================================================== -->
+    <section id="contact" class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Scale with AI-Powered Marketing?</h2>
+                <p class="cta-subtitle">
+                    Schedule a free 30-minute audit of your current marketing and automation systems. 
+                    We'll show you exactly where AI can drive growth.
+                </p>
+                
+                <button class="btn-primary cta-button">
+                    <span>Get Your Free Audit Now</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         FOOTER
+         ========================================================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <span class="logo-text">Spark</span>
+                        <span class="logo-accent">Media</span>
+                        <span class="logo-ai">.ai</span>
+                    </a>
+                    <p class="footer-tagline">
+                        AI-powered marketing and automation for local service businesses.
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Services</h3>
+                        <a href="#">Paid Acquisition</a>
+                        <a href="#">AI Automation</a>
+                        <a href="#">CRM Engineering</a>
+                        <a href="#">Conversion Optimization</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Company</h3>
+                        <a href="#">About</a>
+                        <a href="#">Case Studies</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Resources</h3>
+                        <a href="#">Blog</a>
+                        <a href="#">Documentation</a>
+                        <a href="#">Support</a>
+                        <a href="#">API</a>
+                    </div>
                 </div>
             </div>
             
-            <div class="copyright">
+            <div class="footer-bottom">
                 <p>&copy; 2026 SparkMedia.ai. All rights reserved.</p>
+                <p>AI-powered marketing infrastructure for local service businesses.</p>
             </div>
         </div>
     </footer>
 
-    <script>
-        
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            document.getElementById('mainMenu').classList.toggle('active');
-        });
-        
-        
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('mainMenu');
-            const btn = document.getElementById('mobileMenuBtn');
-            
-            if (!menu.contains(event.target) && !btn.contains(event.target)) {
-                menu.classList.remove('active');
-            }
-        });
-    </script>
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
 </body>
 </html>
