@@ -1,0 +1,61 @@
+baseURL = 'https://sparkmediaai.github.io/'
+languageCode = 'en-us'
+title = 'SparkMedia.ai'
+theme = 'sparkmedia-theme'
+
+[params]
+  description = 'We help local service businesses turn high intent Google searches into booked customers'
+  brandName = 'SparkMedia.ai'
+  tagline = 'Turn Google Searches into Booked Customers'
+  email = 'hello@sparkmedia.ai'
+  phone = '(555) 123-4567'
+  
+  # Brand colors - magenta/cyan scheme
+  primaryColor = '#FF00FF'  # Magenta
+  secondaryColor = '#00FFFF' # Cyan
+  accentColor = '#333333'   # Dark gray
+  lightColor = '#F8F9FA'    # Light background
+  
+  # Social media
+  github = 'sparkmediaai'
+  linkedin = 'sparkmediaai'
+
+[menu]
+  [[menu.main]]
+    identifier = 'home'
+    name = 'Home'
+    url = '/'
+    weight = 1
+    
+  [[menu.main]]
+    identifier = 'services'
+    name = 'Services'
+    url = '/services/'
+    weight = 2
+    
+  [[menu.main]]
+    identifier = 'audit'
+    name = 'Free Audit'
+    url = '/free-audit/'
+    weight = 3
+    
+  [[menu.main]]
+    identifier = 'about'
+    name = 'About'
+    url = '/about/'
+    weight = 4
+    
+  [[menu.main]]
+    identifier = 'contact'
+    name = 'Contact'
+    url = '/contact/'
+    weight = 5
+
+[outputs]
+  home = ['HTML', 'RSS', 'JSON']
+
+[services]
+  plumbing = true
+  hvac = false
+  electrical = false
+  landscaping = false

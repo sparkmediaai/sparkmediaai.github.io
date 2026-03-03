@@ -1,0 +1,88 @@
+{{ define "main" }}
+<section class="hero py-3">
+    <div class="container">
+        <div class="text-center">
+            <h1 style="font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                {{ .Site.Params.tagline }}
+            </h1>
+            <p style="font-size: 1.25rem; color: var(--accent); max-width: 800px; margin: 0 auto 2rem;">
+                {{ .Site.Params.description }}
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="/free-audit/" class="btn">Get Your Free Audit</a>
+                <a href="/services/" class="btn btn-secondary">Our Services</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services py-3" style="background-color: var(--light);">
+    <div class="container">
+        <div class="text-center mb-3">
+            <h2 style="font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem;">Specialized for Plumbing Businesses</h2>
+            <p style="font-size: 1.125rem; color: var(--accent); max-width: 800px; margin: 0 auto;">
+                We focus on helping plumbing companies dominate Google search results for high-intent keywords that convert to booked jobs.
+            </p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            <div style="background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Google Ads Management</h3>
+                <p>Strategic paid search campaigns targeting customers searching for emergency plumbing, drain cleaning, water heater repair, and more.</p>
+            </div>
+            
+            <div style="background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Local SEO Optimization</h3>
+                <p>Improve your Google Business Profile ranking and local search visibility to attract customers in your service area.</p>
+            </div>
+            
+            <div style="background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Conversion Optimization</h3>
+                <p>Turn website visitors into booked appointments with optimized landing pages and call tracking.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="results py-3">
+    <div class="container">
+        <div class="text-center mb-3">
+            <h2 style="font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem;">Proven Results</h2>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: center;">
+            <div>
+                <div style="font-size: 3rem; font-weight: bold; color: var(--primary);">3-5x</div>
+                <p style="color: var(--accent); font-weight: 500;">ROI Increase</p>
+            </div>
+            
+            <div>
+                <div style="font-size: 3rem; font-weight: bold; color: var(--primary);">40%</div>
+                <p style="color: var(--accent); font-weight: 500;">Lower Cost Per Lead</p>
+            </div>
+            
+            <div>
+                <div style="font-size: 3rem; font-weight: bold; color: var(--primary);">24/7</div>
+                <p style="color: var(--accent); font-weight: 500;">Campaign Monitoring</p>
+            </div>
+            
+            <div>
+                <div style="font-size: 3rem; font-weight: bold; color: var(--primary);">100%</div>
+                <p style="color: var(--accent); font-weight: 500;">Transparent Reporting</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta py-3" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: var(--white);">
+    <div class="container">
+        <div class="text-center">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Ready to Get More Plumbing Jobs?</h2>
+            <p style="font-size: 1.25rem; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Book a free 30-minute audit of your current Google Ads and SEO performance. We'll show you exactly where you're missing opportunities.
+            </p>
+            <a href="/free-audit/" class="btn" style="background: var(--white); color: var(--primary);">Schedule Free Audit</a>
+        </div>
+    </div>
+</section>
+{{ end }}
