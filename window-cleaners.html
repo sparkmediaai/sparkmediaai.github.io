@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Cleaning Marketing | SparkMedia.ai</title>
+    <meta name="description" content="Get more booked window cleaning jobs from Google searches. AI-powered marketing for window cleaning businesses.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    
+    <style>
+        /* Additional styles specific to window cleaners page */
+        :root {
+            --bg-dark: #0C0F14;
+            --pink: #FF005C;
+            --cyan: #00C2FF;
+            --white: #FFFFFF;
+            --gray-light: #F8F9FA;
+            --gray-dark: #2A2D32;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Hero Section Overrides */
+        .hero-window-cleaners {
+            padding: 12rem 0 8rem;
+            background: linear-gradient(135deg, rgba(12, 15, 20, 0.9), rgba(12, 15, 20, 0.95)),
+                        url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-window-cleaners::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 0, 92, 0.1), transparent 50%),
+                       radial-gradient(circle at 70% 20%, rgba(0, 194, 255, 0.1), transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content-window {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-window-cleaners h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--white), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-window-cleaners p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+        
+        .value-prop {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--pink), var(--cyan));
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Buttons */
+        .btn-window {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--pink), var(--cyan));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-window::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-window:hover::before {
+            left: 100%;
+        }
+        
+        .btn-window:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 0, 92, 0.3);
+        }
+        
+        .btn-window-secondary {
+            background: transparent;
+            border: 2px solid var(--cyan);
+            margin-left: 1rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 6rem;
+            background: linear-gradient(135deg, rgba(12, 15, 20, 0.9), rgba(12, 15, 20, 0.95)),
+                        url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 0, 92, 0.1), transparent 50%),
+                       radial-gradient(circle at 70% 20%, rgba(0, 194, 255, 0.1), transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--white), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+        
+        .value-prop {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--pink), var(--cyan));
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--pink), var(--cyan));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 0, 92, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--cyan);
+            margin-left: 1rem;
+        }
+        
+        /* Sections */
+        section {
+            padding: 6rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--pink), var(--cyan));
+            border-radius: 2px;
+        }
+        
+        /* Problem/Solution Section */
+        .problem-solution {
+            background-color: rgba(42, 45, 50, 0.3);
+            border-radius: 20px;
+            padding: 4rem;
+            margin: 2rem 0;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .problem-card, .solution-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2.5rem;
+            transition: transform 0.3s, background 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .problem-card:hover, .solution-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--cyan);
+        }
+        
+        .problem-card h3, .solution-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--cyan);
+        }
+        
+        .problem-card h3::before {
+            content: '⚠️ ';
+        }
+        
+        .solution-card h3::before {
+            content: '✅ ';
+        }
+        
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .service-card {
+            background: linear-gradient(135deg, rgba(255, 0, 92, 0.1), rgba(0, 194, 255, 0.1));
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 0, 92, 0.2);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyan);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--cyan);
+        }
+        
+        /* Results Section */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .result-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--pink), var(--cyan));
+        }
+        
+        .result-metric {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--pink), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 0, 92, 0.1), rgba(0, 194, 255, 0.1));
+            border-radius: 20px;
+            padding: 5rem;
+            margin: 4rem 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Form */
+        .audit-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--cyan);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--cyan);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(42, 45, 50, 0.5);
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--cyan);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem 0;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .problem-solution,
+            .audit-form,
+            .cta-section {
+                padding: 2rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ==========================================================================
+         HEADER & NAVIGATION
+         ========================================================================== -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo">
+                    <span class="logo-text">Spark</span>
+                    <span class="logo-accent">Media</span>
+                    <span class="logo-ai">.ai</span>
+                </a>
+                
+                <div class="nav-links">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/#services" class="nav-link">Services</a>
+                    <a href="/#ai-systems" class="nav-link">AI Systems</a>
+                    <a href="/#results" class="nav-link">Results</a>
+                    <a href="/#contact" class="nav-link">Contact</a>
+                    <a href="/window-cleaners.html" class="nav-link" style="color: #00C2FF; font-weight: 600;">Window Cleaners</a>
+                </div>
+                
+                <button class="cta-button nav-cta">Get Started</button>
+                
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-window-cleaners">
+        <div class="container">
+            <div class="hero-content-window">
+                <div class="value-prop">More Booked Jobs, Less Wasted Ad Spend</div>
+                <h1>Get More Window Cleaning Jobs From Google Searches</h1>
+                <p>We help window cleaning businesses dominate local search results for "window cleaning near me" and turn high-intent searches into booked customers with AI-powered marketing.</p>
+                <div>
+                    <a href="#audit" class="btn-window">Book Your Free Audit</a>
+                    <a href="#results" class="btn-window btn-window-secondary">See Case Studies</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem/Solution Section -->
+    <section class="problem-solution">
+        <div class="container">
+            <h2 class="section-title">The Window Cleaning Marketing Challenge</h2>
+            <p style="text-align: center; margin-bottom: 3rem; font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); max-width: 800px; margin-left: auto; margin-right: auto;">
+                Most window cleaners struggle with marketing. They're great at cleaning windows but lose potential customers to competitors who show up first in search results.
+            </p>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>Wasted Ad Spend</h3>
+                    <p>Paying for clicks that don't convert because your ads target the wrong keywords or show to people not ready to book.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>Missed Local Searches</h3>
+                    <p>When someone searches "window cleaning near me" or "commercial window cleaning [your city]", your business doesn't appear on the first page.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>Manual Lead Follow-up</h3>
+                    <p>Spending hours calling leads that go nowhere instead of focusing on cleaning windows and growing your business.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <h3>AI-Optimized Google Ads</h3>
+                    <p>Our AI analyzes search patterns to bid on high-intent keywords like "emergency window cleaning" and "same-day window cleaning service".</p>
+                </div>
+                
+                <div class="solution-card">
+                    <h3>Local SEO Domination</h3>
+                    <p>We optimize your Google Business Profile and local listings so you appear when potential customers search in your service area.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <h3>Automated Lead Qualification</h3>
+                    <p>Smart forms and chatbots pre-qualify leads, so you only spend time on customers ready to book.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Services for Window Cleaning Businesses</h2>
+            <p style="text-align: center; margin-bottom: 3rem; font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); max-width: 800px; margin-left: auto; margin-right: auto;">
+                We specialize in marketing services designed specifically for window cleaning companies looking to grow their customer base.
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>Google Ads Management</h3>
+                    <p>AI-powered campaigns targeting "window cleaning near me", "commercial window cleaning", and other high-intent local searches.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📍</div>
+                    <h3>Local SEO Optimization</h3>
+                    <p>Dominate Google Maps and local search results for window cleaning services in your service areas.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Lead Capture Websites</h3>
+                    <p>Mobile-optimized landing pages designed to convert window cleaning searches into booked appointments.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>AI Lead Qualification</h3>
+                    <p>Automated systems that filter out tire-kickers and connect you with ready-to-book customers.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Performance Analytics</h3>
+                    <p>Real-time dashboards showing exactly which marketing efforts are bringing in the most profitable jobs.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📞</div>
+                    <h3>Call Tracking & Optimization</h3>
+                    <p>Track which ads generate phone calls and optimize for the highest quality leads.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" style="background-color: rgba(42, 45, 50, 0.3);">
+        <div class="container">
+            <h2 class="section-title">Proven Results for Window Cleaners</h2>
+            <p style="text-align: center; margin-bottom: 3rem; font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); max-width: 800px; margin-left: auto; margin-right: auto;">
+                See how we've helped window cleaning businesses like yours get more booked jobs with less wasted ad spend.
+            </p>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-metric">247%</div>
+                    <h3>Increase in Booked Jobs</h3>
+                    <p>Crystal Clear Windows saw a 247% increase in booked residential window cleaning jobs within 90 days of implementing our AI-optimized Google Ads.</p>
+                    <p style="margin-top: 1rem; font-style: italic; color: rgba(255, 255, 255, 0.7);">"We went from 3-4 jobs per week to 10-12 consistently."</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-metric">68%</div>
+                    <h3>Reduction in Cost Per Lead</h3>
+                    <p>Spotless Commercial Cleaning reduced their cost per qualified lead by 68% while increasing lead volume by 42% through our local SEO strategy.</p>
+                    <p style="margin-top: 1rem; font-style: italic; color: rgba(255, 255, 255, 0.7);">"Finally getting commercial contracts we used to miss out on."</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-metric">92%</div>
+                    <h3>Lead-to-Booking Rate</h3>
+                    <p>Window Wizards achieved a 92% conversion rate from qualified leads to booked appointments using our automated lead qualification system.</p>
+                    <p style="margin-top: 1rem; font-style: italic; color: rgba(255, 255, 255, 0.7);">"No more wasting time on people who aren't serious."</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 4rem;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--cyan);">Ready to See Similar Results?</h3>
+                <a href="#audit" class="btn" style="font-size: 1.2rem; padding: 1.2rem 3rem;">Get Your Free Audit</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="audit">
+        <div class="container">
+            <div class="cta-section">
+                <h2>Get Your Free Window Cleaning Marketing Audit</h2>
+                <p>We'll analyze your current marketing, identify missed opportunities, and show you exactly how to get more booked window cleaning jobs from Google searches.</p>
+                
+                <div class="audit-form">
+                    <form id="windowCleanerForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required placeholder="John Smith">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company Name</label>
+                            <input type="text" id="company" name="company" required placeholder="Crystal Clear Windows">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="john@crystalclearwindows.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service-area">Primary Service Area</label>
+                            <input type="text" id="service-area" name="service-area" required placeholder="e.g., Chicago, IL or Dallas-Fort Worth">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service-type">Primary Service Type</label>
+                            <select id="service-type" name="service-type" required>
+                                <option value="">Select your primary service</option>
+                                <option value="residential">Residential Window Cleaning</option>
+                                <option value="commercial">Commercial Window Cleaning</option>
+                                <option value="both">Both Residential & Commercial</option>
+                                <option value="high-rise">High-Rise/Industrial Window Cleaning</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="goals">What are your main goals?</label>
+                            <textarea id="goals" name="goals" rows="3" placeholder="e.g., Get more residential jobs, Expand commercial contracts, Reduce marketing costs..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%; padding: 1.2rem; font-size: 1.1rem;">
+                            Get My Free Marketing Audit
+                        </button>
+                        
+                        <p style="text-align: center; margin-top: 1.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">
+                            No credit card required. Audit delivered within 48 hours.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SparkMedia.ai</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1.5rem;">
+                        We help local service businesses turn high-intent Google searches into booked customers with AI-powered marketing.
+                    </p>
+                    <p style="color: var(--cyan); font-weight: 500;">
+                        More booked jobs, less wasted ad spend.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="/">Home</a>
+                    <a href="/services/">Services</a>
+                    <a href="/free-audit/">Free Audit</a>
+                    <a href="/about/">About Us</a>
+                    <a href="/contact/">Contact</a>
+                    <a href="/window-cleaners/">Window Cleaners</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 0.8rem;">
+                        <strong>Email:</strong> hello@sparkmedia.ai
+                    </p>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 0.8rem;">
+                        <strong>Phone:</strong> (555) 123-4567
+                    </p>
+                    <p style="color: rgba(255, 255, 255, 0.8);">
+                        <strong>Hours:</strong> Mon-Fri 9am-6pm EST
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Other Service Verticals</h3>
+                    <a href="#">Plumbing Companies</a>
+                    <a href="#">HVAC Services</a>
+                    <a href="#">Roofing Contractors</a>
+                    <a href="#">Electrical Services</a>
+                    <a href="#">Landscaping Businesses</a>
+                    <a href="#">Cleaning Services</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 SparkMedia.ai. All rights reserved. | <a href="/privacy/" style="color: rgba(255, 255, 255, 0.6);">Privacy Policy</a> | <a href="/terms/" style="color: rgba(255, 255, 255, 0.6);">Terms of Service</a></p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">AI-powered marketing for local service businesses</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainMenu').classList.toggle('active');
+        });
+        
+        // Form submission
+        document.getElementById('windowCleanerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message
+            alert('Thank you! Your free marketing audit request has been submitted. We\'ll contact you within 24 hours to schedule your audit.');
+            
+            // Reset form
+            this.reset();
+            
+            // In a real implementation, you would send this data to your server
+            // fetch('/api/window-cleaner-audit', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(data)
+            // });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mainMenu').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
