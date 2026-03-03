@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | SparkMedia.ai</title>
+    <meta name="description" content="We help local service businesses turn high intent Google searches into booked customers">
+    
+    
+    <style>
+        :root {
+            --primary: #FF00FF;
+            --secondary: #00FFFF;
+            --accent: #333333;
+            --light: #F8F9FA;
+            --white: #ffffff;
+            --dark: #212529;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--white);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+         
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--accent);
+        }
+        
+         
+        footer {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+         
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: var(--accent);
+        }
+        
+         
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+        
+         
+        .text-center { text-align: center; }
+        .mt-1 { margin-top: 1rem; }
+        .mt-2 { margin-top: 2rem; }
+        .mt-3 { margin-top: 3rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mb-3 { margin-bottom: 3rem; }
+        .py-3 { padding-top: 3rem; padding-bottom: 3rem; }
+        .px-2 { padding-left: 2rem; padding-right: 2rem; }
+    </style>
+    
+    
+    
+    
+        <link rel="stylesheet" href="https://sparkmediaai.github.io/css/main.css">
+    
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="/" class="logo">Spark<span>Media</span>.ai</a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            
+            <nav>
+                <ul id="mainMenu">
+                    
+                    <li><a href="/">Home</a></li>
+                    
+                    <li><a href="/services/">Services</a></li>
+                    
+                    <li><a href="/free-audit/">Free Audit</a></li>
+                    
+                    <li><a href="/about/">About</a></li>
+                    
+                    <li><a href="/contact/">Contact</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+  <h1>Services</h1>
+
+  
+  
+  <time datetime="2026-03-02T18:27:00-05:00">March 2, 2026</time>
+
+  <h2 id="specialized-google-ads-management-for-plumbing-companies">Specialized Google Ads Management for Plumbing Companies</h2>
+<p>At SparkMedia.ai, we focus exclusively on helping plumbing businesses dominate Google search results. We understand the unique challenges and opportunities in the plumbing industry, from emergency services to routine maintenance.</p>
+<h3 id="our-core-services">Our Core Services</h3>
+<h4 id="1-strategic-google-ads-campaigns">1. <strong>Strategic Google Ads Campaigns</strong></h4>
+<ul>
+<li><strong>Emergency Plumbing Keywords</strong>: Target customers searching for &ldquo;emergency plumber near me&rdquo;, &ldquo;burst pipe repair&rdquo;, &ldquo;water leak emergency&rdquo;</li>
+<li><strong>Service-Specific Campaigns</strong>: Drain cleaning, water heater installation/repair, toilet repair, sewer line services</li>
+<li><strong>Geographic Targeting</strong>: Focus on your service areas with radius targeting and location extensions</li>
+<li><strong>Call Tracking &amp; Optimization</strong>: Track which keywords lead to phone calls and optimize accordingly</li>
+</ul>
+<h4 id="2-local-seo-optimization">2. <strong>Local SEO Optimization</strong></h4>
+<ul>
+<li><strong>Google Business Profile Management</strong>: Complete optimization of your GBP listing</li>
+<li><strong>Local Citation Building</strong>: Ensure consistent NAP (Name, Address, Phone) across directories</li>
+<li><strong>Localized Content Creation</strong>: Service area pages and location-specific content</li>
+<li><strong>Review Management</strong>: Strategies to generate and respond to customer reviews</li>
+</ul>
+<h4 id="3-conversion-rate-optimization">3. <strong>Conversion Rate Optimization</strong></h4>
+<ul>
+<li><strong>High-Converting Landing Pages</strong>: Mobile-optimized pages designed for plumbing leads</li>
+<li><strong>Call-to-Action Optimization</strong>: Clear paths to contact, quote requests, and emergency calls</li>
+<li><strong>Form Optimization</strong>: Reduce friction in lead capture forms</li>
+<li><strong>Trust Signals</strong>: Licenses, certifications, and customer testimonials</li>
+</ul>
+<h4 id="4-performance-analytics--reporting">4. <strong>Performance Analytics &amp; Reporting</strong></h4>
+<ul>
+<li><strong>Transparent Dashboard</strong>: Real-time access to campaign performance</li>
+<li><strong>Monthly Strategy Reviews</strong>: Deep dive into what&rsquo;s working and optimization opportunities</li>
+<li><strong>ROI Tracking</strong>: Clear measurement of advertising spend to booked jobs</li>
+<li><strong>Competitive Analysis</strong>: Monitor competitor positioning and adjust strategy</li>
+</ul>
+<h3 id="why-choose-sparkmediaai-for-your-plumbing-business">Why Choose SparkMedia.ai for Your Plumbing Business?</h3>
+<p><strong>Industry Expertise</strong>: We understand plumbing-specific search behavior and customer intent
+<strong>Proven Results</strong>: Average 3-5x ROI increase for our plumbing clients
+<strong>Transparent Pricing</strong>: No hidden fees, clear monthly management fees
+<strong>Dedicated Account Manager</strong>: Single point of contact who understands your business
+<strong>24/7 Campaign Monitoring</strong>: We watch your campaigns around the clock</p>
+<h3 id="pricing-structure">Pricing Structure</h3>
+<p><strong>Starter Plan</strong> - $999/month</p>
+<ul>
+<li>Google Ads Management (up to $2,000/month ad spend)</li>
+<li>Basic Local SEO</li>
+<li>Monthly Reporting</li>
+<li>Email Support</li>
+</ul>
+<p><strong>Growth Plan</strong> - $1,499/month</p>
+<ul>
+<li>Google Ads Management (up to $5,000/month ad spend)</li>
+<li>Comprehensive Local SEO</li>
+<li>Conversion Rate Optimization</li>
+<li>Weekly Strategy Calls</li>
+<li>Priority Support</li>
+</ul>
+<p><strong>Enterprise Plan</strong> - Custom Pricing</p>
+<ul>
+<li>Unlimited Ad Spend Management</li>
+<li>Full-Service Digital Marketing</li>
+<li>Dedicated Account Team</li>
+<li>Custom Reporting &amp; Analytics</li>
+</ul>
+<hr>
+<h3 id="ready-to-get-started">Ready to Get Started?</h3>
+<p><a href="/free-audit/">Schedule a Free Audit</a> of your current Google Ads and SEO performance. We&rsquo;ll show you exactly where you&rsquo;re missing opportunities and provide a customized strategy for growth.</p>
+
+  
+
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SparkMedia.ai</h3>
+                    <p>We help local service businesses turn high intent Google searches into booked customers</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none;">
+                        
+                        <li><a href="/">Home</a></li>
+                        
+                        <li><a href="/services/">Services</a></li>
+                        
+                        <li><a href="/free-audit/">Free Audit</a></li>
+                        
+                        <li><a href="/about/">About</a></li>
+                        
+                        <li><a href="/contact/">Contact</a></li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: hello@sparkmedia.ai</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 SparkMedia.ai. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainMenu').classList.toggle('active');
+        });
+        
+        
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mainMenu');
+            const btn = document.getElementById('mobileMenuBtn');
+            
+            if (!menu.contains(event.target) && !btn.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

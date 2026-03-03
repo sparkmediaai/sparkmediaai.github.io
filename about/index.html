@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | SparkMedia.ai</title>
+    <meta name="description" content="We help local service businesses turn high intent Google searches into booked customers">
+    
+    
+    <style>
+        :root {
+            --primary: #FF00FF;
+            --secondary: #00FFFF;
+            --accent: #333333;
+            --light: #F8F9FA;
+            --white: #ffffff;
+            --dark: #212529;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--white);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+         
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--accent);
+        }
+        
+         
+        footer {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+         
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: var(--accent);
+        }
+        
+         
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+        
+         
+        .text-center { text-align: center; }
+        .mt-1 { margin-top: 1rem; }
+        .mt-2 { margin-top: 2rem; }
+        .mt-3 { margin-top: 3rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mb-3 { margin-bottom: 3rem; }
+        .py-3 { padding-top: 3rem; padding-bottom: 3rem; }
+        .px-2 { padding-left: 2rem; padding-right: 2rem; }
+    </style>
+    
+    
+    
+    
+        <link rel="stylesheet" href="https://sparkmediaai.github.io/css/main.css">
+    
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="/" class="logo">Spark<span>Media</span>.ai</a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            
+            <nav>
+                <ul id="mainMenu">
+                    
+                    <li><a href="/">Home</a></li>
+                    
+                    <li><a href="/services/">Services</a></li>
+                    
+                    <li><a href="/free-audit/">Free Audit</a></li>
+                    
+                    <li><a href="/about/">About</a></li>
+                    
+                    <li><a href="/contact/">Contact</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+  <h1>About Us</h1>
+
+  
+  
+  <time datetime="2026-03-02T18:27:00-05:00">March 2, 2026</time>
+
+  <h2 id="our-mission">Our Mission</h2>
+<p>At SparkMedia.ai, we have one simple mission: <strong>Help local service businesses turn high intent Google searches into booked customers.</strong></p>
+<p>We started with a focus on plumbing businesses because we saw a gap in the market. Most digital marketing agencies treat all businesses the same, but plumbing has unique challenges and opportunities that require specialized expertise.</p>
+<h3 id="why-we-focus-on-plumbing">Why We Focus on Plumbing</h3>
+<p>Plumbing businesses face specific challenges in digital marketing:</p>
+<ol>
+<li><strong>High Competition</strong>: Many plumbers compete for the same keywords</li>
+<li><strong>Emergency Intent</strong>: Customers often need immediate service</li>
+<li><strong>Local Focus</strong>: Service areas are geographically limited</li>
+<li><strong>Trust Critical</strong>: Customers need confidence in quality and reliability</li>
+<li><strong>Seasonal Variations</strong>: Demand fluctuates throughout the year</li>
+</ol>
+<p>We understand these nuances and have developed strategies specifically for plumbing companies to overcome these challenges and dominate their local markets.</p>
+<h3 id="our-approach">Our Approach</h3>
+<h4 id="data-driven-strategy"><strong>Data-Driven Strategy</strong></h4>
+<p>We don&rsquo;t guess what works. We analyze search data, competitor performance, and conversion metrics to build campaigns that deliver measurable results.</p>
+<h4 id="specialized-expertise"><strong>Specialized Expertise</strong></h4>
+<p>Our team includes Google Ads specialists who understand plumbing-specific search behavior, from emergency calls to routine maintenance inquiries.</p>
+<h4 id="transparent-partnership"><strong>Transparent Partnership</strong></h4>
+<p>You&rsquo;ll have direct access to your account manager and real-time visibility into campaign performance. No black boxes, no surprises.</p>
+<h4 id="continuous-optimization"><strong>Continuous Optimization</strong></h4>
+<p>Google&rsquo;s algorithms change constantly. We monitor and adjust your campaigns daily to ensure optimal performance.</p>
+<h3 id="our-values">Our Values</h3>
+<p><strong>Excellence</strong>: We strive for exceptional results in everything we do
+<strong>Transparency</strong>: Clear communication and honest reporting
+<strong>Partnership</strong>: We work with you, not just for you
+<strong>Innovation</strong>: Constantly testing and implementing new strategies
+<strong>Results</strong>: Focused on delivering measurable business outcomes</p>
+<h3 id="meet-our-leadership">Meet Our Leadership</h3>
+<!-- raw HTML omitted -->
+<pre><code>&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;div style=&quot;width: 150px; height: 150px; background: linear-gradient(135deg, var(--secondary), var(--primary)); border-radius: 50%; margin: 0 auto 1rem;&quot;&gt;&lt;/div&gt;
+    &lt;h3 style=&quot;color: var(--primary);&quot;&gt;Sarah Chen&lt;/h3&gt;
+    &lt;p style=&quot;font-weight: bold; color: var(--accent);&quot;&gt;Head of Strategy&lt;/p&gt;
+    &lt;p&gt;8+ years in SEO and conversion optimization. Expert in plumbing industry local search behavior and customer journey mapping.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;div style=&quot;width: 150px; height: 150px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; margin: 0 auto 1rem;&quot;&gt;&lt;/div&gt;
+    &lt;h3 style=&quot;color: var(--primary);&quot;&gt;Marcus Johnson&lt;/h3&gt;
+    &lt;p style=&quot;font-weight: bold; color: var(--accent);&quot;&gt;Director of Operations&lt;/p&gt;
+    &lt;p&gt;12+ years managing digital campaigns for service businesses. Focus on ROI optimization and scalable growth strategies.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<h3 id="our-track-record">Our Track Record</h3>
+<p><strong>3-5x Average ROI Increase</strong> for plumbing clients
+<strong>40% Lower Cost Per Lead</strong> compared to industry averages
+<strong>24/7 Campaign Monitoring</strong> for optimal performance
+<strong>100% Client Retention</strong> over the past 2 years</p>
+<h3 id="industry-recognition">Industry Recognition</h3>
+<ul>
+<li><strong>Google Premier Partner</strong> status</li>
+<li><strong>Featured in</strong> Plumbing &amp; Mechanical Magazine</li>
+<li><strong>Regular speakers</strong> at plumbing industry conferences</li>
+<li><strong>Certified</strong> in Google Ads, Analytics, and Local Search</li>
+</ul>
+<h3 id="our-commitment-to-your-success">Our Commitment to Your Success</h3>
+<p>When you work with SparkMedia.ai, you&rsquo;re not just getting a service provider - you&rsquo;re gaining a strategic partner committed to your growth. We measure our success by your success, and we&rsquo;re dedicated to helping your plumbing business thrive in the digital age.</p>
+<hr>
+<h3 id="ready-to-work-with-experts-who-understand-your-business">Ready to Work With Experts Who Understand Your Business?</h3>
+<p><a href="/free-audit/">Schedule a Free Consultation</a> to learn how we can help you dominate Google search results and book more plumbing jobs.</p>
+
+  
+
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SparkMedia.ai</h3>
+                    <p>We help local service businesses turn high intent Google searches into booked customers</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none;">
+                        
+                        <li><a href="/">Home</a></li>
+                        
+                        <li><a href="/services/">Services</a></li>
+                        
+                        <li><a href="/free-audit/">Free Audit</a></li>
+                        
+                        <li><a href="/about/">About</a></li>
+                        
+                        <li><a href="/contact/">Contact</a></li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: hello@sparkmedia.ai</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 SparkMedia.ai. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainMenu').classList.toggle('active');
+        });
+        
+        
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mainMenu');
+            const btn = document.getElementById('mobileMenuBtn');
+            
+            if (!menu.contains(event.target) && !btn.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

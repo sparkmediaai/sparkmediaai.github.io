@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | SparkMedia.ai</title>
+    <meta name="description" content="We help local service businesses turn high intent Google searches into booked customers">
+    
+    
+    <style>
+        :root {
+            --primary: #FF00FF;
+            --secondary: #00FFFF;
+            --accent: #333333;
+            --light: #F8F9FA;
+            --white: #ffffff;
+            --dark: #212529;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--white);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+         
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--accent);
+        }
+        
+         
+        footer {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+         
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: var(--accent);
+        }
+        
+         
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+        
+         
+        .text-center { text-align: center; }
+        .mt-1 { margin-top: 1rem; }
+        .mt-2 { margin-top: 2rem; }
+        .mt-3 { margin-top: 3rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mb-3 { margin-bottom: 3rem; }
+        .py-3 { padding-top: 3rem; padding-bottom: 3rem; }
+        .px-2 { padding-left: 2rem; padding-right: 2rem; }
+    </style>
+    
+    
+    
+    
+        <link rel="stylesheet" href="https://sparkmediaai.github.io/css/main.css">
+    
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="/" class="logo">Spark<span>Media</span>.ai</a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            
+            <nav>
+                <ul id="mainMenu">
+                    
+                    <li><a href="/">Home</a></li>
+                    
+                    <li><a href="/services/">Services</a></li>
+                    
+                    <li><a href="/free-audit/">Free Audit</a></li>
+                    
+                    <li><a href="/about/">About</a></li>
+                    
+                    <li><a href="/contact/">Contact</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+  <h1>Contact Us</h1>
+
+  
+  
+  <time datetime="2026-03-02T18:27:00-05:00">March 2, 2026</time>
+
+  <h2 id="lets-talk-about-growing-your-plumbing-business">Let&rsquo;s Talk About Growing Your Plumbing Business</h2>
+<p>Whether you&rsquo;re ready to get started, have questions about our services, or want to schedule your free audit, we&rsquo;re here to help.</p>
+<h3 id="contact-information">Contact Information</h3>
+<!-- raw HTML omitted -->
+<pre><code>&lt;div style=&quot;text-align: center; padding: 2rem; background-color: var(--light); border-radius: 10px;&quot;&gt;
+    &lt;div style=&quot;font-size: 2rem; color: var(--primary); margin-bottom: 1rem;&quot;&gt;📱&lt;/div&gt;
+    &lt;h3 style=&quot;color: var(--accent);&quot;&gt;Phone&lt;/h3&gt;
+    &lt;p&gt;&lt;a href=&quot;tel:5551234567&quot;&gt;(555) 123-4567&lt;/a&gt;&lt;/p&gt;
+    &lt;p style=&quot;font-size: 0.875rem; color: var(--accent);&quot;&gt;Mon-Fri, 9am-5pm EST&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;text-align: center; padding: 2rem; background-color: var(--light); border-radius: 10px;&quot;&gt;
+    &lt;div style=&quot;font-size: 2rem; color: var(--primary); margin-bottom: 1rem;&quot;&gt;📍&lt;/div&gt;
+    &lt;h3 style=&quot;color: var(--accent);&quot;&gt;Office&lt;/h3&gt;
+    &lt;p&gt;123 Marketing Ave&lt;br&gt;Suite 100&lt;br&gt;Digital City, DC 12345&lt;/p&gt;
+    &lt;p style=&quot;font-size: 0.875rem; color: var(--accent);&quot;&gt;By appointment only&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<h3 id="send-us-a-message">Send Us a Message</h3>
+<!-- raw HTML omitted -->
+<pre><code>    &lt;div&gt;
+        &lt;label for=&quot;email&quot; style=&quot;display: block; margin-bottom: 0.5rem; font-weight: 500;&quot;&gt;Email *&lt;/label&gt;
+        &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; required style=&quot;width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;&quot;&gt;
+    &lt;/div&gt;
+    
+    &lt;div&gt;
+        &lt;label for=&quot;phone&quot; style=&quot;display: block; margin-bottom: 0.5rem; font-weight: 500;&quot;&gt;Phone&lt;/label&gt;
+        &lt;input type=&quot;tel&quot; id=&quot;phone&quot; name=&quot;phone&quot; style=&quot;width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;&quot;&gt;
+    &lt;/div&gt;
+    
+    &lt;div&gt;
+        &lt;label for=&quot;business&quot; style=&quot;display: block; margin-bottom: 0.5rem; font-weight: 500;&quot;&gt;Business Name *&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;business&quot; name=&quot;business&quot; required style=&quot;width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;&quot;&gt;
+    &lt;/div&gt;
+    
+    &lt;div&gt;
+        &lt;label for=&quot;service&quot; style=&quot;display: block; margin-bottom: 0.5rem; font-weight: 500;&quot;&gt;Primary Service&lt;/label&gt;
+        &lt;select id=&quot;service&quot; name=&quot;service&quot; style=&quot;width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;&quot;&gt;
+            &lt;option value=&quot;&quot;&gt;Select a service...&lt;/option&gt;
+            &lt;option value=&quot;residential&quot;&gt;Residential Plumbing&lt;/option&gt;
+            &lt;option value=&quot;commercial&quot;&gt;Commercial Plumbing&lt;/option&gt;
+            &lt;option value=&quot;emergency&quot;&gt;Emergency Plumbing&lt;/option&gt;
+            &lt;option value=&quot;drain&quot;&gt;Drain Cleaning&lt;/option&gt;
+            &lt;option value=&quot;water-heater&quot;&gt;Water Heater Services&lt;/option&gt;
+            &lt;option value=&quot;sewer&quot;&gt;Sewer Line Services&lt;/option&gt;
+            &lt;option value=&quot;other&quot;&gt;Other&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    
+    &lt;div&gt;
+        &lt;label for=&quot;message&quot; style=&quot;display: block; margin-bottom: 0.5rem; font-weight: 500;&quot;&gt;Message *&lt;/label&gt;
+        &lt;textarea id=&quot;message&quot; name=&quot;message&quot; rows=&quot;5&quot; required style=&quot;width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;&quot;&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    
+    &lt;div&gt;
+        &lt;label style=&quot;display: flex; align-items: start; gap: 0.5rem;&quot;&gt;
+            &lt;input type=&quot;checkbox&quot; id=&quot;audit&quot; name=&quot;audit&quot; style=&quot;margin-top: 0.25rem;&quot;&gt;
+            &lt;span&gt;I'd like to schedule a free Google Ads audit&lt;/span&gt;
+        &lt;/label&gt;
+    &lt;/div&gt;
+    
+    &lt;div style=&quot;text-align: center;&quot;&gt;
+        &lt;button type=&quot;submit&quot; class=&quot;btn&quot; style=&quot;width: 100%; max-width: 300px;&quot;&gt;Send Message&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;div id=&quot;formMessage&quot; style=&quot;display: none; text-align: center; padding: 1rem; margin-top: 1rem; border-radius: 5px;&quot;&gt;&lt;/div&gt;
+
+{{ partial &quot;contact-form.html&quot; . }}
+</code></pre>
+<!-- raw HTML omitted -->
+<h3 id="what-happens-next">What Happens Next</h3>
+<ol>
+<li><strong>Initial Response</strong>: We&rsquo;ll acknowledge your message within 24 hours</li>
+<li><strong>Information Gathering</strong>: We may ask a few follow-up questions about your business</li>
+<li><strong>Consultation Scheduling</strong>: We&rsquo;ll schedule a call to discuss your needs in detail</li>
+<li><strong>Custom Proposal</strong>: If appropriate, we&rsquo;ll prepare a customized strategy for your business</li>
+</ol>
+<h3 id="best-ways-to-reach-us">Best Ways to Reach Us</h3>
+<p><strong>For urgent inquiries</strong>: Call us at (555) 123-4567
+<strong>For audit requests</strong>: Use the <a href="/free-audit/">Free Audit page</a>
+<strong>For general questions</strong>: Email <a href="mailto:hello@sparkmedia.ai">hello@sparkmedia.ai</a>
+<strong>For existing clients</strong>: Contact your dedicated account manager</p>
+<h3 id="office-hours">Office Hours</h3>
+<p><strong>Monday - Friday</strong>: 9:00 AM - 5:00 PM EST
+<strong>Saturday - Sunday</strong>: Closed
+<strong>Holidays</strong>: Closed on major US holidays</p>
+<h3 id="connect-with-us">Connect With Us</h3>
+<!-- raw HTML omitted -->
+<hr>
+<h3 id="ready-to-get-started">Ready to Get Started?</h3>
+<p>The fastest way to begin is to <a href="/free-audit/">schedule your free audit</a>. In just 30 minutes, we&rsquo;ll show you exactly how to improve your Google Ads performance and get more plumbing jobs.</p>
+
+  
+
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SparkMedia.ai</h3>
+                    <p>We help local service businesses turn high intent Google searches into booked customers</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none;">
+                        
+                        <li><a href="/">Home</a></li>
+                        
+                        <li><a href="/services/">Services</a></li>
+                        
+                        <li><a href="/free-audit/">Free Audit</a></li>
+                        
+                        <li><a href="/about/">About</a></li>
+                        
+                        <li><a href="/contact/">Contact</a></li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: hello@sparkmedia.ai</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 SparkMedia.ai. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainMenu').classList.toggle('active');
+        });
+        
+        
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mainMenu');
+            const btn = document.getElementById('mobileMenuBtn');
+            
+            if (!menu.contains(event.target) && !btn.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
