@@ -92,6 +92,14 @@ body::before {
     height: 2.5rem;
     width: auto;
 }
+.logo-text-fallback {
+    display: none;
+}
+@media screen and (max-width: 768px) {
+    .logo-image {
+        height: 2rem;
+    }
+}
 .logo-text-only {
     display: flex;
     align-items: center;

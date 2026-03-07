@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Fix SVG Logo Test</title>
+  <style>
+    body { background: #0C0F14; color: white; font-family: Inter, Arial, sans-serif; }
+    .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+    h1 { color: #FF005C; }
+    .logo-row { display: flex; margin-bottom: 20px; gap: 20px; }
+    .logo-option { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; }
+    img { max-width: 100%; height: auto; border: 1px dashed rgba(255,255,255,0.2); }
+    pre { background: rgba(0,0,0,0.2); padding: 10px; overflow: auto; }
+    .button { display: inline-block; background: linear-gradient(135deg, #FF005C, #00C2FF); color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SparkMedia.ai Logo Test Page</h1>
+    <p>This page tests various logo options to resolve the loading issue:</p>
+    
+    <div class="logo-row">
+      <div class="logo-option">
+        <h3>Option 1: SVG Direct</h3>
+        <img src="assets/logo/sparkmedia-logo.svg" alt="Logo SVG">
+      </div>
+      
+      <div class="logo-option">
+        <h3>Option 2: PNG Fallback</h3>
+        <img src="assets/logo/sparkmedia-logo.png" alt="Logo PNG">
+      </div>
+    </div>
+    
+    <div class="logo-row">
+      <div class="logo-option">
+        <h3>Option 3: Text-only Fallback</h3>
+        <div style="font-size: 24px; margin: 20px 0;">
+          <span style="background:linear-gradient(135deg,#FF005C,#00C2FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;">Spark</span><span style="color:#fff;font-weight:900;">Media</span><span style="background:linear-gradient(135deg,#FF005C,#00C2FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;">.ai</span>
+        </div>
+      </div>
+      
+      <div class="logo-option">
+        <h3>Option 4: Inline SVG</h3>
+        <div style="width: 100%; height: 80px;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" style="height: 50px;">
+            <defs>
+              <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#FF005C;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#00C2FF;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <text x="10" y="35" fill="url(#grad)" style="font-family: Arial; font-size: 24px; font-weight: bold;">Spark</text>
+            <text x="80" y="35" fill="white" style="font-family: Arial; font-size: 24px; font-weight: bold;">Media</text>
+            <text x="150" y="35" fill="url(#grad)" style="font-family: Arial; font-size: 24px; font-weight: bold;">.ai</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    
+    <h2>Implementation Notes</h2>
+    <p>If SVG is not loading, we can:</p>
+    <ol>
+      <li>Add text-based fallback that shows when image fails to load</li>
+      <li>Convert the SVG to a PNG and use that instead</li>
+      <li>Use inline SVG instead of an external file</li>
+    </ol>
+    
+    <a href="/" class="button">Return to Homepage</a>
+  </div>
+</body>
+</html>

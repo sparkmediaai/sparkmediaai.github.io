@@ -23,6 +23,7 @@
   </defs>
   
   <!-- Background (transparent for dark themes) -->
+  <!-- Force refresh -->
   <rect width="400" height="120" fill="transparent"/>
   
   <!-- Spark Icon -->
