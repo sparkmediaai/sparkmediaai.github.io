@@ -15,7 +15,16 @@
     <link rel="stylesheet" href="css/styles.css">
     
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <link rel="icon" href="assets/logo/favicon.ico" sizes="any">
+    <link rel="icon" href="assets/logo/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="assets/logo/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="assets/logo/site.webmanifest">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0C0F14">
 </head>
 <body>
     <!-- ==========================================================================
@@ -25,19 +34,18 @@
         <div class="container">
             <nav class="nav">
                 <a href="/" class="logo">
-                    <span class="logo-text">Spark</span>
-                    <span class="logo-accent">Media</span>
-                    <span class="logo-ai">.ai</span>
+                    <img src="assets/logo/sparkmedia-logo.svg" alt="SparkMedia.AI" class="logo-image">
                 </a>
                 
                 <div class="nav-links">
+                    <a href="/industries.html" class="nav-link">Industries</a>
+                    <a href="/audit.html" class="nav-link">Free Audit</a>
                     <a href="#services" class="nav-link">Services</a>
-                    <a href="#ai-systems" class="nav-link">AI Systems</a>
                     <a href="#results" class="nav-link">Results</a>
                     <a href="#contact" class="nav-link">Contact</a>
                 </div>
                 
-                <button class="cta-button nav-cta">Get Started</button>
+                <a class="cta-button nav-cta" href="/audit.html">Get Free Audit</a>
                 
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <span></span>

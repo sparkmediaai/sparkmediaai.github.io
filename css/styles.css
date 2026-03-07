@@ -84,6 +84,18 @@ body::before {
     font-weight: 900;
     color: white;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.logo-image {
+    height: 2.5rem;
+    width: auto;
+}
+.logo-text-only {
+    display: flex;
+    align-items: center;
+    gap: 0;
 }
 .logo-accent {
     background: var(--gradient-primary);

@@ -1,0 +1,188 @@
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="badgeGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF005C" />
+      <stop offset="100%" stop-color="#7A5CFF" />
+    </linearGradient>
+    
+    <linearGradient id="badgeGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00C2FF" />
+      <stop offset="100%" stop-color="#7A5CFF" />
+    </linearGradient>
+    
+    <linearGradient id="badgeGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF005C" />
+      <stop offset="100%" stop-color="#00C2FF" />
+    </linearGradient>
+    
+    <filter id="badgeGlow">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Dark background -->
+  <rect width="800" height="400" fill="#0C0F14" />
+  
+  <!-- Title -->
+  <text x="400" y="50" font-family="Inter, sans-serif" font-size="32" font-weight="900" fill="#FFFFFF" text-anchor="middle">
+    Trusted Partners & Certifications
+  </text>
+  <text x="400" y="80" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#B8C1CC" text-anchor="middle">
+    Industry-recognized partnerships and security certifications
+  </text>
+  
+  <!-- Badges grid -->
+  <g transform="translate(50, 120)">
+    <!-- Row 1 -->
+    <!-- Google Partner Badge -->
+    <g transform="translate(0, 0)">
+      <rect width="160" height="100" rx="15" fill="#1A1D23" />
+      <g transform="translate(80, 35)">
+        <!-- Google "G" logo abstraction -->
+        <circle cx="0" cy="0" r="25" fill="url(#badgeGradient1)" opacity="0.9" />
+        <path d="M-15,-5 L-5,-5 L-5,5 L5,5 L5,-5 L15,-5 L15,15 L-15,15 Z" fill="#FFFFFF" opacity="0.9" />
+        <text x="0" y="45" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+          Google Partner
+        </text>
+      </g>
+    </g>
+    
+    <!-- Security Certified -->
+    <g transform="translate(180, 0)">
+      <rect width="160" height="100" rx="15" fill="#1A1D23" />
+      <g transform="translate(80, 35)">
+        <!-- Shield icon -->
+        <path d="M-20,-15 L0,-25 L20,-15 L20,15 L0,25 L-20,15 Z" fill="url(#badgeGradient2)" />
+        <path d="M-10,-5 L-5,0 L10,-10 L5,-15 Z" fill="#FFFFFF" />
+        <text x="0" y="45" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+          Security Certified
+        </text>
+      </g>
+    </g>
+    
+    <!-- Data Protection -->
+    <g transform="translate(360, 0)">
+      <rect width="160" height="100" rx="15" fill="#1A1D23" />
+      <g transform="translate(80, 35)">
+        <!-- Lock icon -->
+        <rect x="-15" y="-10" width="30" height="25" rx="5" fill="url(#badgeGradient3)" />
+        <rect x="-8" y="5" width="16" height="15" rx="3" fill="#242830" />
+        <circle cx="0" cy="-20" r="8" fill="url(#badgeGradient3)" />
+        <text x="0" y="45" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+          Data Protection
+        </text>
+      </g>
+    </g>
+    
+    <!-- 24/7 Support -->
+    <g transform="translate(540, 0)">
+      <rect width="160" height="100" rx="15" fill="#1A1D23" />
+      <g transform="translate(80, 35)">
+        <!-- Support icon -->
+        <circle cx="0" cy="0" r="25" fill="url(#badgeGradient1)" opacity="0.8" />
+        <circle cx="0" cy="0" r="15" fill="#FFFFFF" />
+        <path d="M-10,0 L10,0 M0,-10 L0,10" stroke="#242830" stroke-width="3" stroke-linecap="round" />
+        <text x="0" y="45" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+          24/7 Support
+        </text>
+      </g>
+    </g>
+    
+    <!-- Row 2 -->
+    <!-- AI Technology Partner -->
+    <g transform="translate(0, 120)">
+      <rect width="160" height="100" rx="15" fill="#1A1D23" />
+      <g transform="translate(80, 35)">
+        <!-- AI brain icon -->
+        <path d="M-20,-10 Q0,-20 20,-10 Q25,0 20,10 Q0,20 -20,10 Q-25,0 -20,-10" 
+              fill="url(#badgeGradient2)" />
+        <circle cx="-10" cy="0" r="4" fill="#FFFFFF" />
+        <circle cx="10" cy="0" r="4" fill="#FFFFFF" />
+        <path d="M-5,8 Q0,12 5,8" stroke="#FFFFFF" stroke-width="2" fill="none" />
+        <text x="0" y="45" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+          AI Technology
+        </text>
+      </g>
+    </g>
+    
+    <!-- Performance Guarantee -->
+    <g transform="translate(180, 120)">
+      <rect width="160" height="100" rx="15" fill="#1A1D23" />
+      <g transform="translate(80, 35)">
+        <!-- Trophy icon -->
+        <path d="M-15,15 L15,15 L10,0 L15,-15 L-15,-15 L-10,0 Z" fill="url(#badgeGradient3)" />
+        <circle cx="0" cy="-20" r="10" fill="#FF005C" />
+        <text x="0" y="8" font-family="Inter, sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" text-anchor="middle">✓</text>
+        <text x="0" y="45" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+          Performance
+        </text>
+      </g>
+    </g>
+    
+    <!-- Client Success -->
+    <g transform="translate(360, 120)">
+      <rect width="160" height="100" rx="15" fill="#1A1D23" />
+      <g transform="translate(80, 35)">
+        <!-- Growth chart icon -->
+        <polyline points="-15,10 -5,0 5,-8 15,-15" 
+                  fill="none" stroke="#00C2FF" stroke-width="4" stroke-linecap="round" />
+        <circle cx="-15" cy="10" r="3" fill="#FF005C" />
+        <circle cx="15" cy="-15" r="3" fill="#7A5CFF" />
+        <text x="0" y="45" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+          Client Success
+        </text>
+      </g>
+    </g>
+    
+    <!-- Industry Leader -->
+    <g transform="translate(540, 120)">
+      <rect width="160" height="100" rx="15" fill="#1A1D23" />
+      <g transform="translate(80, 35)">
+        <!-- Star/crown icon -->
+        <path d="M-20,5 L0,-15 L20,5 L15,15 L-15,15 Z" fill="url(#badgeGradient1)" />
+        <circle cx="-10" cy="5" r="3" fill="#FFFFFF" />
+        <circle cx="10" cy="5" r="3" fill="#FFFFFF" />
+        <circle cx="0" cy="-5" r="4" fill="#FFFFFF" />
+        <text x="0" y="45" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+          Industry Leader
+        </text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Animated glow effects -->
+  <g>
+    <!-- Pulsing glows behind badges -->
+    <circle cx="130" cy="170" r="40" fill="#FF005C" opacity="0.05" filter="url(#badgeGlow)">
+      <animate attributeName="r" values="40;50;40" dur="3s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="490" cy="170" r="35" fill="#00C2FF" opacity="0.05" filter="url(#badgeGlow)">
+      <animate attributeName="r" values="35;45;35" dur="4s" repeatCount="indefinite" begin="0.5s" />
+    </circle>
+    <circle cx="310" cy="290" r="30" fill="#7A5CFF" opacity="0.05" filter="url(#badgeGlow)">
+      <animate attributeName="r" values="30;40;30" dur="3.5s" repeatCount="indefinite" begin="1s" />
+    </circle>
+  </g>
+  
+  <!-- Floating trust elements -->
+  <g>
+    <circle cx="50" cy="350" r="3" fill="#FFFFFF" opacity="0.4">
+      <animate attributeName="cy" values="350;340;350" dur="5s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="750" cy="50" r="2" fill="#FFFFFF" opacity="0.4">
+      <animate attributeName="cx" values="750;740;750" dur="4s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="400" cy="380" r="4" fill="#FFFFFF" opacity="0.4">
+      <animate attributeName="opacity" values="0.4;0.7;0.4" dur="3s" repeatCount="indefinite" />
+    </circle>
+  </g>
+  
+  <!-- Trust statement -->
+  <text x="400" y="380" font-family="Inter, sans-serif" font-size="14" font-weight="500" fill="#8A94A3" text-anchor="middle">
+    Trusted by 150+ local service businesses across North America
+  </text>
+</svg>

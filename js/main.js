@@ -282,13 +282,11 @@ function initCTAButtons() {
                 this.style.transform = '';
             }, 150);
             
-            // In production, this would open a contact form or modal
-            // For now, show a message
-            if (!this.classList.contains('nav-cta')) {
-                setTimeout(() => {
-                    alert('Thank you for your interest! In production, this would open a contact form or scheduling modal for your free audit.');
-                }, 200);
-            }
+            // Route CTAs to the Free Audit booking page
+            // (Swap to Calendly/GHL booking URL once available)
+            setTimeout(() => {
+                window.location.href = '/audit.html';
+            }, 150);
         });
     });
 }

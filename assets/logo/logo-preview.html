@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SparkMedia.AI Logo Preview</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: #0C0F14;
+            color: #FFFFFF;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            background: linear-gradient(135deg, #FF005C, #00C2FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .logo-card {
+            background: #1A1D23;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+        }
+        .logo-card h3 {
+            color: #B8C1CC;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .logo-preview {
+            margin: 1.5rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 150px;
+        }
+        .logo-preview.dark-bg {
+            background: #0C0F14;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        .logo-preview.light-bg {
+            background: #FFFFFF;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        .color-swatch {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin: 0 4px;
+            vertical-align: middle;
+        }
+        .color-pink { background: #FF005C; }
+        .color-cyan { background: #00C2FF; }
+        .color-dark { background: #0C0F14; border: 1px solid rgba(255, 255, 255, 0.2); }
+        
+        .usage-section {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        .usage-section h2 {
+            color: #00C2FF;
+            margin-bottom: 1.5rem;
+        }
+        .usage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .usage-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #FF005C;
+        }
+        .usage-item h4 {
+            color: #FFFFFF;
+            margin-bottom: 0.5rem;
+        }
+        .usage-item p {
+            color: #B8C1CC;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .download-links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #FF005C, #00C2FF);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.2s ease;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SparkMedia.AI Logo System</h1>
+        
+        <div class="logo-grid">
+            <!-- Full Logo -->
+            <div class="logo-card">
+                <h3>Full Logo (SVG)</h3>
+                <div class="logo-preview dark-bg">
+                    <img src="sparkmedia-logo.svg" alt="SparkMedia.AI Logo" style="max-width: 100%; height: auto;">
+                </div>
+                <p>Primary logo for headers, footers, and print materials</p>
+                <div class="download-links">
+                    <a href="sparkmedia-logo.svg" class="download-btn" download>Download SVG</a>
+                </div>
+            </div>
+            
+            <!-- Icon Logo -->
+            <div class="logo-card">
+                <h3>Icon Logo (SVG)</h3>
+                <div class="logo-preview dark-bg">
+                    <img src="sparkmedia-icon.svg" alt="SparkMedia.AI Icon" style="width: 100px; height: 100px;">
+                </div>
+                <p>For favicons, social media, and small spaces</p>
+                <div class="download-links">
+                    <a href="sparkmedia-icon.svg" class="download-btn" download>Download SVG</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Color Palette -->
+        <div class="logo-card">
+            <h3>Color Palette</h3>
+            <div style="display: flex; gap: 2rem; justify-content: center; margin: 2rem 0;">
+                <div style="text-align: center;">
+                    <div class="color-swatch color-pink"></div>
+                    <div style="margin-top: 0.5rem; color: #B8C1CC;">#FF005C</div>
+                    <div style="font-size: 0.9rem; color: #8A94A3;">Primary Pink</div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="color-swatch color-cyan"></div>
+                    <div style="margin-top: 0.5rem; color: #B8C1CC;">#00C2FF</div>
+                    <div style="font-size: 0.9rem; color: #8A94A3;">Secondary Cyan</div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="color-swatch color-dark"></div>
+                    <div style="margin-top: 0.5rem; color: #B8C1CC;">#0C0F14</div>
+                    <div style="font-size: 0.9rem; color: #8A94A3;">Background Dark</div>
+                </div>
+            </div>
+            <p>Gradient: <span style="background: linear-gradient(135deg, #FF005C, #00C2FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600;">#FF005C → #00C2FF</span></p>
+        </div>
+        
+        <!-- Usage Guidelines -->
+        <div class="usage-section">
+            <h2>Usage Guidelines</h2>
+            <div class="usage-grid">
+                <div class="usage-item">
+                    <h4>Header Navigation</h4>
+                    <p>Use the full logo in website headers. Minimum clear space: 20px around logo.</p>
+                </div>
+                <div class="usage-item">
+                    <h4>Footer</h4>
+                    <p>Use either full logo or icon logo in website footer. Maintain brand consistency.</p>
+                </div>
+                <div class="usage-item">
+                    <h4>Favicon</h4>
+                    <p>Use the icon logo scaled to 16x16 or 32x32 pixels for browser tabs.</p>
+                </div>
+                <div class="usage-item">
+                    <h4>Social Media</h4>
+                    <p>Use icon logo for profile pictures. Use full logo for cover images when space allows.</p>
+                </div>
+                <div class="usage-item">
+                    <h4>Print Materials</h4>
+                    <p>Use SVG for vector printing or high-resolution PNG for raster printing.</p>
+                </div>
+                <div class="usage-item">
+                    <h4>Dark Backgrounds</h4>
+                    <p>Logo is optimized for dark themes (#0C0F14). Maintain sufficient contrast.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Instructions for PNG Conversion -->
+        <div class="logo-card" style="margin-top: 2rem;">
+            <h3>PNG Generation Instructions</h3>
+            <p style="color: #B8C1CC; margin-bottom: 1rem;">To generate PNG files from SVG:</p>
+            <ol style="color: #B8C1CC; padding-left: 1.5rem; line-height: 1.6;">
+                <li>Open SVG files in any vector editor (Inkscape, Adobe Illustrator)</li>
+                <li>Export as PNG with transparent background</li>
+                <li>Recommended sizes:
+                    <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+                        <li>Full logo: 800x240px (for web), 2000x600px (for print)</li>
+                        <li>Icon: 512x512px (social media), 180x180px (Apple Touch Icon)</li>
+                        <li>Favicon: 32x32px, 16x16px</li>
+                    </ul>
+                </li>
+                <li>Save files in the <code>assets/logo/</code> directory</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
