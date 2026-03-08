@@ -245,6 +245,82 @@ body::before {
     padding: 0.5rem 1rem;
     pointer-events: none;
 }
+
+/* 3RD TIER - SUBMENU STYLES */
+.dropdown-submenu {
+    position: relative;
+}
+.dropdown-submenu > .dropdown-subcontent {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    min-width: 220px;
+    background: rgba(12, 15, 20, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    margin-left: 2px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: all 200ms ease;
+    z-index: 1002;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+.dropdown-submenu:hover > .dropdown-subcontent,
+.dropdown-submenu:focus-within > .dropdown-subcontent {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+.dropdown-submenu > .dropdown-item::after {
+    content: '▶';
+    font-size: 0.5rem;
+    margin-left: auto;
+    opacity: 0.5;
+}
+.dropdown-subcontent .dropdown-item {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    display: block;
+    transition: all 150ms ease;
+}
+.dropdown-subcontent .dropdown-item:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Mobile submenu styles */
+@media (max-width: 900px) {
+    .dropdown-submenu > .dropdown-subcontent {
+        position: static;
+        min-width: auto;
+        margin-left: 1rem;
+        margin-top: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+        background: rgba(255, 255, 255, 0.02);
+        border: none;
+        border-left: 2px solid var(--color-secondary);
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0.5rem 0 0.5rem 1rem;
+    }
+    .dropdown-submenu:hover > .dropdown-subcontent,
+    .dropdown-submenu:focus-within > .dropdown-subcontent {
+        display: block;
+    }
+    .dropdown-submenu > .dropdown-item::after {
+        content: '▼';
+        float: right;
+        margin-top: 0.3rem;
+    }
+}
 .cta-button {
     background: var(--gradient-primary);
     color: white;
