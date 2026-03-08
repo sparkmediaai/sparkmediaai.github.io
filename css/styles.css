@@ -451,10 +451,10 @@ body::before {
     animation: float 6s ease-in-out infinite;
     width: 180px;
 }
-.card-1 { top: 10%; right: 10%; animation-delay: -2s; border-top: 3px solid var(--color-primary); }
-.card-2 { top: 50%; right: 20%; animation-delay: -4s; border-top: 3px solid var(--color-secondary); }
-.card-3 { bottom: 10%; right: 5%; animation-delay: -6s; border-top: 3px solid var(--color-primary); }
-.card-4 { top: 30%; right: 0; animation-delay: -8s; border-top: 3px solid var(--color-secondary); }
+.card-1 { top: 5%; right: 10%; animation-delay: -2s; border-top: 3px solid var(--color-primary); }
+.card-2 { top: 28%; right: 25%; animation-delay: -4s; border-top: 3px solid var(--color-secondary); }
+.card-3 { top: 52%; right: 5%; animation-delay: -6s; border-top: 3px solid var(--color-primary); }
+.card-4 { top: 75%; right: 20%; animation-delay: -8s; border-top: 3px solid var(--color-secondary); }
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
