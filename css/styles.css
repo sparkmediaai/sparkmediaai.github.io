@@ -89,15 +89,17 @@ body::before {
     gap: 0.5rem;
 }
 .logo-image {
-    height: 2.5rem;
-    width: auto;
+    width: 415px;
+    height: 250px;
+    object-fit: contain;
 }
 .logo-text-fallback {
     display: none;
 }
 @media screen and (max-width: 768px) {
     .logo-image {
-        height: 2rem;
+        width: 250px;
+        height: 150px;
     }
 }
 .logo-text-only {
