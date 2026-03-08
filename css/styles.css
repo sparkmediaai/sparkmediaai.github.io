@@ -89,8 +89,8 @@ body::before {
     gap: 0.5rem;
 }
 .logo-image {
-    width: 420px;
-    height: auto;
+    height: 100px;
+    width: auto;
     object-fit: contain;
 }
 .logo-text-fallback {
@@ -98,8 +98,8 @@ body::before {
 }
 @media screen and (max-width: 768px) {
     .logo-image {
-        width: 250px;
-        height: 150px;
+        height: 60px;
+        width: auto;
     }
 }
 .logo-text-only {
