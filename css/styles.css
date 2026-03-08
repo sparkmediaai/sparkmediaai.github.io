@@ -89,8 +89,8 @@ body::before {
     gap: 0.5rem;
 }
 .logo-image {
-    width: 415px;
-    height: 250px;
+    width: 420px;
+    height: auto;
     object-fit: contain;
 }
 .logo-text-fallback {
