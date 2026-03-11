@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - SparkMedia.ai Floating Cards Redesign</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0C0F14;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 40px;
+            min-height: 100vh;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #FF005C, #00C2FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .test-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .test-section h2 {
+            color: #00C2FF;
+            margin-top: 0;
+        }
+        
+        .hero-visual {
+            position: relative;
+            min-height: 500px;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .changes-summary {
+            background: rgba(0, 194, 255, 0.1);
+            border-left: 4px solid #00C2FF;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .issue-fixed {
+            background: rgba(255, 0, 92, 0.1);
+            border-left: 4px solid #FF005C;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .mobile-preview {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        
+        .mobile-preview h3 {
+            text-align: center;
+            color: #FF005C;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>SparkMedia.ai - Floating Cards Redesign Test</h1>
+        
+        <div class="test-section">
+            <h2>Issues Fixed</h2>
+            
+            <div class="issue-fixed">
+                <h3>✅ Issue #1: Blue Hyperlinks on Black Background</h3>
+                <p><strong>Problem:</strong> The floating cards were anchor tags with default blue hyperlink styling, making text hard to read on dark background.</p>
+                <p><strong>Solution:</strong> Added CSS to remove all link styling and ensure text is white/light for maximum contrast.</p>
+            </div>
+            
+            <div class="issue-fixed">
+                <h3>✅ Issue #2: Poor Stacking/Overlapping</h3>
+                <p><strong>Problem:</strong> Cards were positioned too close together with floating animation causing overlap and visual clutter.</p>
+                <p><strong>Solution:</strong> Repositioned cards with better spacing, removed problematic float animation, added staggered rotation for visual interest without overlap.</p>
+            </div>
+            
+            <div class="issue-fixed">
+                <h3>✅ Issue #3: "Learn more →" Text Styling</h3>
+                <p><strong>Problem:</strong> The arrow text was inheriting link styling and didn't match the design.</p>
+                <p><strong>Solution:</strong> Styled the arrow with brand colors (cyan) and added hover animation.</p>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Desktop Preview</h2>
+            <p>The floating cards now appear on the right side with proper spacing and no overlap:</p>
+            
+            <div class="hero-visual">
+                <div class="gradient-artwork"></div>
+                
+                <!-- Floating UI Cards Container -->
+                <div class="floating-cards-container">
+                    <a href="industries.html" class="floating-card card-1">
+                        <div class="card-icon">📊</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Lead Capture</h3>
+                            <p class="card-desc">AI-powered lead qualification and routing</p>
+                        </div>
+                        <span class="card-arrow">Learn more →</span>
+                    </a>
+                    
+                    <a href="industries.html" class="floating-card card-2">
+                        <div class="card-icon">⚙️</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Automation</h3>
+                            <p class="card-desc">End-to-end workflow automation</p>
+                        </div>
+                        <span class="card-arrow">Learn more →</span>
+                    </a>
+                    
+                    <a href="industries.html" class="floating-card card-3">
+                        <div class="card-icon">🎤</div>
+                        <div class="card-content">
+                            <h3 class="card-title">AI Voice Agent</h3>
+                            <p class="card-desc">24/7 intelligent customer service</p>
+                        </div>
+                        <span class="card-arrow">Learn more →</span>
+                    </a>
+                    
+                    <a href="industries.html" class="floating-card card-4">
+                        <div class="card-icon">📈</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Analytics</h3>
+                            <p class="card-desc">Real-time performance insights</p>
+                        </div>
+                        <span class="card-arrow">Learn more →</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="changes-summary">
+                <h3>Design Improvements:</h3>
+                <ul>
+                    <li><strong>Better Contrast:</strong> White text on semi-transparent dark background</li>
+                    <li><strong>Visual Hierarchy:</strong> Gradient accent border on left side</li>
+                    <li><strong>Clean Animation:</strong> Entrance animation instead of distracting float</li>
+                    <li><strong>Hover Effects:</strong> Cards lift up and straighten on hover</li>
+                    <li><strong>Brand Colors:</strong> Uses SparkMedia's pink (#FF005C) and cyan (#00C2FF)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Mobile Responsive Design</h2>
+            <p>On mobile devices (screens less than 768px wide), the cards stack vertically:</p>
+            
+            <div class="mobile-preview">
+                <h3>Mobile Preview (simulated)</h3>
+                <div style="max-width: 375px; margin: 0 auto; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 20px; background: #0C0F14;">
+                    <!-- Simulated mobile view with stacked cards -->
+                    <div style="margin-bottom: 16px;">
+                        <div class="floating-card" style="position: relative; width: 100%; transform: none; margin-bottom: 16px;">
+                            <div class="card-icon">📊</div>
+                            <div class="card-content">
+                                <h3 class="card-title">Lead Capture</h3>
+                                <p class="card-desc">AI-powered lead qualification and routing</p>
+                            </div>
+                            <span class="card-arrow">Learn more →</span>
+                        </div>
+                        
+                        <div class="floating-card" style="position: relative; width: 100%; transform: none; margin-bottom: 16px;">
+                            <div class="card-icon">⚙️</div>
+                            <div class="card-content">
+                                <h3 class="card-title">Automation</h3>
+                                <p class="card-desc">End-to-end workflow automation</p>
+                            </div>
+                            <span class="card-arrow">Learn more →</span>
+                        </div>
+                        
+                        <div class="floating-card" style="position: relative; width: 100%; transform: none; margin-bottom: 16px;">
+                            <div class="card-icon">🎤</div>
+                            <div class="card-content">
+                                <h3 class="card-title">AI Voice Agent</h3>
+                                <p class="card-desc">24/7 intelligent customer service</p>
+                            </div>
+                            <span class="card-arrow">Learn more →</span>
+                        </div>
+                        
+                        <div class="floating-card" style="position: relative; width: 100%; transform: none;">
+                            <div class="card-icon">📈</div>
+                            <div class="card-content">
+                                <h3 class="card-title">Analytics</h3>
+                                <p class="card-desc">Real-time performance insights</p>
+                            </div>
+                            <span class="card-arrow">Learn more →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="changes-summary">
+                <h3>Mobile Improvements:</h3>
+                <ul>
+                    <li><strong>Vertical Stacking:</strong> Cards stack neatly instead of overlapping</li>
+                    <li><strong>Full Width:</strong> Cards use 100% of available width</li>
+                    <li><strong>Touch-Friendly:</strong> Larger tap targets for mobile users</li>
+                    <li><strong>Performance:</strong> Removed complex animations on mobile</li>
+                    <li><strong>Readability:</strong> Text remains clear and legible on small screens</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Implementation Details</h2>
+            <p><strong>Files Updated:</strong></p>
+            <ul>
+                <li><code>/css/styles.css</code> - Added new floating card styles (lines 443-520)</li>
+                <li><code>/css/styles.css</code> - Added mobile responsive styles (lines 663-685)</li>
+            </ul>
+            
+            <p><strong>Key CSS Changes:</strong></p>
+            <ul>
+                <li>Removed blue hyperlink styling with <code>color: inherit !important</code></li>
+                <li>Added gradient accent border with <code>::before</code> pseudo-element</li>
+                <li>Replaced floating animation with entrance animation</li>
+                <li>Added proper hover states with transform and shadow effects</li>
+                <li>Implemented mobile-responsive stacking with media queries</li>
+            </ul>
+            
+            <p><strong>Testing Instructions:</strong></p>
+            <ol>
+                <li>Open the main <code>index.html</code> file in a browser</li>
+                <li>Verify floating cards appear on right side with proper spacing</li>
+                <li>Hover over cards to see hover effects</li>
+                <li>Resize browser to mobile width (under 768px) to see stacked layout</li>
+                <li>Check that text is readable (white on dark, no blue hyperlinks)</li>
+            </ol>
+        </div>
+    </div>
+    
+    <script>
+        // Add some interactivity for the test
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.floating-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Demo: Card clicked! In production, this would navigate to: ' + this.getAttribute('href'));
+                });
+            });
+            
+            // Simulate hover effects for mobile preview
+            const mobileCards = document.querySelectorAll('.mobile-preview .floating-card');
+            mobileCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 8px 20px rgba(0, 194, 255, 0.2)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'none';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

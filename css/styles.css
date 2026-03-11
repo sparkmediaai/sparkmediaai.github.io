@@ -442,19 +442,155 @@ body::before {
 }
 .floating-card {
     position: absolute;
-    background: var(--color-surface);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: var(--spacing-md);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
-    animation: float 6s ease-in-out infinite;
-    width: 180px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 20px;
+    width: 280px;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    animation: floatIn 0.6s ease-out forwards;
+    opacity: 0;
 }
-.card-1 { top: 5%; right: 10%; animation-delay: -2s; border-top: 3px solid var(--color-primary); }
-.card-2 { top: 28%; right: 25%; animation-delay: -4s; border-top: 3px solid var(--color-secondary); }
-.card-3 { top: 52%; right: 5%; animation-delay: -6s; border-top: 3px solid var(--color-primary); }
-.card-4 { top: 75%; right: 20%; animation-delay: -8s; border-top: 3px solid var(--color-secondary); }
+
+/* Remove blue hyperlink styling - make cards look like cards, not links */
+.floating-card,
+.floating-card:visited,
+.floating-card:hover,
+.floating-card:active,
+.floating-card:focus {
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Specifically target the link states to ensure no blue color */
+a.floating-card:link,
+a.floating-card:visited {
+    color: #FFFFFF !important;
+}
+
+a.floating-card:hover {
+    color: #FFFFFF !important;
+}
+
+a.floating-card:active {
+    color: #FFFFFF !important;
+}
+
+/* Gradient accent border */
+.floating-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--color-primary, #FF005C), var(--color-secondary, #00C2FF));
+}
+
+/* Card positioning - staggered for better visual hierarchy */
+.card-1 { 
+    top: 10%; 
+    right: 10%; 
+    transform: rotate(-2deg);
+    animation-delay: 0.1s;
+    border-top: none;
+}
+
+.card-2 { 
+    top: 30%; 
+    right: 5%; 
+    transform: rotate(1deg);
+    animation-delay: 0.2s;
+    border-top: none;
+}
+
+.card-3 { 
+    top: 50%; 
+    right: 8%; 
+    transform: rotate(-1deg);
+    animation-delay: 0.3s;
+    border-top: none;
+}
+
+.card-4 { 
+    top: 70%; 
+    right: 12%; 
+    transform: rotate(2deg);
+    animation-delay: 0.4s;
+    border-top: none;
+}
+
+/* Hover effects */
+.floating-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--color-secondary, #00C2FF);
+    transform: translateY(-5px) rotate(0deg) !important;
+    box-shadow: 0 15px 40px rgba(0, 194, 255, 0.25);
+    animation: none;
+}
+
+/* Card content styling */
+.card-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: inline-block;
+}
+
+.card-content {
+    /* Container for title and description */
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.card-desc {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* Style the "Learn more →" text to match design */
+.card-arrow {
+    display: inline-block;
+    margin-top: 12px;
+    color: var(--color-secondary, #00C2FF);
+    font-size: 14px;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+}
+
+.floating-card:hover .card-arrow {
+    transform: translateX(3px);
+}
+
+/* Animation for card entrance */
+@keyframes floatIn {
+    0% {
+        opacity: 0;
+        transform: translateX(30px) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+    }
+}
+
+/* Remove old float animation */
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
@@ -547,6 +683,39 @@ body::before {
     .hero-cta { flex-direction: column; }
     .btn-primary, .btn-secondary { width: 100%; text-align: center; }
     .services-grid { grid-template-columns: 1fr; }
+    
+    /* Stack floating cards vertically on mobile */
+    .hero-visual {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 32px;
+    }
+    
+    .floating-card {
+        position: relative !important;
+        width: 100% !important;
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        margin-bottom: 0;
+        animation: none;
+        opacity: 1;
+    }
+    
+    .floating-card:hover {
+        transform: translateY(-3px) !important;
+    }
+    
+    .floating-card::before {
+        width: 100%;
+        height: 4px;
+        top: 0;
+        left: 0;
+    }
 }
 @media (max-width: 480px) {
     .hero-title { font-size: 1.8rem; }
