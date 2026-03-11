@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SparkMedia.ai - Modern Features Demo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/modern-features.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0C0F14;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .demo-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .demo-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #FF005C, #00C2FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .demo-header p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .demo-section {
+            margin-bottom: 80px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            color: #FFFFFF;
+        }
+        
+        .section-badge {
+            background: linear-gradient(135deg, #FF005C, #00C2FF);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .section-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .features-content {
+            margin-top: 40px;
+        }
+        
+        .code-preview {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .code-preview pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #00C2FF;
+        }
+        
+        .implementation-steps {
+            background: rgba(0, 194, 255, 0.1);
+            border-left: 4px solid #00C2FF;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .implementation-steps h4 {
+            margin-top: 0;
+            color: #00C2FF;
+        }
+        
+        .implementation-steps ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .implementation-steps li {
+            margin-bottom: 8px;
+        }
+        
+        .demo-footer {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .demo-footer a {
+            color: #00C2FF;
+            text-decoration: none;
+        }
+        
+        .demo-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .option-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .option-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .option-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .option-btn.active {
+            background: linear-gradient(135deg, #FF005C, #00C2FF);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .live-preview {
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .demo-section {
+                padding: 20px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .live-preview {
+                padding: 20px;
+                min-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1>SparkMedia.ai - Modern Features Showcase</h1>
+            <p>5 animated alternatives to replace floating cards. Each option is interactive, modern, and designed for better UX.</p>
+        </div>
+        
+        <!-- Option 1: Animated Feature Grid -->
+        <div class="demo-section">
+            <div class="section-header">
+                <h2>Option 1: Animated Feature Grid</h2>
+                <span class="section-badge">Recommended</span>
+            </div>
+            
+            <div class="section-description">
+                Clean grid layout with hover animations, gradient backgrounds, and smooth transitions. Cards lift up and glow on hover.
+            </div>
+            
+            <div class="live-preview">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3 class="feature-title">Lead Capture</h3>
+                        <p class="feature-description">AI-powered lead qualification and routing</p>
+                        <a href="#" class="feature-link">Learn more</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">⚙️</div>
+                        <h3 class="feature-title">Automation</h3>
+                        <p class="feature-description">End-to-end workflow automation</p>
+                        <a href="#" class="feature-link">Learn more</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🎤</div>
+                        <h3 class="feature-title">AI Voice Agent</h3>
+                        <p class="feature-description">24/7 intelligent customer service</p>
+                        <a href="#" class="feature-link">Learn more</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3 class="feature-title">Analytics</h3>
+                        <p class="feature-description">Real-time performance insights</p>
+                        <a href="#" class="feature-link">Learn more</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="implementation-steps">
+                <h4>Implementation:</h4>
+                <ol>
+                    <li>Add <code>modern-features.css</code> to your site</li>
+                    <li>Replace floating cards container with <code>.features-grid</code></li>
+                    <li>Use <code>.feature-card</code> for each service</li>
+                    <li>Customize colors in CSS variables</li>
+                </ol>
+            </div>
+            
+            <div class="code-preview">
+                <pre>&lt;div class="features-grid"&gt;
+  &lt;div class="feature-card"&gt;
+    &lt;div class="feature-icon"&gt;📊&lt;/div&gt;
+    &lt;h3 class="feature-title"&gt;Lead Capture&lt;/h3&gt;
+    &lt;p class="feature-description"&gt;AI-powered lead qualification&lt;/p&gt;
+    &lt;a href="#" class="feature-link"&gt;Learn more&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;!-- Repeat for other features --&gt;
+&lt;/div&gt;</pre>
+            </div>
+        </div>
+        
+        <!-- Option 2: Interactive Timeline -->
+        <div class="demo-section">
+            <div class="section-header">
+                <h2>Option 2: Interactive Timeline</h2>
+                <span class="section-badge">Horizontal Scroll</span>
+            </div>
+            
+            <div class="section-description">
+                Horizontal scrolling timeline with gradient accent borders. Perfect for mobile-friendly interaction.
+            </div>
+            
+            <div class="live-preview">
+                <div class="features-timeline">
+                    <div class="timeline-item active">
+                        <div class="timeline-icon">📊</div>
+                        <div class="timeline-content">
+                            <h3>Lead Capture</h3>
+                            <p>AI-powered lead qualification and routing</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon">⚙️</div>
+                        <div class="timeline-content">
+                            <h3>Automation</h3>
+                            <p>End-to-end workflow automation</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon">🎤</div>
+                        <div class="timeline-content">
+                            <h3>AI Voice Agent</h3>
+                            <p>24/7 intelligent customer service</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon">📈</div>
+                        <div class="timeline-content">
+                            <h3>Analytics</h3>
+                            <p>Real-time performance insights</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Option 3: Accordion Features -->
+        <div class="demo-section">
+            <div class="section-header">
+                <h2>Option 3: Expandable Accordion</h2>
+                <span class="section-badge">Space Efficient</span>
+            </div>
+            
+            <div class="section-description">
+                Click to expand each feature. Saves space while keeping all information accessible.
+            </div>
+            
+            <div class="live-preview">
+                <div class="features-accordion">
+                    <div class="accordion-item active">
+                        <div class="accordion-header">
+                            <div class="accordion-title">
+                                <span class="accordion-icon">📊</span>
+                                Lead Capture
+                            </div>
+                            <span class="accordion-arrow">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="accordion-description">AI-powered lead qualification and routing with intelligent scoring and automated follow-up.</p>
+                            <a href="#" class="feature-link">Learn more</a>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <div class="accordion-title">
+                                <span class="accordion-icon">⚙️</span>
+                                Automation
+                            </div>
+                            <span class="accordion-arrow">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="accordion-description">End-to-end workflow automation that streamlines your business processes.</p>
+                            <a href="#" class="feature-link">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Option 4: Animated Stat Cards -->
+        <div class="demo-section">
+            <div class="section-header">
+                <h2>Option 4: Animated Stat Cards</h2>
+                <span class="section-badge">Minimal & Clean</span>
+            </div>
+            
+            <div class="section-description">
+                Clean stat-style cards with animated hover effects and gradient accents.
+            </div>
+            
+            <div class="live-preview">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <h3 class="stat-title">Lead Capture</h3>
+                        <p class="stat-description">AI-powered lead qualification and routing</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">⚙️</div>
+                        <h3 class="stat-title">Automation</h3>
+                        <p class="stat-description">End-to-end workflow automation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Option 5: 3D Tilt Cards -->
+        <div class="demo-section">
+            <div class="section-header">
+                <h2>Option 5: 3D Tilt Cards</h2>
+                <span class="section-badge">Most Interactive</span>
+            </div>
+            
+            <div class="section-description">
+                3D cards that tilt and follow mouse movement with depth effects and dynamic lighting.
+            </div>
+            
+            <div class="live-preview">
+                <div class="tilt-container">
+                    <div class="tilt-grid">
+                        <div class="tilt-card">
+                            <div class="tilt-icon">📊</div>
+                            <h3 class="tilt-title">Lead Capture</h3>
+                            <p class="tilt-description">AI-powered lead qualification and routing</p>
+                            <a href="#" class="feature-link">Learn more</a>
+                        </div>
+                        
+                        <div class="tilt-card">
+                            <div class="tilt-icon">⚙️</div>
+                            <h3 class="tilt-title">Automation</h3>
+                            <p class="tilt-description">End-to-end workflow automation</p>
+                            <a href="#" class="feature-link">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Implementation Guide -->
+        <div class="demo-section">
+            <div class="section-header">
+                <h2>How to Implement</h2>
+                <span class="section-badge">Step-by-Step</span>
+            </div>
+            
+            <div class="section-description">
+                Choose your favorite option and follow these steps to replace the floating cards.
+            </div>
+            
+            <div class="option-selector">
+                <button class="option-btn active" data-option="1">Option 1: Feature Grid</button>
+                <button class="option-btn" data-option="2">Option 2: Timeline</button>
+                <button class="option-btn" data-option="3">Option 3: Accordion</button>
+                <button class="option-btn" data-option="4">Option 4: Stat Cards</button>
+                <button class="option-btn" data-option="5">Option 5: 3D Tilt</button>
+            </div>
+            
+            <div class="implementation-steps">
+                <h4>Steps for Option 1 (Feature Grid):</h4>
+                <ol>
+                    <li><strong>Backup:</strong> Make a backup of your current index.html</li>
+                    <li><strong>Add CSS:</strong> Include <code>modern-features.css</code> in your &lt;head&gt;</li>
+                    <li><strong>Find & Replace:</strong> Locate the floating cards section (look for <code>floating-cards-container</code>)</li>
+                    <li><strong>Replace HTML:</strong> Swap with the Feature Grid HTML structure</li>
+                    <li><strong>Test:</strong> Check on desktop and mobile</li>
+                    <li><strong>Deploy:</strong> Commit and push changes to GitHub</li>
+                </ol>
+            </div>
+            
+            <div class="code-preview">
+                <pre>// 1. Add to &lt;head&gt; section
+&lt;link rel="stylesheet" href="css/modern-features.css"&gt;
+
+// 2. Replace floating cards with:
+&lt;div class="features-grid"&gt;
+  &lt;div class="feature-card"&gt;
+    &lt;div class="feature-icon"&gt;📊&lt;/div&gt;
+    &lt;h3 class="feature-title"&gt;Lead Capture&lt;/h3&gt;
+    &lt;p class="feature-description"&gt;AI-powered lead qualification&lt;/p&gt;
+    &lt;a href="/services#lead-capture" class="

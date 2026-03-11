@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SparkMedia.ai - Hero Section Preview</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/hero-features.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0C0F14;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+        }
+        
+        .preview-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .preview-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .preview-header h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #FF005C, #00C2FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .preview-header p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .comparison-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .badge-old {
+            background: #FF005C;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .badge-new {
+            background: #00C2FF;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .live-preview {
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .old-preview {
+            background: rgba(255, 0, 92, 0.05);
+            border: 2px dashed rgba(255, 0, 92, 0.3);
+        }
+        
+        .new-preview {
+            background: rgba(0, 194, 255, 0.05);
+            border: 2px dashed rgba(0, 194, 255, 0.3);
+        }
+        
+        .improvements-list {
+            background: rgba(0, 194, 255, 0.1);
+            border-left: 4px solid #00C2FF;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .improvements-list h3 {
+            margin-top: 0;
+            color: #00C2FF;
+        }
+        
+        .improvements-list ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .improvements-list li {
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .implementation-steps {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+        
+        .implementation-steps h3 {
+            margin-top: 0;
+            color: #FFFFFF;
+        }
+        
+        .code-block {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #00C2FF;
+        }
+        
+        .deploy-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF005C, #00C2FF);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .deploy-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-container">
+        <div class="preview-header">
+            <h1>SparkMedia.ai - Hero Section Redesign</h1>
+            <p>Replacing floating cards with a modern feature grid</p>
+        </div>
+        
+        <div class="comparison">
+            <div class="comparison-section">
+                <div class="comparison-title">
+                    <span class="badge-old">OLD</span>
+                    Floating Cards
+                </div>
+                <div class="live-preview old-preview">
+                    <!-- Simulated old floating cards -->
+                    <div style="position: relative; width: 300px; height: 300px;">
+                        <div style="position: absolute; top: 10%; right: 20%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 15px; width: 160px; animation: float 3s ease-in-out infinite;">
+                            <div style="font-size: 20px; margin-bottom: 10px;">📊</div>
+                            <div style="font-size: 14px; font-weight: bold;">Lead Capture</div>
+                            <div style="font-size: 12px; opacity: 0.7;">AI-powered...</div>
+                        </div>
+                        <div style="position: absolute; top: 40%; right: 10%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 15px; width: 160px; animation: float 3s ease-in-out infinite 1s;">
+                            <div style="font-size: 20px; margin-bottom: 10px;">⚙️</div>
+                            <div style="font-size: 14px; font-weight: bold;">Automation</div>
+                            <div style="font-size: 12px; opacity: 0.7;">End-to-end...</div>
+                        </div>
+                    </div>
+                </div>
+                <p style="color: rgba(255,255,255,0.6); font-size: 14px;">
+                    ❌ Blue hyperlinks on dark background<br>
+                    ❌ Poor stacking on mobile<br>
+                    ❌ Distracting animations<br>
+                    ❌ Hard to read
+                </p>
+            </div>
+            
+            <div class="comparison-section">
+                <div class="comparison-title">
+                    <span class="badge-new">NEW</span>
+                    Feature Grid
+                </div>
+                <div class="live-preview new-preview">
+                    <!-- New feature grid -->
+                    <div class="hero-features-grid">
+                        <div class="hero-feature-card">
+                            <div class="hero-feature-icon">📊</div>
+                            <h3 class="hero-feature-title">Lead Capture</h3>
+                            <p class="hero-feature-description">AI-powered lead qualification and routing</p>
+                            <a href="#" class="hero-feature-link">Learn more</a>
+                        </div>
+                        
+                        <div class="hero-feature-card">
+                            <div class="hero-feature-icon">⚙️</div>
+                            <h3 class="hero-feature-title">Automation</h3>
+                            <p class="hero-feature-description">End-to-end workflow automation</p>
+                            <a href="#" class="hero-feature-link">Learn more</a>
+                        </div>
+                        
+                        <div class="hero-feature-card">
+                            <div class="hero-feature-icon">🎤</div>
+                            <h3 class="hero-feature-title">AI Voice Agent</h3>
+                            <p class="hero-feature-description">24/7 intelligent customer service</p>
+                            <a href="#" class="hero-feature-link">Learn more</a>
+                        </div>
+                        
+                        <div class="hero-feature-card">
+                            <div class="hero-feature-icon">📈</div>
+                            <h3 class="hero-feature-title">Analytics</h3>
+                            <p class="hero-feature-description">Real-time performance insights</p>
+                            <a href="#" class="hero-feature-link">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+                <p style="color: rgba(255,255,255,0.6); font-size: 14px;">
+                    ✅ Clean, organized grid<br>
+                    ✅ Professional B2B look<br>
+                    ✅ Mobile-responsive<br>
+                    ✅ Subtle hover effects<br>
+                    ✅ Easy to read
+                </p>
+            </div>
+        </div>
+        
+        <div class="improvements-list">
+            <h3>🚀 Improvements Made:</h3>
+            <ul>
+                <li><strong>Removed blue hyperlinks</strong> - Now uses consistent brand colors</li>
+                <li><strong>Fixed stacking issues</strong> - Clean 2x2 grid layout</li>
+                <li><strong>Added professional design</strong> - Glassmorphism effects with blur</li>
+                <li><strong>Improved readability</strong> - Better contrast and typography</li>
+                <li><strong>Mobile-responsive</strong> - Collapses to single column on small screens</li>
+                <li><strong>Subtle animations</strong> - Smooth hover effects instead of distracting floats</li>
+                <li><strong>Better UX</strong> - Clear visual hierarchy and spacing</li>
+            </ul>
+        </div>
+        
+        <div class="implementation-steps">
+            <h3>📋 Implementation Details:</h3>
+            
+            <p><strong>Files Added:</strong></p>
+            <div class="code-block">
+/css/hero-features.css    # New CSS for feature grid
+/test-hero-preview.html   # This preview page
+            </div>
+            
+            <p><strong>Files Modified:</strong></p>
+            <div class="code-block">
+/index.html               # Replaced floating cards with feature grid
+                          # Added CSS link in &lt;head&gt;
+            </div>
+            
+            <p><strong>CSS Features:</strong></p>
+            <div class="code-block">
+/* Modern design elements */
+- Glassmorphism effects (backdrop-filter: blur)
+- Gradient hover backgrounds  
+- Smooth cubic-bezier transitions
+- Entrance animations
+- Responsive grid layout
+- Brand color consistency
+            </div>
+            
+            <p><strong>Ready to deploy?</strong> The changes are already applied to index.html. You can:</p>
+            <ol>
+                <li>View the live preview above</li>
+                <li>Check the actual implementation in index.html</li>
+                <li>Test on different screen sizes</li>
+                <li>Deploy to GitHub using our GitHub skill</li>
+            </ol>
+            
+            <a href="#" class="deploy-btn" onclick="alert('Changes are ready! Use the GitHub skill to deploy.'); return false;">
+                🚀 Ready to Deploy
+            </a>
+        </div>
+    </div>
+    
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</body>
+</html>
