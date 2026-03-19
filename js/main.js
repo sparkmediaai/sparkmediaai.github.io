@@ -229,7 +229,7 @@ function initHoverEffects() {
    ========================================================================== */
 function initIntersectionObserver() {
     // Elements to animate on scroll
-    const animateElements = document.querySelectorAll('.service-card, .result-card, .ai-content, .ai-visual');
+    const animateElements = document.querySelectorAll('.service-card, .result-card, .ai-content, .ai-visual, .pipeline-card');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -256,7 +256,8 @@ function initIntersectionObserver() {
         .service-card,
         .result-card,
         .ai-content,
-        .ai-visual {
+        .ai-visual,
+        .pipeline-card {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.6s ease, transform 0.6s ease;
@@ -265,7 +266,8 @@ function initIntersectionObserver() {
         .service-card.animate-in,
         .result-card.animate-in,
         .ai-content.animate-in,
-        .ai-visual.animate-in {
+        .ai-visual.animate-in,
+        .pipeline-card.animate-in {
             opacity: 1;
             transform: translateY(0);
         }
