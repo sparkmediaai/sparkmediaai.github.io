@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROI Calculator for Alex | SparkMedia.AI</title>
-    <meta name="description" content="Interactive ROI calculator for Alex to model platform, lead, and commission economics in seconds.">
+    <title>ROI Calculator for Alex Andrews | SparkMedia.AI</title>
+    <meta name="description" content="Interactive ROI calculator for Alex Andrews to model platform, lead, and commission economics in seconds.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +29,17 @@
             z-index: 0;
         }
         .hero-roi .container { position: relative; z-index: 1; }
+        .hero-visual {
+            position: absolute;
+            right: 8%;
+            top: 52%;
+            transform: translateY(-50%);
+            width: 420px;
+            max-width: 60vw;
+            opacity: 0.18;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
+            pointer-events: none;
+        }
         .chip {
             display: inline-flex;
             padding: 0.6rem 1.4rem;
@@ -117,6 +128,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        .result-card[data-metric="sales"] .value,
+        .result-card[data-metric="revenue"] .value {
+            background: none;
+            -webkit-text-fill-color: unset;
+            color: #49ffb4;
+        }
         .result-card[data-highlight="true"] {
             border-color: rgba(0, 194, 255, 0.6);
             background: rgba(0, 194, 255, 0.08);
@@ -128,9 +145,22 @@
         .result-card[data-metric="net"][data-positive="false"] .value {
             color: #ff4d4f;
         }
+        .result-card[data-metric="net"][data-positive="true"] .value {
+            color: #49ffb4;
+        }
         @media (max-width: 768px) {
             .dashboard-card {
                 padding: 1.75rem;
+            }
+            .hero-visual {
+                position: relative;
+                margin: 2rem auto 0;
+                transform: none;
+                width: 320px;
+                max-width: 85%;
+                top: auto;
+                right: auto;
+                display: block;
             }
         }
     </style>
@@ -157,14 +187,15 @@
     <main>
         <section class="hero-roi">
             <div class="container">
-                <div class="chip">ROI Calculator for Alex</div>
+                <div class="chip">ROI Calculator for Alex Andrews</div>
                 <h1 style="font-size: 3.25rem; line-height: 1.1; max-width: 800px; margin: 0 auto 1rem;">
                     Instantly Model Lead Costs, Close Rates & Profit
                 </h1>
                 <p style="max-width: 760px; margin: 0 auto; font-size: 1.15rem; color: rgba(255,255,255,0.75);">
                     Adjust the inputs below to see how platform costs, AI engagement, and close rates impact your revenue and profit.
-                    Built specifically for Alex so you can gut-check campaigns before a single dollar is spent.
+                    Built specifically for Alex Andrews so you can gut-check campaigns before a single dollar is spent.
                 </p>
+                <img src="assets/images/results-charts.svg" alt="Decorative analytics" class="hero-visual" loading="lazy" aria-hidden="true">
             </div>
         </section>
 
@@ -174,7 +205,7 @@
                     <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center;">
                         <div>
                             <h2 style="font-size: 2rem; margin-bottom: 0.4rem;">Adjust Inputs</h2>
-                            <p style="color: rgba(255,255,255,0.6);">Dial-in Alex's economics. All numbers update in real time.</p>
+                            <p style="color: rgba(255,255,255,0.6);">Dial-in Alex Andrews' economics. All numbers update in real time.</p>
                         </div>
                         <button type="button" id="reset-calculator" style="border: 1px solid rgba(255,255,255,0.25); background: transparent; color: white; padding: 0.75rem 1.25rem; border-radius: 12px; font-weight: 600; cursor: pointer;">
                             Reset to Baseline
@@ -185,7 +216,7 @@
                         <div class="input-card">
                             <label for="platform-cost">Monthly Platform Cost</label>
                             <small>Subscription, software, or retainer</small>
-                            <input id="platform-cost" type="number" min="0" step="50" value="499" data-field="platform" />
+                            <input id="platform-cost" type="number" min="0" step="50" value="799" data-field="platform" />
                         </div>
                         <div class="input-card">
                             <label for="ai-per-lead">AI Engagement per Lead</label>
@@ -205,7 +236,7 @@
                         <div class="input-card">
                             <label for="close-rate">Close Rate (%)</label>
                             <small>Expected conversion from lead to sale</small>
-                            <input id="close-rate" type="number" min="0" max="100" step="0.5" value="10" data-field="close-rate" />
+                            <input id="close-rate" type="number" min="0" max="100" step="0.1" value="3" data-field="close-rate" />
                         </div>
                         <div class="input-card">
                             <label for="avg-commission">Average Commission per Sale</label>
@@ -220,12 +251,12 @@
                             <div class="value" data-output="total-lead-cost">$0</div>
                             <p style="color: rgba(255,255,255,0.55); font-size: 0.85rem; margin-top: 0.5rem;">(Cost per Internet Lead + AI Engagement) × Leads</p>
                         </div>
-                        <div class="result-card">
+                        <div class="result-card" data-metric="sales">
                             <h3>Number of Sales</h3>
                             <div class="value" data-output="number-of-sales">0</div>
                             <p style="color: rgba(255,255,255,0.55); font-size: 0.85rem; margin-top: 0.5rem;">Leads × Close Rate</p>
                         </div>
-                        <div class="result-card" data-output-card="commission-revenue">
+                        <div class="result-card" data-output-card="commission-revenue" data-metric="revenue">
                             <h3>Total Commission Revenue</h3>
                             <div class="value" data-output="commission-revenue">$0</div>
                             <p style="color: rgba(255,255,255,0.55); font-size: 0.85rem; margin-top: 0.5rem;">Avg Commission × Leads × Close Rate</p>
@@ -259,7 +290,7 @@
                 </div>
                 <div style="background: rgba(255,255,255,0.03); border-radius: 18px; padding: 2rem; border: 1px solid rgba(255,255,255,0.05);">
                     <h3 style="margin-bottom: 0.5rem;">Need Adjustments?</h3>
-                    <p style="color: rgba(255,255,255,0.6);">We can layer in tiered pricing, blended CAC, or multi-location rollups if Alex wants additional levers.</p>
+                    <p style="color: rgba(255,255,255,0.6);">We can layer in tiered pricing, blended CAC, or multi-location rollups if Alex Andrews wants additional levers.</p>
                 </div>
                 <div style="background: rgba(255,255,255,0.03); border-radius: 18px; padding: 2rem; border: 1px solid rgba(255,255,255,0.05);">
                     <h3 style="margin-bottom: 0.5rem;">Ready to Launch?</h3>
@@ -275,11 +306,11 @@
     <script>
         document.getElementById('reset-calculator').addEventListener('click', () => {
             const defaults = {
-                'platform-cost': 499,
+                'platform-cost': 799,
                 'ai-per-lead': 1.2,
                 'cost-per-lead': 20,
                 'leads-per-month': 900,
-                'close-rate': 10,
+                'close-rate': 3,
                 'avg-commission': 1000
             };
             Object.entries(defaults).forEach(([id, value]) => {
