@@ -145,14 +145,35 @@
     .venue-photo .vph{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.2s var(--ease)}
     .venue-card:hover .vph{transform:scale(1.08)}
     .venue-photo .tag{position:absolute;top:16px;left:16px;z-index:2;background:rgba(20,28,22,.82);color:#fff;font-size:.62rem;text-transform:uppercase;letter-spacing:.2em;padding:8px 15px}
-    .v1{background-image:linear-gradient(160deg,rgba(38,51,42,.08),rgba(38,51,42,.32)),url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')}
-    .v2{background-image:linear-gradient(160deg,rgba(38,51,42,.08),rgba(38,51,42,.32)),url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80')}
-    .v3{background-image:linear-gradient(160deg,rgba(38,51,42,.08),rgba(38,51,42,.32)),url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80')}
-    .v4{background-image:linear-gradient(160deg,rgba(38,51,42,.08),rgba(38,51,42,.32)),url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80')}
+    .v1{background-image:linear-gradient(160deg,rgba(38,51,42,.08),rgba(38,51,42,.32)),url('https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2025/02/4K6A2231anthonyalexa.jpg?w=1000&quality=78&ssl=1')}
+    .v2{background-image:linear-gradient(160deg,rgba(38,51,42,.08),rgba(38,51,42,.32)),url('https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/09/Copy-of-thevalley-scaled.jpg?w=1000&quality=78&ssl=1')}
+    .v3{background-image:linear-gradient(160deg,rgba(38,51,42,.08),rgba(38,51,42,.32)),url('https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/09/august-images-valleyvenues-21-scaled.jpg?w=1000&quality=78&ssl=1')}
+    .v4{background-image:linear-gradient(160deg,rgba(38,51,42,.08),rgba(38,51,42,.32)),url('https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/10/Copy-of-magnoliahouse-7.jpg?w=1000&quality=78&ssl=1')}
     .venue-body{padding:32px 32px 36px}
     .venue-body h3{font-size:1.8rem;margin-bottom:10px}
     .venue-body p{color:var(--muted);font-size:.99rem;margin-bottom:18px}
     .venue-body .meta{font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;color:var(--brass);border-top:1px solid var(--line);padding-top:16px}
+    .venue-card{cursor:pointer}
+    .venue-card:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+    .venue-body .explore{display:inline-flex;align-items:center;gap:9px;margin-top:18px;font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;font-weight:500;color:var(--brass)}
+    .venue-body .explore .arw{transition:transform .45s var(--ease)}
+    .venue-card:hover .explore .arw,.venue-card:focus-visible .explore .arw{transform:translateX(6px)}
+
+    /* VENUE SLIDE-OPEN (shared-layout morph) */
+    .vx-overlay{position:fixed;inset:0;z-index:180;visibility:hidden;background:rgba(13,18,14,0);backdrop-filter:blur(0);transition:background .55s var(--ease),backdrop-filter .55s var(--ease),visibility .55s}
+    .vx-overlay.open{visibility:visible;background:rgba(13,18,14,.82);backdrop-filter:blur(3px)}
+    .vx-panel{position:fixed;top:0;left:0;width:0;height:0;overflow:hidden;background:var(--pine-deep);box-shadow:0 44px 110px -32px rgba(0,0,0,.72);transition:top .55s var(--ease),left .55s var(--ease),width .55s var(--ease),height .55s var(--ease)}
+    .vx-photo{position:absolute;inset:0;background-size:cover;background-position:center}
+    .vx-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,18,14,.12) 0%,rgba(13,18,14,.12) 38%,rgba(13,18,14,.94) 100%);opacity:0;transition:opacity .45s var(--ease)}
+    .vx-panel.reveal .vx-scrim{opacity:1}
+    .vx-content{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:clamp(28px,4vw,52px);color:#fff;opacity:0;transform:translateY(26px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+    .vx-panel.reveal .vx-content{opacity:1;transform:none}
+    .vx-content h3{font-size:clamp(2rem,4.4vw,3.3rem);margin-bottom:14px}
+    .vx-content p{font-size:clamp(1rem,1.5vw,1.14rem);font-weight:300;max-width:600px;color:rgba(246,241,231,.92);margin-bottom:20px}
+    .vx-meta{font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;color:var(--brass-light);border-top:1px solid rgba(255,255,255,.22);padding-top:16px;margin-bottom:28px}
+    .vx-close{position:absolute;top:20px;right:22px;z-index:3;width:46px;height:46px;border-radius:50%;background:rgba(13,18,14,.5);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .45s var(--ease),background .3s,transform .3s}
+    .vx-panel.reveal .vx-close{opacity:1}
+    .vx-close:hover{background:var(--brass);border-color:var(--brass);transform:rotate(90deg)}
 
     /* EVENTS */
     .exp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
@@ -376,36 +397,56 @@
         <div class="divider" data-reveal></div>
       </div>
       <div class="venue-grid">
-        <article class="venue-card" data-reveal>
+        <article class="venue-card" data-reveal tabindex="0" role="button" aria-label="Explore Davis Hall"
+          data-tag="Indoor Reception" data-title="Davis Hall"
+          data-desc="A grand reception hall where warm chandeliers meet sweeping valley views through soaring windows — bright, airy, and ready to be dressed for any theme, from candle-lit elegance to garden whimsy."
+          data-meta="Seated up to 250 · Dance Floor · Climate Controlled"
+          data-img="https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2025/02/4K6A2231anthonyalexa.jpg?w=1700&quality=82&ssl=1">
           <div class="venue-photo"><div class="vph v1"></div><span class="tag">Indoor Reception</span></div>
           <div class="venue-body">
             <h3>Davis Hall</h3>
             <p>A bright, airy reception hall with clean industrial lines and a neutral palette that welcomes any theme — from candle-lit elegance to garden whimsy.</p>
             <div class="meta">Seated Dining · Dance Floor · Climate Controlled</div>
+            <span class="explore">Explore the space <span class="arw">&#10230;</span></span>
           </div>
         </article>
-        <article class="venue-card d1" data-reveal>
+        <article class="venue-card d1" data-reveal tabindex="0" role="button" aria-label="Explore The Valley"
+          data-tag="Outdoor Ceremony" data-title="The Valley"
+          data-desc="Exchange vows framed by rolling hills, where a tranquil creek meanders through the grounds and the horizon opens wide — our signature open-air setting, alive with the color of every season."
+          data-meta="Ceremony Lawn · Golden-Hour Light · Up to 300 Guests"
+          data-img="https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/09/Copy-of-thevalley-scaled.jpg?w=1700&quality=82&ssl=1">
           <div class="venue-photo"><div class="vph v2"></div><span class="tag">Outdoor Ceremony</span></div>
           <div class="venue-body">
             <h3>The Valley</h3>
             <p>The signature open-air setting — a sweeping lawn framed by tree lines and sky, where vows meet a living backdrop that shifts beautifully with every season.</p>
             <div class="meta">Ceremony Lawn · Golden-Hour Light · Up to 300</div>
+            <span class="explore">Explore the space <span class="arw">&#10230;</span></span>
           </div>
         </article>
-        <article class="venue-card" data-reveal>
+        <article class="venue-card" data-reveal tabindex="0" role="button" aria-label="Explore The Lookout Deck"
+          data-tag="Elevated Views" data-title="The Lookout Deck"
+          data-desc="A stunning modern deck suspended over panoramic mountain views — the estate's most breathtaking vantage point, made for sunset toasts, cocktail hours, and photographs your guests will never forget."
+          data-meta="Cocktail Hour · Scenic Overlook · Sunset Toasts"
+          data-img="https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/09/august-images-valleyvenues-21-scaled.jpg?w=1700&quality=82&ssl=1">
           <div class="venue-photo"><div class="vph v3"></div><span class="tag">Elevated Views</span></div>
           <div class="venue-body">
             <h3>The Lookout Deck</h3>
             <p>Perched to capture the estate's finest vistas, the Lookout Deck is made for sunset toasts, cocktail hours, and photographs your guests will never forget.</p>
             <div class="meta">Cocktail Hour · Scenic Overlook · Sunset Toasts</div>
+            <span class="explore">Explore the space <span class="arw">&#10230;</span></span>
           </div>
         </article>
-        <article class="venue-card d1" data-reveal>
+        <article class="venue-card d1" data-reveal tabindex="0" role="button" aria-label="Explore The Magnolia House"
+          data-tag="Historic Landmark" data-title="The Magnolia House"
+          data-desc="An 1890s Southern manor of timeless character — the storied heart of the estate, brimming with history, romance, and Old-South charm, with a bridal suite and portrait settings at every turn."
+          data-meta="Historic Home · Bridal Suite · Portrait Setting"
+          data-img="https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/10/Copy-of-magnoliahouse-7.jpg?w=1700&quality=82&ssl=1">
           <div class="venue-photo"><div class="vph v4"></div><span class="tag">Historic Landmark</span></div>
           <div class="venue-body">
             <h3>The Magnolia House</h3>
             <p>An 1890s Southern manor of timeless character — the storied heart of the estate, brimming with history, romance, and Old-South charm.</p>
             <div class="meta">Historic Home · Bridal Suite · Portrait Setting</div>
+            <span class="explore">Explore the space <span class="arw">&#10230;</span></span>
           </div>
         </article>
       </div>
@@ -574,6 +615,22 @@
     </div>
   </footer>
 
+  <!-- VENUE SLIDE-OPEN PANEL -->
+  <div class="vx-overlay" id="vxOverlay" aria-hidden="true">
+    <div class="vx-panel" id="vxPanel" role="dialog" aria-modal="true" aria-labelledby="vxTitle">
+      <div class="vx-photo" id="vxPhoto"></div>
+      <div class="vx-scrim"></div>
+      <button class="vx-close" id="vxClose" aria-label="Close venue details">&times;</button>
+      <div class="vx-content">
+        <span class="eyebrow" id="vxTag" style="color:var(--brass-light);display:block;margin-bottom:14px"></span>
+        <h3 id="vxTitle"></h3>
+        <p id="vxDesc"></p>
+        <div class="vx-meta" id="vxMeta"></div>
+        <a href="#contact" class="btn solid" id="vxCta">Inquire About This Venue</a>
+      </div>
+    </div>
+  </div>
+
   <!-- LIGHTBOX -->
   <div class="lb" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Gallery image viewer">
     <span class="lb-count" id="lbCount"></span>
@@ -641,6 +698,57 @@
       entries.forEach(e => { if (e.isIntersecting){ animateCount(e.target); countIO.unobserve(e.target); } });
     }, {threshold:0.6});
     document.querySelectorAll('.count').forEach(el => countIO.observe(el));
+
+    // Venue slide-open cards — shared-layout morph in vanilla JS (FLIP-style position/size)
+    const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const vxCards = Array.from(document.querySelectorAll('.venue-card'));
+    const vxOverlay = document.getElementById('vxOverlay');
+    const vxPanel = document.getElementById('vxPanel');
+    const vxPhoto = document.getElementById('vxPhoto');
+    let vxCurrent = null, vxOpen = false;
+    const setRect = (el, r) => { el.style.top = r.top + 'px'; el.style.left = r.left + 'px'; el.style.width = r.width + 'px'; el.style.height = r.height + 'px'; };
+    const cardRect = (c) => { const b = c.getBoundingClientRect(); return { top: b.top, left: b.left, width: b.width, height: b.height }; };
+    const finalRect = () => { const vw = innerWidth, vh = innerHeight, W = Math.min(1000, vw * 0.92), H = Math.min(660, vh * 0.84); return { top: (vh - H) / 2, left: (vw - W) / 2, width: W, height: H }; };
+    const openVx = (card) => {
+      vxCurrent = card; vxOpen = true;
+      const d = card.dataset;
+      vxPhoto.style.backgroundImage = "url('" + d.img + "')";
+      document.getElementById('vxTag').textContent = d.tag;
+      document.getElementById('vxTitle').textContent = d.title;
+      document.getElementById('vxDesc').textContent = d.desc;
+      document.getElementById('vxMeta').textContent = d.meta;
+      vxPanel.style.transition = 'none';
+      setRect(vxPanel, cardRect(card));
+      vxOverlay.classList.add('open');
+      vxOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      vxPanel.getBoundingClientRect(); // force reflow so the start rect is committed
+      requestAnimationFrame(() => {
+        vxPanel.style.transition = '';
+        setRect(vxPanel, finalRect());
+        vxPanel.classList.add('reveal'); // scrim + content fade in alongside the morph
+      });
+    };
+    const closeVx = () => {
+      if (!vxOpen) return; vxOpen = false;
+      vxPanel.classList.remove('reveal');
+      setTimeout(() => {
+        vxPanel.style.transition = '';
+        setRect(vxPanel, cardRect(vxCurrent));
+        vxOverlay.classList.remove('open');
+        vxOverlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }, motionOK ? 150 : 0);
+    };
+    vxCards.forEach(card => {
+      card.addEventListener('click', () => openVx(card));
+      card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openVx(card); } });
+    });
+    vxPanel.addEventListener('click', (e) => e.stopPropagation());
+    vxOverlay.addEventListener('click', closeVx);
+    document.getElementById('vxClose').addEventListener('click', closeVx);
+    document.getElementById('vxCta').addEventListener('click', closeVx);
+    document.addEventListener('keydown', (e) => { if (vxOpen && e.key === 'Escape') closeVx(); });
 
     // Lightbox gallery
     const gTiles = Array.from(document.querySelectorAll('.gallery-grid .g'));
