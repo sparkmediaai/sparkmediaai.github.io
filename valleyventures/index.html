@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Valley Venues | A 74-Acre Private Estate for Weddings & Celebrations</title>
+  <meta name="description" content="The Valley Venues is a family-owned 74-acre private estate near Chattanooga, TN. Four distinct spaces, onsite lodging for 32, and an in-house decor library — where history, romance & enchantment meet." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --pine:#26332a;
+      --pine-deep:#141c16;
+      --sage:#7d8d76;
+      --cream:#f6f1e7;
+      --cream-2:#efe7d7;
+      --brass:#b0894f;
+      --brass-light:#cfa96c;
+      --ink:#2c2a25;
+      --muted:#6f6a60;
+      --line:rgba(44,42,37,.14);
+      --serif:'Cormorant Garamond', Georgia, serif;
+      --sans:'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --ease:cubic-bezier(.22,1,.36,1);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.6;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spacing:.01em}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+    .eyebrow{font-family:var(--sans);text-transform:uppercase;letter-spacing:.34em;font-size:.72rem;font-weight:500;color:var(--brass)}
+    .btn{
+      position:relative;display:inline-block;font-family:var(--sans);text-transform:uppercase;
+      letter-spacing:.2em;font-size:.74rem;font-weight:500;padding:17px 36px;border:1px solid var(--brass);
+      color:var(--brass);background:transparent;overflow:hidden;cursor:pointer;z-index:0;
+      transition:color .5s var(--ease);
+    }
+    .btn::before{content:'';position:absolute;inset:0;background:var(--brass);transform:translateY(101%);transition:transform .5s var(--ease);z-index:-1}
+    .btn:hover{color:#fff}
+    .btn:hover::before{transform:translateY(0)}
+    .btn.solid{background:var(--brass);color:#fff}
+    .btn.solid::before{background:var(--pine)}
+    .btn.solid:hover{color:#fff;border-color:var(--pine)}
+    .btn.light{border-color:rgba(255,255,255,.75);color:#fff}
+    .btn.light::before{background:#fff}
+    .btn.light:hover{color:var(--pine)}
+
+    /* SCROLL PROGRESS BAR */
+    .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--brass-light);z-index:100;transition:width .1s linear}
+
+    /* NAV */
+    header.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:26px 40px;transition:background .5s var(--ease),padding .5s var(--ease),box-shadow .5s var(--ease)}
+    header.nav.scrolled{background:rgba(246,241,231,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);padding:14px 40px}
+    .brand{display:flex;flex-direction:column;line-height:1;color:#fff;transition:color .5s}
+    .brand .b-main{font-family:var(--serif);font-size:1.55rem;letter-spacing:.05em}
+    .brand .b-sub{font-family:var(--sans);text-transform:uppercase;letter-spacing:.36em;font-size:.56rem;margin-top:6px;opacity:.85}
+    header.nav.scrolled .brand{color:var(--pine)}
+    nav.links{display:flex;align-items:center;gap:36px}
+    nav.links a{color:#fff;font-size:.78rem;text-transform:uppercase;letter-spacing:.16em;font-weight:400;transition:color .3s;position:relative}
+    nav.links a:not(.nav-cta)::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--brass-light);transition:width .4s var(--ease)}
+    nav.links a:not(.nav-cta):hover::after{width:100%}
+    header.nav.scrolled nav.links a{color:var(--ink)}
+    .nav-cta{border:1px solid rgba(255,255,255,.6);padding:11px 22px;overflow:hidden;z-index:0}
+    .nav-cta::before{content:'';position:absolute;inset:0;background:#fff;transform:translateY(101%);transition:transform .45s var(--ease);z-index:-1}
+    .nav-cta:hover{color:var(--pine)}
+    .nav-cta:hover::before{transform:translateY(0)}
+    header.nav.scrolled .nav-cta{border-color:var(--brass);color:var(--brass)}
+    header.nav.scrolled .nav-cta::before{background:var(--brass)}
+    header.nav.scrolled .nav-cta:hover{color:#fff}
+    .menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+    .menu-toggle span{width:26px;height:2px;background:#fff;transition:.3s}
+    header.nav.scrolled .menu-toggle span{background:var(--pine)}
+
+    /* HERO */
+    .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;background:var(--pine-deep)}
+    .hero-bg{position:absolute;inset:-4%;z-index:0;background-size:cover;background-position:center;background-color:var(--pine-deep);
+      background-image:url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2200&q=80');
+      animation:kenburns 22s ease-in-out infinite alternate;will-change:transform}
+    @keyframes kenburns{0%{transform:scale(1.06) translate(0,0)}100%{transform:scale(1.16) translate(-1.5%,-1.5%)}}
+    .hero-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,28,22,.55)0%,rgba(20,28,22,.28)38%,rgba(20,28,22,.82)100%)}
+    .hero-inner{position:relative;z-index:2;width:100%;max-width:940px;padding:120px 28px 90px}
+    .hero .eyebrow{color:var(--brass-light);display:inline-block;margin-bottom:28px;opacity:0;transform:translateY(20px);animation:rise .9s var(--ease) .2s forwards}
+    .hero h1{font-size:clamp(2.9rem,7.4vw,6rem);font-weight:500;line-height:1.0;margin-bottom:28px}
+    .hero h1 .line{display:block;overflow:hidden}
+    .hero h1 .word{display:inline-block;transform:translateY(110%);opacity:0;animation:wordUp 1s var(--ease) forwards}
+    .hero h1 em{font-style:italic;color:var(--brass-light)}
+    @keyframes wordUp{to{transform:translateY(0);opacity:1}}
+    @keyframes rise{to{opacity:1;transform:translateY(0)}}
+    .hero p.lead{font-size:clamp(1.05rem,2vw,1.28rem);font-weight:300;max-width:610px;margin:0 auto 42px;opacity:0;transform:translateY(20px);animation:rise .9s var(--ease) 1.1s forwards}
+    .hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;transform:translateY(20px);animation:rise .9s var(--ease) 1.3s forwards}
+    .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;font-size:.6rem;text-transform:uppercase;letter-spacing:.34em;opacity:.85}
+    .scroll-hint::after{content:'';display:block;width:1px;height:40px;background:linear-gradient(var(--brass-light),transparent);margin:12px auto 0;animation:scrollpulse 2.2s var(--ease) infinite}
+    @keyframes scrollpulse{0%{transform:scaleY(0);transform-origin:top;opacity:0}40%{opacity:1}100%{transform:scaleY(1);transform-origin:top;opacity:0}}
+
+    /* MARQUEE */
+    .marquee{background:var(--pine);color:var(--cream);padding:20px 0;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+    .marquee-track{display:inline-block;animation:scrollX 32s linear infinite}
+    .marquee-track span{font-family:var(--serif);font-style:italic;font-size:1.5rem;margin:0 34px;opacity:.9}
+    .marquee-track span::after{content:'✦';color:var(--brass-light);margin-left:34px;font-style:normal;font-size:.8rem;vertical-align:middle}
+    @keyframes scrollX{to{transform:translateX(-50%)}}
+
+    /* STATS */
+    .stats{background:var(--cream-2)}
+    .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding-top:0;padding-bottom:0}
+    .stat{padding:56px 24px;text-align:center;border-right:1px solid var(--line)}
+    .stat:last-child{border-right:none}
+    .stat .num{font-family:var(--serif);font-size:3.2rem;line-height:1;color:var(--pine)}
+    .stat .num small{font-size:1.3rem;color:var(--brass)}
+    .stat .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.22em;margin-top:14px;color:var(--muted)}
+
+    /* SECTION BASE + REVEAL */
+    section.block{padding:120px 0}
+    .section-head{text-align:center;max-width:700px;margin:0 auto 64px}
+    .section-head .eyebrow{display:block;margin-bottom:18px}
+    .section-head h2{font-size:clamp(2.2rem,4.6vw,3.4rem);margin-bottom:20px}
+    .section-head p{color:var(--muted);font-size:1.1rem}
+    .divider{width:56px;height:1px;background:var(--brass);margin:24px auto 0}
+    [data-reveal]{opacity:0;transform:translateY(38px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+    [data-reveal].in{opacity:1;transform:none}
+    [data-reveal].d1{transition-delay:.12s}[data-reveal].d2{transition-delay:.24s}[data-reveal].d3{transition-delay:.36s}
+
+    /* STORY */
+    .story{display:grid;grid-template-columns:1.05fr 1fr;gap:74px;align-items:center}
+    .story-img{aspect-ratio:4/5;position:relative;overflow:hidden;box-shadow:0 34px 70px -34px rgba(20,28,22,.55)}
+    .story-img .ph{position:absolute;inset:0;background-size:cover;background-position:center;background-color:var(--sage);
+      background-image:linear-gradient(160deg,rgba(38,51,42,.12),rgba(38,51,42,.42)),url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80');
+      transition:transform 1.4s var(--ease)}
+    .story-img:hover .ph{transform:scale(1.06)}
+    .story-img::after{content:'';position:absolute;inset:18px;border:1px solid rgba(255,255,255,.45);pointer-events:none}
+    .story-text .eyebrow{display:block;margin-bottom:18px}
+    .story-text h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:22px}
+    .story-text p{color:var(--muted);margin-bottom:18px;font-size:1.05rem}
+    .story-text .sig{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--pine);margin-top:28px}
+    .story-text .sig small{display:block;font-family:var(--sans);font-style:normal;font-size:.72rem;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-top:8px}
+
+    /* VENUES */
+    .venues{background:var(--cream-2)}
+    .venue-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+    .venue-card{background:var(--cream);overflow:hidden;box-shadow:0 22px 54px -36px rgba(20,28,22,.5);transition:transform .6s var(--ease),box-shadow .6s var(--ease);display:flex;flex-direction:column}
+    .venue-card:hover{transform:translateY(-8px);box-shadow:0 34px 66px -32px rgba(20,28,22,.55)}
+    .venue-photo{aspect-ratio:16/10;overflow:hidden;position:relative;background:var(--sage)}
+    .venue-photo .vph{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.2s var(--ease)}
+    .venue-card:hover .vph{transform:scale(1.08)}
+    .venue-photo .tag{position:absolute;top:16px;left:16px;z-index:2;background:rgba(20,28,22,.82);color:#fff;font-size:.62rem;text-transform:uppercase;letter-spacing:.2em;padding:8px 15px}
+    .v1{background-image:linear-gradient(160deg,rgba(38,51,42,.08),rgba(38,51,42,.32)),url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')}
+    .v2{background-image:linear-gradient(160deg,rgba(38,51,42,.08),rgba(38,51,42,.32)),url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80')}
+    .v3{background-image:linear-gradient(160deg,rgba(38,51,42,.08),rgba(38,51,42,.32)),url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80')}
+    .v4{background-image:linear-gradient(160deg,rgba(38,51,42,.08),rgba(38,51,42,.32)),url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80')}
+    .venue-body{padding:32px 32px 36px}
+    .venue-body h3{font-size:1.8rem;margin-bottom:10px}
+    .venue-body p{color:var(--muted);font-size:.99rem;margin-bottom:18px}
+    .venue-body .meta{font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;color:var(--brass);border-top:1px solid var(--line);padding-top:16px}
+
+    /* EVENTS */
+    .exp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+    .exp{text-align:center;padding:44px 22px;background:var(--cream);border:1px solid var(--line);transition:border-color .5s var(--ease),transform .5s var(--ease)}
+    .exp:hover{border-color:var(--brass);transform:translateY(-6px)}
+    .exp .ico{font-size:2rem;margin-bottom:16px}
+    .exp h3{font-size:1.45rem;margin-bottom:10px}
+    .exp p{color:var(--muted);font-size:.93rem}
+
+    /* STAY */
+    .stay{position:relative;color:#fff;padding:130px 0;overflow:hidden;background:var(--pine-deep)}
+    .stay-bg{position:absolute;inset:-4%;z-index:0;background-size:cover;background-position:center;
+      background-image:url('https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=2000&q=80');will-change:transform}
+    .stay-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(20,28,22,.94)0%,rgba(20,28,22,.68)55%,rgba(20,28,22,.42)100%)}
+    .stay .wrap{position:relative;z-index:2}
+    .stay-card{max-width:520px}
+    .stay-card .eyebrow{color:var(--brass-light);display:block;margin-bottom:18px}
+    .stay-card h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:20px}
+    .stay-card p{opacity:.9;margin-bottom:20px;font-size:1.06rem}
+    .stay-list{list-style:none;margin:24px 0 36px}
+    .stay-list li{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.16);display:flex;justify-content:space-between;font-size:.96rem}
+    .stay-list li span:last-child{color:var(--brass-light)}
+
+    /* AMENITIES */
+    .amen{background:var(--pine);color:var(--cream)}
+    .amen .section-head h2{color:var(--cream)}
+    .amen .section-head p{color:rgba(246,241,231,.7)}
+    .amen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1)}
+    .amen-item{background:var(--pine);padding:38px 32px;transition:background .5s var(--ease)}
+    .amen-item:hover{background:#2d3d31}
+    .amen-item h4{font-size:1.3rem;color:var(--brass-light);margin-bottom:8px}
+    .amen-item p{font-size:.92rem;color:rgba(246,241,231,.75)}
+
+    /* TESTIMONIALS */
+    .quote-block{text-align:center;max-width:840px;margin:0 auto}
+    .quote-block .stars{color:var(--brass);letter-spacing:.3em;margin-bottom:26px;font-size:1.1rem}
+    .quote-block blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.3;color:var(--pine);margin-bottom:26px}
+    .quote-block cite{font-style:normal;font-size:.78rem;text-transform:uppercase;letter-spacing:.22em;color:var(--muted)}
+    .mini-quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:66px}
+    .mini{background:var(--cream);border:1px solid var(--line);padding:30px;transition:transform .5s var(--ease),border-color .5s var(--ease)}
+    .mini:hover{transform:translateY(-5px);border-color:var(--brass)}
+    .mini .stars{color:var(--brass);font-size:.85rem;letter-spacing:.15em;margin-bottom:12px}
+    .mini p{color:var(--muted);font-size:.95rem;font-style:italic;margin-bottom:14px}
+    .mini cite{font-style:normal;font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--pine)}
+
+    /* GALLERY */
+    .gallery{background:var(--cream-2)}
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:210px;gap:14px}
+    .g{overflow:hidden;position:relative;background:var(--sage)}
+    .g .gph{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.3s var(--ease)}
+    .g:hover .gph{transform:scale(1.1)}
+    .g.tall{grid-row:span 2}
+    .g.wide{grid-column:span 2}
+    .g1 .gph{background-image:url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1000&q=80')}
+    .g2 .gph{background-image:url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1000&q=80')}
+    .g3 .gph{background-image:url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=80')}
+    .g4 .gph{background-image:url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80')}
+    .g5 .gph{background-image:url('https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=1000&q=80')}
+    .g6 .gph{background-image:url('https://images.unsplash.com/photo-1462536943532-57a629f6cc60?auto=format&fit=crop&w=1000&q=80')}
+
+    /* FINAL */
+    .final{position:relative;color:#fff;text-align:center;padding:140px 0;overflow:hidden;background:var(--pine-deep)}
+    .final-bg{position:absolute;inset:-4%;z-index:0;background-size:cover;background-position:center;
+      background-image:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=2000&q=80');will-change:transform}
+    .final-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,28,22,.86),rgba(20,28,22,.92))}
+    .final .wrap{position:relative;z-index:2}
+    .final .eyebrow{color:var(--brass-light);display:block;margin-bottom:20px}
+    .final h2{font-size:clamp(2.4rem,5vw,4rem);margin-bottom:22px}
+    .final p{max-width:580px;margin:0 auto 38px;opacity:.9;font-size:1.12rem}
+    .contact-row{display:flex;gap:46px;justify-content:center;flex-wrap:wrap;margin-top:52px;font-size:.92rem;letter-spacing:.05em}
+    .contact-row a{display:flex;flex-direction:column;gap:6px;opacity:.9;transition:.3s}
+    .contact-row a:hover{opacity:1;color:var(--brass-light)}
+    .contact-row .ck{font-size:.64rem;text-transform:uppercase;letter-spacing:.26em;color:var(--brass-light)}
+
+    /* FOOTER */
+    footer{background:var(--pine-deep);color:rgba(246,241,231,.7);padding:58px 0 42px;text-align:center}
+    footer .brand{color:var(--cream);align-items:center;margin-bottom:18px}
+    footer .fnav{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin:22px 0;font-size:.74rem;text-transform:uppercase;letter-spacing:.16em}
+    footer .fnav a:hover{color:var(--brass-light)}
+    footer .fine{font-size:.72rem;opacity:.6;margin-top:20px;letter-spacing:.05em}
+    .proto-note{background:var(--brass);color:#fff;text-align:center;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;padding:9px}
+
+    @media(prefers-reduced-motion:reduce){
+      *{animation:none!important;transition:none!important}
+      [data-reveal]{opacity:1;transform:none}
+      .hero h1 .word{opacity:1;transform:none}
+      .hero .eyebrow,.hero p.lead,.hero-ctas{opacity:1;transform:none}
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      nav.links{position:fixed;top:0;right:0;height:100vh;width:min(80vw,330px);background:var(--pine);flex-direction:column;justify-content:center;gap:32px;transform:translateX(100%);transition:transform .5s var(--ease);z-index:60;padding:40px}
+      nav.links.open{transform:translateX(0)}
+      nav.links a{color:#fff!important;font-size:.92rem}
+      header.nav.scrolled nav.links a{color:#fff!important}
+      .menu-toggle{display:flex;z-index:70}
+      .menu-toggle.open span{background:#fff!important}
+      .menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+      .menu-toggle.open span:nth-child(2){opacity:0}
+      .menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+      .stats .wrap{grid-template-columns:repeat(2,1fr)}
+      .stat:nth-child(2){border-right:none}
+      .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}
+      .story{grid-template-columns:1fr;gap:44px}
+      .venue-grid{grid-template-columns:1fr}
+      .exp-grid{grid-template-columns:repeat(2,1fr)}
+      .amen-grid{grid-template-columns:1fr}
+      .mini-quotes{grid-template-columns:1fr}
+      .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px}
+    }
+    @media(max-width:560px){
+      header.nav{padding:18px 22px}
+      section.block{padding:82px 0}
+      .stats .wrap{grid-template-columns:1fr}
+      .stat{border-right:none!important;border-bottom:1px solid var(--line)}
+      .exp-grid{grid-template-columns:1fr}
+      .gallery-grid{grid-template-columns:1fr}
+      .contact-row{gap:28px}
+      .marquee-track span{font-size:1.2rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="proto-note">Prototype concept by Spark Media AI — imagery is placeholder; swap for The Valley Venues photography.</div>
+  <div class="progress" id="progress"></div>
+
+  <header class="nav" id="nav">
+    <a href="#top" class="brand">
+      <span class="b-main">The Valley Venues</span>
+      <span class="b-sub">Wildwood · Georgia</span>
+    </a>
+    <nav class="links" id="links">
+      <a href="#story">The Estate</a>
+      <a href="#venues">Venues</a>
+      <a href="#events">Celebrations</a>
+      <a href="#stay">Stay</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact" class="nav-cta">Book a Tour</a>
+    </nav>
+    <button class="menu-toggle" id="toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-veil"></div>
+    <div class="hero-inner">
+      <span class="eyebrow">A Private 74-Acre Estate Near Chattanooga</span>
+      <h1>
+        <span class="line"><span class="word" style="animation-delay:.35s">Where</span> <span class="word" style="animation-delay:.45s">history,</span> <span class="word" style="animation-delay:.55s">romance</span></span>
+        <span class="line"><span class="word" style="animation-delay:.68s">&amp;</span> <span class="word" style="animation-delay:.78s"><em>enchantment</em></span> <span class="word" style="animation-delay:.9s">meet.</span></span>
+      </h1>
+      <p class="lead">Four distinct venues, rolling countryside, and onsite lodging — an unforgettable backdrop for weddings and life's most cherished celebrations.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn light">Plan Your Event</a>
+        <a href="#venues" class="btn light">Explore the Venues</a>
+      </div>
+    </div>
+    <div class="scroll-hint">Discover</div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Weddings</span><span>Micro-Weddings</span><span>Corporate Retreats</span><span>Charity Galas</span><span>Celebrations</span><span>Weddings</span><span>Micro-Weddings</span><span>Corporate Retreats</span><span>Charity Galas</span><span>Celebrations</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="wrap">
+      <div class="stat"><div class="num"><span class="count" data-to="74">0</span></div><div class="lbl">Acres of Estate</div></div>
+      <div class="stat"><div class="num"><span class="count" data-to="4">0</span></div><div class="lbl">Distinct Venues</div></div>
+      <div class="stat"><div class="num"><span class="count" data-to="32">0</span></div><div class="lbl">Sleep Onsite</div></div>
+      <div class="stat"><div class="num"><span class="count" data-to="10">0</span><small> mi</small></div><div class="lbl">From Chattanooga</div></div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="block" id="story">
+    <div class="wrap story">
+      <div class="story-img" data-reveal role="img" aria-label="The Valley Venues estate grounds"><div class="ph" data-parallax="0.12"></div></div>
+      <div class="story-text">
+        <span class="eyebrow" data-reveal>Our Story</span>
+        <h2 data-reveal class="d1">A family estate, generations in the making.</h2>
+        <p data-reveal class="d2">Tucked into the rolling countryside of Wildwood, Georgia, The Valley Venues is a family-owned retreat where 74 private acres unfold into meadows, woodlands, and mountain views — just ten miles from downtown Chattanooga.</p>
+        <p data-reveal class="d2">What began as a beloved family homestead has become one of the region's most enchanting settings for weddings and gatherings. Every path, porch, and pasture is thoughtfully tended so that your day feels both grand and wonderfully personal.</p>
+        <div class="sig d3" data-reveal>Paul &amp; Kobi Cummings
+          <small>Owners · A Father-Daughter Partnership</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENUES -->
+  <section class="block venues" id="venues">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-reveal>Four Ways to Gather</span>
+        <h2 data-reveal class="d1">Distinct venues, one seamless estate</h2>
+        <p data-reveal class="d2">Move effortlessly from ceremony to celebration across spaces designed to feel intimate at 30 or grand at 300.</p>
+        <div class="divider" data-reveal></div>
+      </div>
+      <div class="venue-grid">
+        <article class="venue-card" data-reveal>
+          <div class="venue-photo"><div class="vph v1"></div><span class="tag">Indoor Reception</span></div>
+          <div class="venue-body">
+            <h3>Davis Hall</h3>
+            <p>A bright, airy reception hall with clean industrial lines and a neutral palette that welcomes any theme — from candle-lit elegance to garden whimsy.</p>
+            <div class="meta">Seated Dining · Dance Floor · Climate Controlled</div>
+          </div>
+        </article>
+        <article class="venue-card d1" data-reveal>
+          <div class="venue-photo"><div class="vph v2"></div><span class="tag">Outdoor Ceremony</span></div>
+          <div class="venue-body">
+            <h3>The Valley</h3>
+            <p>The signature open-air setting — a sweeping lawn framed by tree lines and sky, where vows meet a living backdrop that shifts beautifully with every season.</p>
+            <div class="meta">Ceremony Lawn · Golden-Hour Light · Up to 300</div>
+          </div>
+        </article>
+        <article class="venue-card" data-reveal>
+          <div class="venue-photo"><div class="vph v3"></div><span class="tag">Elevated Views</span></div>
+          <div class="venue-body">
+            <h3>The Lookout Deck</h3>
+            <p>Perched to capture the estate's finest vistas, the Lookout Deck is made for sunset toasts, cocktail hours, and photographs your guests will never forget.</p>
+            <div class="meta">Cocktail Hour · Scenic Overlook · Sunset Toasts</div>
+          </div>
+        </article>
+        <article class="venue-card d1" data-reveal>
+          <div class="venue-photo"><div class="vph v4"></div><span class="tag">Historic Landmark</span></div>
+          <div class="venue-body">
+            <h3>The Magnolia House</h3>
+            <p>An 1890s Southern manor of timeless character — the storied heart of the estate, brimming with history, romance, and Old-South charm.</p>
+            <div class="meta">Historic Home · Bridal Suite · Portrait Setting</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="block" id="events">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-reveal>Every Occasion, Beautifully Held</span>
+        <h2 data-reveal class="d1">More than a wedding venue</h2>
+        <div class="divider" data-reveal></div>
+      </div>
+      <div class="exp-grid">
+        <div class="exp" data-reveal><div class="ico">💍</div><h3>Weddings</h3><p>Full-estate celebrations with ceremony, reception, and suites all in one place.</p></div>
+        <div class="exp d1" data-reveal><div class="ico">🌿</div><h3>Micro-Weddings</h3><p>Intimate elopements and small gatherings with all the magic, none of the fuss.</p></div>
+        <div class="exp d2" data-reveal><div class="ico">🥂</div><h3>Corporate &amp; Charity</h3><p>Retreats, fundraisers, and galas in a setting that inspires and impresses.</p></div>
+        <div class="exp d3" data-reveal><div class="ico">🎉</div><h3>Celebrations</h3><p>Showers, reunions, and milestone parties worthy of the memory they mark.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAY -->
+  <section class="stay" id="stay">
+    <div class="stay-bg" data-parallax="0.15"></div>
+    <div class="stay-veil"></div>
+    <div class="wrap">
+      <div class="stay-card">
+        <span class="eyebrow" data-reveal>Stay the Weekend</span>
+        <h2 data-reveal class="d1">Onsite lodging for your inner circle</h2>
+        <p data-reveal class="d2">Turn a single day into an unhurried weekend. Wake on the estate, get ready with the people closest to you, and let the celebration unfold without ever leaving.</p>
+        <ul class="stay-list d2" data-reveal>
+          <li><span>The Lodge</span><span>Sleeps up to 14</span></li>
+          <li><span>Four Cabins · 1 &amp; 2 Bedroom</span><span>Sleeps up to 18</span></li>
+          <li><span>Total Onsite Capacity</span><span>Up to 32 guests</span></li>
+        </ul>
+        <a href="#contact" class="btn light d3" data-reveal>Check Availability</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMENITIES -->
+  <section class="block amen">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-reveal>The Details, Handled</span>
+        <h2 data-reveal class="d1">Everything your day deserves</h2>
+        <p data-reveal class="d2">An estate that comes ready — so your planning stays joyful and your budget stays sensible.</p>
+        <div class="divider" data-reveal></div>
+      </div>
+      <div class="amen-grid">
+        <div class="amen-item" data-reveal><h4>In-House Decor Library</h4><p>An extensive collection of backdrops, arches, signage, and styling pieces — included and ready to make yours.</p></div>
+        <div class="amen-item d1" data-reveal><h4>Bridal &amp; Groom Suites</h4><p>Private, comfortable spaces to prepare, relax, and savor the morning of.</p></div>
+        <div class="amen-item d2" data-reveal><h4>Ample Parking</h4><p>Easy arrival and departure for every guest, right on the estate.</p></div>
+        <div class="amen-item" data-reveal><h4>Flexible Packages</h4><p>À la carte add-ons to fully-scaled packages — shaped around your vision and headcount.</p></div>
+        <div class="amen-item d1" data-reveal><h4>Open Vendor Policy</h4><p>Bring the caterers, florists, and planners you love, or lean on our trusted list.</p></div>
+        <div class="amen-item d2" data-reveal><h4>Dedicated Hosts</h4><p>Paul, Kobi, and team on hand to make the whole day feel effortless.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="block" id="reviews">
+    <div class="wrap">
+      <div class="quote-block" data-reveal>
+        <div class="stars">★★★★★</div>
+        <blockquote>"The most beautiful setting we could have dreamed of — and a family that treated ours like their own. Every guest is still talking about it."</blockquote>
+        <cite>— Recommended by 100% of couples</cite>
+      </div>
+      <div class="mini-quotes">
+        <div class="mini" data-reveal><div class="stars">★★★★★</div><p>"The grounds are breathtaking and the staff went above and beyond from our first tour to the last dance."</p><cite>Emily &amp; Jordan</cite></div>
+        <div class="mini d1" data-reveal><div class="stars">★★★★★</div><p>"Having everyone stay onsite made the whole weekend feel like a getaway. We never wanted to leave."</p><cite>The Bennett Family</cite></div>
+        <div class="mini d2" data-reveal><div class="stars">★★★★★</div><p>"Four venues in one place meant our day flowed perfectly. The decor library saved us so much."</p><cite>Sarah &amp; Michael</cite></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="block gallery" id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-reveal>A Glimpse of the Valley</span>
+        <h2 data-reveal class="d1">Picture your day here</h2>
+        <div class="divider" data-reveal></div>
+      </div>
+      <div class="gallery-grid">
+        <div class="g g1 tall" data-reveal><div class="gph"></div></div>
+        <div class="g g2 d1" data-reveal><div class="gph"></div></div>
+        <div class="g g3 d2" data-reveal><div class="gph"></div></div>
+        <div class="g g4 wide" data-reveal><div class="gph"></div></div>
+        <div class="g g5 d1" data-reveal><div class="gph"></div></div>
+        <div class="g g6 d2" data-reveal><div class="gph"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL / CONTACT -->
+  <section class="final" id="contact">
+    <div class="final-bg" data-parallax="0.12"></div>
+    <div class="final-veil"></div>
+    <div class="wrap">
+      <span class="eyebrow" data-reveal>Come See It for Yourself</span>
+      <h2 data-reveal class="d1">Let's plan something unforgettable</h2>
+      <p data-reveal class="d2">Book a private tour of the estate and discover why couples fall in love with The Valley Venues the moment they arrive.</p>
+      <div data-reveal class="d2"><a href="tel:+14236350463" class="btn solid">Schedule a Private Tour</a></div>
+      <div class="contact-row d3" data-reveal>
+        <a href="tel:+14236350463"><span class="ck">Call</span><span>(423) 635-0463</span></a>
+        <a href="mailto:Info@thevalleyvenues.com"><span class="ck">Email</span><span>Info@thevalleyvenues.com</span></a>
+        <a href="https://maps.google.com/?q=1860+Pope+Creek+Rd+Wildwood+GA" target="_blank" rel="noopener"><span class="ck">Visit</span><span>1860 Pope Creek Rd, Wildwood, GA</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="brand">
+        <span class="b-main" style="font-size:1.7rem">The Valley Venues</span>
+        <span class="b-sub">Wildwood · Georgia</span>
+      </div>
+      <div class="fnav">
+        <a href="#story">The Estate</a>
+        <a href="#venues">Venues</a>
+        <a href="#events">Celebrations</a>
+        <a href="#stay">Stay</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="fine">© 2026 The Valley Venues · 1860 Pope Creek Rd, Wildwood, GA · (423) 635-0463</div>
+      <div class="fine" style="margin-top:8px">Prototype concept designed by Spark Media AI</div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll progress + sticky nav
+    const nav = document.getElementById('nav');
+    const progress = document.getElementById('progress');
+    const onScroll = () => {
+      const y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 60);
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+      // Parallax
+      parallaxEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const speed = parseFloat(el.dataset.parallax) || 0.1;
+        const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * -speed;
+        el.style.transform = 'translateY(' + offset.toFixed(1) + 'px)';
+      });
+    };
+    const parallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+
+    // Mobile menu
+    const toggle = document.getElementById('toggle');
+    const links = document.getElementById('links');
+    toggle.addEventListener('click', () => {
+      links.classList.toggle('open');
+      toggle.classList.toggle('open');
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      links.classList.remove('open');
+      toggle.classList.remove('open');
+    }));
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0.15, rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+    // Count-up stats
+    const animateCount = (el) => {
+      const to = parseInt(el.dataset.to, 10);
+      const dur = 1400; const start = performance.now();
+      const step = (now) => {
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(to * eased);
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const countIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting){ animateCount(e.target); countIO.unobserve(e.target); } });
+    }, {threshold:0.6});
+    document.querySelectorAll('.count').forEach(el => countIO.observe(el));
+  </script>
+</body>
+</html>
