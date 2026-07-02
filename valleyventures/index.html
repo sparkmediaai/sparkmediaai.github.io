@@ -200,18 +200,34 @@
 
     /* GALLERY */
     .gallery{background:var(--cream-2)}
-    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:210px;gap:14px}
-    .g{overflow:hidden;position:relative;background:var(--sage)}
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;grid-auto-flow:dense;gap:14px}
+    .g{overflow:hidden;position:relative;background:var(--sage);cursor:pointer}
     .g .gph{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.3s var(--ease)}
-    .g:hover .gph{transform:scale(1.1)}
+    .g:hover .gph{transform:scale(1.08)}
+    .g::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(20,28,22,.62));opacity:0;transition:opacity .5s var(--ease)}
+    .g:hover::after,.g:focus-visible::after{opacity:1}
+    .g:focus-visible{outline:2px solid var(--brass-light);outline-offset:-2px}
+    .g .gcap{position:absolute;left:18px;bottom:15px;z-index:2;color:#fff;font-family:var(--serif);font-style:italic;font-size:1.06rem;letter-spacing:.01em;opacity:0;transform:translateY(8px);transition:opacity .5s var(--ease),transform .5s var(--ease);pointer-events:none}
+    .g:hover .gcap,.g:focus-visible .gcap{opacity:1;transform:none}
+    .g .gzoom{position:absolute;top:14px;right:14px;z-index:2;width:34px;height:34px;border:1px solid rgba(255,255,255,.6);border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.9rem;opacity:0;transform:scale(.8);transition:opacity .4s var(--ease),transform .4s var(--ease),background .3s;pointer-events:none}
+    .g:hover .gzoom,.g:focus-visible .gzoom{opacity:1;transform:none}
     .g.tall{grid-row:span 2}
     .g.wide{grid-column:span 2}
-    .g1 .gph{background-image:url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1000&q=80')}
-    .g2 .gph{background-image:url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1000&q=80')}
-    .g3 .gph{background-image:url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=80')}
-    .g4 .gph{background-image:url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80')}
-    .g5 .gph{background-image:url('https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=1000&q=80')}
-    .g6 .gph{background-image:url('https://images.unsplash.com/photo-1462536943532-57a629f6cc60?auto=format&fit=crop&w=1000&q=80')}
+
+    /* LIGHTBOX */
+    .lb{position:fixed;inset:0;z-index:200;background:rgba(15,20,16,.95);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility .4s}
+    .lb.open{opacity:1;visibility:visible}
+    .lb-stage{position:relative;max-width:92vw;max-height:84vh;display:flex;align-items:center;justify-content:center}
+    .lb img{max-width:92vw;max-height:84vh;object-fit:contain;box-shadow:0 34px 90px -24px rgba(0,0,0,.75);opacity:0;transform:scale(.985);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+    .lb.shown img{opacity:1;transform:none}
+    .lb-cap{position:absolute;left:0;right:0;bottom:-44px;text-align:center;color:rgba(246,241,231,.9);font-family:var(--serif);font-style:italic;font-size:1.18rem}
+    .lb-count{position:absolute;top:28px;left:32px;color:rgba(246,241,231,.7);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;z-index:2}
+    .lb-close,.lb-nav{position:absolute;background:none;border:none;color:#fff;cursor:pointer;z-index:3;transition:color .3s,transform .3s;line-height:1}
+    .lb-close{top:22px;right:30px;font-size:2.2rem}
+    .lb-nav{top:50%;transform:translateY(-50%);font-size:2.6rem;padding:18px 22px}
+    .lb-prev{left:1.5vw}.lb-next{right:1.5vw}
+    .lb-nav:hover,.lb-close:hover{color:var(--brass-light)}
+    @media(max-width:560px){.lb-nav{font-size:1.7rem;padding:10px 12px}.lb-cap{font-size:.98rem;bottom:-36px}.lb-close{font-size:1.8rem;top:16px;right:18px}}
 
     /* FINAL */
     .final{position:relative;color:#fff;text-align:center;padding:140px 0;overflow:hidden;background:var(--pine-deep)}
@@ -261,7 +277,8 @@
       .exp-grid{grid-template-columns:repeat(2,1fr)}
       .amen-grid{grid-template-columns:1fr}
       .mini-quotes{grid-template-columns:1fr}
-      .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px}
+      .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}
+      .g.wide{grid-column:span 2}
     }
     @media(max-width:560px){
       header.nav{padding:18px 22px}
@@ -269,7 +286,9 @@
       .stats .wrap{grid-template-columns:1fr}
       .stat{border-right:none!important;border-bottom:1px solid var(--line)}
       .exp-grid{grid-template-columns:1fr}
-      .gallery-grid{grid-template-columns:1fr}
+      .gallery-grid{grid-template-columns:1fr;grid-auto-rows:230px}
+      .g.wide{grid-column:span 1}
+      .g.tall{grid-row:span 1}
       .contact-row{gap:28px}
       .marquee-track span{font-size:1.2rem}
     }
@@ -473,13 +492,48 @@
         <h2 data-reveal class="d1">Picture your day here</h2>
         <div class="divider" data-reveal></div>
       </div>
+      <!-- Real photography from thevalleyvenues.com, served via their image CDN (i0.wp.com). -->
       <div class="gallery-grid">
-        <div class="g g1 tall" data-reveal><div class="gph"></div></div>
-        <div class="g g2 d1" data-reveal><div class="gph"></div></div>
-        <div class="g g3 d2" data-reveal><div class="gph"></div></div>
-        <div class="g g4 wide" data-reveal><div class="gph"></div></div>
-        <div class="g g5 d1" data-reveal><div class="gph"></div></div>
-        <div class="g g6 d2" data-reveal><div class="gph"></div></div>
+        <div class="g wide" data-reveal data-cap="Aerial over the valley" data-full="https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2025/02/DJI_0673.jpg?w=1800&quality=82&ssl=1">
+          <div class="gph" style="background-image:url('https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2025/02/DJI_0673.jpg?w=1100&quality=78&ssl=1')"></div>
+          <span class="gzoom">&#8853;</span><span class="gcap">Aerial over the valley</span>
+        </div>
+        <div class="g wide d1" data-reveal data-cap="Ceremony in The Valley" data-full="https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/09/Copy-of-thevalley-scaled.jpg?w=1800&quality=82&ssl=1">
+          <div class="gph" style="background-image:url('https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/09/Copy-of-thevalley-scaled.jpg?w=1100&quality=78&ssl=1')"></div>
+          <span class="gzoom">&#8853;</span><span class="gcap">Ceremony in The Valley</span>
+        </div>
+        <div class="g tall d2" data-reveal data-cap="The Magnolia House" data-full="https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/10/Copy-of-magnoliahouse-7.jpg?w=1400&quality=82&ssl=1">
+          <div class="gph" style="background-image:url('https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/10/Copy-of-magnoliahouse-7.jpg?w=900&quality=78&ssl=1')"></div>
+          <span class="gzoom">&#8853;</span><span class="gcap">The Magnolia House</span>
+        </div>
+        <div class="g wide" data-reveal data-cap="Just married" data-full="https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2025/02/4K6A0982anthonyalexa.jpg?w=1800&quality=82&ssl=1">
+          <div class="gph" style="background-image:url('https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2025/02/4K6A0982anthonyalexa.jpg?w=1100&quality=78&ssl=1')"></div>
+          <span class="gzoom">&#8853;</span><span class="gcap">Just married</span>
+        </div>
+        <div class="g d1" data-reveal data-cap="A candlelit reception" data-full="https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2025/02/4K6A2231anthonyalexa.jpg?w=1600&quality=82&ssl=1">
+          <div class="gph" style="background-image:url('https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2025/02/4K6A2231anthonyalexa.jpg?w=800&quality=78&ssl=1')"></div>
+          <span class="gzoom">&#8853;</span><span class="gcap">A candlelit reception</span>
+        </div>
+        <div class="g tall d2" data-reveal data-cap="Golden hour in the woods" data-full="https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2025/02/4K6A1697anthonyalexa.jpg?w=1400&quality=82&ssl=1">
+          <div class="gph" style="background-image:url('https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2025/02/4K6A1697anthonyalexa.jpg?w=900&quality=78&ssl=1')"></div>
+          <span class="gzoom">&#8853;</span><span class="gcap">Golden hour in the woods</span>
+        </div>
+        <div class="g" data-reveal data-cap="Autumn on the estate" data-full="https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2025/02/4K6A0033anthonyalexa.jpg?w=1600&quality=82&ssl=1">
+          <div class="gph" style="background-image:url('https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2025/02/4K6A0033anthonyalexa.jpg?w=800&quality=78&ssl=1')"></div>
+          <span class="gzoom">&#8853;</span><span class="gcap">Autumn on the estate</span>
+        </div>
+        <div class="g wide d1" data-reveal data-cap="A vintage departure" data-full="https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/10/Copy-of-vintagecar-8-2.jpg?w=1800&quality=82&ssl=1">
+          <div class="gph" style="background-image:url('https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/10/Copy-of-vintagecar-8-2.jpg?w=1100&quality=78&ssl=1')"></div>
+          <span class="gzoom">&#8853;</span><span class="gcap">A vintage departure</span>
+        </div>
+        <div class="g" data-reveal data-cap="Vows on the Lookout Deck" data-full="https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/10/Copy-of-the-valley-venues-kristen-Thomison-photo-225.jpg?w=1600&quality=82&ssl=1">
+          <div class="gph" style="background-image:url('https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/10/Copy-of-the-valley-venues-kristen-Thomison-photo-225.jpg?w=800&quality=78&ssl=1')"></div>
+          <span class="gzoom">&#8853;</span><span class="gcap">Vows on the Lookout Deck</span>
+        </div>
+        <div class="g d2" data-reveal data-cap="Getting ready" data-full="https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/09/Copy-of-portraits-14.jpg?w=1600&quality=82&ssl=1">
+          <div class="gph" style="background-image:url('https://i0.wp.com/thevalleyvenues.com/wp-content/uploads/2024/09/Copy-of-portraits-14.jpg?w=800&quality=78&ssl=1')"></div>
+          <span class="gzoom">&#8853;</span><span class="gcap">Getting ready</span>
+        </div>
       </div>
     </div>
   </section>
@@ -519,6 +573,18 @@
       <div class="fine" style="margin-top:8px">Prototype concept designed by Spark Media AI</div>
     </div>
   </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lb" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Gallery image viewer">
+    <span class="lb-count" id="lbCount"></span>
+    <button class="lb-close" id="lbClose" aria-label="Close gallery">&times;</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous image">&#8249;</button>
+    <div class="lb-stage">
+      <img id="lbImg" src="" alt="" />
+      <div class="lb-cap" id="lbCap"></div>
+    </div>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next image">&#8250;</button>
+  </div>
 
   <script>
     // Scroll progress + sticky nav
@@ -575,6 +641,45 @@
       entries.forEach(e => { if (e.isIntersecting){ animateCount(e.target); countIO.unobserve(e.target); } });
     }, {threshold:0.6});
     document.querySelectorAll('.count').forEach(el => countIO.observe(el));
+
+    // Lightbox gallery
+    const gTiles = Array.from(document.querySelectorAll('.gallery-grid .g'));
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbCap = document.getElementById('lbCap');
+    const lbCount = document.getElementById('lbCount');
+    let lbIndex = 0;
+    const showLb = (i) => {
+      lbIndex = (i + gTiles.length) % gTiles.length;
+      const t = gTiles[lbIndex];
+      const full = t.dataset.full;
+      const cap = t.dataset.cap || '';
+      lb.classList.remove('shown');
+      const pre = new Image();
+      pre.onload = () => { lbImg.src = full; lbImg.alt = cap; lb.classList.add('shown'); };
+      pre.src = full;
+      lbCap.textContent = cap;
+      lbCount.textContent = (lbIndex + 1) + ' / ' + gTiles.length;
+    };
+    const openLb = (i) => { showLb(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; };
+    const closeLb = () => { lb.classList.remove('open','shown'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; };
+    gTiles.forEach((t, i) => {
+      t.setAttribute('tabindex','0');
+      t.setAttribute('role','button');
+      t.setAttribute('aria-label', 'View: ' + (t.dataset.cap || 'gallery image'));
+      t.addEventListener('click', () => openLb(i));
+      t.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(i); } });
+    });
+    document.getElementById('lbClose').addEventListener('click', closeLb);
+    document.getElementById('lbPrev').addEventListener('click', (e) => { e.stopPropagation(); showLb(lbIndex - 1); });
+    document.getElementById('lbNext').addEventListener('click', (e) => { e.stopPropagation(); showLb(lbIndex + 1); });
+    lb.addEventListener('click', (e) => { if (e.target === lb || e.target.classList.contains('lb-stage')) closeLb(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLb();
+      else if (e.key === 'ArrowLeft') showLb(lbIndex - 1);
+      else if (e.key === 'ArrowRight') showLb(lbIndex + 1);
+    });
   </script>
 </body>
 </html>
