@@ -153,6 +153,8 @@
     .venue-body h3{font-size:1.8rem;margin-bottom:10px}
     .venue-body p{color:var(--muted);font-size:.99rem;margin-bottom:18px}
     .venue-body .meta{font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;color:var(--brass);border-top:1px solid var(--line);padding-top:16px}
+    .venue-link{display:inline-block;margin-top:18px;font-family:var(--sans);text-transform:uppercase;letter-spacing:.18em;font-size:.7rem;font-weight:500;color:var(--pine);border-bottom:1px solid var(--brass);padding-bottom:3px;transition:color .3s,border-color .3s}
+    .venue-link:hover{color:var(--brass)}
 
     /* EVENTS */
     .exp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
@@ -292,7 +294,9 @@
     .hot:hover::after,.hot.on::after{color:var(--brass)}
     @keyframes hotpulse{0%{box-shadow:0 0 0 0 rgba(176,137,79,.5)}70%{box-shadow:0 0 0 14px rgba(176,137,79,0)}100%{box-shadow:0 0 0 0 rgba(176,137,79,0)}}
     .mappop{position:absolute;z-index:5;width:244px;background:var(--cream);box-shadow:0 24px 50px -20px rgba(20,28,22,.5);border:1px solid var(--line);opacity:0;visibility:hidden;transform:translate(-50%,8px);transition:opacity .35s var(--ease),transform .35s var(--ease);pointer-events:none}
-    .mappop.show{opacity:1;visibility:visible}
+    .mappop.show{opacity:1;visibility:visible;pointer-events:auto}
+    .mappop .mplink{display:inline-block;margin-top:12px;font-family:var(--sans);text-transform:uppercase;letter-spacing:.18em;font-size:.66rem;font-weight:500;color:var(--brass);border-bottom:1px solid var(--brass);padding-bottom:2px;transition:color .3s,border-color .3s}
+    .mappop .mplink:hover{color:var(--pine);border-color:var(--pine)}
     .mappop img{width:100%;height:132px;object-fit:cover;display:block}
     .mappop .mpb{padding:16px 18px 18px}
     .mappop h4{font-size:1.5rem;color:var(--pine);margin-bottom:6px}
@@ -427,6 +431,7 @@
             <h3>Davis Hall</h3>
             <p>A bright, airy reception hall with clean industrial lines and a neutral palette that welcomes any theme — from candle-lit elegance to garden whimsy.</p>
             <div class="meta">Seated Dining · Dance Floor · Climate Controlled</div>
+            <a class="venue-link" href="davis-hall.html">Explore Davis Hall →</a>
           </div>
         </article>
         <article class="venue-card d1" data-reveal>
@@ -435,6 +440,7 @@
             <h3>The Valley</h3>
             <p>The signature open-air setting — a sweeping lawn framed by tree lines and sky, where vows meet a living backdrop that shifts beautifully with every season.</p>
             <div class="meta">Ceremony Lawn · Golden-Hour Light · Up to 300</div>
+            <a class="venue-link" href="the-valley.html">Explore The Valley →</a>
           </div>
         </article>
         <article class="venue-card" data-reveal>
@@ -443,6 +449,7 @@
             <h3>The Lookout Deck</h3>
             <p>Perched to capture the estate's finest vistas, the Lookout Deck is made for sunset toasts, cocktail hours, and photographs your guests will never forget.</p>
             <div class="meta">Cocktail Hour · Scenic Overlook · Sunset Toasts</div>
+            <a class="venue-link" href="lookout-deck.html">Explore The Lookout Deck →</a>
           </div>
         </article>
         <article class="venue-card d1" data-reveal>
@@ -451,6 +458,7 @@
             <h3>The Magnolia House</h3>
             <p>An 1890s Southern manor of timeless character — the storied heart of the estate, brimming with history, romance, and Old-South charm.</p>
             <div class="meta">Historic Home · Bridal Suite · Portrait Setting</div>
+            <a class="venue-link" href="magnolia-house.html">Explore Magnolia House →</a>
           </div>
         </article>
       </div>
@@ -492,12 +500,12 @@
 <g class="ink" transform="translate(320,760)" font-family="'Jost',sans-serif"><circle r="34" fill="#f7f3ea" stroke="#b08a52" stroke-width="2"/><path d="M0,-30 L7,0 L0,30 L-7,0 Z" fill="#26332a"/><path d="M-30,0 L0,-7 L30,0 L0,7 Z" fill="#b08a52"/><text x="0" y="-38" text-anchor="middle" font-size="15" fill="#26332a">N</text></g>
 <g class="ink" transform="translate(1300,880)" text-anchor="middle"><text x="0" y="0" font-size="34" fill="#26332a" letter-spacing="2">The Valley Venues</text><text x="0" y="26" font-size="14" fill="#b08a52" font-family="'Jost',sans-serif" letter-spacing="6">WILDWOOD · GEORGIA</text></g>
 </svg>
-        <button class="hot" style="left:26.9%;top:47%" data-label="Magnolia House" data-img="venue-magnolia-house.jpg" data-desc="An 1890s Southern manor — the storied, romantic heart of the estate."><span class="dot"></span></button>
-        <button class="hot" style="left:43.1%;top:35%" data-label="Overlook Village" data-desc="Hilltop cabins where your closest guests stay the whole weekend."><span class="dot"></span></button>
-        <button class="hot" style="left:43.75%;top:50.5%" data-label="The Lodge" data-desc="A cozy on-site retreat that sleeps up to fourteen guests."><span class="dot"></span></button>
-        <button class="hot" style="left:55%;top:47%" data-label="Davis Hall" data-img="venue-davis-hall.jpg" data-desc="The bright, airy indoor reception hall for seated dining and dancing."><span class="dot"></span></button>
+        <button class="hot" style="left:26.9%;top:47%" data-label="Magnolia House" data-img="venue-magnolia-house.jpg" data-url="magnolia-house.html" data-desc="An 1890s Southern manor — the storied, romantic heart of the estate."><span class="dot"></span></button>
+        <button class="hot" style="left:43.1%;top:35%" data-label="Overlook Village" data-img="lg-0008.jpg" data-url="lodging.html" data-desc="Hilltop cabins where your closest guests stay the whole weekend."><span class="dot"></span></button>
+        <button class="hot" style="left:43.75%;top:50.5%" data-label="The Lodge" data-img="lg-0006.jpg" data-url="lodging.html" data-desc="A cozy on-site retreat, part of lodging that sleeps up to 34 guests."><span class="dot"></span></button>
+        <button class="hot" style="left:55%;top:47%" data-label="Davis Hall" data-img="venue-davis-hall.jpg" data-url="davis-hall.html" data-desc="The bright, airy indoor reception hall for seated dining and dancing."><span class="dot"></span></button>
         <button class="hot" style="left:39.4%;top:60%" data-label="Ivy Barn" data-desc="Rustic character and timeless charm for celebrations of every kind."><span class="dot"></span></button>
-        <button class="hot" style="left:46.25%;top:66%" data-label="The Valley" data-img="venue-the-valley.jpg" data-desc="The signature open-air ceremony lawn, framed by tree lines and sky."><span class="dot"></span></button>
+        <button class="hot" style="left:46.25%;top:66%" data-label="The Valley" data-img="venue-the-valley.jpg" data-url="the-valley.html" data-desc="The signature open-air ceremony lawn, framed by tree lines and sky."><span class="dot"></span></button>
         <button class="hot" style="left:48.1%;top:82%" data-label="The Greenhouse" data-desc="A light-filled garden setting for intimate vows and portraits."><span class="dot"></span></button>
         <button class="hot" style="left:32.5%;top:69%" data-label="Parking" data-desc="Ample on-site parking with an easy walk to every venue."><span class="dot"></span></button>
         <div class="mappop" id="mappop"></div>
@@ -705,7 +713,8 @@
         if (cur) cur.classList.remove('on');
         cur = h; h.classList.add('on');
         const img = h.dataset.img ? `<img src="${base}${h.dataset.img}" alt="">` : '<div class="noimg"></div>';
-        pop.innerHTML = img + `<div class="mpb"><h4>${h.dataset.label}</h4><p>${h.dataset.desc}</p></div>`;
+        const link = h.dataset.url ? `<a class="mplink" href="${h.dataset.url}">Explore →</a>` : '';
+        pop.innerHTML = img + `<div class="mpb"><h4>${h.dataset.label}</h4><p>${h.dataset.desc}</p>${link}</div>`;
         pop.style.left = h.style.left;
         const top = parseFloat(h.style.top);
         pop.style.top = (top > 60 ? top - 3 : top + 3) + '%';
