@@ -254,6 +254,26 @@
       .hero .eyebrow,.hero p.lead,.hero-ctas{opacity:1;transform:none}
     }
 
+    /* ESTATE MAP */
+    .estate{background:var(--cream)}
+    .mapwrap{position:relative;max-width:1040px;margin:0 auto}
+    .mapwrap>img{width:100%;display:block}
+    .hot{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;border:none;background:none;cursor:pointer;z-index:3;padding:0}
+    .hot .dot{position:absolute;inset:7px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 0 rgba(176,137,79,.5);animation:hotpulse 2.6s var(--ease) infinite}
+    .hot::after{content:attr(data-label);position:absolute;left:50%;top:22px;transform:translateX(-50%);white-space:nowrap;font-family:var(--serif);font-size:1.05rem;color:var(--pine);text-shadow:0 1px 3px rgba(246,241,231,.95),0 0 6px rgba(246,241,231,.7);pointer-events:none;transition:color .3s}
+    .hot:hover .dot,.hot.on .dot{background:var(--pine);animation:none;transform:scale(1.18)}
+    .hot:hover::after,.hot.on::after{color:var(--brass)}
+    @keyframes hotpulse{0%{box-shadow:0 0 0 0 rgba(176,137,79,.5)}70%{box-shadow:0 0 0 14px rgba(176,137,79,0)}100%{box-shadow:0 0 0 0 rgba(176,137,79,0)}}
+    .mappop{position:absolute;z-index:5;width:244px;background:var(--cream);box-shadow:0 24px 50px -20px rgba(20,28,22,.5);border:1px solid var(--line);opacity:0;visibility:hidden;transform:translate(-50%,8px);transition:opacity .35s var(--ease),transform .35s var(--ease);pointer-events:none}
+    .mappop.show{opacity:1;visibility:visible}
+    .mappop img{width:100%;height:132px;object-fit:cover;display:block}
+    .mappop .mpb{padding:16px 18px 18px}
+    .mappop h4{font-size:1.5rem;color:var(--pine);margin-bottom:6px}
+    .mappop p{color:var(--muted);font-size:.88rem;line-height:1.5}
+    .mappop .noimg{height:5px;background:var(--brass)}
+    .maphint{text-align:center;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.24em;margin-top:30px}
+    @media(max-width:560px){.hot::after{font-size:.78rem}.mappop{width:186px}.mappop img{height:100px}}
+
     /* RESPONSIVE */
     @media(max-width:900px){
       nav.links{position:fixed;top:0;right:0;height:100vh;width:min(80vw,330px);background:var(--pine);flex-direction:column;justify-content:center;gap:32px;transform:translateX(100%);transition:transform .5s var(--ease);z-index:60;padding:40px}
@@ -407,6 +427,31 @@
           </div>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- ESTATE MAP -->
+  <section class="block estate" id="estate">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-reveal>Explore the Grounds</span>
+        <h2 data-reveal class="d1">One estate, endless settings</h2>
+        <p data-reveal class="d2">Seventy-four private acres, thoughtfully arranged. Hover any point to explore the spaces that make up The Valley Venues.</p>
+        <div class="divider" data-reveal></div>
+      </div>
+      <div class="mapwrap" id="mapwrap" data-reveal>
+        <img src="assets/estate-map.svg" alt="Illustrated map of The Valley Venues estate" />
+        <button class="hot" style="left:26.9%;top:47%" data-label="Magnolia House" data-img="venue-magnolia-house.jpg" data-desc="An 1890s Southern manor — the storied, romantic heart of the estate."><span class="dot"></span></button>
+        <button class="hot" style="left:43.1%;top:35%" data-label="Overlook Village" data-desc="Hilltop cabins where your closest guests stay the whole weekend."><span class="dot"></span></button>
+        <button class="hot" style="left:43.75%;top:50.5%" data-label="The Lodge" data-desc="A cozy on-site retreat that sleeps up to fourteen guests."><span class="dot"></span></button>
+        <button class="hot" style="left:55%;top:47%" data-label="Davis Hall" data-img="venue-davis-hall.jpg" data-desc="The bright, airy indoor reception hall for seated dining and dancing."><span class="dot"></span></button>
+        <button class="hot" style="left:39.4%;top:60%" data-label="Ivy Barn" data-desc="Rustic character and timeless charm for celebrations of every kind."><span class="dot"></span></button>
+        <button class="hot" style="left:46.25%;top:66%" data-label="The Valley" data-img="venue-the-valley.jpg" data-desc="The signature open-air ceremony lawn, framed by tree lines and sky."><span class="dot"></span></button>
+        <button class="hot" style="left:48.1%;top:82%" data-label="The Greenhouse" data-desc="A light-filled garden setting for intimate vows and portraits."><span class="dot"></span></button>
+        <button class="hot" style="left:32.5%;top:69%" data-label="Parking" data-desc="Ample on-site parking with an easy walk to every venue."><span class="dot"></span></button>
+        <div class="mappop" id="mappop"></div>
+      </div>
+      <div class="maphint">Hover a marker to explore</div>
     </div>
   </section>
 
@@ -597,6 +642,35 @@
       entries.forEach(e => { if (e.isIntersecting){ animateCount(e.target); countIO.unobserve(e.target); } });
     }, {threshold:0.6});
     document.querySelectorAll('.count').forEach(el => countIO.observe(el));
+
+    // Estate map hotspots
+    (function(){
+      const wrap = document.getElementById('mapwrap');
+      if (!wrap) return;
+      const pop = document.getElementById('mappop');
+      const base = 'assets/images/';
+      let cur = null;
+      const show = (h) => {
+        if (cur) cur.classList.remove('on');
+        cur = h; h.classList.add('on');
+        const img = h.dataset.img ? `<img src="${base}${h.dataset.img}" alt="">` : '<div class="noimg"></div>';
+        pop.innerHTML = img + `<div class="mpb"><h4>${h.dataset.label}</h4><p>${h.dataset.desc}</p></div>`;
+        pop.style.left = h.style.left;
+        const top = parseFloat(h.style.top);
+        pop.style.top = (top > 60 ? top - 3 : top + 3) + '%';
+        pop.style.transform = top > 60 ? 'translate(-50%,-100%)' : 'translate(-50%,0)';
+        pop.classList.add('show');
+      };
+      wrap.querySelectorAll('.hot').forEach(h => {
+        h.addEventListener('mouseenter', () => show(h));
+        h.addEventListener('click', () => show(h));
+        h.addEventListener('focus', () => show(h));
+      });
+      wrap.addEventListener('mouseleave', () => {
+        pop.classList.remove('show');
+        if (cur) { cur.classList.remove('on'); cur = null; }
+      });
+    })();
   </script>
 </body>
 </html>
