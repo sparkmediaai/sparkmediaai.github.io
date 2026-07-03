@@ -41,12 +41,13 @@ header.nav.scrolled .menu-toggle span{background:var(--pine)}
 
 /* HERO */
 .vhero{position:relative;min-height:82vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:var(--pine-deep)}
-.vhero .vbg{position:absolute;inset:-4%;z-index:0;background-size:cover;background-position:center;background-image:var(--hero);animation:vkb 20s ease-in-out infinite alternate}
+.vhero .vbg{position:absolute;inset:-4%;z-index:0;background-size:cover;background-position:center;animation:vkb 20s ease-in-out infinite alternate}
 @keyframes vkb{0%{transform:scale(1.06)}100%{transform:scale(1.14)}}
 .vhero .veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,28,22,.35)0%,rgba(20,28,22,.15)45%,rgba(20,28,22,.82)100%)}
 .vhero .vinner{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto;padding:0 28px 68px}
 .crumb{font-size:.72rem;text-transform:uppercase;letter-spacing:.24em;opacity:.85;margin-bottom:20px}
 .crumb a{color:var(--brass-light)}.crumb a:hover{color:#fff}
+.hpill{display:inline-block;background:var(--brass);color:#fff;font-family:var(--sans);text-transform:uppercase;letter-spacing:.24em;font-size:.62rem;font-weight:500;padding:8px 16px;margin-bottom:18px}
 .vhero h1{font-size:clamp(3rem,7vw,5.4rem);line-height:1;margin-bottom:16px;text-shadow:0 2px 30px rgba(0,0,0,.3)}
 .vhero .tag{font-size:clamp(1.05rem,2vw,1.3rem);font-weight:300;max-width:560px;opacity:.95}
 
