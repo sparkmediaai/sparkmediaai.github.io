@@ -93,32 +93,67 @@ section{padding:clamp(4.5rem,11vh,9rem) var(--pad)}
 .truth .mark{color:var(--sage)}
 .truth-note{margin-top:2rem;color:rgba(247,242,233,.62);max-width:34rem;margin-left:auto;margin-right:auto;font-size:1.02rem}
 
-/* ---------- timeline ---------- */
-.tl{position:relative;padding-top:clamp(3rem,7vh,5rem)}
-.tl-head{text-align:center;margin-bottom:clamp(3rem,7vh,5.5rem)}
+/* ---------- timeline: the page passes through the day ---------- */
+/* Each moment owns its palette. Scrolling the timeline walks afternoon ->
+   Friday night -> Saturday morning -> golden hour -> dinner -> dancing ->
+   deep night -> Sunday morning, so the page performs its own argument. */
+.tl{position:relative;padding:0}
+.tl-head{text-align:center;padding:clamp(4rem,10vh,8rem) var(--pad) clamp(2.5rem,6vh,4rem);background:var(--cream)}
 .tl-head h2{font-size:clamp(2rem,4.6vw,3.4rem)}
 .tl-head p{margin-top:1.2rem;color:var(--ink-soft);max-width:36rem;margin-inline:auto}
 
-.day{position:sticky;top:0;z-index:5;background:var(--cream);padding:1.4rem 0 1rem;
-  border-bottom:1px solid var(--rule);margin-bottom:2.5rem;display:flex;align-items:baseline;gap:1rem}
-.day-name{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.1rem)}
-.day-sub{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--amber)}
+.mo{position:relative;z-index:1;background:var(--bg);color:var(--fg);
+  padding:clamp(4rem,11vh,8.5rem) var(--pad);overflow:hidden}
 
-.moment{display:grid;grid-template-columns:5.5rem 1fr;gap:clamp(1rem,3vw,2.5rem);
-  padding:clamp(2rem,4vh,3.2rem) 0;border-bottom:1px solid var(--rule)}
-.time{font-family:var(--serif);font-size:1.02rem;color:var(--amber);padding-top:.2rem;font-variant-numeric:tabular-nums}
-.moment-body{display:grid;grid-template-columns:1fr;gap:1.6rem}
+/* Oversized hour, ghosted. The hour is the argument of the page, so it gets to
+   be the ornament rather than a 10px label. */
+.mo .hour{position:absolute;top:clamp(1rem,3vh,2.5rem);right:var(--pad);
+  font-family:var(--serif);font-size:clamp(4.5rem,15vw,13rem);line-height:.78;
+  color:var(--fg);opacity:.10;pointer-events:none;user-select:none;
+  font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+
+.mo-inner{position:relative;z-index:2;display:grid;gap:clamp(1.6rem,4vw,3.5rem);
+  align-items:center;max-width:76rem;margin:0 auto}
+.stampline{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
+.stampline b{font-weight:600;margin-right:.55rem}
+.mo h3{font-size:clamp(1.6rem,3.4vw,2.7rem);margin-bottom:.9rem;color:var(--fg);text-wrap:balance}
+.mo p{color:var(--dim);margin:0;font-size:clamp(1rem,1.3vw,1.1rem)}
+.mo .where{display:inline-block;margin-top:1.3rem;font-size:.64rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--accent)}
+
+/* Images unmask rather than fade - a wipe reads as crafted, a fade as default. */
+.mo figure{margin:0;overflow:hidden}
+.mo figure img{width:100%;display:block;aspect-ratio:3/2;object-fit:cover}
+.js .mo figure{clip-path:inset(0 0 100% 0);transition:clip-path 1.15s cubic-bezier(.19,1,.22,1)}
+.js .mo.in figure{clip-path:inset(0 0 0 0)}
+/* parallax drift inside the frame: depth without moving the layout */
+.js .mo figure img{transform:scale(1.08) translateY(var(--drift,0px));will-change:transform}
+
 @media(min-width:900px){
-  .moment-body{grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4vw,3.5rem);align-items:center}
-  .moment.flip .moment-body>figure{order:-1}
+  .mo{padding-left:calc(var(--pad) + clamp(56px,7vw,120px))}
+  .mo-inner{grid-template-columns:1fr 1fr}
+  .mo.flip .mo-inner>figure{order:-1}
+  /* break the metronome: full-bleed for the three pivotal moments... */
+  .mo.wide .mo-inner{grid-template-columns:1fr;max-width:none}
+  .mo.wide figure{margin:0 calc(var(--pad) * -1) 0 calc((var(--pad) + clamp(56px,7vw,120px)) * -1)}
+  .mo.wide figure img{aspect-ratio:21/9}
+  .mo.wide .mo-text{max-width:46rem;margin:clamp(2rem,5vh,3.5rem) auto 0;text-align:center}
+  /* ...and small, quiet, wide-margined for the intimate ones */
+  .mo.inset .mo-inner{grid-template-columns:1fr;max-width:48rem}
+  .mo.inset figure{max-width:22rem;margin-left:auto}
+  .mo.inset figure img{aspect-ratio:4/5}
 }
-.moment h3{font-size:clamp(1.4rem,2.6vw,2rem);margin-bottom:.7rem}
-.moment p{color:var(--ink-soft);margin:0}
-.moment figure{margin:0;overflow:hidden;border-radius:3px}
-.moment figure img{width:100%;height:clamp(15rem,34vh,24rem);object-fit:cover;
-  transition:transform 1.4s cubic-bezier(.19,1,.22,1)}
-.moment:hover figure img{transform:scale(1.05)}
-.where{display:inline-block;margin-top:1rem;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sage)}
+
+/* ---------- the trail ---------- */
+/* A path across the estate, drawn by scroll. Sits above the section
+   backgrounds but in the left gutter, clear of all content. */
+.trail{position:absolute;left:0;top:0;bottom:0;width:clamp(56px,7vw,120px);
+  z-index:3;pointer-events:none;display:none}
+.trail svg{width:100%;height:100%}
+.trail path{fill:none;stroke-width:1.25;vector-effect:non-scaling-stroke}
+.trail .bed{stroke:currentColor;opacity:.16}
+.trail .ink{stroke:var(--amber);stroke-dasharray:1;stroke-dashoffset:1}
+@media(min-width:900px){.trail{display:block}}
 
 /* ---------- estate strip ---------- */
 .estate{background:var(--cream-deep)}
@@ -202,143 +237,155 @@ footer a:hover{color:var(--amber-light)}
     <p class="r">Arrive Friday. Wake up already where you need to be. Celebrate without watching the clock. And when the reception ends, stay.</p>
   </div>
 
-  <div class="day"><span class="day-name">Friday</span><span class="day-sub">Arrival</span></div>
+  <div class="trail" aria-hidden="true">
+    <svg viewBox="0 0 100 1000" preserveAspectRatio="none">
+      <path class="bed" d="M50 0 C 14 90, 86 190, 50 288 S 12 430, 50 530 S 88 660, 50 762 S 16 880, 50 1000"/>
+      <path class="ink" id="trailInk" pathLength="1" d="M50 0 C 14 90, 86 190, 50 288 S 12 430, 50 530 S 88 660, 50 762 S 16 880, 50 1000"/>
+    </svg>
+  </div>
 
-  <article class="moment r">
-    <div class="time">4:00</div>
-    <div class="moment-body">
-      <div>
+  <section class="mo r" style="--bg:#F7F2E9;--fg:#2A2E22;--dim:#5A6050;--accent:#976130">
+    <div class="hour" aria-hidden="true">4:00</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Friday</b> 4:00 pm</div>
         <h3>You arrive once.</h3>
         <p>No shuttling between a hotel, a rehearsal space, and a venue across town. You pull through the gate, and for the next two days this is simply where you are.</p>
         <span class="where">The Lodge</span>
       </div>
-      <figure><img src="../../assets/images/dark-valley.jpg" alt="Arriving at the estate" loading="lazy"></figure>
+      <figure><img src="img/m00.webp" alt="Arriving at the estate" loading="lazy"></figure>
     </div>
-  </article>
+  </section>
 
-  <article class="moment flip r">
-    <div class="time">6:00</div>
-    <div class="moment-body">
-      <div>
+  <section class="mo flip r" style="--bg:#F0E3CD;--fg:#2A2E22;--dim:#5A6050;--accent:#8C5A2C">
+    <div class="hour" aria-hidden="true">6:00</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Friday</b> 6:00 pm</div>
         <h3>You rehearse where you'll actually say your vows.</h3>
         <p>Not a parking lot stand-in. The real place, in the real light, at the hour you'll be standing there tomorrow.</p>
         <span class="where">The Valley</span>
       </div>
-      <figure><img src="../../assets/images/tv-gardenparty.jpg" alt="Rehearsal in the meadow" loading="lazy"></figure>
+      <figure><img src="img/m01.webp" alt="Rehearsal in the meadow" loading="lazy"></figure>
     </div>
-  </article>
+  </section>
 
-  <article class="moment r">
-    <div class="time">9:30</div>
-    <div class="moment-body">
-      <div>
+  <section class="mo wide r" style="--bg:#1C231C;--fg:#EDE6D8;--dim:rgba(237,230,216,.72);--accent:#D2955B">
+    <div class="hour" aria-hidden="true">9:30</div>
+    <div class="mo-inner">
+      <figure><img src="img/m02.webp" alt="Evening around the fire" loading="lazy"></figure>
+      <div class="mo-text">
+        <div class="stampline"><b>Friday</b> 9:30 pm</div>
         <h3>Nobody drives home.</h3>
         <p>The fire gets lit. Someone opens another bottle. Your college roommate and your aunt end up in the same conversation, which is the sort of thing that only happens when nobody is watching the time.</p>
         <span class="where">Overlook Village</span>
       </div>
-      <figure><img src="../../assets/images/lg-0005.jpg" alt="Evening around the fire" loading="lazy"></figure>
     </div>
-  </article>
+  </section>
 
-  <div class="day"><span class="day-name">Saturday</span><span class="day-sub">The day itself</span></div>
-
-  <article class="moment flip r">
-    <div class="time">9:00</div>
-    <div class="moment-body">
-      <div>
+  <section class="mo inset r" style="--bg:#F6F4EE;--fg:#2A2E22;--dim:#5A6050;--accent:#976130">
+    <div class="hour" aria-hidden="true">9:00</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Saturday</b> 9:00 am</div>
         <h3>Morning starts slowly, on purpose.</h3>
         <p>Coffee with your people instead of a caravan of cars. Hair and makeup somewhere with real windows and a view worth waking up to.</p>
         <span class="where">Magnolia House</span>
       </div>
-      <figure><img src="../../assets/images/g-bride-mirror.jpg" alt="Getting ready" loading="lazy"></figure>
+      <figure><img src="img/m03.webp" alt="Getting ready" loading="lazy"></figure>
     </div>
-  </article>
+  </section>
 
-  <article class="moment r">
-    <div class="time">4:30</div>
-    <div class="moment-body">
-      <div>
+  <section class="mo wide r" style="--bg:#F7F1E6;--fg:#2A2E22;--dim:#5A6050;--accent:#976130">
+    <div class="hour" aria-hidden="true">4:30</div>
+    <div class="mo-inner">
+      <figure><img src="img/m04.webp" alt="Ceremony in the valley" loading="lazy"></figure>
+      <div class="mo-text">
+        <div class="stampline"><b>Saturday</b> 4:30 pm</div>
         <h3>You choose the setting that feels most like you.</h3>
-        <p>An open meadow with the ridgeline behind you. A deck above the valley. A lawn framed by hardwoods. The estate doesn't dictate the ceremony — it holds it.</p>
-        <span class="where">The Valley · Lookout Deck</span>
+        <p>An open meadow with the ridgeline behind you. A deck above the valley. A lawn framed by hardwoods. The estate doesn't dictate the ceremony &mdash; it holds it.</p>
+        <span class="where">The Valley &middot; Lookout Deck</span>
       </div>
-      <figure><img src="../../assets/images/tv-hero.jpg" alt="Ceremony in the valley" loading="lazy"></figure>
     </div>
-  </article>
+  </section>
 
-  <article class="moment flip r">
-    <div class="time">5:30</div>
-    <div class="moment-body">
-      <div>
+  <section class="mo flip r" style="--bg:#EBD5AE;--fg:#3A2E1E;--dim:#5C4A32;--accent:#815329">
+    <div class="hour" aria-hidden="true">5:30</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Saturday</b> 5:30 pm</div>
         <h3>Cocktails happen where the view is.</h3>
-        <p>Guests walk — they don't drive — from the ceremony to the overlook while the light does the thing it does here at that hour.</p>
+        <p>Guests walk &mdash; they don't drive &mdash; from the ceremony to the overlook while the light does the thing it does here at that hour.</p>
         <span class="where">Lookout Deck</span>
       </div>
-      <figure><img src="../../assets/images/ld-hero.jpg" alt="Cocktail hour on the deck" loading="lazy"></figure>
+      <figure><img src="img/m05.webp" alt="Cocktail hour on the deck" loading="lazy"></figure>
     </div>
-  </article>
+  </section>
 
-  <article class="moment r">
-    <div class="time">7:00</div>
-    <div class="moment-body">
-      <div>
+  <section class="mo r" style="--bg:#6B5844;--fg:#F7F2E9;--dim:rgba(247,242,233,.80);--accent:#E8D3C0">
+    <div class="hour" aria-hidden="true">7:00</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Saturday</b> 7:00 pm</div>
         <h3>The room is designed around your people.</h3>
         <p>Who sits together. Who needs distance. Who ends up behind you in the first-dance photographs. These are not small details, and they are not an afterthought.</p>
         <span class="where">Davis Hall</span>
       </div>
-      <figure><img src="../../assets/images/dh-table-setting.jpg" alt="Reception dinner" loading="lazy"></figure>
+      <figure><img src="img/m06.webp" alt="Reception dinner" loading="lazy"></figure>
     </div>
-  </article>
+  </section>
 
-  <article class="moment flip r">
-    <div class="time">9:00</div>
-    <div class="moment-body">
-      <div>
+  <section class="mo inset r" style="--bg:#2E2A22;--fg:#EDE6D8;--dim:rgba(237,230,216,.72);--accent:#D2955B">
+    <div class="hour" aria-hidden="true">9:00</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Saturday</b> 9:00 pm</div>
         <h3>Nobody is calculating a drive home.</h3>
         <p>The people staying on the estate stay on the estate. The night runs as long as it runs.</p>
         <span class="where">Davis Hall</span>
       </div>
-      <figure><img src="../../assets/images/dh-toast.jpg" alt="Toasts and dancing" loading="lazy"></figure>
+      <figure><img src="img/m07.webp" alt="Toasts and dancing" loading="lazy"></figure>
     </div>
-  </article>
+  </section>
 
-  <article class="moment r">
-    <div class="time">11:30</div>
-    <div class="moment-body">
-      <div>
-        <h3>You disappear — and everyone you love is still here.</h3>
+  <section class="mo wide r" style="--bg:#12171A;--fg:#D8DEE4;--dim:rgba(216,222,228,.70);--accent:#9FB6C4">
+    <div class="hour" aria-hidden="true">11:30</div>
+    <div class="mo-inner">
+      <figure><img src="img/m08.webp" alt="Secluded retreat at night" loading="lazy"></figure>
+      <div class="mo-text">
+        <div class="stampline"><b>Saturday</b> 11:30 pm</div>
+        <h3>You disappear &mdash; and everyone you love is still here.</h3>
         <p>A secluded retreat at the edge of the property, a short ride from the music. Married, alone, and thirty seconds from your favorite people.</p>
         <span class="where">Lost in the Woods</span>
       </div>
-      <figure><img src="../../assets/images/ld-fog.jpg" alt="Secluded retreat at night" loading="lazy"></figure>
     </div>
-  </article>
+  </section>
 
-  <div class="day"><span class="day-name">Sunday</span><span class="day-sub">The part most couples never get</span></div>
-
-  <article class="moment flip r">
-    <div class="time">9:00</div>
-    <div class="moment-body">
-      <div>
+  <section class="mo flip r" style="--bg:#FAF8F3;--fg:#2A2E22;--dim:#5A6050;--accent:#976130">
+    <div class="hour" aria-hidden="true">9:00</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Sunday</b> 9:00 am</div>
         <h3>Breakfast, with everyone still there.</h3>
         <p>This is the one most couples tell us they didn't expect to love. Yesterday gets retold over coffee by the people who were in it, before anyone has driven anywhere.</p>
         <span class="where">Magnolia House</span>
       </div>
-      <figure><img src="../../assets/images/mh-patio.jpg" alt="Breakfast the morning after" loading="lazy"></figure>
+      <figure><img src="img/m09.webp" alt="Breakfast the morning after" loading="lazy"></figure>
     </div>
-  </article>
+  </section>
 
-  <article class="moment r">
-    <div class="time">11:00</div>
-    <div class="moment-body">
-      <div>
-        <h3>And then you go — slowly.</h3>
+  <section class="mo r" style="--bg:#F7F2E9;--fg:#2A2E22;--dim:#5A6050;--accent:#976130">
+    <div class="hour" aria-hidden="true">11:00</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Sunday</b> 11:00 am</div>
+        <h3>And then you go &mdash; slowly.</h3>
         <p>Not herded into cars at midnight. Not scattered to four different hotels. The weekend ends the way it started: together, and unhurried.</p>
         <span class="where">The Estate</span>
       </div>
-      <figure><img src="../../assets/images/map-valley.jpg" alt="Departing the estate" loading="lazy"></figure>
+      <figure><img src="img/m10.webp" alt="Departing the estate" loading="lazy"></figure>
     </div>
-  </article>
+  </section>
 </section>
 
 <!-- THE ESTATE -->
@@ -450,8 +497,37 @@ footer a:hover{color:var(--amber-light)}
     ticking = false;
   }
 
+  /* The trail: an SVG path across the estate that inks in as you move through
+     the weekend. pathLength="1" makes the dash maths a plain 0..1, independent
+     of how tall the section happens to render. */
+  var tl  = document.getElementById('weekend'),
+      ink = document.getElementById('trailInk'),
+      figs = [].slice.call(document.querySelectorAll('.mo figure img'));
+
+  function trail(){
+    if (!ink || !tl) return;
+    var r = tl.getBoundingClientRect(),
+        p = Math.min(1, Math.max(0, (innerHeight * 0.62 - r.top) / r.height));
+    ink.style.strokeDashoffset = (1 - p);
+  }
+
+  /* Parallax inside the frame: the photo drifts against its container, so each
+     image has depth as it passes - felt more than seen. figure is overflow:hidden
+     and the image is scaled 1.08, so the drift never exposes an edge. */
+  function parallax(){
+    var vh = innerHeight;
+    for (var i = 0; i < figs.length; i++){
+      var r = figs[i].getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) continue;      /* offscreen */
+      var off = ((r.top + r.height / 2) - vh / 2) / vh;
+      figs[i].style.setProperty('--drift', (off * -26).toFixed(1) + 'px');
+    }
+  }
+
   function onScroll(){
     reveal();
+    trail();
+    parallax();
     if (!ticking){ ticking = true; requestAnimationFrame(chrome); }
   }
 
