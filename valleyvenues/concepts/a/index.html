@@ -50,40 +50,18 @@ nav.solid .brand{color:var(--ink)}
 nav.solid .navcta{border-color:var(--ink);color:var(--ink)}
 .navcta:hover{background:var(--amber);border-color:var(--amber);color:#fff}
 
-/* ---------- scroll-driven weekend sequence ---------- */
-/* The section is tall; the visual pins inside it. Scroll distance maps onto
-   frame index, so the viewer scrubs the weekend itself. */
-.seq{position:relative;height:1000vh}
-.seq-pin{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--ink)}
-/* Poster as a CSS background: if the canvas never runs - JS off, no WebP, frames
-   still loading - this is still a real photograph, not an empty box. */
-.seq-pin::before{content:'';position:absolute;inset:0;background:url('seq/poster.jpg') center/cover no-repeat}
-#seqCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.seq-pin::after{content:'';position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(20,24,16,.52) 0%,rgba(20,24,16,.06) 34%,rgba(20,24,16,.86) 100%)}
-
-.seq-copy{position:absolute;inset:auto 0 0 0;z-index:3;
-  padding:0 var(--pad) clamp(3.5rem,10vh,7rem);max-width:64rem;min-height:clamp(14rem,30vh,22rem)}
-.cap{position:absolute;bottom:clamp(3.5rem,10vh,7rem);left:var(--pad);right:var(--pad);
-  opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;pointer-events:none}
-.cap.on{opacity:1;transform:none;pointer-events:auto}
-.stamp{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.66);margin-bottom:1.2rem}
-.stamp b{color:var(--amber-light);font-weight:500;margin-right:.6rem}
-.cap h1{font-size:clamp(2.9rem,8vw,6.4rem);color:#fff;text-wrap:balance}
-.cap h1 em{font-style:italic;color:var(--amber-light)}
-.cap h2{font-size:clamp(1.9rem,4.6vw,3.6rem);color:#fff;max-width:24ch;text-wrap:balance}
-.cap p{margin-top:1.5rem;font-size:clamp(1rem,1.5vw,1.2rem);color:rgba(255,255,255,.88);max-width:34rem}
-
-/* progress rail - shows how far through the weekend you are */
-.seq-rail{position:absolute;right:var(--pad);top:50%;transform:translateY(-50%);z-index:3;
-  width:1px;height:min(34vh,16rem);background:rgba(255,255,255,.24)}
-.seq-rail span{display:block;width:100%;height:0;background:var(--amber-light)}
-.scrollcue{position:absolute;left:var(--pad);bottom:1.4rem;z-index:3;font-size:.6rem;
-  letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.45)}
-.seq-load{position:absolute;left:var(--pad);top:calc(var(--pad) + 2.4rem);z-index:4;font-size:.58rem;
-  letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.5);transition:opacity .6s}
-.seq-load[hidden]{display:block;opacity:0;pointer-events:none}
-
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden}
+.hero-img{position:absolute;inset:0;background:url('../../assets/images/hero-valley.jpg') center/cover no-repeat;
+  transform:scale(1.12);animation:drift 22s ease-out forwards}
+@keyframes drift{to{transform:scale(1)}}
+.hero::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,24,16,.5) 0%,rgba(20,24,16,.12) 35%,rgba(20,24,16,.82) 100%)}
+.hero-inner{position:relative;z-index:2;padding:0 var(--pad) clamp(3rem,8vh,6rem);max-width:60rem}
+.eyebrow{font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:1.4rem}
+.hero h1{font-size:clamp(2.9rem,8.2vw,6.6rem);color:#fff;text-wrap:balance}
+.hero h1 em{font-style:italic;color:var(--amber-light)}
+.hero p{margin-top:1.6rem;font-size:clamp(1rem,1.5vw,1.22rem);color:rgba(255,255,255,.9);max-width:34rem;font-weight:300}
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2.2rem}
 .btn{display:inline-block;text-decoration:none;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
   padding:1.05rem 2.2rem;border-radius:2px;transition:.35s;font-weight:500}
@@ -175,17 +153,11 @@ footer a:hover{color:var(--amber-light)}
 .f-note{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(247,242,233,.14);font-size:.76rem;color:rgba(247,242,233,.45)}
 
 .js .hero .rv>span{transform:translateY(105%)}
-/* A scrubbed sequence is exactly the motion that makes some people ill. Collapse
-   the scroll distance to a single still and let the written timeline below carry
-   the whole weekend - it already says everything the sequence shows. */
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
-  .js .r{opacity:1;transform:none}
+  .r{opacity:1;transform:none}
   .rv>span{transform:none}
-  .seq{height:auto}
-  .seq-pin{position:relative;height:82svh}
-  #seqCanvas,.seq-rail,.scrollcue,.seq-load{display:none}
-  .cap:not(.on){display:none}
+  .hero-img{transform:none}
 }
 </style>
 </head>
@@ -198,36 +170,22 @@ footer a:hover{color:var(--amber-light)}
   <a class="navcta" href="#plan">Plan Your Weekend</a>
 </nav>
 
-<!-- SCROLL-DRIVEN WEEKEND SEQUENCE -->
-<div class="seq" id="seq">
-  <div class="seq-pin">
-    <canvas id="seqCanvas" aria-label="The weekend at Valley Venues, from Friday arrival to Sunday morning"></canvas>
-    <div class="seq-load" id="seqLoad">Loading the weekend…</div>
-
-    <div class="seq-copy">
-      <!-- All captions live in the DOM: readable to screen readers and to search
-           engines whether or not the canvas ever runs. -->
-      <div class="cap on" data-m="0">
-        <div class="stamp"><b>Friday</b> 4:00 pm</div>
-        <h1>More than a<br><em>wedding day.</em></h1>
-        <p>Seventy-four private acres, fifteen minutes from Chattanooga — and an entire weekend with the people you love.</p>
-      </div>
-      <div class="cap" data-m="1"><div class="stamp"><b>Friday</b> 6:00 pm</div><h2>You rehearse where you'll actually say your vows.</h2></div>
-      <div class="cap" data-m="2"><div class="stamp"><b>Friday</b> 9:30 pm</div><h2>Nobody drives home.</h2></div>
-      <div class="cap" data-m="3"><div class="stamp"><b>Saturday</b> 9:00 am</div><h2>Morning starts slowly, on purpose.</h2></div>
-      <div class="cap" data-m="4"><div class="stamp"><b>Saturday</b> 4:30 pm</div><h2>You choose the setting that feels most like you.</h2></div>
-      <div class="cap" data-m="5"><div class="stamp"><b>Saturday</b> 5:30 pm</div><h2>Cocktails happen where the view is.</h2></div>
-      <div class="cap" data-m="6"><div class="stamp"><b>Saturday</b> 7:00 pm</div><h2>The room is designed around your people.</h2></div>
-      <div class="cap" data-m="7"><div class="stamp"><b>Saturday</b> 9:00 pm</div><h2>Nobody is calculating a drive home.</h2></div>
-      <div class="cap" data-m="8"><div class="stamp"><b>Saturday</b> 11:30 pm</div><h2>You disappear — and everyone you love is still here.</h2></div>
-      <div class="cap" data-m="9"><div class="stamp"><b>Sunday</b> 9:00 am</div><h2>Breakfast, with everyone still there.</h2></div>
-      <div class="cap" data-m="10"><div class="stamp"><b>Sunday</b> 11:00 am</div><h2>And then you go — slowly.</h2></div>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-img" role="img" aria-label="The Valley at golden hour"></div>
+  <div class="hero-inner">
+    <div class="eyebrow rv"><span style="animation-delay:.1s">Wildwood, Georgia · 15 minutes from Chattanooga</span></div>
+    <h1>
+      <span class="rv"><span style="animation-delay:.22s">More than a</span></span><br>
+      <span class="rv"><span style="animation-delay:.34s"><em>wedding day.</em></span></span>
+    </h1>
+    <p class="r">Your wedding deserves more than a few beautiful hours. Seventy-four private acres, distinctive celebration spaces, onsite lodging — and an entire weekend to spend with the people you love.</p>
+    <div class="hero-actions r">
+      <a class="btn btn-solid" href="#weekend">See the Weekend</a>
+      <a class="btn btn-ghost" href="#estate">Explore the Estate</a>
     </div>
-
-    <div class="seq-rail" aria-hidden="true"><span id="seqRail"></span></div>
-    <div class="scrollcue">Scroll through the weekend</div>
   </div>
-</div>
+</header>
 
 <!-- THE TRUTH -->
 <section class="truth">
@@ -482,25 +440,18 @@ footer a:hover{color:var(--amber-light)}
     pending = still;
   }
 
-  /* The nav is light over the sequence (dark imagery) and solid once the cream
-     page below begins. Legibility, not decoration - so it runs directly rather
-     than through rAF, which is paused whenever the tab isn't compositing. */
-  function navFlip(){
-    var seqEl = document.getElementById('seq'), vh = innerHeight,
-        flip  = seqEl ? seqEl.offsetTop + seqEl.offsetHeight - vh * 1.15 : vh * .72;
-    nav.classList.toggle('solid', scrollY > flip);
-  }
-
-  /* Purely decorative - safe to rAF-throttle. */
+  /* Purely decorative chrome - safe to rAF-throttle. */
   function chrome(){
-    var h = document.documentElement.scrollHeight - innerHeight;
-    bar.style.width = (h > 0 ? (scrollY / h) * 100 : 0) + '%';
+    var st = window.scrollY,
+        vh = window.innerHeight,
+        h  = document.documentElement.scrollHeight - vh;
+    bar.style.width = (h > 0 ? (st / h) * 100 : 0) + '%';
+    nav.classList.toggle('solid', st > vh * .72);
     ticking = false;
   }
 
   function onScroll(){
     reveal();
-    navFlip();
     if (!ticking){ ticking = true; requestAnimationFrame(chrome); }
   }
 
@@ -508,131 +459,14 @@ footer a:hover{color:var(--amber-light)}
   addEventListener('resize', onScroll, {passive:true});
   addEventListener('load', reveal);
 
+  /* The hero sits bottom-aligned, so its copy and CTAs fall below the sweep's
+     threshold and would stay hidden until the first scroll. Above-the-fold
+     content is revealed on arrival regardless of position. */
+  document.querySelectorAll('.hero .r').forEach(function(el, i){
+    setTimeout(function(){ el.classList.add('in'); }, 620 + i * 130);
+  });
+
   onScroll();
-
-  /* ---------------- scroll-driven weekend sequence ---------------- */
-  var MOMENTS = 11, PER = 8, FRAMES = MOMENTS * PER,
-      seq    = document.getElementById('seq'),
-      canvas = document.getElementById('seqCanvas'),
-      loadEl = document.getElementById('seqLoad'),
-      rail   = document.getElementById('seqRail'),
-      caps   = [].slice.call(document.querySelectorAll('.cap'));
-
-  if (!seq || !canvas) return;
-
-  if (rm || !canvas.getContext){
-    if (loadEl) loadEl.hidden = true;
-    return;                       /* poster + first caption carry it */
-  }
-
-  var ctx = canvas.getContext('2d'),
-      imgs = new Array(FRAMES),
-      loaded = 0,
-      current = -1,
-      activeCap = 0,
-      dpr = Math.min(devicePixelRatio || 1, 2),
-      /* Halve the payload on phones: every other frame. At 8 frames per moment
-         the dissolves still read, and it saves ~1.5MB on a mobile connection. */
-      step = innerWidth < 700 ? 2 : 1,
-      want = Math.ceil(FRAMES / step);
-
-  function src(i){ return 'seq/f' + (i < 10 ? '00' : i < 100 ? '0' : '') + i + '.webp'; }
-
-  function size(){
-    canvas.width  = Math.round(canvas.clientWidth  * dpr);
-    canvas.height = Math.round(canvas.clientHeight * dpr);
-    current = -1;
-  }
-
-  function ok(i){ var im = imgs[i]; return im && im.complete && im.naturalWidth; }
-
-  function cover(im){
-    var cw = canvas.width, ch = canvas.height,
-        s  = Math.max(cw / im.naturalWidth, ch / im.naturalHeight),
-        w  = im.naturalWidth * s, h = im.naturalHeight * s;
-    ctx.drawImage(im, (cw - w) / 2, (ch - h) / 2, w, h);
-  }
-
-  /* Draw frame i0, then blend frame i1 over it at alpha f.
-     This is what lets the section be very tall without looking steppy: the
-     scroll distance per FRAME can be large because the in-between positions
-     are rendered rather than held. 88 frames behave like several hundred. */
-  function paint(i0, i1, f){
-    if (!ok(i0)) return;
-    cover(imgs[i0]);
-    if (f > 0.01 && i1 !== i0 && ok(i1)){
-      ctx.globalAlpha = f;
-      cover(imgs[i1]);
-      ctx.globalAlpha = 1;
-    }
-  }
-
-  /* Nearest already-decoded frame, so scrubbing during download degrades to a
-     held frame instead of flashing empty. */
-  function nearest(i){
-    if (imgs[i] && imgs[i].complete && imgs[i].naturalWidth) return i;
-    for (var d = 1; d < FRAMES; d++){
-      var a = i - d, b = i + d;
-      if (a >= 0 && imgs[a] && imgs[a].complete && imgs[a].naturalWidth) return a;
-      if (b < FRAMES && imgs[b] && imgs[b].complete && imgs[b].naturalWidth) return b;
-    }
-    return -1;
-  }
-
-  function onSeqScroll(){
-    var r = seq.getBoundingClientRect(),
-        travel = r.height - innerHeight,
-        p = travel > 0 ? Math.min(1, Math.max(0, -r.top / travel)) : 0,
-        exact = p * (FRAMES - 1),
-        i0 = Math.min(FRAMES - 1, Math.floor(exact / step) * step),
-        i1 = Math.min(FRAMES - 1, i0 + step),
-        f  = Math.min(1, Math.max(0, (exact - i0) / step)),
-        idx = Math.round(exact);
-
-    if (ok(i0)){
-      /* redraw only on a visible change - ~1% of a frame step */
-      var key = i0 + Math.round(f * 100) / 100;
-      if (key !== current){ paint(i0, i1, f); current = key; }
-    } else {
-      var use = nearest(i0);
-      if (use >= 0 && use !== current){ paint(use, use, 0); current = use; }
-    }
-
-    if (rail) rail.style.height = (p * 100) + '%';
-
-    /* Swap the caption on the moment boundary, held slightly late so text
-       changes after the dissolve has visibly started rather than during it. */
-    var m = Math.min(MOMENTS - 1, Math.floor(idx / PER));
-    if (m !== activeCap){
-      caps[activeCap] && caps[activeCap].classList.remove('on');
-      caps[m] && caps[m].classList.add('on');
-      activeCap = m;
-    }
-  }
-
-  size();
-  addEventListener('resize', function(){ size(); onSeqScroll(); }, {passive:true});
-  addEventListener('scroll', onSeqScroll, {passive:true});
-
-  for (var k = 0; k < FRAMES; k += step){
-    (function(i){
-      var im = new Image();
-      im.decoding = 'async';
-      im.onload = function(){
-        loaded++;
-        if (loadEl){
-          if (loaded >= want) loadEl.hidden = true;
-          else loadEl.textContent = 'Loading the weekend… ' + Math.round(loaded / want * 100) + '%';
-        }
-        if (current === -1 || i === 0) onSeqScroll();
-      };
-      im.onerror = function(){ loaded++; if (loaded >= want && loadEl) loadEl.hidden = true; };
-      im.src = src(i);
-      imgs[i] = im;
-    })(k);
-  }
-
-  onSeqScroll();
 })();
 </script>
 </body>
