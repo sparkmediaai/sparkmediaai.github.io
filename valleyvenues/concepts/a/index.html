@@ -102,13 +102,23 @@ section{padding:clamp(4.5rem,11vh,9rem) var(--pad)}
 .tl-head h2{font-size:clamp(2rem,4.6vw,3.4rem)}
 .tl-head p{margin-top:1.2rem;color:var(--ink-soft);max-width:36rem;margin-inline:auto}
 
-.mo{position:relative;z-index:1;background:var(--bg);color:var(--fg);
-  padding:clamp(4rem,11vh,8.5rem) var(--pad);overflow:hidden}
+/* The hour numeral is absolutely positioned and .mo-inner paints above it, so
+   any overlap slices the glyph with a full-bleed image instead of ghosting it.
+   Top padding is DERIVED from the numeral's own metrics rather than guessed:
+   sizing the numeral in vw while padding it in vh lets the two diverge on a
+   wide, short viewport - which is exactly how the glyph got cut. */
+.mo{--hour-size:clamp(3.6rem,10vw,9.5rem);
+    --hour-top:clamp(1rem,3vh,2.2rem);
+    --hour-clear:2.5rem;
+  position:relative;z-index:1;background:var(--bg);color:var(--fg);
+  padding:calc(var(--hour-top) + var(--hour-size) * .78 + var(--hour-clear))
+          var(--pad) clamp(4rem,11vh,8.5rem);
+  overflow:hidden}
 
 /* Oversized hour, ghosted. The hour is the argument of the page, so it gets to
    be the ornament rather than a 10px label. */
-.mo .hour{position:absolute;top:clamp(1rem,3vh,2.5rem);right:var(--pad);
-  font-family:var(--serif);font-size:clamp(4.5rem,15vw,13rem);line-height:.78;
+.mo .hour{position:absolute;top:var(--hour-top);right:var(--pad);
+  font-family:var(--serif);font-size:var(--hour-size);line-height:.78;
   color:var(--fg);opacity:.10;pointer-events:none;user-select:none;
   font-variant-numeric:tabular-nums;letter-spacing:-.03em}
 
