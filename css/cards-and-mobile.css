@@ -1,5 +1,4 @@
 
-
 /* ==========================================================================
    PINK CONTACT LINK
    ========================================================================== */
@@ -29,4 +28,13 @@
     color: #FF005C !important;
     background: rgba(255, 0, 92, 0.1) !important;
     box-shadow: 0 0 20px rgba(255, 0, 92, 0.2);
+}
+
+@media (max-width: 900px) {
+    .nav-links .nav-link,
+    .nav-links .dropdown-toggle {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
 }
