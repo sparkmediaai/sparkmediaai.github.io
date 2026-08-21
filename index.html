@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/hero-features.css">
     <link rel="stylesheet" href="css/cards-and-mobile.css">
+    <link rel="stylesheet" href="css/polish.css">
     
     <!-- Favicon -->
     <link rel="icon" href="assets/logo/favicon.ico" sizes="any">
@@ -114,7 +115,7 @@
                     <a href="#contact" class="nav-link nav-contact">Contact</a>
                 </div>
                 
-                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <button class="mobile-menu-btn" type="button" aria-label="Toggle menu" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -144,16 +145,16 @@
                 </p>
                 
                 <div class="hero-cta">
-                    <button class="btn-primary">
+                    <a class="btn-primary" href="/audit.html">
                         <span>Get Free Audit</span>
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                             <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                    </button>
+                    </a>
                     
-                    <button class="btn-secondary">
+                    <a class="btn-secondary" href="/audit.html">
                         <span>View Case Studies</span>
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -222,7 +223,6 @@
             </div>
             
             <div class="services-grid">
-                <!-- Service 1: Paid Acquisition -->
                 <div class="service-card">
                     <div class="service-icon">🎯</div>
                     <h3 class="service-title">Paid Acquisition</h3>
@@ -237,7 +237,6 @@
                     </ul>
                 </div>
                 
-                <!-- Service 2: AI Automation Systems -->
                 <div class="service-card">
                     <div class="service-icon">🤖</div>
                     <h3 class="service-title">AI Automation Systems</h3>
@@ -252,7 +251,6 @@
                     </ul>
                 </div>
                 
-                <!-- Service 3: CRM & Pipeline Engineering -->
                 <div class="service-card">
                     <div class="service-icon">📋</div>
                     <h3 class="service-title">CRM & Pipeline Engineering</h3>
@@ -267,7 +265,6 @@
                     </ul>
                 </div>
                 
-                <!-- Service 4: Conversion Optimization -->
                 <div class="service-card">
                     <div class="service-icon">📈</div>
                     <h3 class="service-title">Conversion Optimization</h3>
@@ -482,12 +479,12 @@
                     We'll show you exactly where AI can drive growth.
                 </p>
                 
-                <button class="btn-primary cta-button">
+                <a class="btn-primary cta-button" href="/audit.html">
                     <span>Get Your Free Audit Now</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                </button>
+                </a>
             </div>
         </div>
     </section>
