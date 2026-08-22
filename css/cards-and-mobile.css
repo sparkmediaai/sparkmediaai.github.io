@@ -22,7 +22,14 @@
   --gradient-secondary: linear-gradient(135deg, #00C2FF 0%, #4DE1FF 100%);
 }
 body { background: #070B14; color: #F3F6FB; }
+body::before {
+  background:
+    radial-gradient(circle at 20% 50%, rgba(0, 194, 255, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(77, 225, 255, 0.05) 0%, transparent 50%),
+    linear-gradient(45deg, #0C1220 0%, #070B14 100%);
+}
 .header { background: rgba(7, 11, 20, 0.95); }
+.footer { background: linear-gradient(180deg, #0C1220 0%, #070B14 100%); }
 .cta-button, .btn-primary { color: #070B14 !important; box-shadow: 0 0 20px rgba(0,194,255,.3) !important; }
 .nav-contact {
     color: #00C2FF !important;
