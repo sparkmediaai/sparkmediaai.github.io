@@ -6,10 +6,11 @@
   <link rel="icon" href="/assets/logo/favicon-32x32.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/test/styles.css">
   <link rel="stylesheet" href="/css/signal.css">
-  <meta name="theme-color" content="#0C0F14">
+  <meta name="theme-color" content="#070B14">
   <title>SparkMedia.ai — Emergency Google calls to their phone</title>
   <meta name="description" content="Call-only Google Ads for plumbers, HVAC, electricians, locksmiths, and garage door. $249/mo. Ad spend extra. When it’s an emergency, the Google call hits their phone.">
   <meta property="og:title" content="SparkMedia.ai — Emergency Google calls to their phone">
@@ -41,20 +42,27 @@
 
   <main id="main" class="deck">
     <section class="panel hero" id="hero">
-      <div class="orb orb-magenta" data-orb="magenta" aria-hidden="true"></div>
+      <div class="hero-media" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1771207895109-0c09d6cd3f9b?w=1400&q=70&auto=format&fit=crop" alt="" width="1400" height="900">
+      </div>
       <div class="orb orb-cyan" data-orb="cyan" aria-hidden="true"></div>
-      <div class="panel-inner hero-inner">
-        <p class="badge">Emergency Google Search</p>
-        <h1>When it’s an emergency, the Google call hits <span class="grad">their phone</span>.</h1>
-        <p class="lede">Dead AC. Leaking pipe. Locked out. They are not browsing Facebook. They Google it, tap Call, and it should ring the shop. We run that. $249/mo. Ad spend is theirs, extra.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="/audit.html">
-            <span>Book a strategy call</span>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
+      <div class="panel-inner hero-inner hero-split">
+        <div class="hero-copy">
+          <p class="badge">Emergency Google Search</p>
+          <h1>When it’s an emergency, the Google call hits <span class="grad">their phone</span>.</h1>
+          <p class="lede">Dead AC. Leaking pipe. Locked out. They are not browsing Facebook. They Google it, tap Call, and it should ring the shop. We run that. $249/mo. Ad spend is theirs, extra.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="/audit.html">
+              <span>Book a strategy call</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
         </div>
+        <figure class="hero-shot">
+          <img src="https://images.unsplash.com/photo-1564414549740-e6dab6bc6f20?w=1400&q=70&auto=format&fit=crop" alt="Outdoor air-conditioning condenser" width="1400" height="900">
+        </figure>
       </div>
     </section>
 
@@ -76,7 +84,10 @@
       </div>
     </section>
 
-    <section class="panel flow" id="flow">
+    <section class="panel flow has-photo" id="flow">
+      <div class="panel-photo" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=1400&q=70&auto=format&fit=crop" alt="" width="1400" height="900">
+      </div>
       <div class="panel-inner">
         <p class="eyebrow">Search → Phone</p>
         <h2>They search. You <span class="grad">pick up</span>.</h2>
@@ -155,12 +166,27 @@
         <p class="eyebrow">Built for emergency trades</p>
         <h2>The searches that fill the board.</h2>
         <p class="section-lede">Plumber, HVAC, electrician first. Then locksmith and garage door.</p>
-        <div class="chip-row" data-trades>
-          <button class="chip is-active" type="button" data-trade="plumber" aria-pressed="true">Plumber</button>
-          <button class="chip" type="button" data-trade="hvac" aria-pressed="false">HVAC</button>
-          <button class="chip" type="button" data-trade="electrician" aria-pressed="false">Electrician</button>
-          <button class="chip" type="button" data-trade="locksmith" aria-pressed="false">Locksmith</button>
-          <button class="chip" type="button" data-trade="garage" aria-pressed="false">Garage door</button>
+        <div class="trade-tiles" data-trades>
+          <button class="trade-tile is-active" type="button" data-trade="plumber" aria-pressed="true">
+            <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=1400&q=70&auto=format&fit=crop" alt="" width="700" height="480">
+            <span>Plumber</span>
+          </button>
+          <button class="trade-tile" type="button" data-trade="hvac" aria-pressed="false">
+            <img src="https://images.unsplash.com/photo-1564414549740-e6dab6bc6f20?w=1400&q=70&auto=format&fit=crop" alt="" width="700" height="480">
+            <span>HVAC</span>
+          </button>
+          <button class="trade-tile" type="button" data-trade="electrician" aria-pressed="false">
+            <img src="https://images.unsplash.com/photo-1576446470246-499c738d1c8e?w=1400&q=70&auto=format&fit=crop" alt="" width="700" height="480">
+            <span>Electrician</span>
+          </button>
+          <button class="trade-tile" type="button" data-trade="locksmith" aria-pressed="false">
+            <img src="https://images.unsplash.com/photo-1677951570313-b0750351c461?w=1400&q=70&auto=format&fit=crop" alt="" width="700" height="480">
+            <span>Locksmith</span>
+          </button>
+          <button class="trade-tile" type="button" data-trade="garage" aria-pressed="false">
+            <img src="https://images.unsplash.com/photo-1770756051811-1612ac8bedfa?w=1400&q=70&auto=format&fit=crop" alt="" width="700" height="480">
+            <span>Garage door</span>
+          </button>
         </div>
         <p class="trade-example" data-trade-example>“emergency plumber near me”</p>
         <p class="badge" style="margin-top:36px;">Strategy call</p>
