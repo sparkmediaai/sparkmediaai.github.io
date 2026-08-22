@@ -1,11 +1,11 @@
 
 /* ==========================================================================
-   PINK CONTACT LINK
+   CONTACT LINK — cyan action, not logo magenta
    ========================================================================== */
 .nav-contact {
-    color: #FF005C !important;
+    color: #00C2FF !important;
     font-weight: 700;
-    text-shadow: 0 0 10px rgba(255, 0, 92, 0.3);
+    text-shadow: 0 0 10px rgba(0, 194, 255, 0.3);
     position: relative;
 }
 
@@ -16,7 +16,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #FF005C, #00C2FF);
+    background: linear-gradient(90deg, #00C2FF, #4DE1FF);
     transition: width 0.3s ease;
 }
 
@@ -25,9 +25,9 @@
 }
 
 .nav-contact:hover {
-    color: #FF005C !important;
-    background: rgba(255, 0, 92, 0.1) !important;
-    box-shadow: 0 0 20px rgba(255, 0, 92, 0.2);
+    color: #4DE1FF !important;
+    background: rgba(0, 194, 255, 0.1) !important;
+    box-shadow: 0 0 20px rgba(0, 194, 255, 0.2);
 }
 
 @media (max-width: 900px) {
