@@ -1,8 +1,8 @@
 (() => {
   const STEPS = [
-    { kicker: "They are in a panic", title: "Search", body: "Dead AC. Burst pipe. Locked out. They Google it right now \u2014 not later, not on Facebook.", points: ["Emergency, call-now queries only", "Tight geo. Their service area."] },
-    { kicker: "Call-only Google Ads", title: "Ad", body: "A call-only ad shows. They tap Call. No brochure site. No SEO wait.", points: ["Google Search, not social", "Ad spend is theirs, extra"] },
-    { kicker: "$249 / month", title: "Ring", body: "The call hits their phone. That is the offer: we run the ads so the emergency call rings through.", points: ["Call-only campaigns to their phone", "Month-to-month. No long contract."] },
+    { kicker: "They are in a panic", title: "Search", body: "Dead AC. Burst pipe. Locked out. They Google it right now \u2014 not later, not on Facebook.", points: ["Emergency, call-now queries only", "Tight geo. Your service area."] },
+    { kicker: "Call-only Google Ads", title: "Ad", body: "A call-only ad shows. They tap Call. No brochure site. No SEO wait.", points: ["Google Search, not social", "Ad spend is yours, extra"] },
+    { kicker: "$249 / month", title: "Ring", body: "The call hits your phone. That is the offer: we run the ads so the emergency call rings through.", points: ["Call-only campaigns to your phone", "Month-to-month. No long contract."] },
     { kicker: "$399 adds follow-up", title: "Follow-up", body: "Missed-call text, job follow-up, review ask. So a missed ring does not become a missed job.", points: ["GoHighLevel: missed-call text-back", "Follow-up after the job + review ask"] }
   ];
   const TRADES = {
