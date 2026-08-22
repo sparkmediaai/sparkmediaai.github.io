@@ -1,14 +1,35 @@
-
-/* ==========================================================================
-   CONTACT LINK — cyan action, not logo magenta
-   ========================================================================== */
+/* Audit/book chrome — override leftover pink tokens from css/styles.css */
+:root {
+  --bg: #070B14;
+  --bg-2: #0C1220;
+  --surface: #141B2A;
+  --line: #243049;
+  --text: #F3F6FB;
+  --muted: #93A0B5;
+  --cyan: #00C2FF;
+  --cyan-2: #4DE1FF;
+  --color-bg-dark: #070B14;
+  --color-bg-darker: #0C1220;
+  --color-surface: #141B2A;
+  --color-surface-light: #243049;
+  --color-primary: #00C2FF;
+  --color-secondary: #00C2FF;
+  --color-tertiary: #4DE1FF;
+  --color-text-primary: #F3F6FB;
+  --color-text-secondary: #93A0B5;
+  --color-text-muted: #93A0B5;
+  --gradient-primary: linear-gradient(160deg, #4DE1FF 0%, #00C2FF 58%, #E8F7FF 130%);
+  --gradient-secondary: linear-gradient(135deg, #00C2FF 0%, #4DE1FF 100%);
+}
+body { background: #070B14; color: #F3F6FB; }
+.header { background: rgba(7, 11, 20, 0.95); }
+.cta-button, .btn-primary { color: #070B14 !important; box-shadow: 0 0 20px rgba(0,194,255,.3) !important; }
 .nav-contact {
     color: #00C2FF !important;
     font-weight: 700;
     text-shadow: 0 0 10px rgba(0, 194, 255, 0.3);
     position: relative;
 }
-
 .nav-contact::after {
     content: '';
     position: absolute;
@@ -19,17 +40,12 @@
     background: linear-gradient(90deg, #00C2FF, #4DE1FF);
     transition: width 0.3s ease;
 }
-
-.nav-contact:hover::after {
-    width: 100%;
-}
-
+.nav-contact:hover::after { width: 100%; }
 .nav-contact:hover {
     color: #4DE1FF !important;
     background: rgba(0, 194, 255, 0.1) !important;
     box-shadow: 0 0 20px rgba(0, 194, 255, 0.2);
 }
-
 @media (max-width: 900px) {
     .nav-links .nav-link,
     .nav-links .dropdown-toggle {
