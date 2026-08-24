@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valley Venues — Spark homepage samples</title>
+  <meta name="robots" content="noindex" />
+  <meta name="description" content="Internal Spark samples for The Valley Venues homepage. Not the live client site." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --sage:#5F796C; --mist:#93B0A1; --gold:#B09880; --gold2:#B0977E;
+      --cream:#F7E7CE; --paper:#F7F7F7; --ink:#2E2E2E; --void:#040000;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100%}
+    body{
+      font-family:Montserrat,system-ui,sans-serif;color:var(--paper);
+      background:var(--void);line-height:1.55;-webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit}
+    :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+    .skip{position:absolute;left:-999px;top:8px;background:var(--gold);color:var(--void);padding:.6rem 1rem;z-index:10}
+    .skip:focus{left:8px}
+    .banner{
+      background:var(--sage);color:var(--paper);text-align:center;
+      font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+      font-weight:500;padding:.7rem 1rem;
+    }
+    header{padding:4.5rem 1.5rem 2.25rem;text-align:center;max-width:40rem;margin:0 auto}
+    .kicker{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:500}
+    h1{font-family:"Libre Baskerville",Georgia,serif;font-weight:400;font-size:clamp(1.8rem,4vw,2.6rem);margin:1rem 0 .85rem;line-height:1.2}
+    header p{color:var(--mist);font-size:.95rem}
+    main{max-width:72rem;margin:0 auto;padding:0 1.25rem 5rem}
+    .grid{display:grid;gap:1.25rem}
+    @media(min-width:860px){.grid{grid-template-columns:repeat(3,1fr);gap:1.5rem}}
+    article{
+      display:flex;flex-direction:column;background:#0c0c0c;border:1px solid rgba(176,152,128,.28);
+      min-height:100%;
+    }
+    article a.card{
+      display:flex;flex-direction:column;flex:1;text-decoration:none;color:inherit;height:100%;
+    }
+    .thumb{aspect-ratio:16/10;background-size:cover;background-position:center;position:relative}
+    .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,0,0,.05),rgba(4,0,0,.45))}
+    .a{background-image:url("../assets/images/ld-fog.jpg")}
+    .b{background-image:url("../assets/images/g-valley-setup.jpg")}
+    .c{background-image:url("../assets/images/g-magnolia-porch.jpg")}
+    .body{padding:1.4rem 1.35rem 1.6rem;display:flex;flex-direction:column;gap:.7rem;flex:1}
+    .label{font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:600}
+    h2{font-family:"Libre Baskerville",Georgia,serif;font-weight:400;font-size:1.45rem}
+    .body p{color:#d8d4cc;font-size:.9rem;flex:1}
+    .go{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);font-weight:500;margin-top:.4rem}
+    article:hover .go, article:focus-within .go{color:var(--gold)}
+    footer{text-align:center;padding:0 1.5rem 3rem;color:var(--mist);font-size:.75rem}
+    footer a{color:var(--cream)}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#looks">Skip to looks</a>
+  <div class="banner">Spark Media samples — not the live Valley Venues website</div>
+  <header>
+    <p class="kicker">Internal review · David</p>
+    <h1>Three homepages for The Valley Venues</h1>
+    <p>Same brief. Same finish line — Kobi’s two-hour private experience. Three ways the weekend can feel on first arrival.</p>
+  </header>
+  <main id="looks">
+    <div class="grid">
+      <article>
+        <a class="card" href="film/">
+          <div class="thumb a" role="img" aria-label="Fog over the Lookout Deck"></div>
+          <div class="body">
+            <p class="label">Look A · Film</p>
+            <h2>The film is the page</h2>
+            <p>A cinematic opening where the weekend is watched, not catalogued — built to beat a video header used as wallpaper.</p>
+            <span class="go">Open Look A →</span>
+          </div>
+        </a>
+      </article>
+      <article>
+        <a class="card" href="weekend/">
+          <div class="thumb b" role="img" aria-label="Tables set in The Valley"></div>
+          <div class="body">
+            <p class="label">Look B · Weekend</p>
+            <h2>Friday through Sunday</h2>
+            <p>An editorial itinerary that lets a couple inhabit rehearsal, vows, brunch, and lodging before they ever see a venue list.</p>
+            <span class="go">Open Look B →</span>
+          </div>
+        </a>
+      </article>
+      <article>
+        <a class="card" href="invitation/">
+          <div class="thumb c" role="img" aria-label="The Magnolia House porch"></div>
+          <div class="body">
+            <p class="label">Look C · Invitation</p>
+            <h2>A private request</h2>
+            <p>A quieter letter that invites them onto the estate, with Kobi’s two hours as the only finish line that matters.</p>
+            <span class="go">Open Look C →</span>
+          </div>
+        </a>
+      </article>
+    </div>
+  </main>
+  <footer>
+    Spark · The Valley Venues samples · <a href="https://sparkmedia.ai/valleyvenues/">Existing prototype</a> remains untouched
+  </footer>
+</body>
+</html>
