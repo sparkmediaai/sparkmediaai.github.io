@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Valley Venues — The wedding weekend, reimagined</title>
+  <meta name="description" content="For a weekend, a private estate in Wildwood, Georgia becomes yours. Request a two-hour experience with Kobi Cummings." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="sample-banner">Spark sample · Look A · Film · not the live client site · <a href="../">All looks</a></div>
+
+  <header class="nav" id="nav">
+    <a class="wordmark" href="#top">The Valley Venues</a>
+    <nav id="menu" aria-label="Page">
+      <a href="#film">The film</a>
+      <a href="#weekend">The weekend</a>
+      <a href="#kobi">With Kobi</a>
+      <a class="nav-cta" href="#request">Request your experience</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </header>
+
+  <main id="main">
+    <section class="reel" id="top" aria-label="Opening film">
+      <div class="reel-stage" id="reelStage">
+        <video id="standInFilm" class="reel-video" muted loop playsinline preload="metadata" poster="../../assets/images/dark-valley.jpg" aria-hidden="true">
+          <source src="https://videos.pexels.com/video-files/3571264/3571264-hd_1280_720_30fps.mp4" type="video/mp4" />
+        </video>
+        <div class="reel-stills" id="reelStills" aria-hidden="true">
+          <img src="../../assets/images/dark-valley.jpg" alt="" />
+          <img src="../../assets/images/ld-fog.jpg" alt="" />
+          <img src="../../assets/images/tv-moody.jpg" alt="" />
+          <img src="../../assets/images/hero-valley.jpg" alt="" />
+        </div>
+        <div class="reel-veil"></div>
+      </div>
+      <div class="title-card" id="titleCard">
+        <p class="kicker">Wildwood, Georgia · minutes from Chattanooga</p>
+        <h1>The wedding weekend,<br /><em>reimagined.</em></h1>
+        <p class="deck">From Friday until Sunday the estate is yours. Not rented by the hour. Held, the way a great lodge becomes home.</p>
+        <a class="cta" href="#request">Request Your Private Valley Experience</a>
+        <p class="stand-in">Film stand-in — a Valley Venues film will live here.</p>
+      </div>
+    </section>
+
+    <section class="scene scene-dark" id="film">
+      <p class="kicker">A private estate experience</p>
+      <h2>Watch the weekend first.</h2>
+      <p>You are not choosing among rooms. You are deciding whether these days should belong to your people — the arrival, the rehearsal, the vows, the late table, the slow Sunday.</p>
+    </section>
+
+    <section class="cinema" aria-label="Estate film stills">
+      <figure class="frame wide">
+        <img src="../../assets/images/hero-valley.jpg" alt="The Valley lawn opening toward the tree line" />
+        <figcaption>Saturday light, The Valley</figcaption>
+      </figure>
+      <figure class="frame">
+        <img src="../../assets/images/tv-bridegroom.jpg" alt="A couple standing together on the estate grounds" />
+        <figcaption>The two of you, unhurried</figcaption>
+      </figure>
+      <figure class="frame">
+        <img src="../../assets/images/g-lookout.jpg" alt="Guests gathered on the Lookout Deck at dusk" />
+        <figcaption>Dusk on the Lookout Deck</figcaption>
+      </figure>
+      <figure class="frame wide">
+        <img src="../../assets/images/dh-toast.jpg" alt="A toast inside Davis Hall" />
+        <figcaption>The toast, Davis Hall</figcaption>
+      </figure>
+    </section>
+
+    <section class="scene scene-cream" id="weekend">
+      <p class="kicker">Friday through Sunday</p>
+      <h2>The place is theirs.</h2>
+      <p>Guests do not commute back to a hotel corridor after the last song. They walk home across the same grounds they just celebrated on. About thirty-two people can sleep on the estate. The rest of your weekend lives here with them.</p>
+      <p>Davis Hall, The Valley, the Lookout Deck, and the 1890s Magnolia House are simply the rooms the weekend moves through.</p>
+    </section>
+
+    <section class="duo">
+      <figure>
+        <img src="../../assets/images/g-valley-setup.jpg" alt="Long tables set for dinner in The Valley" />
+      </figure>
+      <figure>
+        <img src="../../assets/images/mh-gardenparty.jpg" alt="A garden gathering at Magnolia House" />
+      </figure>
+    </section>
+
+    <section class="scene scene-dark" id="kobi">
+      <p class="kicker">The finish line</p>
+      <h2>Two hours with Kobi.</h2>
+      <p>Kobi Cummings will walk the estate with you for two private hours. Not a brochure tour. A conversation about how your people will live here — where they wake, where they gather, where the day should unfold.</p>
+      <p>She keeps this place with her father, Paul. They will not ask you to download a pamphlet. They will ask how you want the weekend to feel.</p>
+      <a class="cta ghost" href="#request">Request Your Private Valley Experience</a>
+    </section>
+
+    <section class="request" id="request">
+      <div class="request-inner">
+        <p class="kicker">A private request</p>
+        <h2>Tell us about your weekend.</h2>
+        <p class="lede">A few quiet questions so Kobi can prepare for your time on the estate.</p>
+        <form id="qualify" novalidate>
+          <div class="field">
+            <label for="name">Your names</label>
+            <input id="name" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="split">
+            <div class="field">
+              <label for="date">Wedding date</label>
+              <input id="date" name="date" type="date" required />
+            </div>
+            <div class="field">
+              <label for="flex">Date flexibility</label>
+              <select id="flex" name="flex" required>
+                <option value="">Select</option>
+                <option>This date only</option>
+                <option>A few weeks either side</option>
+                <option>A season — we can talk</option>
+              </select>
+            </div>
+          </div>
+          <div class="split">
+            <div class="field">
+              <label for="guests">Guest count</label>
+              <input id="guests" name="guests" type="number" min="2" max="400" inputmode="numeric" required />
+            </div>
+            <div class="field">
+              <label for="rooms">Guest rooms needed on the estate</label>
+              <input id="rooms" name="rooms" type="number" min="0" max="32" inputmode="numeric" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="planner">Who is planning</label>
+            <select id="planner" name="planner" required>
+              <option value="">Select</option>
+              <option>The two of us</option>
+              <option>A planner, with us</option>
+              <option>A planner, on our behalf</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="budget">Investment range for the weekend</label>
+            <select id="budget" name="budget" required>
+              <option value="">Select</option>
+              <option>Still deciding — we would rather talk in person</option>
+              <option>$40,000 – $70,000</option>
+              <option>$70,000 – $100,000</option>
+              <option>$100,000 and above</option>
+            </select>
+          </div>
+          <button type="submit" class="cta">Request Your Private Valley Experience</button>
+          <p class="fine">This sample does not send a message. Your answers stay in this page.</p>
+        </form>
+        <div class="thanks" id="thanks" hidden role="status" aria-live="polite">
+          <h2>We have your request.</h2>
+          <p>Thank you. In the live house, Kobi would write next to set a two-hour time with you on the estate. Nothing has been sent from this sample.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="wordmark">The Valley Venues</p>
+    <p>Paul &amp; Kobi Cummings · a father and daughter</p>
+    <p><a href="https://maps.google.com/?q=1860+Pope+Creek+Rd,+Wildwood,+GA">1860 Pope Creek Rd, Wildwood, GA</a></p>
+    <p><a href="tel:+14236350463">(423) 635-0463</a> · <a href="mailto:Info@thevalleyvenues.com">Info@thevalleyvenues.com</a></p>
+    <p class="fine">Spark sample · Look A · <a href="../">All looks</a></p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
