@@ -1,0 +1,130 @@
+{
+  "asOf": "2026-08-25",
+  "company": {
+    "name": "Spark Media",
+    "city": "Las Vegas",
+    "site": "sparkmedia.ai"
+  },
+  "offer": {
+    "adsToPhone": "$249/mo",
+    "withGhl": "$399/mo",
+    "adSpend": "Ad spend extra."
+  },
+  "today": {
+    "weekday": "Tuesday",
+    "priority": "Maps keep/kill on the 12.",
+    "winTonight": "Every first-wave name scored keep or kill. Board stays unscored until Outbound marks it.",
+    "standDown": "No enrich and no send until David says go."
+  },
+  "ghl": {
+    "contactsRemaining": 49,
+    "clearedNote": "Junk March 10/24 contacts were cleared.",
+    "calendarName": "Free Growth Strategy Call",
+    "calendarThatMorning": "empty",
+    "pipelineName": "Marketing Pipeline",
+    "stages": [
+      "New Lead",
+      "Hot Lead",
+      "New Booking",
+      "Visit Attended",
+      "Sale",
+      "Left Road Review"
+    ]
+  },
+  "rules": [
+    {
+      "id": "no-send",
+      "label": "No send",
+      "detail": "until David says go"
+    },
+    {
+      "id": "no-enrich",
+      "label": "No enrich",
+      "detail": "until David says go"
+    },
+    {
+      "id": "tampa-parked",
+      "label": "Tampa parked",
+      "detail": "not in this wave"
+    }
+  ],
+  "firstWave": {
+    "label": "First-wave 12",
+    "scoreNote": "Unscored until Maps pass. Do not mark keep or kill here until the name is actually scored.",
+    "defaultScore": "unscored",
+    "trades": [
+      {
+        "id": "plumbing",
+        "label": "Plumbing",
+        "names": [
+          { "id": "vegas-valley", "name": "Vegas Valley", "score": "unscored" },
+          { "id": "spyder", "name": "Spyder", "score": "unscored" },
+          { "id": "pentagon", "name": "Pentagon", "score": "unscored" },
+          { "id": "psi", "name": "PSI", "score": "unscored" }
+        ]
+      },
+      {
+        "id": "hvac",
+        "label": "HVAC",
+        "names": [
+          { "id": "fire-n-ice", "name": "Fire-N-Ice", "score": "unscored" },
+          { "id": "sierra", "name": "Sierra", "score": "unscored" },
+          { "id": "liberty", "name": "Liberty", "score": "unscored" },
+          { "id": "alpine", "name": "Alpine", "score": "unscored" }
+        ]
+      },
+      {
+        "id": "electric",
+        "label": "Electric",
+        "names": [
+          { "id": "bar", "name": "BAR", "score": "unscored" },
+          { "id": "hd", "name": "HD", "score": "unscored" },
+          { "id": "fast-trac", "name": "Fast Trac", "score": "unscored" },
+          { "id": "nes", "name": "Nes", "score": "unscored" }
+        ]
+      }
+    ]
+  },
+  "parked": [
+    { "id": "roof-pest", "label": "Roof / pest", "reason": "Parked. Not in the first wave." },
+    { "id": "tampa", "label": "Tampa", "reason": "Parked. Not in the first wave." }
+  ],
+  "icp": {
+    "label": "First-wave ICP",
+    "who": "Owner-led emergency trades",
+    "hq": "Las Vegas / Henderson / North Las Vegas",
+    "size": "3–20 employees",
+    "titles": [
+      "Owner",
+      "President",
+      "Co-Owner",
+      "Owner-Operator",
+      "then GM"
+    ],
+    "tradesFirst": ["plumber", "HVAC", "electric"],
+    "mapsPass": "Emergency / after-hours pickup. Reviews roughly 50–1,000.",
+    "skip": [
+      "Revenue filter",
+      "Goettl",
+      "Hawthorne",
+      "Appointment-only",
+      "Commercial-only"
+    ]
+  },
+  "tracking": {
+    "fields": [
+      "outreach_email_1_date",
+      "outreach_email_2_date",
+      "outreach_opted_out",
+      "outreach_reply_notes"
+    ],
+    "tags": [
+      "outreach_stage_1_sent",
+      "outreach_stage_2_sent",
+      "outreach_replied",
+      "opted_out",
+      "booked",
+      "do_not_contact"
+    ]
+  }
+}
