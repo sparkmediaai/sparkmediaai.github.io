@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Five Directions — Valley Venues</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#141814;--fg:#EFEADF;--dim:rgba(239,234,223,.72);--line:rgba(239,234,223,.2);--gold:#D6A96A}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font-family:'Montserrat',system-ui,sans-serif;font-weight:400;line-height:1.7;
+  -webkit-font-smoothing:antialiased;padding:clamp(2.5rem,8vh,6rem) clamp(1.25rem,5vw,5rem)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+header{max-width:46rem;margin-bottom:clamp(2.5rem,7vh,4.5rem)}
+.eyebrow{font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:500}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(2.2rem,6vw,4rem);
+  line-height:1.1;margin:1.1rem 0 0}
+header p{color:var(--dim);margin-top:1.2rem}
+.grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(min-width:760px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1200px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--bg);padding:2rem 1.7rem;text-decoration:none;display:block;transition:background .4s}
+.card:hover{background:#1B211B}
+.num{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.4rem;line-height:1;color:var(--gold)}
+.card h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:1.6rem;margin:.7rem 0 .5rem}
+.card p{color:var(--dim);font-size:.94rem;margin:0}
+.swatches{display:flex;height:1.6rem;margin-top:1.3rem;border:1px solid var(--line)}
+.swatches i{flex:1}
+.type{margin-top:.9rem;font-size:.76rem;letter-spacing:.1em;color:var(--dim)}
+footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.5rem;border-top:1px solid var(--line);
+  font-size:.84rem;color:var(--dim);max-width:46rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Valley Venues · Design study</div>
+  <h1>Five directions for the same page</h1>
+  <p>Each is The Valley, with identical content — so the only thing that differs is the design. Look at whichever feels most like the estate, not whichever has the most going on.</p>
+</header>
+
+<div class="grid">
+  <a class="card" href="01-scroll-responsive/">
+    <div class="num">01</div>
+    <h2>Scroll-Responsive</h2>
+    <p>The hero is a slot onto the meadow that opens as you scroll. Nothing plays at you; it responds to you.</p>
+    <div class="swatches"><i style="background:#F4F0E8"></i><i style="background:#1F2A22"></i><i style="background:#A9793F"></i><i style="background:#8C9A84"></i></div>
+    <div class="type">Cormorant Garamond + Montserrat</div>
+  </a>
+
+  <a class="card" href="02-nightfall/">
+    <div class="num">02</div>
+    <h2>Nightfall</h2>
+    <p>The estate after the reception, lit by lamplight. A lantern follows your cursor across the page.</p>
+    <div class="swatches"><i style="background:#0F1712"></i><i style="background:#1E2A20"></i><i style="background:#E8B872"></i><i style="background:#EFE9DC"></i></div>
+    <div class="type">Libre Baskerville + Manrope</div>
+  </a>
+
+  <a class="card" href="03-field-guide/">
+    <div class="num">03</div>
+    <h2>Field Guide</h2>
+    <p>The land observed and annotated. Aspect, best light, wet plan — real facts in the margin.</p>
+    <div class="swatches"><i style="background:#FBFAF6"></i><i style="background:#3A4A34"></i><i style="background:#8A6D14"></i><i style="background:#8D9C84"></i></div>
+    <div class="type">Fraunces + Outfit</div>
+  </a>
+
+  <a class="card" href="04-stone-and-glass/">
+    <div class="num">04</div>
+    <h2>Stone &amp; Glass</h2>
+    <p>The built estate rather than the landscape. A survey datum line runs across every section.</p>
+    <div class="swatches"><i style="background:#E2DED4"></i><i style="background:#2E3330"></i><i style="background:#3B5245"></i><i style="background:#7A5227"></i></div>
+    <div class="type">DM Serif Display + DM Sans</div>
+  </a>
+
+  <a class="card" href="05-drawn-estate/">
+    <div class="num">05</div>
+    <h2>The Drawn Estate</h2>
+    <p>The map is the hero. You meet all seventy-four acres first, and The Valley as one point on them.</p>
+    <div class="swatches"><i style="background:#F2EDE0"></i><i style="background:#263127"></i><i style="background:#8A6D14"></i><i style="background:#8A5D52"></i></div>
+    <div class="type">Marcellus + Jost</div>
+  </a>
+</div>
+
+<footer>
+  Photography throughout is the estate's own. Some spaces — the conservatory, Overlook Village, Lost in the Woods — have no photography yet and are represented by other parts of the property.
+</footer>
+</body>
+</html>

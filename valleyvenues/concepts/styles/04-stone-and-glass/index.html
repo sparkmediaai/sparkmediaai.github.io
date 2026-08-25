@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Valley — Valley Venues</title>
+<meta name="description" content="An open meadow beneath the ridge, on a 74-acre estate of stone, glass and standing timber.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=' js';</script>
+<style>
+/* ============================================================
+   STYLE 04 — STONE & GLASS
+   The brief names stone, natural wood, historic architecture and glass. This
+   direction is the built estate rather than the landscape: cool limestone,
+   graphite, and the verdigris of weathered copper. Warmth comes from oak and
+   from the photography, not from a cream background.
+
+   SIGNATURE: a datum line. A single hairline sits the same distance below the
+   top of every section, and every heading sits on it — the way a survey
+   drawing carries one reference level across every sheet.
+   ============================================================ */
+:root{
+  --limestone:#E2DED4;
+  --limestone-2:#D6D1C4;
+  --graphite:#2E3330;
+  --deep:#1A1D1B;
+  --verd:#2F4237;         /* text-safe verdigris, ~7:1 on limestone */
+  --verd-light:#91AD9C;   /* rules and marks only */
+  --oak:#7A5227;
+  --display:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --pad:clamp(1.25rem,5vw,5rem);
+  --datum:clamp(4.5rem,9vh,7rem);   /* the reference level */
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--limestone);color:var(--graphite);
+  font-family:var(--sans);font-weight:400;line-height:1.7;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08;margin:0}
+p{margin:0 0 1.15em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--verd);outline-offset:3px}
+
+nav{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;
+  align-items:center;padding:1.4rem var(--pad);color:var(--limestone)}
+.brand{font-family:var(--display);font-size:1.1rem;letter-spacing:.16em;text-transform:uppercase}
+.navcta{font-size:.74rem;letter-spacing:.16em;font-weight:500;text-transform:uppercase;
+  text-decoration:none;border-bottom:1px solid rgba(226,222,212,.55);padding-bottom:.25rem}
+
+/* ---- hero ---- */
+.hero{position:relative;height:88svh;min-height:32rem;overflow:hidden;background:var(--deep)}
+.hero img{width:100%;height:100%;object-fit:cover}
+.hero::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(26,29,27,.55),rgba(26,29,27,.08) 40%,rgba(26,29,27,.7))}
+.hero-in{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 var(--pad) clamp(2.5rem,7vh,4.5rem)}
+.hero-in h1{font-size:clamp(3rem,10vw,8rem);color:var(--limestone);letter-spacing:-.015em}
+.hero-meta{display:flex;flex-wrap:wrap;gap:.6rem 2rem;margin-top:1.3rem;
+  font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(226,222,212,.86);font-weight:500}
+
+/* ---- sections carry the datum ---- */
+.sheet{position:relative;padding:var(--datum) var(--pad) clamp(4rem,11vh,8rem)}
+.sheet::before{content:'';position:absolute;left:0;right:0;top:var(--datum);height:1px;
+  background:var(--verd-light);opacity:.55}
+.sheet-in{position:relative;max-width:78rem;margin:0 auto;padding-top:clamp(1.6rem,4vh,2.6rem)}
+.ref{position:absolute;top:calc(var(--datum) - 1.5rem);left:var(--pad);
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--verd);font-weight:500}
+
+.grid{display:grid;gap:clamp(1.6rem,4vw,3.5rem);align-items:start}
+@media(min-width:900px){.grid{grid-template-columns:repeat(12,1fr)}
+  .c7{grid-column:span 7}.c5{grid-column:span 5}.c6{grid-column:span 6}.c12{grid-column:1/-1}}
+h2{font-size:clamp(1.9rem,4.2vw,3.2rem);text-wrap:balance;max-width:20ch}
+.lead{margin-top:1.4rem;color:#414740;font-size:clamp(1.02rem,1.3vw,1.13rem);max-width:48ch}
+
+.spec{border-top:1px solid var(--verd-light);margin-top:2rem}
+.spec div{display:flex;justify-content:space-between;gap:1.5rem;padding:.85rem 0;
+  border-bottom:1px solid rgba(127,160,140,.45);font-size:.94rem}
+.spec dt,.spec span:first-child{color:var(--verd);font-weight:500;letter-spacing:.02em}
+.spec span:last-child{font-family:var(--display);font-size:1.06rem}
+
+.dark{background:var(--deep);color:var(--limestone)}
+.dark .lead{color:rgba(226,222,212,.82)}
+.dark .ref{color:var(--verd-light)}
+.dark .sheet::before{background:var(--verd-light);opacity:.4}
+.dark .spec div{border-color:rgba(127,160,140,.3)}
+.dark .spec span:first-child{color:var(--verd-light)}
+
+figure{margin:0}
+.tall img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.wide img{width:100%;aspect-ratio:16/10;object-fit:cover}
+figcaption{margin-top:.7rem;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--verd)}
+.dark figcaption{color:var(--verd-light)}
+
+.strip{display:grid;gap:1px;background:var(--verd-light);margin-top:clamp(2.5rem,6vh,4rem)}
+@media(min-width:700px){.strip{grid-template-columns:repeat(4,1fr)}}
+.strip div{background:var(--limestone);padding:1.8rem 1.3rem}
+.dark .strip div{background:var(--deep)}
+.strip b{display:block;font-family:var(--display);font-size:2.1rem;line-height:1;margin-bottom:.35rem}
+.strip span{font-size:.86rem;color:var(--verd)}
+.dark .strip span{color:var(--verd-light)}
+
+.btn{display:inline-block;margin-top:2rem;text-decoration:none;font-size:.74rem;letter-spacing:.18em;
+  font-weight:700;text-transform:uppercase;padding:1.1rem 2.6rem;background:var(--verd);color:var(--limestone);
+  transition:background .35s}
+.btn:hover{background:var(--graphite)}
+.dark .btn{background:var(--limestone);color:var(--deep)}
+.dark .btn:hover{background:var(--verd-light)}
+
+.more{display:grid;gap:1.3rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin-top:2.4rem}
+.more a{text-decoration:none;border-top:1px solid var(--verd-light);padding-top:.9rem}
+.more b{display:block;font-family:var(--display);font-size:1.2rem}
+.more span{font-size:.86rem;color:var(--verd)}
+/* --verd is a DARK token; anything using it inside .dark must be restated or
+   it renders dark-on-dark. This block is the whole list of those cases. */
+.dark .more span{color:var(--verd-light)}
+.dark .more a{border-color:rgba(127,160,140,.5)}
+
+footer{padding:2.5rem var(--pad);background:var(--limestone-2);font-size:.84rem;color:var(--verd)}
+
+.js .r{opacity:0;transform:translateY(18px);transition:opacity .85s cubic-bezier(.19,1,.22,1),transform .85s cubic-bezier(.19,1,.22,1)}
+.js .r.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Valley Venues</div>
+  <a class="navcta" href="#plan">Enquire</a>
+</nav>
+
+<header class="hero">
+  <img src="../_img/deck-ceremony.webp" alt="A ceremony set on the deck, ridge beyond">
+  <div class="hero-in">
+    <h1>The Valley</h1>
+    <div class="hero-meta">
+      <span>Open meadow</span><span>300 seated</span><span>South-facing</span><span>Wildwood, Georgia</span>
+    </div>
+  </div>
+</header>
+
+<section class="sheet">
+  <div class="ref">01 — The meadow</div>
+  <div class="sheet-in grid">
+    <div class="c7">
+      <h2 class="r">Three hundred people can stand here and it still feels like yours.</h2>
+      <p class="lead r">The meadow sits low between two ridgelines. That is not scenery — it is why sound stays put, why the wind drops, and why the hills hold the last half-hour of light after it has left the grass.</p>
+    </div>
+    <div class="c5 r">
+      <div class="spec">
+        <div><span>Capacity</span><span>300 seated</span></div>
+        <div><span>Aspect</span><span>South-facing</span></div>
+        <div><span>Best light</span><span>4:30 – 6:15 pm</span></div>
+        <div><span>Wet plan</span><span>Davis Hall, 4 min</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sheet dark">
+  <div class="ref">02 — Standing structures</div>
+  <div class="sheet-in grid">
+    <div class="c6 r">
+      <figure class="tall"><img src="../_img/columns-ridge.webp" alt="A couple between the manor columns, ridge behind" loading="lazy">
+        <figcaption>Magnolia House — colonnade, west elevation</figcaption></figure>
+    </div>
+    <div class="c6">
+      <h2 class="r">Stone, timber and glass, all within four minutes' walk.</h2>
+      <p class="lead r">An 1890s manor for the morning. A hall with the height for three hundred. A deck cantilevered over the drop. The estate is not one room you are renting — it is a set of buildings you move between, and the walking between them is half of what people remember.</p>
+      <div class="spec r">
+        <div><span>Magnolia House</span><span>1890s manor</span></div>
+        <div><span>Davis Hall</span><span>Reception, 300</span></div>
+        <div><span>Lookout Deck</span><span>Cocktails, sunset</span></div>
+        <div><span>Onsite beds</span><span>34 guests</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="ref">03 — Orientation</div>
+  <div class="sheet-in grid">
+    <div class="c12">
+      <h2 class="r">The aisle runs whichever way the light is better that month.</h2>
+      <p class="lead r">Nothing is fixed — not where you face, not where your family sits, not what stands behind you in the photographs your grandchildren will look at. A June ceremony and an October one point in different directions, and both are right.</p>
+    </div>
+    <div class="c6 r"><figure class="wide"><img src="../_img/valley-autumn.webp" alt="An autumn ceremony set in the meadow" loading="lazy"><figcaption>October — arch set toward the ridge</figcaption></figure></div>
+    <div class="c6 r"><figure class="wide"><img src="../_img/valley-arch.webp" alt="A white floral arch standing in the meadow" loading="lazy"><figcaption>June — full sun at six</figcaption></figure></div>
+  </div>
+  <div class="sheet-in">
+    <div class="strip r">
+      <div><b>300</b><span>Guests seated</span></div>
+      <div><b>74</b><span>Private acres</span></div>
+      <div><b>34</b><span>Stay the night</span></div>
+      <div><b>15</b><span>Min. to Chattanooga</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sheet dark" id="plan">
+  <div class="ref">04 — Visit</div>
+  <div class="sheet-in grid">
+    <div class="c7">
+      <h2 class="r">Stand in it before you decide.</h2>
+      <p class="lead r">Come at four in the afternoon, when the ridge starts throwing shadow across the meadow, and walk from the manor to the deck the way your guests would.</p>
+      <a class="btn r" href="mailto:Info@thevalleyvenues.com">Book a Visit</a>
+    </div>
+    <div class="c5">
+      <div class="more r">
+        <a href="../../../davis-hall.html"><b>Davis Hall</b><span>Reception</span></a>
+        <a href="../../../lookout-deck.html"><b>Lookout Deck</b><span>Cocktails</span></a>
+        <a href="../../../magnolia-house.html"><b>Magnolia House</b><span>1890s manor</span></a>
+        <a href="../../../lodging.html"><b>Lodging</b><span>34 guests</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>Style 04 · Stone &amp; Glass — internal design study. DM Serif Display + DM Sans.</footer>
+
+<script>
+(function(){
+  var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pend = [].slice.call(document.querySelectorAll('.r'));
+  if (rm){ pend.forEach(function(e){ e.classList.add('in'); }); pend = []; }
+  function reveal(){
+    if (!pend.length) return;
+    var vh = innerHeight, still = [];
+    for (var i=0;i<pend.length;i++){
+      if (pend[i].getBoundingClientRect().top < vh*.9) pend[i].classList.add('in');
+      else still.push(pend[i]);
+    }
+    pend = still;
+  }
+  addEventListener('scroll', reveal, {passive:true});
+  addEventListener('resize', reveal, {passive:true});
+  addEventListener('load', reveal);
+  reveal();
+})();
+</script>
+</body>
+</html>
