@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Valley Venues — A private invitation</title>
+  <meta name="description" content="You are invited to spend two hours on a private estate in Wildwood, Georgia with Kobi Cummings." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="sample-banner">Spark sample · Look C · Invitation · not the live client site · <a href="../">All looks</a></div>
+
+  <header class="nav">
+    <a class="wordmark" href="#top">The Valley Venues</a>
+    <nav id="menu" aria-label="Page">
+      <a href="#letter">Welcome</a>
+      <a href="#hours">Two hours</a>
+      <a href="#request">Request</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </header>
+
+  <main id="main">
+    <article class="letter" id="top">
+      <p class="from">From Paul &amp; Kobi Cummings</p>
+      <p class="place">Wildwood, Georgia</p>
+      <hr class="rule" />
+
+      <section id="letter">
+        <p class="salute">If you are looking for a place that becomes yours for a weekend —</p>
+        <h1>The wedding weekend,<br /><em>reimagined.</em></h1>
+        <p>We do not begin with a list of rooms, or a number of acres, or a folder you can download. We begin with a simple offer: come to the estate. Spend two hours here with Kobi. See whether these days should belong to you.</p>
+        <p>From Friday until Sunday the gates are, in a manner of speaking, yours. Guests who sleep on the property — about thirty-two can — wake in the same air they celebrated in. That is the whole idea. The rest is hospitality.</p>
+        <p>We keep this place as a father and a daughter. We would rather know how you want the weekend to feel than tell you how a venue is sold.</p>
+        <p class="sign">With warmth,<br /><span>Paul &amp; Kobi</span></p>
+        <p class="cta-wrap"><a class="cta" href="#request">Request Your Private Valley Experience</a></p>
+      </section>
+
+      <section class="glimpse" aria-label="A short film stand-in">
+        <div class="film-frame">
+          <video id="standInFilm" muted loop playsinline preload="metadata" poster="../../assets/images/mh-hero.jpg" aria-hidden="true">
+            <source src="https://videos.pexels.com/video-files/3571264/3571264-hd_1280_720_30fps.mp4" type="video/mp4" />
+          </video>
+          <div class="film-stills" id="reelStills" aria-hidden="true">
+            <img src="../../assets/images/mh-hero.jpg" alt="" />
+            <img src="../../assets/images/g-magnolia-porch.jpg" alt="" />
+          </div>
+        </div>
+        <p class="stand-in">Film stand-in — a Valley Venues film will live here.</p>
+      </section>
+
+      <section class="hours" id="hours">
+        <p class="kicker">What you are actually requesting</p>
+        <h2>Two hours, walking the estate with Kobi.</h2>
+        <p>Not a tour that points at chandeliers. Two hours in which she asks the questions a host asks: who is coming, who needs quiet, where the vows should land, whether Sunday should linger. You will see The Valley, Davis Hall, the Lookout Deck, and Magnolia House — an 1890s house — as rooms inside that conversation, not as a brochure.</p>
+        <p>If the weekend feels like yours, we go on from there. If it does not, you will still have spent an afternoon in a beautiful place with someone who was paying attention.</p>
+        <figure class="portrait">
+          <img src="../../assets/images/g-magnolia-porch.jpg" alt="The porch at Magnolia House" />
+          <figcaption>Magnolia House, where many first conversations begin</figcaption>
+        </figure>
+      </section>
+
+      <section class="quiet-grid">
+        <figure>
+          <img src="../../assets/images/tv-moody.jpg" alt="A quieter view of The Valley" />
+        </figure>
+        <figure>
+          <img src="../../assets/images/ld-fog.jpg" alt="Fog at the Lookout" />
+        </figure>
+        <figure>
+          <img src="../../assets/images/g-hall.jpg" alt="The hall, ready for evening" />
+        </figure>
+      </section>
+
+      <section class="hours">
+        <p>Chattanooga is minutes away. The address is 1860 Pope Creek Road. The invitation is simply to come, and to let the weekend introduce itself.</p>
+      </section>
+    </article>
+
+    <section class="request" id="request">
+      <div class="card">
+        <p class="kicker">Your reply</p>
+        <h2>Request the two hours.</h2>
+        <p class="lede">A few particulars, so Kobi can meet you already knowing the shape of your days.</p>
+        <form id="qualify" novalidate>
+          <div class="field">
+            <label for="name">Your names</label>
+            <input id="name" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="split">
+            <div class="field">
+              <label for="date">Wedding date</label>
+              <input id="date" name="date" type="date" required />
+            </div>
+            <div class="field">
+              <label for="flex">Date flexibility</label>
+              <select id="flex" name="flex" required>
+                <option value="">Select</option>
+                <option>This date only</option>
+                <option>A few weeks either side</option>
+                <option>A season — we can talk</option>
+              </select>
+            </div>
+          </div>
+          <div class="split">
+            <div class="field">
+              <label for="guests">Guest count</label>
+              <input id="guests" name="guests" type="number" min="2" max="400" inputmode="numeric" required />
+            </div>
+            <div class="field">
+              <label for="rooms">Guest rooms needed on the estate</label>
+              <input id="rooms" name="rooms" type="number" min="0" max="32" inputmode="numeric" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="planner">Who is planning</label>
+            <select id="planner" name="planner" required>
+              <option value="">Select</option>
+              <option>The two of us</option>
+              <option>A planner, with us</option>
+              <option>A planner, on our behalf</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="budget">Investment range for the weekend</label>
+            <select id="budget" name="budget" required>
+              <option value="">Select</option>
+              <option>Still deciding — we would rather talk in person</option>
+              <option>$40,000 – $70,000</option>
+              <option>$70,000 – $100,000</option>
+              <option>$100,000 and above</option>
+            </select>
+          </div>
+          <button type="submit" class="cta">Request Your Private Valley Experience</button>
+          <p class="fine">This sample does not send a message. Your answers stay in this page.</p>
+        </form>
+        <div class="thanks" id="thanks" hidden role="status" aria-live="polite">
+          <h2>Your request is received.</h2>
+          <p>Thank you. In the live house, Kobi would write next — not with a packet, but with a time to walk the estate together. Nothing has been sent from this sample.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="wordmark">The Valley Venues</p>
+    <p>Paul &amp; Kobi Cummings</p>
+    <p><a href="https://maps.google.com/?q=1860+Pope+Creek+Rd,+Wildwood,+GA">1860 Pope Creek Rd, Wildwood, GA</a></p>
+    <p><a href="tel:+14236350463">(423) 635-0463</a> · <a href="mailto:Info@thevalleyvenues.com">Info@thevalleyvenues.com</a></p>
+    <p class="fine">Spark sample · Look C · <a href="../">All looks</a></p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
