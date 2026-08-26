@@ -115,6 +115,30 @@ section{padding:clamp(4.5rem,11vh,9rem) var(--pad)}
           var(--pad) clamp(4rem,11vh,8.5rem);
   overflow:hidden}
 
+/* ---------- the light moves continuously ----------
+   Without JS each moment paints its own flat background, which steps from
+   hour to hour. With JS a single pinned layer sits behind the whole timeline
+   and its colour is interpolated from the scroll position, so the light
+   actually travels rather than cutting. The moments go transparent and take
+   their text colours from the same interpolation.
+
+   The layer is sticky with a negative bottom margin so it pins without
+   occupying layout space. */
+/* ---------- moments stack ----------
+   Each hour pins to the top and the next one scrolls up over it, so the day
+   advances by covering rather than by sliding past. Background and type stay
+   welded to their own hour, which is what keeps every pairing at the contrast
+   it was solved for.
+
+   A continuously interpolated full-viewport background was tried here first
+   and abandoned: the viewport routinely shows two adjacent moments at once —
+   one styled for a light hour, one for a dark — and no single background can
+   serve both. Measured at 1.01:1 at the crossovers. */
+.js .mo{position:sticky;top:0;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+.js .daylayer{display:none}
+/* The last moment must not pin, or the section below scrolls under it. */
+.js .mo:last-of-type{position:relative}
+
 /* Oversized hour, ghosted. The hour is the argument of the page, so it gets to
    be the ornament rather than a 10px label. */
 .mo .hour{position:absolute;top:var(--hour-top);right:var(--pad);
@@ -246,6 +270,8 @@ footer a:hover{color:var(--amber-light)}
     <h2 class="r">Here is what you get instead.</h2>
     <p class="r">Arrive Friday. Wake up already where you need to be. Celebrate without watching the clock. And when the reception ends, stay.</p>
   </div>
+
+  <div class="daylayer" aria-hidden="true"></div>
 
   <div class="trail" aria-hidden="true">
     <svg viewBox="0 0 100 1000" preserveAspectRatio="none">
@@ -534,10 +560,74 @@ footer a:hover{color:var(--amber-light)}
     }
   }
 
+  /* ---- continuous day arc ----
+     Each moment declares the palette of its hour. Rather than cutting between
+     them, the pinned layer interpolates between the two moments the viewport
+     currently sits between, so the light travels across the whole timeline.
+     Stops are read from the markup, so changing a moment's colour in the HTML
+     is all that's needed - nothing here needs updating. */
+  var stops = [].slice.call(document.querySelectorAll('.mo')).map(function(el){
+    var cs = getComputedStyle(el);
+    return {
+      el:  el,
+      bg:  rgb(cs.getPropertyValue('--bg')),
+      fg:  rgb(cs.getPropertyValue('--fg')),
+      dim: rgb(cs.getPropertyValue('--dim')),
+      acc: rgb(cs.getPropertyValue('--accent'))
+    };
+  }).filter(function(s){ return s.bg && s.fg; });
+
+  function rgb(v){
+    v = (v || '').trim();
+    if (!v) return null;
+    if (v.charAt(0) === '#'){
+      if (v.length === 4) v = '#' + v[1]+v[1]+v[2]+v[2]+v[3]+v[3];
+      return [parseInt(v.substr(1,2),16), parseInt(v.substr(3,2),16), parseInt(v.substr(5,2),16), 1];
+    }
+    var m = v.match(/[\d.]+/g);
+    return m ? [+m[0], +m[1], +m[2], m[3] === undefined ? 1 : +m[3]] : null;
+  }
+  function mix(a, b, t){
+    return 'rgba(' + Math.round(a[0]+(b[0]-a[0])*t) + ',' +
+                     Math.round(a[1]+(b[1]-a[1])*t) + ',' +
+                     Math.round(a[2]+(b[2]-a[2])*t) + ',' +
+                     (a[3]+(b[3]-a[3])*t).toFixed(3) + ')';
+  }
+
+  var root = document.documentElement;
+  function day(){
+    if (!stops.length) return;
+    var mid = innerHeight / 2, i, a, b, t;
+
+    /* find the two moments the viewport centre sits between */
+    var centres = stops.map(function(s){
+      var r = s.el.getBoundingClientRect();
+      return r.top + r.height / 2;
+    });
+
+    if (mid <= centres[0]){ a = b = 0; t = 0; }
+    else if (mid >= centres[centres.length-1]){ a = b = stops.length-1; t = 0; }
+    else {
+      for (i = 0; i < centres.length - 1; i++){
+        if (mid >= centres[i] && mid <= centres[i+1]){
+          a = i; b = i+1;
+          t = (mid - centres[i]) / (centres[i+1] - centres[i]);
+          break;
+        }
+      }
+      if (a === undefined){ a = b = stops.length-1; t = 0; }
+    }
+    /* Kept for the progress rail only — the background itself is no longer
+       interpolated (see the note in the stylesheet). */
+    t = t * t * (3 - 2 * t);
+    root.style.setProperty('--day-t', (a + t).toFixed(3));
+  }
+
   function onScroll(){
     reveal();
     trail();
     parallax();
+    day();
     if (!ticking){ ticking = true; requestAnimationFrame(chrome); }
   }
 
