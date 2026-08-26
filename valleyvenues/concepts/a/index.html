@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>More Than a Wedding Day — Valley Venues</title>
+<meta name="description" content="A private mountain estate near Chattanooga where your wedding becomes an entire weekend with the people you love.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=' js';</script>
+<style>
+:root{
+  --cream:#F7F2E9;
+  --cream-deep:#EFE7D9;
+  --amber:#B8763A;
+  --amber-light:#D2955B;
+  --sage:#9AA88F;
+  --ink:#2A2E22;
+  --ink-soft:#5A6050;
+  --rule:rgba(42,46,34,.14);
+  --serif:'Lora',Georgia,serif;
+  --sans:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --pad:clamp(1.25rem,5vw,5rem);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--cream);color:var(--ink);
+  font-family:var(--sans);font-weight:400;line-height:1.7;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12;margin:0;letter-spacing:-.01em}
+p{margin:0 0 1.1em}
+a{color:inherit}
+
+/* ---------- progress ---------- */
+#bar{position:fixed;top:0;left:0;height:2px;width:0;background:var(--amber);z-index:90}
+
+/* ---------- nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem var(--pad);transition:background .5s,padding .5s,box-shadow .5s;}
+nav.solid{background:rgba(247,242,233,.94);backdrop-filter:blur(12px);padding:.7rem var(--pad);box-shadow:0 1px 0 var(--rule)}
+.brand{font-family:var(--serif);font-size:1.05rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;transition:color .5s}
+nav.solid .brand{color:var(--ink)}
+.navcta{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,.5);
+  padding:.6rem 1.2rem;border-radius:2px;color:#fff;transition:.4s}
+nav.solid .navcta{border-color:var(--ink);color:var(--ink)}
+.navcta:hover{background:var(--amber);border-color:var(--amber);color:#fff}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden}
+.hero-img{position:absolute;inset:0;background:url('../../assets/images/hero-valley.jpg') center/cover no-repeat;
+  transform:scale(1.12);animation:drift 22s ease-out forwards}
+@keyframes drift{to{transform:scale(1)}}
+.hero::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,24,16,.5) 0%,rgba(20,24,16,.12) 35%,rgba(20,24,16,.82) 100%)}
+.hero-inner{position:relative;z-index:2;padding:0 var(--pad) clamp(3rem,8vh,6rem);max-width:60rem}
+.eyebrow{font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:1.4rem}
+.hero h1{font-size:clamp(2.9rem,8.2vw,6.6rem);color:#fff;text-wrap:balance}
+.hero h1 em{font-style:italic;color:var(--amber-light)}
+.hero p{margin-top:1.6rem;font-size:clamp(1rem,1.5vw,1.22rem);color:rgba(255,255,255,.9);max-width:34rem;font-weight:300}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2.2rem}
+.btn{display:inline-block;text-decoration:none;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:1.05rem 2.2rem;border-radius:2px;transition:.35s;font-weight:500}
+.btn-solid{background:var(--amber);color:#fff}
+.btn-solid:hover{background:#fff;color:var(--ink)}
+.btn-ghost{border:1px solid rgba(255,255,255,.55);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+
+/* word reveal */
+.rv{display:inline-block;overflow:hidden;vertical-align:bottom}
+.rv>span{display:inline-block;transform:translateY(105%);animation:up .95s cubic-bezier(.19,1,.22,1) forwards}
+@keyframes up{to{transform:translateY(0)}}
+
+/* ---------- shared ---------- */
+section{padding:clamp(4.5rem,11vh,9rem) var(--pad)}
+.lede{max-width:44rem;margin:0 auto;text-align:center}
+.lede h2{font-size:clamp(1.9rem,4.4vw,3.35rem);text-wrap:balance}
+.lede p{margin-top:1.5rem;font-size:clamp(1.02rem,1.4vw,1.17rem);color:var(--ink-soft)}
+.mark{font-size:.76rem;letter-spacing:.22em;font-weight:500;text-transform:uppercase;color:var(--amber);margin-bottom:1.5rem;text-align:center}
+
+/* Reveal. Scoped to .js so the page is fully readable with JavaScript off or
+   broken - content must never be permanently stuck at opacity 0. */
+.js .r{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.19,1,.22,1),transform 1s cubic-bezier(.19,1,.22,1)}
+.js .r.in{opacity:1;transform:none}
+
+/* ---------- truth ---------- */
+.truth{background:var(--ink);color:var(--cream);text-align:center}
+.truth h2{font-size:clamp(1.75rem,4vw,3rem);max-width:46rem;margin:0 auto;text-wrap:balance;color:var(--cream)}
+.truth .mark{color:var(--sage)}
+.truth-note{margin-top:2rem;color:rgba(247,242,233,.62);max-width:34rem;margin-left:auto;margin-right:auto;font-size:1.02rem}
+
+/* ---------- timeline: the page passes through the day ---------- */
+/* Each moment owns its palette. Scrolling the timeline walks afternoon ->
+   Friday night -> Saturday morning -> golden hour -> dinner -> dancing ->
+   deep night -> Sunday morning, so the page performs its own argument. */
+.tl{position:relative;padding:0}
+.tl-head{text-align:center;padding:clamp(4rem,10vh,8rem) var(--pad) clamp(2.5rem,6vh,4rem);background:var(--cream)}
+.tl-head h2{font-size:clamp(2rem,4.6vw,3.4rem)}
+.tl-head p{margin-top:1.2rem;color:var(--ink-soft);max-width:36rem;margin-inline:auto}
+
+/* The hour numeral is absolutely positioned and .mo-inner paints above it, so
+   any overlap slices the glyph with a full-bleed image instead of ghosting it.
+   Top padding is DERIVED from the numeral's own metrics rather than guessed:
+   sizing the numeral in vw while padding it in vh lets the two diverge on a
+   wide, short viewport - which is exactly how the glyph got cut. */
+.mo{--hour-size:clamp(3.6rem,10vw,9.5rem);
+    --hour-top:clamp(1rem,3vh,2.2rem);
+    --hour-clear:2.5rem;
+  position:relative;z-index:1;background:var(--bg);color:var(--fg);
+  padding:calc(var(--hour-top) + var(--hour-size) * .78 + var(--hour-clear))
+          var(--pad) clamp(4rem,11vh,8.5rem);
+  overflow:hidden}
+
+/* Oversized hour, ghosted. The hour is the argument of the page, so it gets to
+   be the ornament rather than a 10px label. */
+.mo .hour{position:absolute;top:var(--hour-top);right:var(--pad);
+  font-family:var(--serif);font-size:var(--hour-size);line-height:.78;
+  color:var(--fg);opacity:.10;pointer-events:none;user-select:none;
+  font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+
+.mo-inner{position:relative;z-index:2;display:grid;gap:clamp(1.6rem,4vw,3.5rem);
+  align-items:center;max-width:76rem;margin:0 auto}
+.stampline{font-size:.74rem;letter-spacing:.2em;font-weight:500;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
+.stampline b{font-weight:600;margin-right:.55rem}
+.mo h3{font-size:clamp(1.6rem,3.4vw,2.7rem);margin-bottom:.9rem;color:var(--fg);text-wrap:balance}
+.mo p{color:var(--dim);margin:0;font-size:clamp(1rem,1.3vw,1.1rem)}
+.mo .where{display:inline-block;margin-top:1.3rem;font-size:.72rem;letter-spacing:.18em;font-weight:500;
+  text-transform:uppercase;color:var(--accent)}
+
+/* Images unmask rather than fade - a wipe reads as crafted, a fade as default. */
+.mo figure{margin:0;overflow:hidden}
+.mo figure img{width:100%;display:block;aspect-ratio:3/2;object-fit:cover}
+.js .mo figure{clip-path:inset(0 0 100% 0);transition:clip-path 1.15s cubic-bezier(.19,1,.22,1)}
+.js .mo.in figure{clip-path:inset(0 0 0 0)}
+/* parallax drift inside the frame: depth without moving the layout */
+.js .mo figure img{transform:scale(1.08) translateY(var(--drift,0px));will-change:transform}
+
+@media(min-width:900px){
+  .mo{padding-left:calc(var(--pad) + clamp(56px,7vw,120px))}
+  .mo-inner{grid-template-columns:1fr 1fr}
+  .mo.flip .mo-inner>figure{order:-1}
+  /* break the metronome: full-bleed for the three pivotal moments... */
+  .mo.wide .mo-inner{grid-template-columns:1fr;max-width:none}
+  .mo.wide figure{margin:0 calc(var(--pad) * -1) 0 calc((var(--pad) + clamp(56px,7vw,120px)) * -1)}
+  .mo.wide figure img{aspect-ratio:21/9}
+  .mo.wide .mo-text{max-width:46rem;margin:clamp(2rem,5vh,3.5rem) auto 0;text-align:center}
+  /* ...and small, quiet, wide-margined for the intimate ones */
+  .mo.inset .mo-inner{grid-template-columns:1fr;max-width:48rem}
+  .mo.inset figure{max-width:22rem;margin-left:auto}
+  .mo.inset figure img{aspect-ratio:4/5}
+}
+
+/* ---------- the trail ---------- */
+/* A path across the estate, drawn by scroll. Sits above the section
+   backgrounds but in the left gutter, clear of all content. */
+.trail{position:absolute;left:0;top:0;bottom:0;width:clamp(56px,7vw,120px);
+  z-index:3;pointer-events:none;display:none}
+.trail svg{width:100%;height:100%}
+.trail path{fill:none;stroke-width:1.25;vector-effect:non-scaling-stroke}
+.trail .bed{stroke:currentColor;opacity:.16}
+.trail .ink{stroke:var(--amber);stroke-dasharray:1;stroke-dashoffset:1}
+@media(min-width:900px){.trail{display:block}}
+
+/* ---------- estate strip ---------- */
+.estate{background:var(--cream-deep)}
+.estate-grid{display:grid;gap:1px;background:var(--rule);margin-top:3rem;
+  grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));border:1px solid var(--rule)}
+.place{background:var(--cream-deep);padding:2rem 1.6rem;transition:background .5s}
+.place:hover{background:var(--cream)}
+.place h3{font-size:1.24rem;margin-bottom:.5rem}
+.place p{font-size:.93rem;color:var(--ink-soft);margin:0}
+.place span{display:block;font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:.8rem}
+
+/* ---------- included ---------- */
+.inc-grid{display:grid;gap:clamp(1.6rem,3vw,3rem);margin-top:3.4rem;
+  grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))}
+.inc h3{font-size:1.3rem;margin-bottom:.6rem}
+.inc p{color:var(--ink-soft);font-size:.97rem;margin:0}
+.inc-rule{width:2.2rem;height:1px;background:var(--amber);margin-bottom:1.2rem}
+
+/* ---------- close ---------- */
+.close{position:relative;min-height:78svh;display:grid;place-items:center;text-align:center;overflow:hidden}
+.close-img{position:absolute;inset:0;background:url('../../assets/images/map-overlook.jpg') center/cover no-repeat}
+.close::after{content:'';position:absolute;inset:0;background:rgba(20,24,16,.62)}
+.close-inner{position:relative;z-index:2;padding:0 var(--pad);max-width:44rem}
+.close h2{color:#fff;font-size:clamp(2rem,5vw,3.6rem);text-wrap:balance}
+.close p{color:rgba(255,255,255,.86);margin-top:1.4rem;font-size:1.08rem}
+
+footer{background:var(--ink);color:rgba(247,242,233,.68);padding:3.5rem var(--pad);font-size:.9rem}
+.f-grid{display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:flex-start}
+footer a{color:rgba(247,242,233,.86);text-decoration:none}
+footer a:hover{color:var(--amber-light)}
+.f-brand{font-family:var(--serif);letter-spacing:.16em;text-transform:uppercase;color:var(--cream);font-size:1rem}
+.f-note{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(247,242,233,.14);font-size:.76rem;color:rgba(247,242,233,.45)}
+
+.js .hero .rv>span{transform:translateY(105%)}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .r{opacity:1;transform:none}
+  .rv>span{transform:none}
+  .hero-img{transform:none}
+}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+
+<nav id="nav">
+  <div class="brand">Valley Venues</div>
+  <a class="navcta" href="#plan">Plan Your Weekend</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-img" role="img" aria-label="The Valley at golden hour"></div>
+  <div class="hero-inner">
+    <div class="eyebrow rv"><span style="animation-delay:.1s">Wildwood, Georgia · 15 minutes from Chattanooga</span></div>
+    <h1>
+      <span class="rv"><span style="animation-delay:.22s">More than a</span></span><br>
+      <span class="rv"><span style="animation-delay:.34s"><em>wedding day.</em></span></span>
+    </h1>
+    <p class="r">Your wedding deserves more than a few beautiful hours. Seventy-four private acres, distinctive celebration spaces, onsite lodging — and an entire weekend to spend with the people you love.</p>
+    <div class="hero-actions r">
+      <a class="btn btn-solid" href="#weekend">See the Weekend</a>
+      <a class="btn btn-ghost" href="#estate">Explore the Estate</a>
+    </div>
+  </div>
+</header>
+
+<!-- THE TRUTH -->
+<section class="truth">
+  <div class="mark r">Why a weekend</div>
+  <h2 class="r">A wedding may be one of the only times in your life when nearly everyone you love is gathered in one place.</h2>
+  <p class="truth-note r">Family. Childhood friends. Grandparents. People who live across the country. People who haven't seen each other in years. At most venues, all of that is compressed into six scheduled hours.</p>
+</section>
+
+<!-- THE WEEKEND -->
+<section class="tl" id="weekend">
+  <div class="tl-head">
+    <div class="mark r">The estate weekend</div>
+    <h2 class="r">Here is what you get instead.</h2>
+    <p class="r">Arrive Friday. Wake up already where you need to be. Celebrate without watching the clock. And when the reception ends, stay.</p>
+  </div>
+
+  <div class="trail" aria-hidden="true">
+    <svg viewBox="0 0 100 1000" preserveAspectRatio="none">
+      <path class="bed" d="M50 0 C 14 90, 86 190, 50 288 S 12 430, 50 530 S 88 660, 50 762 S 16 880, 50 1000"/>
+      <path class="ink" id="trailInk" pathLength="1" d="M50 0 C 14 90, 86 190, 50 288 S 12 430, 50 530 S 88 660, 50 762 S 16 880, 50 1000"/>
+    </svg>
+  </div>
+
+  <section class="mo r" style="--bg:#F7F2E9;--fg:#2A2E22;--dim:#3F4539;--accent:#714924">
+    <div class="hour" aria-hidden="true">4:00</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Friday</b> 4:00 pm</div>
+        <h3>You arrive once.</h3>
+        <p>No shuttling between a hotel, a rehearsal space, and a venue across town. You pull through the gate, and for the next two days this is simply where you are.</p>
+        <span class="where">The Lodge</span>
+      </div>
+      <figure><img src="img/m00.webp" alt="Arriving at the estate" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="mo flip r" style="--bg:#F0E3CD;--fg:#2A2E22;--dim:#3F4539;--accent:#664220">
+    <div class="hour" aria-hidden="true">6:00</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Friday</b> 6:00 pm</div>
+        <h3>You rehearse where you'll actually say your vows.</h3>
+        <p>Not a parking lot stand-in. The real place, in the real light, at the hour you'll be standing there tomorrow.</p>
+        <span class="where">The Valley</span>
+      </div>
+      <figure><img src="img/m01.webp" alt="Rehearsal in the meadow" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="mo wide r" style="--bg:#1C231C;--fg:#EDE6D8;--dim:rgba(237,230,216,.90);--accent:#DCAD81">
+    <div class="hour" aria-hidden="true">9:30</div>
+    <div class="mo-inner">
+      <figure><img src="img/m02.webp" alt="Evening around the fire" loading="lazy"></figure>
+      <div class="mo-text">
+        <div class="stampline"><b>Friday</b> 9:30 pm</div>
+        <h3>Nobody drives home.</h3>
+        <p>The fire gets lit. Someone opens another bottle. Your college roommate and your aunt end up in the same conversation, which is the sort of thing that only happens when nobody is watching the time.</p>
+        <span class="where">Overlook Village</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="mo inset r" style="--bg:#F6F4EE;--fg:#2A2E22;--dim:#3F4539;--accent:#714924">
+    <div class="hour" aria-hidden="true">9:00</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Saturday</b> 9:00 am</div>
+        <h3>Morning starts slowly, on purpose.</h3>
+        <p>Coffee with your people instead of a caravan of cars. Hair and makeup somewhere with real windows and a view worth waking up to.</p>
+        <span class="where">Magnolia House</span>
+      </div>
+      <figure><img src="img/m03.webp" alt="Getting ready" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="mo wide r" style="--bg:#F7F1E6;--fg:#2A2E22;--dim:#3F4539;--accent:#714924">
+    <div class="hour" aria-hidden="true">4:30</div>
+    <div class="mo-inner">
+      <figure><img src="img/m04.webp" alt="Ceremony in the valley" loading="lazy"></figure>
+      <div class="mo-text">
+        <div class="stampline"><b>Saturday</b> 4:30 pm</div>
+        <h3>You choose the setting that feels most like you.</h3>
+        <p>An open meadow with the ridgeline behind you. A deck above the valley. A lawn framed by hardwoods. The estate doesn't dictate the ceremony &mdash; it holds it.</p>
+        <span class="where">The Valley &middot; Lookout Deck</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="mo flip r" style="--bg:#EBD5AE;--fg:#3A2E1E;--dim:#3F311F;--accent:#5C3B1D">
+    <div class="hour" aria-hidden="true">5:30</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Saturday</b> 5:30 pm</div>
+        <h3>Cocktails happen where the view is.</h3>
+        <p>Guests walk &mdash; they don't drive &mdash; from the ceremony to the overlook while the light does the thing it does here at that hour.</p>
+        <span class="where">Lookout Deck</span>
+      </div>
+      <figure><img src="img/m05.webp" alt="Cocktail hour on the deck" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="mo r" style="--bg:#463726;--fg:#F7F2E9;--dim:rgba(247,242,233,.92);--accent:#E8D3C0">
+    <div class="hour" aria-hidden="true">7:00</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Saturday</b> 7:00 pm</div>
+        <h3>The room is designed around your people.</h3>
+        <p>Who sits together. Who needs distance. Who ends up behind you in the first-dance photographs. These are not small details, and they are not an afterthought.</p>
+        <span class="where">Davis Hall</span>
+      </div>
+      <figure><img src="img/m06.webp" alt="Reception dinner" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="mo inset r" style="--bg:#2E2A22;--fg:#EDE6D8;--dim:rgba(237,230,216,.90);--accent:#DCAD81">
+    <div class="hour" aria-hidden="true">9:00</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Saturday</b> 9:00 pm</div>
+        <h3>Nobody is calculating a drive home.</h3>
+        <p>The people staying on the estate stay on the estate. The night runs as long as it runs.</p>
+        <span class="where">Davis Hall</span>
+      </div>
+      <figure><img src="img/m07.webp" alt="Toasts and dancing" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="mo wide r" style="--bg:#12171A;--fg:#D8DEE4;--dim:rgba(216,222,228,.88);--accent:#9FB6C4">
+    <div class="hour" aria-hidden="true">11:30</div>
+    <div class="mo-inner">
+      <figure><img src="img/m08.webp" alt="Secluded retreat at night" loading="lazy"></figure>
+      <div class="mo-text">
+        <div class="stampline"><b>Saturday</b> 11:30 pm</div>
+        <h3>You disappear &mdash; and everyone you love is still here.</h3>
+        <p>A secluded retreat at the edge of the property, a short ride from the music. Married, alone, and thirty seconds from your favorite people.</p>
+        <span class="where">Lost in the Woods</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="mo flip r" style="--bg:#FAF8F3;--fg:#2A2E22;--dim:#3F4539;--accent:#714924">
+    <div class="hour" aria-hidden="true">9:00</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Sunday</b> 9:00 am</div>
+        <h3>Breakfast, with everyone still there.</h3>
+        <p>This is the one most couples tell us they didn't expect to love. Yesterday gets retold over coffee by the people who were in it, before anyone has driven anywhere.</p>
+        <span class="where">Magnolia House</span>
+      </div>
+      <figure><img src="img/m09.webp" alt="Breakfast the morning after" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="mo r" style="--bg:#F7F2E9;--fg:#2A2E22;--dim:#3F4539;--accent:#714924">
+    <div class="hour" aria-hidden="true">11:00</div>
+    <div class="mo-inner">
+      <div class="mo-text">
+        <div class="stampline"><b>Sunday</b> 11:00 am</div>
+        <h3>And then you go &mdash; slowly.</h3>
+        <p>Not herded into cars at midnight. Not scattered to four different hotels. The weekend ends the way it started: together, and unhurried.</p>
+        <span class="where">The Estate</span>
+      </div>
+      <figure><img src="img/m10.webp" alt="Departing the estate" loading="lazy"></figure>
+    </div>
+  </section>
+</section>
+
+<!-- THE ESTATE -->
+<section class="estate" id="estate">
+  <div class="lede">
+    <div class="mark r">One private estate</div>
+    <h2 class="r">Not a collection of venues. One place, and it's yours.</h2>
+    <p class="r">Seventy-four acres of meadow, ridgeline, hardwood, and historic architecture — with the freedom to move between them however the weekend wants to go.</p>
+  </div>
+  <div class="estate-grid r">
+    <div class="place"><span>Ceremony</span><h3>The Valley</h3><p>An open meadow beneath the ridge, for up to 300 guests.</p></div>
+    <div class="place"><span>Reception</span><h3>Davis Hall</h3><p>Bright, high-ceilinged, and warm after dark.</p></div>
+    <div class="place"><span>Overlook</span><h3>Lookout Deck</h3><p>A cantilevered view over the valley — best at golden hour.</p></div>
+    <div class="place"><span>Historic</span><h3>Magnolia House</h3><p>An 1890s manor for getting ready, and for the morning after.</p></div>
+    <div class="place"><span>Lodging</span><h3>The Lodge &amp; Overlook Village</h3><p>Room for your inner circle to stay the whole weekend.</p></div>
+    <div class="place"><span>Retreat</span><h3>Lost in the Woods</h3><p>Secluded, quiet, and entirely yours after the last dance.</p></div>
+  </div>
+</section>
+
+<!-- INCLUDED -->
+<section>
+  <div class="lede">
+    <div class="mark r">Everything feels easier</div>
+    <h2 class="r">More of what you need is already here.</h2>
+  </div>
+  <div class="inc-grid">
+    <div class="inc r"><div class="inc-rule"></div><h3>Fewer separate decisions</h3><p>Tables, chairs, linens, and an in-house decor library are already on the property, so fewer details become their own vendor, their own invoice, and their own phone call.</p></div>
+    <div class="inc r"><div class="inc-rule"></div><h3>Your day survives the weather</h3><p>Indoor and outdoor spaces sit minutes apart. A forecast that changes on Thursday doesn't change what your wedding feels like.</p></div>
+    <div class="inc r"><div class="inc-rule"></div><h3>You experience it instead of running it</h3><p>Setup, cleanup, golf carts, parking, security, and coordination happen behind the scenes. Guests see the magic, not the machinery.</p></div>
+    <div class="inc r"><div class="inc-rule"></div><h3>Everyone you love can stay</h3><p>Onsite lodging for up to 34 guests keeps the people closest to you a short walk away, all weekend.</p></div>
+    <div class="inc r"><div class="inc-rule"></div><h3>A world away, surprisingly close</h3><p>Fifteen minutes from downtown Chattanooga and about thirty from the airport. Your guests get a destination without the travel day.</p></div>
+    <div class="inc r"><div class="inc-rule"></div><h3>Planners are welcome here</h3><p>Bring your vision and your team. We know the estate, and we'd rather support your plan than replace it.</p></div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section class="close" id="plan">
+  <div class="close-img" role="img" aria-label="The overlook at dusk"></div>
+  <div class="close-inner">
+    <h2 class="r">The estate is yours. The weekend is the point.</h2>
+    <p class="r">Tell us who's coming and what you want the days to feel like, and we'll show you what a weekend here could look like.</p>
+    <div class="hero-actions r" style="justify-content:center">
+      <a class="btn btn-solid" href="mailto:Info@thevalleyvenues.com">Start the Conversation</a>
+      <a class="btn btn-ghost" href="tel:+14236350463">(423) 635-0463</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-grid">
+    <div>
+      <div class="f-brand">Valley Venues</div>
+      <p style="margin-top:.8rem">1860 Pope Creek Rd<br>Wildwood, Georgia</p>
+    </div>
+    <div>
+      <p><a href="tel:+14236350463">(423) 635-0463</a><br>
+      <a href="mailto:Info@thevalleyvenues.com">Info@thevalleyvenues.com</a></p>
+    </div>
+    <div>
+      <p>Fifteen minutes from downtown Chattanooga<br>Thirty minutes from the airport</p>
+    </div>
+  </div>
+  <div class="f-note">Concept A · “More Than a Wedding Day” — internal design study for Valley Venues. Photography shown is existing estate imagery used as placeholder.</div>
+</footer>
+
+<script>
+(function(){
+  var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var bar = document.getElementById('bar'),
+      nav = document.getElementById('nav'),
+      pending = [].slice.call(document.querySelectorAll('.r')),
+      ticking = false;
+
+  /* reduced motion (or no JS features): show everything, no animation */
+  if (rm){
+    pending.forEach(function(el){ el.classList.add('in'); });
+    pending = [];
+  }
+
+  /* Reveals run on a positional sweep rather than IntersectionObserver: IO only
+     fires on an intersection *change*, so jumping down the page (anchor link,
+     restored scroll position, fast flick) can skip elements and leave them stuck
+     at opacity 0. A positional sweep cannot miss them.
+
+     Deliberately NOT wrapped in requestAnimationFrame - rAF is paused while a tab
+     is hidden or not compositing, and content visibility must never depend on
+     that. The list only shrinks, so the cost is trivial. */
+  function reveal(){
+    if (!pending.length) return;
+    var vh = window.innerHeight, still = [];
+    for (var i = 0; i < pending.length; i++){
+      if (pending[i].getBoundingClientRect().top < vh * .88){
+        pending[i].classList.add('in');
+      } else {
+        still.push(pending[i]);
+      }
+    }
+    pending = still;
+  }
+
+  /* Purely decorative chrome - safe to rAF-throttle. */
+  function chrome(){
+    var st = window.scrollY,
+        vh = window.innerHeight,
+        h  = document.documentElement.scrollHeight - vh;
+    bar.style.width = (h > 0 ? (st / h) * 100 : 0) + '%';
+    nav.classList.toggle('solid', st > vh * .72);
+    ticking = false;
+  }
+
+  /* The trail: an SVG path across the estate that inks in as you move through
+     the weekend. pathLength="1" makes the dash maths a plain 0..1, independent
+     of how tall the section happens to render. */
+  var tl  = document.getElementById('weekend'),
+      ink = document.getElementById('trailInk'),
+      figs = [].slice.call(document.querySelectorAll('.mo figure img'));
+
+  function trail(){
+    if (!ink || !tl) return;
+    var r = tl.getBoundingClientRect(),
+        p = Math.min(1, Math.max(0, (innerHeight * 0.62 - r.top) / r.height));
+    ink.style.strokeDashoffset = (1 - p);
+  }
+
+  /* Parallax inside the frame: the photo drifts against its container, so each
+     image has depth as it passes - felt more than seen. figure is overflow:hidden
+     and the image is scaled 1.08, so the drift never exposes an edge. */
+  function parallax(){
+    var vh = innerHeight;
+    for (var i = 0; i < figs.length; i++){
+      var r = figs[i].getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) continue;      /* offscreen */
+      var off = ((r.top + r.height / 2) - vh / 2) / vh;
+      figs[i].style.setProperty('--drift', (off * -26).toFixed(1) + 'px');
+    }
+  }
+
+  function onScroll(){
+    reveal();
+    trail();
+    parallax();
+    if (!ticking){ ticking = true; requestAnimationFrame(chrome); }
+  }
+
+  addEventListener('scroll', onScroll, {passive:true});
+  addEventListener('resize', onScroll, {passive:true});
+  addEventListener('load', reveal);
+
+  /* The hero sits bottom-aligned, so its copy and CTAs fall below the sweep's
+     threshold and would stay hidden until the first scroll. Above-the-fold
+     content is revealed on arrival regardless of position. */
+  document.querySelectorAll('.hero .r').forEach(function(el, i){
+    setTimeout(function(){ el.classList.add('in'); }, 620 + i * 130);
+  });
+
+  onScroll();
+})();
+</script>
+</body>
+</html>

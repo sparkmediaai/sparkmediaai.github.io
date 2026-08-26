@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Five Directions — Valley Venues</title>
+<meta name="description" content="Five design directions for the Valley Venues website, shown on the same page so only the design differs.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#12160F;
+  --panel:#1A2016;
+  --fg:#F0EBE0;
+  --dim:rgba(240,235,224,.74);
+  --line:rgba(240,235,224,.16);
+  --gold:#D8B173;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  padding:clamp(2.5rem,8vh,6rem) clamp(1.25rem,5vw,5rem) clamp(3rem,8vh,6rem)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+
+header{max-width:48rem;margin-bottom:clamp(2.5rem,7vh,4.5rem)}
+.eyebrow{font-size:.76rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(2.3rem,6vw,4.2rem);line-height:1.08;margin:1.1rem 0 0}
+header p{color:var(--dim);margin-top:1.3rem;font-size:clamp(1rem,1.2vw,1.08rem)}
+header .hint{margin-top:1.1rem;font-size:.92rem;color:var(--dim)}
+header .hint b{color:var(--fg);font-weight:600}
+
+.grid{display:grid;gap:clamp(1.5rem,3vw,2.5rem)}
+@media(min-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1400px){.grid{grid-template-columns:repeat(3,1fr)}}
+
+.card{display:block;text-decoration:none;background:var(--panel);
+  border:1px solid var(--line);transition:border-color .4s,transform .4s}
+.card:hover,.card:focus-visible{border-color:var(--gold);transform:translateY(-3px)}
+
+/* ---- live thumbnail ----
+   The preview is the real page rendered at 1440x900 and scaled down, not a
+   screenshot. It cannot fall out of date when a style changes, and there is
+   no image to regenerate. The frame is inert: no pointer events, removed from
+   the tab order, hidden from screen readers — the card's own link does the work. */
+.shot{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--seed,#222);
+  border-bottom:1px solid var(--line)}
+.shot iframe{position:absolute;top:0;left:0;width:1440px;height:900px;border:0;
+  transform-origin:0 0;transform:scale(var(--s,.28));pointer-events:none}
+.shot::after{content:'';position:absolute;inset:0;box-shadow:inset 0 -60px 60px -50px rgba(0,0,0,.5)}
+
+.meta{padding:1.5rem 1.6rem 1.7rem}
+.row{display:flex;align-items:baseline;gap:.9rem}
+.num{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.6rem;color:var(--gold);line-height:1}
+.card h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:1.65rem;margin:0;line-height:1.15}
+.card p{color:var(--dim);font-size:.95rem;margin:.7rem 0 0}
+.sig{margin-top:1rem;font-size:.86rem;color:var(--fg)}
+.sig b{color:var(--gold);font-weight:600}
+.swatches{display:flex;height:1.5rem;margin-top:1.2rem;border:1px solid var(--line)}
+.swatches i{flex:1}
+.type{margin-top:.8rem;font-size:.8rem;letter-spacing:.06em;color:var(--dim)}
+.open{margin-top:1.2rem;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:600;color:var(--gold)}
+
+footer{margin-top:clamp(3rem,8vh,5rem);padding-top:1.6rem;border-top:1px solid var(--line);
+  max-width:52rem;font-size:.9rem;color:var(--dim)}
+footer p{margin:0 0 .8em}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.card:hover{transform:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Valley Venues · Design study</div>
+  <h1>Five directions for the same page</h1>
+  <p>Each one is The Valley, with word-for-word identical content. The only thing that changes is the design — so whichever you prefer, you're choosing a look rather than a page.</p>
+  <p class="hint"><b>Open a few and scroll.</b> Several only reveal themselves in motion, and the thumbnails can't show that.</p>
+</header>
+
+<div class="grid">
+
+  <a class="card" href="01-scroll-responsive/">
+    <!-- 01's hero only opens under scroll, and an iframe never scrolls, so the
+         preview is nudged to the point where the frame has finished opening. -->
+    <div class="shot" style="--seed:#1F2A22" data-scroll="580"><iframe src="01-scroll-responsive/" title="" aria-hidden="true" tabindex="-1" loading="lazy" scrolling="no"></iframe></div>
+    <div class="meta">
+      <div class="row"><span class="num">01</span><h2>Scroll-Responsive</h2></div>
+      <p>The hero is a narrow slot onto the meadow that opens as you scroll. Nothing plays at you — it responds to you.</p>
+      <div class="sig"><b>Signature:</b> the frame opens under your own scroll</div>
+      <div class="swatches"><i style="background:#F4F0E8"></i><i style="background:#1F2A22"></i><i style="background:#A9793F"></i><i style="background:#8C9A84"></i></div>
+      <div class="type">Cormorant Garamond + Montserrat</div>
+      <div class="open">Open 01 →</div>
+    </div>
+  </a>
+
+  <a class="card" href="02-nightfall/">
+    <div class="shot" style="--seed:#0F1712"><iframe src="02-nightfall/" title="" aria-hidden="true" tabindex="-1" loading="lazy" scrolling="no"></iframe></div>
+    <div class="meta">
+      <div class="row"><span class="num">02</span><h2>Nightfall</h2></div>
+      <p>The estate after the reception rather than at noon — the hours that are the whole argument for staying the weekend.</p>
+      <div class="sig"><b>Signature:</b> a lantern that follows your cursor</div>
+      <div class="swatches"><i style="background:#0F1712"></i><i style="background:#1E2A20"></i><i style="background:#E8B872"></i><i style="background:#EFE9DC"></i></div>
+      <div class="type">Libre Baskerville + Manrope</div>
+      <div class="open">Open 02 →</div>
+    </div>
+  </a>
+
+  <a class="card" href="03-field-guide/">
+    <div class="shot" style="--seed:#FBFAF6"><iframe src="03-field-guide/" title="" aria-hidden="true" tabindex="-1" loading="lazy" scrolling="no"></iframe></div>
+    <div class="meta">
+      <div class="row"><span class="num">03</span><h2>Field Guide</h2></div>
+      <p>The land observed and written down, the way a naturalist would record it. Specific rather than romantic — and quietly more convincing for it.</p>
+      <div class="sig"><b>Signature:</b> real facts in the margin — aspect, best light, wet plan</div>
+      <div class="swatches"><i style="background:#FBFAF6"></i><i style="background:#3A4A34"></i><i style="background:#8A6D14"></i><i style="background:#8D9C84"></i></div>
+      <div class="type">Fraunces + Outfit</div>
+      <div class="open">Open 03 →</div>
+    </div>
+  </a>
+
+  <a class="card" href="04-stone-and-glass/">
+    <div class="shot" style="--seed:#E2DED4"><iframe src="04-stone-and-glass/" title="" aria-hidden="true" tabindex="-1" loading="lazy" scrolling="no"></iframe></div>
+    <div class="meta">
+      <div class="row"><span class="num">04</span><h2>Stone &amp; Glass</h2></div>
+      <p>The built estate rather than the landscape — manor, hall and deck as architecture. Cool stone warmed by oak and copper.</p>
+      <div class="sig"><b>Signature:</b> a survey datum line across every section</div>
+      <div class="swatches"><i style="background:#E2DED4"></i><i style="background:#2E3330"></i><i style="background:#2F4237"></i><i style="background:#7A5227"></i></div>
+      <div class="type">DM Serif Display + DM Sans</div>
+      <div class="open">Open 04 →</div>
+    </div>
+  </a>
+
+  <a class="card" href="05-drawn-estate/">
+    <div class="shot" style="--seed:#F2EDE0"><iframe src="05-drawn-estate/" title="" aria-hidden="true" tabindex="-1" loading="lazy" scrolling="no"></iframe></div>
+    <div class="meta">
+      <div class="row"><span class="num">05</span><h2>The Drawn Estate</h2></div>
+      <p>You meet all seventy-four acres first, and The Valley as one marked point on them — the estate as one place rather than a list of venues.</p>
+      <div class="sig"><b>Signature:</b> the interactive map is the hero</div>
+      <div class="swatches"><i style="background:#F2EDE0"></i><i style="background:#263127"></i><i style="background:#57450D"></i><i style="background:#69473E"></i></div>
+      <div class="type">Marcellus + Jost</div>
+      <div class="open">Open 05 →</div>
+    </div>
+  </a>
+
+  <a class="card" href="../a/">
+    <div class="shot" style="--seed:#F7F2E9"><iframe src="../a/" title="" aria-hidden="true" tabindex="-1" loading="lazy" scrolling="no"></iframe></div>
+    <div class="meta">
+      <div class="row"><span class="num">A</span><h2>The Weekend</h2></div>
+      <p>A full homepage rather than a style test. The page walks Friday afternoon to Sunday morning, and the backgrounds pass through the day as you scroll.</p>
+      <div class="sig"><b>Signature:</b> the page itself moves from afternoon to night and back</div>
+      <div class="swatches"><i style="background:#F7F2E9"></i><i style="background:#1C231C"></i><i style="background:#EBD5AE"></i><i style="background:#714924"></i></div>
+      <div class="type">Lora + Manrope</div>
+      <div class="open">Open A →</div>
+    </div>
+  </a>
+
+</div>
+
+<footer>
+  <p>Photography is the estate's own. A few spaces — the conservatory, Overlook Village, Lost in the Woods — have no photography yet and are stood in for by other parts of the property.</p>
+  <p>These pages aren't linked from the live site and don't appear in search. They're reachable only by this link.</p>
+</footer>
+
+<script>
+(function(){
+  /* Scale each preview so a 1440px-wide page fits its card exactly. Done in JS
+     because the card width is fluid; recalculated on resize. */
+  var shots = [].slice.call(document.querySelectorAll('.shot'));
+  function fit(){
+    for (var i = 0; i < shots.length; i++){
+      shots[i].style.setProperty('--s', (shots[i].clientWidth / 1440).toFixed(4));
+    }
+  }
+  fit();
+  addEventListener('resize', fit, {passive:true});
+  addEventListener('load', fit);
+
+  shots.forEach(function(s){
+    var f = s.querySelector('iframe');
+    if (!f) return;
+
+    /* Belt and braces: if a preview is blocked or fails, the card keeps its
+       seed colour rather than showing an empty black rectangle. */
+    f.addEventListener('error', function(){ f.style.display = 'none'; });
+
+    /* Some heroes only reach their finished state under scroll. Nudge those
+       previews to that point and fire a scroll event so the page's own handler
+       runs. Same-origin, so this is allowed; wrapped anyway because a preview
+       failing must never break the selector. */
+    var to = parseInt(s.getAttribute('data-scroll'), 10);
+    if (!to) return;
+    f.addEventListener('load', function(){
+      setTimeout(function(){
+        try {
+          f.contentWindow.scrollTo(0, to);
+          f.contentWindow.dispatchEvent(new Event('scroll'));
+        } catch (e){ /* preview stays at the top; still a real preview */ }
+      }, 300);
+    });
+  });
+})();
+</script>
+</body>
+</html>

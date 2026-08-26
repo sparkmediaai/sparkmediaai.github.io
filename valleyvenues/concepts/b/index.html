@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Estate Is Yours — Valley Venues</title>
+<meta name="description" content="Seventy-four private acres near Chattanooga. For one weekend, all of it yours.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=' js';</script>
+<style>
+:root{
+  --forest:#0E1A11;
+  --forest-soft:#16241A;
+  --fire:#E0A458;
+  --stone:#6E7468;
+  --bone:#F2EDE4;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --pad:clamp(1.25rem,5vw,5rem);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--forest);color:var(--bone);
+  font-family:var(--sans);font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.08;margin:0}
+p{margin:0 0 1.1em}
+a{color:inherit}
+img,svg{max-width:100%;display:block}
+
+/* ---------------- scroll-driven sequence ---------------- */
+/* The section is tall; the visual pins inside it. Scroll distance through the
+   section maps 1:1 onto the frame index, so the viewer scrubs time directly. */
+.seq{position:relative;height:420vh}
+.seq-pin{position:sticky;top:0;height:100svh;overflow:hidden}
+
+/* First frame as a CSS background: if canvas never draws - JS off, canvas
+   unsupported, frames still loading - the hero is still a real image. */
+.seq-pin::before{content:'';position:absolute;inset:0;
+  background:url('seq/f000.jpg') center/cover no-repeat}
+#seqCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.seq-pin::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(14,26,17,.55) 0%,rgba(14,26,17,.05) 38%,rgba(14,26,17,.88) 100%)}
+
+.seq-copy{position:absolute;inset:auto 0 0 0;z-index:3;padding:0 var(--pad) clamp(3rem,9vh,7rem);
+  max-width:62rem}
+.clock{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.6rem);color:var(--fire);
+  line-height:1;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.clock small{display:block;font-family:var(--sans);font-size:.62rem;letter-spacing:.34em;
+  text-transform:uppercase;color:rgba(242,237,228,.62);margin-top:.9rem}
+.seq-copy h1{font-size:clamp(2.6rem,7vw,6rem);margin-top:1.8rem;text-wrap:balance}
+.seq-copy h1 em{font-style:italic;color:var(--fire)}
+.seq-copy p{margin-top:1.4rem;max-width:32rem;color:rgba(242,237,228,.86);font-size:clamp(1rem,1.4vw,1.13rem)}
+
+.scrollcue{position:absolute;right:var(--pad);bottom:clamp(3rem,9vh,7rem);z-index:3;
+  font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(242,237,228,.5);
+  writing-mode:vertical-rl;display:flex;align-items:center;gap:.9rem}
+.scrollcue::after{content:'';width:1px;height:4rem;background:linear-gradient(var(--fire),transparent)}
+
+/* loading pip - honest about a 2.3MB sequence */
+.seq-load{position:absolute;left:var(--pad);top:calc(var(--pad) + 2.5rem);z-index:4;
+  font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(242,237,228,.45);
+  transition:opacity .6s}
+.seq-load[hidden]{display:block;opacity:0;pointer-events:none}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;
+  align-items:center;padding:1.2rem var(--pad);mix-blend-mode:difference}
+.brand{font-family:var(--serif);font-size:1.15rem;letter-spacing:.2em;text-transform:uppercase;color:#fff}
+.navcta{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:.3rem}
+
+/* ---------------- rest of page ---------------- */
+section{padding:clamp(5rem,13vh,10rem) var(--pad)}
+.mark{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--fire);margin-bottom:1.6rem}
+.lede{max-width:46rem}
+.lede h2{font-size:clamp(2.1rem,5vw,3.9rem);text-wrap:balance}
+.lede p{margin-top:1.6rem;color:rgba(242,237,228,.72);font-size:clamp(1.02rem,1.4vw,1.16rem)}
+
+.map-wrap{margin-top:clamp(3rem,7vh,5rem);border:1px solid rgba(242,237,228,.14);
+  background:var(--forest-soft);padding:clamp(1.5rem,4vw,3.5rem)}
+.map-wrap img{width:100%;filter:invert(1) hue-rotate(180deg) saturate(.4) brightness(1.1);opacity:.86}
+
+.places{display:grid;gap:1px;background:rgba(242,237,228,.13);margin-top:clamp(3rem,7vh,5rem);
+  grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));border:1px solid rgba(242,237,228,.13)}
+.place{background:var(--forest);padding:2.2rem 1.7rem;transition:background .6s}
+.place:hover{background:var(--forest-soft)}
+.place span{display:block;font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--fire);margin-bottom:.9rem}
+.place h3{font-size:1.5rem;margin-bottom:.5rem}
+.place p{font-size:.92rem;color:rgba(242,237,228,.66);margin:0}
+
+.close{text-align:center;border-top:1px solid rgba(242,237,228,.14)}
+.close h2{font-size:clamp(2rem,5vw,3.6rem);max-width:40rem;margin:0 auto;text-wrap:balance}
+.btn{display:inline-block;margin-top:2.4rem;text-decoration:none;font-size:.66rem;letter-spacing:.24em;
+  text-transform:uppercase;padding:1.1rem 2.6rem;background:var(--fire);color:var(--forest);font-weight:500;transition:.35s}
+.btn:hover{background:var(--bone)}
+
+footer{padding:3rem var(--pad);border-top:1px solid rgba(242,237,228,.1);
+  font-size:.76rem;color:rgba(242,237,228,.42)}
+
+.js .r{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.19,1,.22,1),transform 1s cubic-bezier(.19,1,.22,1)}
+.js .r.in{opacity:1;transform:none}
+
+/* A scrubbed sequence is exactly the motion that makes some people ill.
+   Collapse the scroll distance and show a single frame instead. */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .seq{height:auto}
+  .seq-pin{position:relative;height:78svh}
+  #seqCanvas{display:none}
+  .js .r{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Valley Venues</div>
+  <a class="navcta" href="#plan">Plan Your Weekend</a>
+</nav>
+
+<!-- SCROLL-DRIVEN SEQUENCE -->
+<div class="seq" id="seq">
+  <div class="seq-pin">
+    <canvas id="seqCanvas" aria-label="The Valley from golden hour into night"></canvas>
+    <div class="seq-load" id="seqLoad">Loading the light…</div>
+    <div class="seq-copy">
+      <div class="clock"><span id="clock">4:00</span><small id="clockLabel">Saturday afternoon</small></div>
+      <h1>Seventy-four acres.<br><em>All of it yours.</em></h1>
+      <p>Scroll, and the afternoon becomes evening. This is the part most venues sell you six hours of — and the part we give you a whole weekend of.</p>
+    </div>
+    <div class="scrollcue">Scroll to move the sun</div>
+  </div>
+</div>
+
+<!-- ESTATE -->
+<section>
+  <div class="lede">
+    <div class="mark r">One private estate</div>
+    <h2 class="r">Not a collection of venues competing for your attention.</h2>
+    <p class="r">One property, and the freedom to move across it however the weekend wants to go — meadow to ridgeline to hearth, without anyone getting in a car.</p>
+  </div>
+  <div class="map-wrap r">
+    <img src="../../assets/estate-map.svg" alt="Map of the Valley Venues estate" onerror="this.closest('.map-wrap').style.display='none'">
+  </div>
+  <div class="places">
+    <div class="place r"><span>Ceremony</span><h3>The Valley</h3><p>An open meadow beneath the ridge, for up to 300.</p></div>
+    <div class="place r"><span>Reception</span><h3>Davis Hall</h3><p>Bright by day, warm after dark.</p></div>
+    <div class="place r"><span>Overlook</span><h3>Lookout Deck</h3><p>The view the whole estate is named for.</p></div>
+    <div class="place r"><span>Historic</span><h3>Magnolia House</h3><p>An 1890s manor, and the morning after.</p></div>
+    <div class="place r"><span>Lodging</span><h3>The Lodge &amp; Overlook Village</h3><p>Room for your inner circle to stay.</p></div>
+    <div class="place r"><span>Retreat</span><h3>Lost in the Woods</h3><p>Yours alone, after the last dance.</p></div>
+  </div>
+</section>
+
+<section class="close" id="plan">
+  <h2 class="r">For a weekend, the gates close behind you.</h2>
+  <a class="btn r" href="mailto:Info@thevalleyvenues.com">Start the Conversation</a>
+</section>
+
+<footer>Concept B · “The Estate Is Yours” — internal design study. Sequence frames are a graded prototype generated from a single still, standing in for real timelapse footage.</footer>
+
+<script>
+(function(){
+  var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- reveals (positional sweep, not IO - see concept A) ---------- */
+  var pending = [].slice.call(document.querySelectorAll('.r'));
+  if (rm){ pending.forEach(function(e){ e.classList.add('in'); }); pending = []; }
+  function reveal(){
+    if (!pending.length) return;
+    var vh = innerHeight, still = [];
+    for (var i=0;i<pending.length;i++){
+      if (pending[i].getBoundingClientRect().top < vh*.88) pending[i].classList.add('in');
+      else still.push(pending[i]);
+    }
+    pending = still;
+  }
+
+  /* ---------- scroll-driven frame sequence ---------- */
+  var FRAMES = 48,
+      canvas = document.getElementById('seqCanvas'),
+      seq    = document.getElementById('seq'),
+      loadEl = document.getElementById('seqLoad'),
+      clock  = document.getElementById('clock'),
+      label  = document.getElementById('clockLabel');
+
+  if (rm || !canvas.getContext){
+    if (loadEl) loadEl.hidden = true;
+    addEventListener('scroll', reveal, {passive:true});
+    reveal();
+    return;                      /* CSS background frame carries the hero */
+  }
+
+  var ctx = canvas.getContext('2d'),
+      imgs = new Array(FRAMES),
+      ready = 0,
+      current = -1,
+      dpr = Math.min(devicePixelRatio || 1, 2);
+
+  /* Halve the payload on small screens: every other frame, held twice.
+     ~1.2MB instead of ~2.3MB, and the step is imperceptible at phone size. */
+  var step = innerWidth < 700 ? 2 : 1;
+
+  function src(i){ return 'seq/f' + String(i).padStart(3,'0') + '.jpg'; }
+
+  function size(){
+    canvas.width  = Math.round(canvas.clientWidth  * dpr);
+    canvas.height = Math.round(canvas.clientHeight * dpr);
+    current = -1;                /* force a redraw at the new size */
+  }
+
+  function paint(i){
+    var img = imgs[i];
+    if (!img || !img.complete || !img.naturalWidth) return;
+    var cw = canvas.width, ch = canvas.height,
+        s  = Math.max(cw/img.naturalWidth, ch/img.naturalHeight),
+        w  = img.naturalWidth*s, h = img.naturalHeight*s;
+    ctx.drawImage(img, (cw-w)/2, (ch-h)/2, w, h);
+    current = i;
+  }
+
+  /* nearest already-loaded frame, so scrubbing never blanks mid-download */
+  function nearest(i){
+    if (imgs[i] && imgs[i].complete && imgs[i].naturalWidth) return i;
+    for (var d=1; d<FRAMES; d++){
+      var a=i-d, b=i+d;
+      if (a>=0 && imgs[a] && imgs[a].complete && imgs[a].naturalWidth) return a;
+      if (b<FRAMES && imgs[b] && imgs[b].complete && imgs[b].naturalWidth) return b;
+    }
+    return -1;
+  }
+
+  function pad2(n){ return n<10 ? '0'+n : ''+n; }
+
+  function onScroll(){
+    reveal();
+    var r = seq.getBoundingClientRect(),
+        travel = r.height - innerHeight,
+        p = travel > 0 ? Math.min(1, Math.max(0, -r.top / travel)) : 0,
+        idx = Math.round(p * (FRAMES-1));
+
+    idx = Math.round(idx/step)*step;
+    if (idx > FRAMES-1) idx = FRAMES-1;
+
+    var use = nearest(idx);
+    if (use >= 0 && use !== current) paint(use);
+
+    /* 4:00pm -> 9:30pm, so the clock and the light move together */
+    var mins = 16*60 + Math.round(p * 330);
+    var hh = Math.floor(mins/60), mm = mins%60;
+    clock.textContent = ((hh>12?hh-12:hh)) + ':' + pad2(mm);
+    label.textContent = hh < 18 ? 'Saturday afternoon'
+                      : hh < 20 ? 'Golden hour' : 'Saturday night';
+  }
+
+  size();
+  addEventListener('resize', function(){ size(); onScroll(); }, {passive:true});
+  addEventListener('scroll', onScroll, {passive:true});
+
+  /* Frame 0 first and drawn immediately, then the rest in the background. */
+  for (var i=0;i<FRAMES;i+=step){
+    (function(i){
+      var im = new Image();
+      im.decoding = 'async';
+      im.onload = function(){
+        ready++;
+        if (loadEl) loadEl.textContent = 'Loading the light… ' + Math.round(ready/(FRAMES/step)*100) + '%';
+        if (i === 0 || current === -1) onScroll();
+        if (ready >= Math.ceil(FRAMES/step) && loadEl) loadEl.hidden = true;
+      };
+      im.onerror = function(){ ready++; };
+      im.src = src(i);
+      imgs[i] = im;
+    })(i);
+  }
+
+  onScroll();
+})();
+</script>
+</body>
+</html>

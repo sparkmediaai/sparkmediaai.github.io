@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Valley — Valley Venues</title>
+<meta name="description" content="An open meadow beneath the ridge: elevation, aspect, bloom, and what it means for your ceremony.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=' js';</script>
+<style>
+/* ============================================================
+   STYLE 03 — FIELD GUIDE
+   The brief lists wildflowers, meadows, trails and creeks among the estate's
+   materials. This direction treats the property the way a naturalist would:
+   observed, annotated, specific. The margin carries real facts about the land,
+   because structure should encode something true rather than decorate.
+   ============================================================ */
+:root{
+  --paper:#FBFAF6;
+  --paper-warm:#F3F1E8;
+  --ink:#1F241C;
+  --meadow:#3A4A34;      /* small text + labels: ~9:1 on paper */
+  --gold:#8A6D14;        /* display only */
+  --sage:#8D9C84;        /* rules and marks, never text */
+  --display:'Fraunces',Georgia,serif;
+  --sans:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --pad:clamp(1.25rem,5vw,5rem);
+  --margin-col:clamp(9rem,15vw,14rem);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-weight:400;line-height:1.75;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.1;margin:0}
+p{margin:0 0 1.2em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--meadow);outline-offset:3px}
+
+nav{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;
+  align-items:baseline;padding:1.4rem var(--pad);color:var(--paper)}
+.brand{font-family:var(--display);font-size:1rem;letter-spacing:.2em;text-transform:uppercase}
+.navcta{font-size:.74rem;letter-spacing:.18em;font-weight:500;text-transform:uppercase;
+  text-decoration:none;border-bottom:1px solid rgba(251,250,246,.5);padding-bottom:.25rem}
+
+/* ---- hero: a specimen plate ---- */
+.hero{position:relative;min-height:78svh;display:grid;align-items:end;overflow:hidden;background:var(--ink)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.88}
+.hero::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,26,18,.5),rgba(20,26,18,.1) 45%,rgba(20,26,18,.72))}
+.hero-in{position:relative;z-index:2;padding:0 var(--pad) clamp(2.5rem,7vh,4.5rem);width:100%}
+.hero-in h1{font-size:clamp(2.8rem,9vw,7rem);color:var(--paper);letter-spacing:-.02em}
+.binomial{font-family:var(--display);font-style:italic;font-size:clamp(.95rem,1.5vw,1.2rem);
+  color:rgba(251,250,246,.82);margin-top:.7rem;letter-spacing:.02em}
+
+/* ---- the annotated column ----
+   SIGNATURE: a persistent margin of observed facts. Not decoration — every
+   entry is something true about the land that changes how you'd plan a day
+   on it. */
+.leaf{display:grid;gap:clamp(1.5rem,4vw,3rem);padding:clamp(4rem,11vh,8rem) var(--pad);
+  max-width:78rem;margin:0 auto;align-items:start}
+@media(min-width:900px){.leaf{grid-template-columns:var(--margin-col) 1fr}}
+.margin{border-top:2px solid var(--ink);padding-top:.9rem}
+.margin dl{margin:0;display:grid;gap:.9rem}
+.margin dt{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--meadow);font-weight:500}
+.margin dd{margin:0 0 .5rem;font-family:var(--display);font-size:1.02rem;line-height:1.3}
+.body h2{font-size:clamp(1.9rem,4.2vw,3.1rem);text-wrap:balance;max-width:22ch}
+.body p{margin-top:1.4rem;max-width:46ch;font-size:clamp(1.02rem,1.3vw,1.12rem);color:#333A2F}
+.tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--meadow);
+  font-weight:500;margin-bottom:1.4rem;display:block}
+
+.rule{height:1px;background:var(--sage);opacity:.5;max-width:78rem;margin:0 auto}
+
+/* ---- plates ---- */
+.plates{display:grid;gap:clamp(1rem,2.5vw,2rem);padding:0 var(--pad) clamp(4rem,10vh,7rem);
+  max-width:78rem;margin:0 auto;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+figure{margin:0}
+.plates img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.plates figcaption{margin-top:.7rem;font-size:.78rem;color:var(--meadow);letter-spacing:.04em}
+.plates figcaption i{font-family:var(--display);font-style:italic}
+
+.band{background:var(--paper-warm);padding:clamp(4rem,11vh,8rem) var(--pad)}
+.band .leaf{padding:0}
+
+.count{display:grid;gap:1px;background:var(--sage);max-width:78rem;margin:0 auto;
+  grid-template-columns:repeat(auto-fit,minmax(11rem,1fr))}
+.count div{background:var(--paper);padding:1.9rem 1.4rem}
+.count b{display:block;font-family:var(--display);font-size:2.3rem;font-weight:400;color:var(--gold);line-height:1;margin-bottom:.4rem}
+.count span{font-size:.88rem;color:var(--meadow)}
+
+.close{text-align:center;padding:clamp(4rem,11vh,8rem) var(--pad)}
+.close h2{font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:24ch;margin:0 auto}
+.close p{max-width:44ch;margin:1.4rem auto 0;color:#333A2F}
+.btn{display:inline-block;margin-top:2.2rem;text-decoration:none;font-size:.74rem;letter-spacing:.2em;
+  font-weight:600;text-transform:uppercase;padding:1.1rem 2.6rem;background:var(--meadow);color:var(--paper);
+  transition:background .35s}
+.btn:hover{background:var(--ink)}
+
+.more{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));
+  max-width:78rem;margin:0 auto;padding:0 var(--pad) clamp(4rem,10vh,7rem)}
+.more a{text-decoration:none;border-top:2px solid var(--ink);padding-top:.9rem}
+.more b{display:block;font-family:var(--display);font-weight:400;font-size:1.2rem}
+.more span{font-size:.86rem;color:var(--meadow)}
+
+footer{padding:2.5rem var(--pad);border-top:1px solid var(--sage);font-size:.84rem;color:var(--meadow)}
+
+.js .r{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(.19,1,.22,1),transform .9s cubic-bezier(.19,1,.22,1)}
+.js .r.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Valley Venues</div>
+  <a class="navcta" href="#plan">Enquire</a>
+</nav>
+
+<header class="hero">
+  <img src="../_img/aerial-valley.webp" alt="The valley meadow seen from above, ridge behind">
+  <div class="hero-in">
+    <h1>The Valley</h1>
+    <div class="binomial">Open meadow · south-facing · 74-acre estate, Wildwood, Georgia</div>
+  </div>
+</header>
+
+<div class="leaf">
+  <aside class="margin r">
+    <dl>
+      <dt>Aspect</dt><dd>South-facing</dd>
+      <dt>Held by</dt><dd>Ridge on three sides</dd>
+      <dt>Best light</dt><dd>4:30 – 6:15 pm</dd>
+      <dt>Capacity</dt><dd>300 seated</dd>
+    </dl>
+  </aside>
+  <div class="body">
+    <span class="tag r">Vows beneath an open sky</span>
+    <h2 class="r">Three hundred people can stand here and it still feels like yours.</h2>
+    <p class="r">The meadow sits low between ridgelines, which is why it works. Sound stays in it. Wind drops in it. And the hills hold the last of the sun a good half-hour after the light has left the grass — the reason every photographer who works here asks for a late-afternoon ceremony.</p>
+  </div>
+</div>
+
+<div class="rule"></div>
+
+<div class="leaf">
+  <aside class="margin r">
+    <dl>
+      <dt>Aisle</dt><dd>Runs any bearing</dd>
+      <dt>Wet plan</dt><dd>Davis Hall, 4 min</dd>
+      <dt>Access</dt><dd>Golf cart to the gate</dd>
+      <dt>Ground</dt><dd>Mown meadow grass</dd>
+    </dl>
+  </aside>
+  <div class="body">
+    <span class="tag r">Set the scene</span>
+    <h2 class="r">The aisle runs whichever way the light is better that month.</h2>
+    <p class="r">Nothing here is fixed — not where you face, not where your family sits, not what stands behind you in the photographs your grandchildren will look at. A June ceremony and an October one point in different directions, and both are right.</p>
+  </div>
+</div>
+
+<div class="plates">
+  <figure class="r"><img src="../_img/valley-autumn.webp" alt="An autumn ceremony set in the meadow" loading="lazy"><figcaption><i>Late October</i> — wooden chairs, arch set toward the ridge</figcaption></figure>
+  <figure class="r"><img src="../_img/valley-arch.webp" alt="A white floral arch in the meadow" loading="lazy"><figcaption><i>Early summer</i> — full sun on the meadow at six</figcaption></figure>
+  <figure class="r"><img src="../_img/meadow-pair.webp" alt="A couple in the meadow beneath the ridge" loading="lazy"><figcaption><i>The ridge</i> — held on three sides, which is what keeps the wind out</figcaption></figure>
+  <figure class="r"><img src="../_img/fog-walk.webp" alt="A couple walking through low cloud on the estate" loading="lazy"><figcaption><i>Valley fog</i> — most mornings in autumn, gone by ten</figcaption></figure>
+</div>
+
+<div class="band">
+  <div class="leaf">
+    <aside class="margin r">
+      <dl>
+        <dt>Recorded</dt><dd>On the estate</dd>
+        <dt>Season</dt><dd>April – November</dd>
+      </dl>
+    </aside>
+    <div class="body">
+      <span class="tag r">By the numbers</span>
+      <h2 class="r">What the land actually gives you.</h2>
+    </div>
+  </div>
+  <div class="count r" style="margin-top:clamp(2.5rem,6vh,4rem)">
+    <div><b>300</b><span>Guests seated beneath the ridge</span></div>
+    <div><b>74</b><span>Private acres, gates closed</span></div>
+    <div><b>34</b><span>Guests who can stay the night</span></div>
+    <div><b>15</b><span>Minutes from downtown Chattanooga</span></div>
+  </div>
+</div>
+
+<section class="close" id="plan">
+  <h2 class="r">Walk it before you decide.</h2>
+  <p class="r">Come at four in the afternoon and stand where the arch would go. It is a difficult place to say no to at that hour.</p>
+  <a class="btn r" href="mailto:Info@thevalleyvenues.com">Book a Visit</a>
+</section>
+
+<div class="more r">
+  <a href="../../../davis-hall.html"><b>Davis Hall</b><span>Reception, and the wet plan</span></a>
+  <a href="../../../lookout-deck.html"><b>Lookout Deck</b><span>Cocktails above the valley</span></a>
+  <a href="../../../magnolia-house.html"><b>Magnolia House</b><span>An 1890s manor</span></a>
+  <a href="../../../lodging.html"><b>Lodging</b><span>Stay the whole weekend</span></a>
+</div>
+
+<footer>Style 03 · Field Guide — internal design study. Fraunces + Outfit.</footer>
+
+<script>
+(function(){
+  var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pend = [].slice.call(document.querySelectorAll('.r'));
+  if (rm){ pend.forEach(function(e){ e.classList.add('in'); }); pend = []; }
+  function reveal(){
+    if (!pend.length) return;
+    var vh = innerHeight, still = [];
+    for (var i=0;i<pend.length;i++){
+      if (pend[i].getBoundingClientRect().top < vh*.9) pend[i].classList.add('in');
+      else still.push(pend[i]);
+    }
+    pend = still;
+  }
+  addEventListener('scroll', reveal, {passive:true});
+  addEventListener('resize', reveal, {passive:true});
+  addEventListener('load', reveal);
+  reveal();
+})();
+</script>
+</body>
+</html>
