@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Valley — Valley Venues</title>
-<meta name="description" content="An open meadow beneath the ridge, on a 74-acre estate of stone, glass and standing timber.">
+<title>Your Month — Valley Venues</title>
+<meta name="description" content="The same meadow in June and in October. Choose your month and see the estate you would actually be marrying in.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,118 +12,135 @@
 <script>document.documentElement.className+=' js';</script>
 <style>
 /* ============================================================
-   STYLE 04 — STONE & GLASS
-   The brief names stone, natural wood, historic architecture and glass. This
-   direction is the built estate rather than the landscape: cool limestone,
-   graphite, and the verdigris of weathered copper. Warmth comes from oak and
-   from the photography, not from a cream background.
+   STYLE 04 — YOUR MONTH
+   Every couple books a date before they can picture it. The estate in June and
+   the estate in October are different places, and no gallery answers that
+   because galleries mix every season together.
 
-   SIGNATURE: a datum line. A single hairline sits the same distance below the
-   top of every section, and every heading sits on it — the way a survey
-   drawing carries one reference level across every sheet.
+   SIGNATURE: a wipe you control. Drag the handle and the meadow moves from
+   full summer to late autumn — the one question every enquiry actually starts
+   with, answered on the page instead of in an email.
    ============================================================ */
 :root{
-  --limestone:#E2DED4;
-  --limestone-2:#D6D1C4;
-  --graphite:#2E3330;
-  --deep:#1A1D1B;
-  --verd:#2F4237;         /* text-safe verdigris, ~7:1 on limestone */
-  --verd-light:#91AD9C;   /* rules and marks only */
-  --oak:#7A5227;
+  --paper:#F8F8F4;
+  --paper-2:#EDEDE5;
+  --ink:#171A14;
+  --grey:#414639;
+  --june:#2C4430;
+  --oct:#753D12;
+  --line:rgba(23,26,20,.16);
   --display:'DM Serif Display',Georgia,serif;
   --sans:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.19,1,.22,1);
   --pad:clamp(1.25rem,5vw,5rem);
-  --datum:clamp(4.5rem,9vh,7rem);   /* the reference level */
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--limestone);color:var(--graphite);
+body{margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--sans);font-weight:400;line-height:1.7;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
-h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08;margin:0}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.06;margin:0}
 p{margin:0 0 1.15em}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--verd);outline-offset:3px}
+:focus-visible{outline:2px solid var(--june);outline-offset:3px}
 
 nav{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;
-  align-items:center;padding:1.4rem var(--pad);color:var(--limestone)}
+  align-items:center;padding:1.3rem var(--pad);color:var(--paper)}
 .brand{font-family:var(--display);font-size:1.1rem;letter-spacing:.16em;text-transform:uppercase}
-.navcta{font-size:.74rem;letter-spacing:.16em;font-weight:500;text-transform:uppercase;
-  text-decoration:none;border-bottom:1px solid rgba(226,222,212,.55);padding-bottom:.25rem}
+.navcta{font-size:.76rem;letter-spacing:.16em;font-weight:500;text-transform:uppercase;
+  text-decoration:none;border-bottom:1px solid rgba(248,248,244,.55);padding-bottom:.25rem}
 
-/* ---- hero ---- */
-.hero{position:relative;height:88svh;min-height:32rem;overflow:hidden;background:var(--deep)}
+.hero{position:relative;height:76svh;min-height:26rem;overflow:hidden;background:var(--ink)}
 .hero img{width:100%;height:100%;object-fit:cover}
 .hero::after{content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(26,29,27,.55),rgba(26,29,27,.08) 40%,rgba(26,29,27,.7))}
+  background:linear-gradient(180deg,rgba(23,26,20,.6),rgba(23,26,20,.06) 42%,rgba(23,26,20,.72))}
 .hero-in{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 var(--pad) clamp(2.5rem,7vh,4.5rem)}
-.hero-in h1{font-size:clamp(3rem,10vw,8rem);color:var(--limestone);letter-spacing:-.015em}
-.hero-meta{display:flex;flex-wrap:wrap;gap:.6rem 2rem;margin-top:1.3rem;
-  font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(226,222,212,.86);font-weight:500}
+.hero-in h1{font-size:clamp(2.6rem,8vw,6.4rem);color:var(--paper);letter-spacing:-.015em}
+.hero-in p{margin-top:1.1rem;color:rgba(248,248,244,.9);max-width:34rem;font-size:clamp(1rem,1.3vw,1.15rem)}
 
-/* ---- sections carry the datum ---- */
-.sheet{position:relative;padding:var(--datum) var(--pad) clamp(4rem,11vh,8rem)}
-.sheet::before{content:'';position:absolute;left:0;right:0;top:var(--datum);height:1px;
-  background:var(--verd-light);opacity:.55}
-.sheet-in{position:relative;max-width:78rem;margin:0 auto;padding-top:clamp(1.6rem,4vh,2.6rem)}
-.ref{position:absolute;top:calc(var(--datum) - 1.5rem);left:var(--pad);
-  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--verd);font-weight:500}
+section{padding:clamp(4.5rem,12vh,9rem) var(--pad)}
+.wrap{max-width:70rem;margin:0 auto}
+.tag{font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;color:var(--june);font-weight:500;margin-bottom:1.2rem}
+h2{font-size:clamp(1.9rem,4.4vw,3.3rem);text-wrap:balance;max-width:20ch}
+.lead{margin-top:1.4rem;color:var(--grey);font-size:clamp(1.02rem,1.3vw,1.14rem);max-width:46ch}
 
-.grid{display:grid;gap:clamp(1.6rem,4vw,3.5rem);align-items:start}
-@media(min-width:900px){.grid{grid-template-columns:repeat(12,1fr)}
-  .c7{grid-column:span 7}.c5{grid-column:span 5}.c6{grid-column:span 6}.c12{grid-column:1/-1}}
-h2{font-size:clamp(1.9rem,4.2vw,3.2rem);text-wrap:balance;max-width:20ch}
-.lead{margin-top:1.4rem;color:#414740;font-size:clamp(1.02rem,1.3vw,1.13rem);max-width:48ch}
+/* ---- the wipe ---- */
+.wipe{position:relative;margin-top:clamp(2.5rem,6vh,4rem);overflow:hidden;background:var(--ink)}
+.wipe .layer{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.wipe .over{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  clip-path:inset(0 0 0 var(--x,50%))}
+.wipe .bar{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:var(--paper);
+  transform:translateX(-1px);pointer-events:none;box-shadow:0 0 14px rgba(0,0,0,.35)}
+.wipe .knob{position:absolute;top:50%;left:var(--x,50%);width:3rem;height:3rem;margin:-1.5rem 0 0 -1.5rem;
+  border-radius:50%;background:var(--paper);pointer-events:none;
+  display:grid;place-items:center;box-shadow:0 6px 22px rgba(0,0,0,.3)}
+.wipe .knob::before{content:'‹ ›';font-size:1.1rem;letter-spacing:.1em;color:var(--ink)}
+.wipe .mark{position:absolute;top:1rem;z-index:3;font-size:.76rem;letter-spacing:.22em;
+  text-transform:uppercase;font-weight:700;color:var(--paper);text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.wipe .mark.l{left:1.1rem}
+.wipe .mark.r{right:1.1rem}
 
-.spec{border-top:1px solid var(--verd-light);margin-top:2rem}
-.spec div{display:flex;justify-content:space-between;gap:1.5rem;padding:.85rem 0;
-  border-bottom:1px solid rgba(127,160,140,.45);font-size:.94rem}
-.spec dt,.spec span:first-child{color:var(--verd);font-weight:500;letter-spacing:.02em}
-.spec span:last-child{font-family:var(--display);font-size:1.06rem}
+/* The control is a real range input: keyboard, screen reader and touch all
+   work without reimplementing any of it. It sits invisibly over the image. */
+.wipe input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize}
+.wipe input:focus-visible + .bar{box-shadow:0 0 0 3px var(--june)}
+html:not(.js) .wipe .over{clip-path:inset(0 0 0 50%)}
 
-.dark{background:var(--deep);color:var(--limestone)}
-.dark .lead{color:rgba(226,222,212,.82)}
-.dark .ref{color:var(--verd-light)}
-.dark .sheet::before{background:var(--verd-light);opacity:.4}
-.dark .spec div{border-color:rgba(127,160,140,.3)}
-.dark .spec span:first-child{color:var(--verd-light)}
+.wipecap{display:flex;justify-content:space-between;gap:1rem;margin-top:.9rem;
+  font-size:.88rem;color:var(--grey)}
+.wipecap b{font-weight:700;color:var(--ink)}
 
-figure{margin:0}
-.tall img{width:100%;aspect-ratio:3/4;object-fit:cover}
-.wide img{width:100%;aspect-ratio:16/10;object-fit:cover}
-figcaption{margin-top:.7rem;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--verd)}
-.dark figcaption{color:var(--verd-light)}
+/* ---- month guide ---- */
+.months{display:grid;gap:1px;background:var(--line);margin-top:clamp(3rem,7vh,5rem);border:1px solid var(--line)}
+@media(min-width:640px){.months{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1040px){.months{grid-template-columns:repeat(4,1fr)}}
+.month{background:var(--paper);padding:1.8rem 1.4rem}
+.month h3{font-size:1.35rem;margin-bottom:.5rem}
+.month .when{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;margin-bottom:.9rem}
+.month.s1 .when{color:var(--june)}
+.month.s2 .when{color:var(--oct)}
+.month p{font-size:.94rem;color:var(--grey);margin:0}
 
-.strip{display:grid;gap:1px;background:var(--verd-light);margin-top:clamp(2.5rem,6vh,4rem)}
-@media(min-width:700px){.strip{grid-template-columns:repeat(4,1fr)}}
-.strip div{background:var(--limestone);padding:1.8rem 1.3rem}
-.dark .strip div{background:var(--deep)}
-.strip b{display:block;font-family:var(--display);font-size:2.1rem;line-height:1;margin-bottom:.35rem}
-.strip span{font-size:.86rem;color:var(--verd)}
-.dark .strip span{color:var(--verd-light)}
+.dark{background:var(--ink);color:var(--paper)}
+.dark .lead{color:rgba(248,248,244,.84)}
+.dark .tag{color:#9CBFA2}
+.dark .month{background:var(--ink)}
+.dark .months{border-color:rgba(248,248,244,.2);background:rgba(248,248,244,.2)}
+.dark .month p{color:rgba(248,248,244,.8)}
+.dark .month.s1 .when{color:#9CBFA2}
+.dark .month.s2 .when{color:#E0A46A}
 
-.btn{display:inline-block;margin-top:2rem;text-decoration:none;font-size:.74rem;letter-spacing:.18em;
-  font-weight:700;text-transform:uppercase;padding:1.1rem 2.6rem;background:var(--verd);color:var(--limestone);
+.counts{display:grid;gap:1px;background:var(--line);margin-top:clamp(3rem,7vh,5rem);
+  grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));border:1px solid var(--line)}
+.counts div{background:var(--paper);padding:1.9rem 1.4rem}
+.counts b{display:block;font-family:var(--display);font-size:2.4rem;line-height:1;color:var(--june);
+  margin-bottom:.35rem;font-variant-numeric:tabular-nums}
+.counts span{font-size:.9rem;color:var(--grey)}
+
+.btn{display:inline-block;margin-top:2rem;text-decoration:none;font-size:.76rem;letter-spacing:.18em;
+  font-weight:700;text-transform:uppercase;padding:1.1rem 2.6rem;background:var(--june);color:var(--paper);
   transition:background .35s}
-.btn:hover{background:var(--graphite)}
-.dark .btn{background:var(--limestone);color:var(--deep)}
-.dark .btn:hover{background:var(--verd-light)}
+.btn:hover{background:var(--ink)}
+.dark .btn{background:var(--paper);color:var(--ink)}
 
 .more{display:grid;gap:1.3rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin-top:2.4rem}
-.more a{text-decoration:none;border-top:1px solid var(--verd-light);padding-top:.9rem}
+.more a{text-decoration:none;border-top:1px solid var(--line);padding-top:.9rem}
+.dark .more a{border-color:rgba(248,248,244,.24)}
 .more b{display:block;font-family:var(--display);font-size:1.2rem}
-.more span{font-size:.86rem;color:var(--verd)}
-/* --verd is a DARK token; anything using it inside .dark must be restated or
-   it renders dark-on-dark. This block is the whole list of those cases. */
-.dark .more span{color:var(--verd-light)}
-.dark .more a{border-color:rgba(127,160,140,.5)}
+.more span{font-size:.88rem;color:var(--grey)}
+.dark .more span{color:rgba(248,248,244,.8)}
 
-footer{padding:2.5rem var(--pad);background:var(--limestone-2);font-size:.84rem;color:var(--verd)}
+footer{padding:2.5rem var(--pad);background:var(--paper-2);font-size:.86rem;color:var(--grey)}
 
-.js .r{opacity:0;transform:translateY(18px);transition:opacity .85s cubic-bezier(.19,1,.22,1),transform .85s cubic-bezier(.19,1,.22,1)}
+.js .r{opacity:0;transform:translateY(20px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
 .js .r.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}
+.js .r.d1{transition-delay:.1s}.js .r.d2{transition-delay:.2s}.js .r.d3{transition-delay:.3s}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .js .r{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
@@ -134,97 +151,85 @@ footer{padding:2.5rem var(--pad);background:var(--limestone-2);font-size:.84rem;
 </nav>
 
 <header class="hero">
-  <img src="../_img/deck-ceremony.webp" alt="A ceremony set on the deck, ridge beyond">
+  <img src="../_img/bride-meadow.webp" alt="The meadow beneath the ridge">
   <div class="hero-in">
-    <h1>The Valley</h1>
-    <div class="hero-meta">
-      <span>Open meadow</span><span>300 seated</span><span>South-facing</span><span>Wildwood, Georgia</span>
-    </div>
+    <h1>Your month</h1>
+    <p>Every couple picks a date before they can picture it. Here is what that date actually looks like.</p>
   </div>
 </header>
 
-<section class="sheet">
-  <div class="ref">01 — The meadow</div>
-  <div class="sheet-in grid">
-    <div class="c7">
-      <h2 class="r">Three hundred people can stand here and it still feels like yours.</h2>
-      <p class="lead r">The meadow sits low between two ridgelines. That is not scenery — it is why sound stays put, why the wind drops, and why the hills hold the last half-hour of light after it has left the grass.</p>
+<section>
+  <div class="wrap">
+    <div class="tag r">The same meadow</div>
+    <h2 class="r d1">June and October are two different estates.</h2>
+    <p class="lead r d2">Galleries mix every season together, which is why they never answer the only question you have. Drag across and watch the meadow change.</p>
+
+    <div class="wipe r d2" id="wipe">
+      <img class="layer" src="../_img/valley-arch.webp" alt="The meadow in June, in full leaf">
+      <img class="over"  src="../_img/valley-autumn.webp" alt="The same meadow in October, turned to gold">
+      <input type="range" min="0" max="100" value="50" step="0.5" id="wipeRange"
+             aria-label="Compare the meadow in June and October">
+      <div class="bar" aria-hidden="true"></div>
+      <div class="knob" aria-hidden="true"></div>
+      <span class="mark l" aria-hidden="true">June</span>
+      <span class="mark r" aria-hidden="true">October</span>
     </div>
-    <div class="c5 r">
-      <div class="spec">
-        <div><span>Capacity</span><span>300 seated</span></div>
-        <div><span>Aspect</span><span>South-facing</span></div>
-        <div><span>Best light</span><span>4:30 – 6:15 pm</span></div>
-        <div><span>Wet plan</span><span>Davis Hall, 4 min</span></div>
-      </div>
+    <div class="wipecap">
+      <span><b>June</b> — full leaf, sun on the grass until nearly nine</span>
+      <span><b>October</b> — the ridge turns, and the light goes gold by five</span>
     </div>
   </div>
 </section>
 
-<section class="sheet dark">
-  <div class="ref">02 — Standing structures</div>
-  <div class="sheet-in grid">
-    <div class="c6 r">
-      <figure class="tall"><img src="../_img/columns-ridge.webp" alt="A couple between the manor columns, ridge behind" loading="lazy">
-        <figcaption>Magnolia House — colonnade, west elevation</figcaption></figure>
-    </div>
-    <div class="c6">
-      <h2 class="r">Stone, timber and glass, all within four minutes' walk.</h2>
-      <p class="lead r">An 1890s manor for the morning. A hall with the height for three hundred. A deck cantilevered over the drop. The estate is not one room you are renting — it is a set of buildings you move between, and the walking between them is half of what people remember.</p>
-      <div class="spec r">
-        <div><span>Magnolia House</span><span>1890s manor</span></div>
-        <div><span>Davis Hall</span><span>Reception, 300</span></div>
-        <div><span>Lookout Deck</span><span>Cocktails, sunset</span></div>
-        <div><span>Onsite beds</span><span>34 guests</span></div>
-      </div>
+<section class="dark">
+  <div class="wrap">
+    <div class="tag r">The season guide</div>
+    <h2 class="r d1">What you are actually booking, month by month.</h2>
+    <p class="lead r d2">The estate is open April through November. Each stretch has its own argument, and none of them is the wrong answer.</p>
+    <div class="months r d2">
+      <div class="month s1"><div class="when">April – May</div><h3>Everything is new</h3><p>Wildflowers through the meadow, the hardwoods still opening. Cool enough that nobody is uncomfortable in a jacket.</p></div>
+      <div class="month s1"><div class="when">June – August</div><h3>Long, generous light</h3><p>Sun on the grass until nearly nine. Ceremonies push later, cocktails run long, and the deck earns its keep.</p></div>
+      <div class="month s2"><div class="when">September – October</div><h3>The ridge turns</h3><p>The most requested weeks on the calendar, and the reason. Gold by five, and cool by the time you sit down to dinner.</p></div>
+      <div class="month s2"><div class="when">November</div><h3>Bare and enormous</h3><p>The leaves go and the ridgeline shows its shape. Fires lit, the hall warm, and the whole valley visible through the trees.</p></div>
     </div>
   </div>
 </section>
 
-<section class="sheet">
-  <div class="ref">03 — Orientation</div>
-  <div class="sheet-in grid">
-    <div class="c12">
-      <h2 class="r">The aisle runs whichever way the light is better that month.</h2>
-      <p class="lead r">Nothing is fixed — not where you face, not where your family sits, not what stands behind you in the photographs your grandchildren will look at. A June ceremony and an October one point in different directions, and both are right.</p>
-    </div>
-    <div class="c6 r"><figure class="wide"><img src="../_img/valley-autumn.webp" alt="An autumn ceremony set in the meadow" loading="lazy"><figcaption>October — arch set toward the ridge</figcaption></figure></div>
-    <div class="c6 r"><figure class="wide"><img src="../_img/valley-arch.webp" alt="A white floral arch standing in the meadow" loading="lazy"><figcaption>June — full sun at six</figcaption></figure></div>
-  </div>
-  <div class="sheet-in">
-    <div class="strip r">
-      <div><b>300</b><span>Guests seated</span></div>
-      <div><b>74</b><span>Private acres</span></div>
-      <div><b>34</b><span>Stay the night</span></div>
-      <div><b>15</b><span>Min. to Chattanooga</span></div>
+<section>
+  <div class="wrap">
+    <div class="tag r">Whichever you choose</div>
+    <h2 class="r d1">The aisle runs whichever way the light is better that month.</h2>
+    <p class="lead r d2">Nothing here is fixed — not where you face, not where your family sits, not what stands behind you in the photographs. And if the forecast turns on the Thursday, Davis Hall is four minutes away with the same guest list and none of the panic.</p>
+    <div class="counts r d2">
+      <div><b data-count="300">300</b><span>Guests seated beneath the ridge</span></div>
+      <div><b data-count="74">74</b><span>Private acres, gates closed</span></div>
+      <div><b data-count="34">34</b><span>Guests who can stay the night</span></div>
+      <div><b data-count="8">8</b><span>Months of the year, April to November</span></div>
     </div>
   </div>
 </section>
 
-<section class="sheet dark" id="plan">
-  <div class="ref">04 — Visit</div>
-  <div class="sheet-in grid">
-    <div class="c7">
-      <h2 class="r">Stand in it before you decide.</h2>
-      <p class="lead r">Come at four in the afternoon, when the ridge starts throwing shadow across the meadow, and walk from the manor to the deck the way your guests would.</p>
-      <a class="btn r" href="mailto:Info@thevalleyvenues.com">Book a Visit</a>
-    </div>
-    <div class="c5">
-      <div class="more r">
-        <a href="../../../davis-hall.html"><b>Davis Hall</b><span>Reception</span></a>
-        <a href="../../../lookout-deck.html"><b>Lookout Deck</b><span>Cocktails</span></a>
-        <a href="../../../magnolia-house.html"><b>Magnolia House</b><span>1890s manor</span></a>
-        <a href="../../../lodging.html"><b>Lodging</b><span>34 guests</span></a>
-      </div>
+<section class="dark" id="plan">
+  <div class="wrap">
+    <div class="tag r">Visit</div>
+    <h2 class="r d1">Come in the month you are thinking about.</h2>
+    <p class="lead r d2">Not in the abstract — in the actual week, at four in the afternoon, when the ridge starts throwing shadow across the meadow.</p>
+    <a class="btn r d3" href="mailto:Info@thevalleyvenues.com">Book a Visit</a>
+    <div class="more r d3">
+      <a href="../../../davis-hall.html"><b>Davis Hall</b><span>Reception, and the wet plan</span></a>
+      <a href="../../../lookout-deck.html"><b>Lookout Deck</b><span>Cocktails above the valley</span></a>
+      <a href="../../../magnolia-house.html"><b>Magnolia House</b><span>An 1890s manor</span></a>
+      <a href="../../../lodging.html"><b>Lodging</b><span>Stay the whole weekend</span></a>
     </div>
   </div>
 </section>
 
-<footer>Style 04 · Stone &amp; Glass — internal design study. DM Serif Display + DM Sans.</footer>
+<footer>Style 04 · Your Month — internal design study. DM Serif Display + DM Sans.</footer>
 
 <script>
 (function(){
   var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   var pend = [].slice.call(document.querySelectorAll('.r'));
   if (rm){ pend.forEach(function(e){ e.classList.add('in'); }); pend = []; }
   function reveal(){
@@ -236,10 +241,48 @@ footer{padding:2.5rem var(--pad);background:var(--limestone-2);font-size:.84rem;
     }
     pend = still;
   }
-  addEventListener('scroll', reveal, {passive:true});
-  addEventListener('resize', reveal, {passive:true});
-  addEventListener('load', reveal);
-  reveal();
+
+  /* ---- the wipe ----
+     Driven by a real <input type="range">, so dragging, tapping, and arrow keys
+     all work and the control is announced properly. The visuals just follow its
+     value; there is no custom pointer handling to get wrong. */
+  var wipe = document.getElementById('wipe'),
+      range = document.getElementById('wipeRange');
+  function setWipe(){
+    if (!wipe || !range) return;
+    wipe.style.setProperty('--x', range.value + '%');
+  }
+  if (range){
+    range.addEventListener('input', setWipe);
+    setWipe();
+  }
+
+  /* ---- count-up: markup holds the true number, timer backstop writes it if
+     rAF never runs (hidden tab), so the figure is never stuck at zero ---- */
+  var counted = false;
+  function counts(){
+    if (counted || rm) return;
+    var box = document.querySelector('.counts');
+    if (!box || box.getBoundingClientRect().top > innerHeight * .85) return;
+    counted = true;
+    [].forEach.call(box.querySelectorAll('[data-count]'), function(el){
+      var to = parseInt(el.getAttribute('data-count'), 10), t0 = null, dur = 1300;
+      setTimeout(function(){ el.textContent = to; }, dur + 400);
+      el.textContent = '0';
+      (function step(t){
+        if (t0 === null) t0 = t;
+        var p = Math.min(1, (t - t0) / dur);
+        el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      })(performance.now());
+    });
+  }
+
+  function onScroll(){ reveal(); counts(); }
+  addEventListener('scroll', onScroll, {passive:true});
+  addEventListener('resize', onScroll, {passive:true});
+  addEventListener('load', onScroll);
+  onScroll();
 })();
 </script>
 </body>

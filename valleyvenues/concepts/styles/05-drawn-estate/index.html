@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Valley — Valley Venues</title>
-<meta name="description" content="The drawn estate: seventy-four acres, and where The Valley sits within them.">
+<title>The Estate — Valley Venues</title>
+<meta name="description" content="Seventy-four acres, drawn. Explore every space on the estate and see how they sit together.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,25 +13,28 @@
 <style>
 /* ============================================================
    STYLE 05 — THE DRAWN ESTATE
-   The brand personality asks for whimsy "without becoming childish". This
-   direction answers it with draughtsmanship rather than fairy-tale: a drawn
-   survey of the property, annotated by hand.
+   The map is the hero, and it is THE original map: the same inline SVG and the
+   same entrance choreography already built for the live site. Trees pop on a
+   65-step stagger, the creek draws itself over 2.2s, the buildings rise, the
+   ink labels fade up, water runs in the creek, and only then do the nine
+   hotspots bloom in sequence.
 
-   SIGNATURE: the map is the hero. Not a section three-quarters down the page —
-   the first thing you meet is the whole estate, and The Valley is one marked
-   point on it. That is the brand's own argument ("one private estate, not a
-   collection of venues") made structurally.
+   The SVG is fetched and injected rather than duplicated inline, so there is
+   one copy of the artwork in the repo and CSS can still reach inside it.
    ============================================================ */
 :root{
-  --parch:#F2EDE0;
-  --parch-2:#E7E0CD;
-  --ink:#263127;
+  --parch:#F5F1E6;
+  --parch-2:#EAE4D3;
+  --ink:#232E24;
   --ink-soft:#424A39;
   --gold:#57450D;
+  --brass:#8A6A2F;      /* map furniture: dots, rules */
   --rose:#69473E;
   --rule:#B3BCA4;
+  --line:rgba(35,46,36,.16);
   --display:'Marcellus',Georgia,serif;
   --sans:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.19,1,.22,1);
   --pad:clamp(1.25rem,5vw,5rem);
 }
 *{box-sizing:border-box}
@@ -40,52 +43,93 @@ body{margin:0;background:var(--parch);color:var(--ink);
   font-family:var(--sans);font-weight:400;line-height:1.75;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
-h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.14;margin:0}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;line-height:1.14;margin:0}
 p{margin:0 0 1.15em}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
 nav{display:flex;justify-content:space-between;align-items:baseline;padding:1.4rem var(--pad);
-  border-bottom:1px solid var(--rule)}
+  border-bottom:1px solid var(--line)}
 .brand{font-family:var(--display);font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase}
-.navcta{font-size:.74rem;letter-spacing:.16em;font-weight:500;text-transform:uppercase;
+.navcta{font-size:.76rem;letter-spacing:.16em;font-weight:500;text-transform:uppercase;
   text-decoration:none;color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:.2rem}
 
-.titleblock{padding:clamp(2.5rem,7vh,5rem) var(--pad) clamp(1.5rem,4vh,2.5rem);text-align:center}
-.titleblock .sub{font-size:.74rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:500}
-.titleblock h1{font-size:clamp(2.6rem,7.5vw,5.4rem);margin-top:1.1rem;letter-spacing:.01em}
-.titleblock .note{font-family:var(--display);font-style:italic;color:var(--ink-soft);margin-top:.9rem;
-  font-size:clamp(1rem,1.5vw,1.2rem)}
+.titleblock{padding:clamp(2.5rem,7vh,4.5rem) var(--pad) clamp(1.2rem,3vh,2rem);text-align:center;max-width:52rem;margin:0 auto}
+.sub{font-size:.76rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.titleblock h1{font-size:clamp(2.4rem,7vw,5rem);margin-top:1rem}
+.titleblock .note{color:var(--ink-soft);margin-top:1rem}
 
-/* ---- the map ---- */
-.mapwrap{position:relative;max-width:70rem;margin:0 auto clamp(2rem,5vh,3.5rem);padding:0 var(--pad)}
-.mapframe{position:relative;border:1px solid var(--rule);background:var(--parch-2);padding:clamp(.6rem,1.6vw,1.2rem)}
-.mapframe>img{width:100%;filter:sepia(.22) saturate(.82) contrast(1.02)}
-.hot{position:absolute;transform:translate(-50%,-50%);width:2.4rem;height:2.4rem;padding:0;
-  border:0;background:none;cursor:pointer;display:grid;place-items:center}
-.hot .dot{width:.62rem;height:.62rem;border-radius:50%;background:var(--gold);
-  box-shadow:0 0 0 .28rem rgba(138,109,20,.2);transition:transform .3s,box-shadow .3s}
-.hot:hover .dot,.hot:focus-visible .dot{transform:scale(1.35);box-shadow:0 0 0 .5rem rgba(138,109,20,.22)}
-.hot[aria-current="true"] .dot{background:var(--rose);box-shadow:0 0 0 .5rem rgba(138,93,82,.26)}
-.hot .lbl{position:absolute;top:1.7rem;left:50%;transform:translateX(-50%);white-space:nowrap;
-  font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--ink);
-  background:rgba(242,237,224,.9);padding:.15rem .4rem;opacity:0;transition:opacity .3s;pointer-events:none}
-.hot:hover .lbl,.hot:focus-visible .lbl,.hot[aria-current="true"] .lbl{opacity:1}
+/* ============ THE MAP ============ */
+.mapwrap{position:relative;max-width:66rem;margin:0 auto clamp(1.5rem,4vh,2.5rem);padding:0 var(--pad)}
+.mapinner{position:relative}
+.estatesvg{width:100%;display:block;overflow:visible}
+.mapfallback{width:100%}
 
-.readout{max-width:70rem;margin:0 auto;padding:0 var(--pad) clamp(3rem,8vh,5rem)}
-.readout-in{border-top:2px solid var(--ink);padding-top:1.2rem;display:grid;gap:1.4rem}
-@media(min-width:760px){.readout-in{grid-template-columns:14rem 1fr}}
-.readout h3{font-size:1.5rem}
-.readout .idx{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:500}
-.readout p{margin:.5rem 0 0;color:var(--ink-soft);max-width:52ch}
-.readout a.go{display:inline-block;margin-top:.9rem;font-size:.74rem;letter-spacing:.16em;
-  text-transform:uppercase;font-weight:500;color:var(--rose);text-decoration:none;
-  border-bottom:1px solid var(--rose);padding-bottom:.15rem}
+/* entrance choreography — fires when .mapwrap gets .in */
+.js .estatesvg .tree{opacity:0;transform:scale(0);transform-box:fill-box;transform-origin:50% 92%;
+  transition:opacity .5s ease,transform .6s var(--ease);transition-delay:var(--d,0ms)}
+.js .mapwrap.in .estatesvg .tree{opacity:1;transform:scale(1)}
+.js .estatesvg .bld{opacity:0;transform:translateY(12px);transform-box:fill-box;transform-origin:50% 100%;
+  transition:opacity .6s ease .95s,transform .7s var(--ease) .95s}
+.js .mapwrap.in .estatesvg .bld{opacity:1;transform:none}
+.js .estatesvg .creek{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s var(--ease) .2s}
+.js .mapwrap.in .estatesvg .creek{stroke-dashoffset:0}
+.js .estatesvg .road{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s var(--ease) .5s}
+.js .mapwrap.in .estatesvg .road{stroke-dashoffset:0}
+.js .estatesvg .ink{opacity:0;transition:opacity .9s ease 1.1s}
+.js .mapwrap.in .estatesvg .ink{opacity:1}
+.estatesvg .creek-flow{stroke:#eaf7fb;stroke-width:7;fill:none;stroke-linecap:round;
+  stroke-dasharray:6 240;opacity:0;animation:creekflow 6s linear infinite}
+.js .mapwrap.in .estatesvg .creek-flow{opacity:.5;transition:opacity 1s ease 2s}
+@keyframes creekflow{to{stroke-dashoffset:-246}}
 
-/* ---- plates ---- */
-.band{background:var(--parch-2);border-block:1px solid var(--rule);padding:clamp(4rem,10vh,7rem) var(--pad)}
-.wrap{max-width:70rem;margin:0 auto}
-.tag{font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:1.3rem}
+/* hotspots bloom once the grounds have settled */
+.hot{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;border:none;
+  background:none;cursor:pointer;z-index:3;padding:0}
+.js .mapwrap .hot{opacity:0;transform:translate(-50%,-50%) scale(.4);
+  transition:opacity .5s ease,transform .55s var(--ease);transition-delay:1.5s}
+.js .mapwrap.in .hot{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.js .mapwrap.in .hot:nth-of-type(2){transition-delay:1.55s}
+.js .mapwrap.in .hot:nth-of-type(3){transition-delay:1.65s}
+.js .mapwrap.in .hot:nth-of-type(4){transition-delay:1.75s}
+.js .mapwrap.in .hot:nth-of-type(5){transition-delay:1.85s}
+.js .mapwrap.in .hot:nth-of-type(6){transition-delay:1.95s}
+.js .mapwrap.in .hot:nth-of-type(7){transition-delay:2.05s}
+.js .mapwrap.in .hot:nth-of-type(8){transition-delay:2.15s}
+.js .mapwrap.in .hot:nth-of-type(9){transition-delay:2.25s}
+.hot .dot{position:absolute;inset:7px;border-radius:50%;background:var(--brass);
+  box-shadow:0 0 0 0 rgba(138,106,47,.5);animation:hotpulse 2.6s var(--ease) infinite}
+.hot::after{content:attr(data-label);position:absolute;left:50%;top:22px;transform:translateX(-50%);
+  white-space:nowrap;font-family:var(--display);font-size:1rem;color:var(--ink);
+  text-shadow:0 1px 3px rgba(245,241,230,.95),0 0 6px rgba(245,241,230,.75);
+  pointer-events:none;transition:color .3s}
+.hot:hover .dot,.hot.on .dot{background:var(--ink);animation:none;transform:scale(1.18)}
+.hot:hover::after,.hot.on::after{color:var(--gold)}
+@keyframes hotpulse{0%{box-shadow:0 0 0 0 rgba(138,106,47,.5)}70%{box-shadow:0 0 0 14px rgba(138,106,47,0)}100%{box-shadow:0 0 0 0 rgba(138,106,47,0)}}
+
+.mappop{position:absolute;z-index:5;width:252px;background:var(--parch);
+  box-shadow:0 24px 50px -20px rgba(20,28,22,.45);border:1px solid var(--line);
+  opacity:0;visibility:hidden;transform:translate(-50%,8px);
+  transition:opacity .35s var(--ease),transform .35s var(--ease);pointer-events:none}
+.mappop.show{opacity:1;visibility:visible;pointer-events:auto}
+.mappop img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.mappop.show img{animation:popzoom 9s var(--ease) forwards}
+@keyframes popzoom{from{transform:scale(1.12)}to{transform:scale(1)}}
+.mappop .noimg{height:.5rem;background:var(--parch-2)}
+.mappop .mpb{padding:.9rem 1rem 1.1rem}
+.mappop h4{font-size:1.2rem;margin-bottom:.3rem}
+.mappop p{font-size:.88rem;color:var(--ink-soft);margin:0;line-height:1.55}
+.mappop .mplink{display:inline-block;margin-top:.75rem;font-family:var(--sans);text-transform:uppercase;
+  letter-spacing:.16em;font-size:.7rem;font-weight:600;color:var(--gold);text-decoration:none;
+  border-bottom:1px solid var(--gold);padding-bottom:2px}
+
+.maphint{text-align:center;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);padding:0 var(--pad) clamp(3rem,8vh,5rem)}
+
+/* ============ page ============ */
+.band{background:var(--parch-2);border-block:1px solid var(--line);padding:clamp(4rem,10vh,7rem) var(--pad)}
+.wrap{max-width:66rem;margin:0 auto}
+.tag{font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:1.3rem}
 h2{font-size:clamp(1.9rem,4.2vw,3.1rem);text-wrap:balance;max-width:22ch}
 .lead{margin-top:1.4rem;color:var(--ink-soft);font-size:clamp(1.02rem,1.3vw,1.13rem);max-width:48ch}
 
@@ -93,27 +137,35 @@ h2{font-size:clamp(1.9rem,4.2vw,3.1rem);text-wrap:balance;max-width:22ch}
   grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))}
 figure{margin:0}
 .plates img{width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid var(--rule)}
-.plates figcaption{margin-top:.6rem;font-family:var(--display);font-style:italic;font-size:.92rem;color:var(--ink-soft)}
+.plates figcaption{margin-top:.6rem;font-family:var(--display);font-style:italic;font-size:.94rem;color:var(--ink-soft)}
 
 .ledger{display:grid;gap:1px;background:var(--rule);margin-top:clamp(2.5rem,6vh,4rem);
   grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));border:1px solid var(--rule)}
 .ledger div{background:var(--parch);padding:1.8rem 1.3rem}
 .ledger b{display:block;font-family:var(--display);font-size:2.1rem;line-height:1;color:var(--gold);margin-bottom:.35rem}
-.ledger span{font-size:.88rem;color:var(--ink-soft)}
+.ledger span{font-size:.9rem;color:var(--ink-soft)}
 
 .close{padding:clamp(4rem,11vh,8rem) var(--pad);text-align:center}
-.close h2{margin-inline:auto}
-.close .lead{margin-inline:auto}
-.btn{display:inline-block;margin-top:2rem;text-decoration:none;font-size:.74rem;letter-spacing:.2em;
+.close h2,.close .lead{margin-inline:auto}
+.btn{display:inline-block;margin-top:2rem;text-decoration:none;font-size:.76rem;letter-spacing:.2em;
   font-weight:600;text-transform:uppercase;padding:1.1rem 2.6rem;background:var(--ink);color:var(--parch);
   transition:background .35s}
 .btn:hover{background:var(--gold)}
 
-footer{padding:2.5rem var(--pad);border-top:1px solid var(--rule);font-size:.84rem;color:var(--ink-soft)}
+footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);font-size:.86rem;color:var(--ink-soft)}
 
-.js .r{opacity:0;transform:translateY(18px);transition:opacity .85s cubic-bezier(.19,1,.22,1),transform .85s cubic-bezier(.19,1,.22,1)}
+.js .r{opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .js .r.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}
+.js .r.d1{transition-delay:.12s}.js .r.d2{transition-delay:.24s}.js .r.d3{transition-delay:.36s}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .js .r{opacity:1;transform:none}
+  .js .estatesvg .tree,.js .estatesvg .bld,.js .estatesvg .ink{opacity:1;transform:none}
+  .js .estatesvg .creek,.js .estatesvg .road{stroke-dashoffset:0}
+  .js .mapwrap .hot{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  .estatesvg .creek-flow{display:none}
+}
 </style>
 </head>
 <body>
@@ -124,58 +176,51 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--rule);font-size:.84r
 </nav>
 
 <div class="titleblock">
-  <div class="sub">Wildwood, Georgia · Seventy-four acres</div>
-  <h1>The Estate, Drawn</h1>
-  <div class="note">The Valley is one point on it. Here is everything around it.</div>
+  <div class="sub r">Wildwood, Georgia</div>
+  <h1 class="r d1">Seventy-four acres, drawn</h1>
+  <p class="note r d2">Not a list of venues — one estate. Hover any point to see the space, and how far it is from the next one.</p>
 </div>
 
-<div class="mapwrap">
-  <div class="mapframe" id="mapframe">
-    <img src="../../../assets/estate-map.svg" alt="A drawn survey map of the Valley Venues estate">
-    <!-- Hotspot coordinates carried over from the live estate map. -->
-    <button class="hot" style="left:calc(26.9% + 1rem);top:47%" data-i="Manor"      data-t="Magnolia House"  data-u="../../../magnolia-house.html" data-d="An 1890s Southern manor — the storied, romantic heart of the estate."><span class="dot"></span><span class="lbl">Magnolia House</span></button>
-    <button class="hot" style="left:calc(43.1% + 1rem);top:35%" data-i="Lodging"    data-t="Overlook Village" data-u="../../../lodging.html" data-d="Hilltop cabins where your closest guests stay the whole weekend."><span class="dot"></span><span class="lbl">Overlook Village</span></button>
-    <button class="hot" style="left:calc(43.75% + 1rem);top:50.5%" data-i="Lodging" data-t="The Lodge"       data-u="../../../lodging.html" data-d="A retreat on the estate, part of lodging that sleeps up to 34 guests."><span class="dot"></span><span class="lbl">The Lodge</span></button>
-    <button class="hot" style="left:calc(55% + 1rem);top:47%" data-i="Reception"    data-t="Davis Hall"       data-u="../../../davis-hall.html" data-d="The bright indoor reception hall for seated dining and dancing."><span class="dot"></span><span class="lbl">Davis Hall</span></button>
-    <button class="hot" style="left:calc(60.3% + 1rem);top:56.5%" data-i="Overlook" data-t="The Lookout Deck" data-u="../../../lookout-deck.html" data-d="A railed deck over the valley — cocktails, and the sunset."><span class="dot"></span><span class="lbl">Lookout Deck</span></button>
-    <button class="hot" style="left:calc(39.4% + 1rem);top:60%" data-i="Gathering"  data-t="Ivy Barn"         data-d="Rustic character and timeless charm for celebrations of every kind."><span class="dot"></span><span class="lbl">Ivy Barn</span></button>
-    <button class="hot" style="left:calc(46.25% + 1rem);top:66%" data-i="Ceremony"  data-t="The Valley"       data-u="../../../the-valley.html" data-d="The open ceremony meadow, held by ridgelines on three sides. Seats 300."><span class="dot"></span><span class="lbl">The Valley</span></button>
-    <button class="hot" style="left:calc(48.1% + 1rem);top:82%" data-i="Glasshouse" data-t="The Greenhouse"   data-d="A light-filled garden setting for intimate vows and portraits."><span class="dot"></span><span class="lbl">The Greenhouse</span></button>
-    <button class="hot" style="left:calc(32.5% + 1rem);top:69%" data-i="Arrival"    data-t="Parking"          data-d="Ample parking with a short, level walk to every venue."><span class="dot"></span><span class="lbl">Parking</span></button>
-  </div>
-</div>
+<div class="mapwrap" id="mapwrap">
+  <div class="mapinner" id="mapinner">
+    <!-- The artwork is injected here. This <img> is the no-JS / fetch-failure
+         fallback: static, but the map is still present and legible. -->
+    <img class="mapfallback" id="mapfallback" src="../../../assets/estate-map.svg" alt="A drawn map of the Valley Venues estate">
 
-<div class="readout">
-  <div class="readout-in">
-    <div><span class="idx" id="roIdx">Ceremony</span></div>
-    <div>
-      <h3 id="roTitle">The Valley</h3>
-      <p id="roDesc">The open ceremony meadow, held by ridgelines on three sides. Seats 300.</p>
-      <a class="go" id="roLink" href="../../../the-valley.html">Open this page</a>
-    </div>
+    <button class="hot" style="left:26.9%;top:47%"   data-label="Magnolia House"   data-img="venue-magnolia-house.jpg" data-url="../../../magnolia-house.html" data-desc="An 1890s Southern manor — the storied, romantic heart of the estate."><span class="dot"></span></button>
+    <button class="hot" style="left:43.1%;top:35%"   data-label="Overlook Village" data-img="map-overlook.jpg"         data-url="../../../lodging.html"        data-desc="Hilltop cabins where your closest guests stay the whole weekend."><span class="dot"></span></button>
+    <button class="hot" style="left:43.75%;top:50.5%" data-label="The Lodge"       data-img="lg-0006.jpg"              data-url="../../../lodging.html"        data-desc="A retreat on the estate, part of lodging that sleeps up to 34 guests."><span class="dot"></span></button>
+    <button class="hot" style="left:55%;top:47%"     data-label="Davis Hall"       data-img="venue-davis-hall.jpg"     data-url="../../../davis-hall.html"     data-desc="The bright, airy indoor reception hall for seated dining and dancing."><span class="dot"></span></button>
+    <button class="hot" style="left:60.3%;top:56.5%" data-label="The Lookout Deck" data-img="ld-hero.jpg"              data-url="../../../lookout-deck.html"   data-desc="A railed deck with a floral arch, overlooking the valley and the sunset."><span class="dot"></span></button>
+    <button class="hot" style="left:39.4%;top:60%"   data-label="Ivy Barn"                                                                                     data-desc="Character and timeless charm for celebrations of every kind."><span class="dot"></span></button>
+    <button class="hot" style="left:46.25%;top:66%"  data-label="The Valley"       data-img="map-valley.jpg"           data-url="../../../the-valley.html"     data-desc="The signature open-air ceremony lawn, framed by tree lines and sky."><span class="dot"></span></button>
+    <button class="hot" style="left:48.1%;top:82%"   data-label="The Greenhouse"                                                                                data-desc="A light-filled garden setting for intimate vows and portraits."><span class="dot"></span></button>
+    <button class="hot" style="left:32.5%;top:69%"   data-label="Parking"                                                                                       data-desc="Ample on-site parking with a short, level walk to every venue."><span class="dot"></span></button>
+
+    <div class="mappop" id="mappop" role="status" aria-live="polite"></div>
   </div>
 </div>
+<div class="maphint r">Hover or tap any point</div>
 
 <div class="band">
   <div class="wrap">
     <div class="tag r">Vows beneath an open sky</div>
-    <h2 class="r">Three hundred people can stand here and it still feels like yours.</h2>
-    <p class="lead r">The meadow sits low between ridgelines, which is why it works. Sound stays in it, wind drops in it, and the hills hold the last of the light a good half-hour after it has left the grass.</p>
-
+    <h2 class="r d1">Three hundred people can stand in the meadow and it still feels like yours.</h2>
+    <p class="lead r d2">It sits low between ridgelines, which is why it works. Sound stays in it, the wind drops in it, and the hills hold the last of the light a good half-hour after it has left the grass.</p>
     <div class="plates">
       <figure class="r"><img src="../_img/valley-autumn.webp" alt="An autumn ceremony set in the meadow" loading="lazy"><figcaption>October, set toward the ridge</figcaption></figure>
-      <figure class="r"><img src="../_img/valley-arch.webp" alt="A floral arch standing in the meadow" loading="lazy"><figcaption>June, full sun at six</figcaption></figure>
-      <figure class="r"><img src="../_img/vintage-car.webp" alt="A vintage car beneath an oak with florals" loading="lazy"><figcaption>The oak, at the top of the drive</figcaption></figure>
-      <figure class="r"><img src="../_img/manor-lawn.webp" alt="Magnolia House seen across the lawn" loading="lazy"><figcaption>Magnolia House, across the lawn</figcaption></figure>
+      <figure class="r d1"><img src="../_img/valley-arch.webp" alt="A floral arch standing in the meadow" loading="lazy"><figcaption>June, full sun at six</figcaption></figure>
+      <figure class="r d2"><img src="../_img/vintage-car.webp" alt="A vintage car beneath an oak with florals" loading="lazy"><figcaption>The oak, at the top of the drive</figcaption></figure>
+      <figure class="r d3"><img src="../_img/manor-lawn.webp" alt="Magnolia House seen across the lawn" loading="lazy"><figcaption>Magnolia House, across the lawn</figcaption></figure>
     </div>
   </div>
 </div>
 
 <section style="padding:clamp(4rem,10vh,7rem) var(--pad)">
   <div class="wrap">
-    <div class="tag r">Set the scene</div>
-    <h2 class="r">The aisle runs whichever way the light is better that month.</h2>
-    <p class="lead r">Nothing here is fixed — not where you face, not where your family sits, not what stands behind you in the photographs your grandchildren will look at. And if the forecast turns on the Thursday, Davis Hall is four minutes away with the same guest list and none of the panic.</p>
+    <div class="tag r">Everything within a walk</div>
+    <h2 class="r d1">The distance between the manor and the deck is the tour.</h2>
+    <p class="lead r d2">Guests walk from where they got ready to where you say your vows to where they eat. Nobody gets in a car, nobody follows directions, and nobody arrives late because the estate is one place rather than four addresses.</p>
     <div class="ledger r">
       <div><b>300</b><span>Guests seated beneath the ridge</span></div>
       <div><b>74</b><span>Private acres, gates closed</span></div>
@@ -187,8 +232,8 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--rule);font-size:.84r
 
 <section class="close" id="plan">
   <h2 class="r">Walk the whole map in an afternoon.</h2>
-  <p class="lead r">Come at four, start at the manor, and finish on the deck. That walk is the tour.</p>
-  <a class="btn r" href="mailto:Info@thevalleyvenues.com">Book a Visit</a>
+  <p class="lead r d1">Come at four, start at the manor, and finish on the deck as the light goes.</p>
+  <a class="btn r d2" href="mailto:Info@thevalleyvenues.com">Book a Visit</a>
 </section>
 
 <footer>Style 05 · The Drawn Estate — internal design study. Marcellus + Jost.</footer>
@@ -196,47 +241,93 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--rule);font-size:.84r
 <script>
 (function(){
   var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- reveals: positional sweep, not IO, and not rAF-gated ---- */
   var pend = [].slice.call(document.querySelectorAll('.r'));
   if (rm){ pend.forEach(function(e){ e.classList.add('in'); }); pend = []; }
-  function reveal(){
-    if (!pend.length) return;
-    var vh = innerHeight, still = [];
-    for (var i=0;i<pend.length;i++){
-      if (pend[i].getBoundingClientRect().top < vh*.9) pend[i].classList.add('in');
-      else still.push(pend[i]);
+  var wrap = document.getElementById('mapwrap');
+
+  function sweep(){
+    var vh = innerHeight;
+    if (pend.length){
+      var still = [];
+      for (var i=0;i<pend.length;i++){
+        if (pend[i].getBoundingClientRect().top < vh*.9) pend[i].classList.add('in');
+        else still.push(pend[i]);
+      }
+      pend = still;
     }
-    pend = still;
+    /* the map choreography starts a little earlier than a normal reveal, so the
+       2.5s sequence is already running by the time it is properly in view */
+    if (wrap && !wrap.classList.contains('in') &&
+        wrap.getBoundingClientRect().top < vh * .82){
+      wrap.classList.add('in');
+    }
   }
-  addEventListener('scroll', reveal, {passive:true});
-  addEventListener('resize', reveal, {passive:true});
-  addEventListener('load', reveal);
-  reveal();
+  addEventListener('scroll', sweep, {passive:true});
+  addEventListener('resize', sweep, {passive:true});
+  addEventListener('load', sweep);
 
-  /* Map readout. The panel is real markup with a sensible default, so it says
-     something useful before any interaction and with JavaScript off. */
-  var hots = [].slice.call(document.querySelectorAll('.hot')),
-      idx = document.getElementById('roIdx'),
-      ttl = document.getElementById('roTitle'),
-      dsc = document.getElementById('roDesc'),
-      lnk = document.getElementById('roLink');
+  /* ---- inject the estate map inline ----
+     An <img> cannot be styled from outside, and the whole entrance depends on
+     reaching .tree / .bld / .creek inside the artwork. Fetching keeps one copy
+     of the SVG in the repo instead of pasting 25KB into every page that wants it. */
+  var inner = document.getElementById('mapinner'),
+      fallback = document.getElementById('mapfallback');
 
-  function select(btn){
-    hots.forEach(function(h){ h.setAttribute('aria-current', h === btn ? 'true' : 'false'); });
-    idx.textContent = btn.dataset.i;
-    ttl.textContent = btn.dataset.t;
-    dsc.textContent = btn.dataset.d;
-    if (btn.dataset.u){ lnk.href = btn.dataset.u; lnk.hidden = false; lnk.textContent = 'Open ' + btn.dataset.t; }
-    else { lnk.hidden = true; }
+  fetch('../../../assets/estate-map.svg')
+    .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function(svg){
+      var holder = document.createElement('div');
+      holder.innerHTML = svg;
+      var el = holder.querySelector('svg');
+      if (!el) throw new Error('no svg');
+      el.setAttribute('class', 'estatesvg');
+      el.setAttribute('aria-hidden', 'true');
+      el.removeAttribute('width'); el.removeAttribute('height');
+      inner.insertBefore(el, inner.firstChild);
+      fallback.remove();
+      sweep();
+    })
+    .catch(function(){ /* the fallback <img> stays; the map is still there */ });
+
+  /* ---- hotspots ---- */
+  var pop = document.getElementById('mappop'),
+      base = '../../../assets/images/',
+      cur = null;
+
+  function show(h){
+    if (cur) cur.classList.remove('on');
+    cur = h; h.classList.add('on');
+    var img = h.dataset.img
+      ? '<img src="' + base + h.dataset.img + '" alt="">'
+      : '<div class="noimg"></div>';
+    var link = h.dataset.url
+      ? '<a class="mplink" href="' + h.dataset.url + '">Explore</a>'
+      : '';
+    pop.innerHTML = img + '<div class="mpb"><h4>' + h.dataset.label + '</h4><p>' +
+                    h.dataset.desc + '</p>' + link + '</div>';
+    pop.style.left = h.style.left;
+    var top = parseFloat(h.style.top);
+    pop.style.top = (top > 60 ? top - 3 : top + 3) + '%';
+    pop.style.transform = top > 60 ? 'translate(-50%,-100%)' : 'translate(-50%,0)';
+    pop.classList.add('show');
   }
-  hots.forEach(function(h){
+
+  [].forEach.call(document.querySelectorAll('.hot'), function(h){
     h.type = 'button';
-    h.addEventListener('click', function(){ select(h); });
-    h.addEventListener('focus', function(){ select(h); });
-    h.addEventListener('mouseenter', function(){ select(h); });
+    h.addEventListener('mouseenter', function(){ show(h); });
+    h.addEventListener('click', function(){ show(h); });
+    h.addEventListener('focus', function(){ show(h); });
   });
-  /* default selection matches the markup */
-  var vly = hots.filter(function(h){ return h.dataset.t === 'The Valley'; })[0];
-  if (vly) vly.setAttribute('aria-current','true');
+  if (wrap){
+    wrap.addEventListener('mouseleave', function(){
+      pop.classList.remove('show');
+      if (cur){ cur.classList.remove('on'); cur = null; }
+    });
+  }
+
+  sweep();
 })();
 </script>
 </body>
