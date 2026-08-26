@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Valley — Valley Venues</title>
-<meta name="description" content="An open meadow beneath the ridge: elevation, aspect, bloom, and what it means for your ceremony.">
+<title>The Approach — Valley Venues</title>
+<meta name="description" content="From the gate to the meadow: the drive into a private 74-acre mountain estate.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,202 +12,257 @@
 <script>document.documentElement.className+=' js';</script>
 <style>
 /* ============================================================
-   STYLE 03 — FIELD GUIDE
-   The brief lists wildflowers, meadows, trails and creeks among the estate's
-   materials. This direction treats the property the way a naturalist would:
-   observed, annotated, specific. The margin carries real facts about the land,
-   because structure should encode something true rather than decorate.
+   STYLE 03 — THE APPROACH
+   Nobody arrives at this estate suddenly. You turn off the road, climb, pass
+   the oak, and the meadow opens in front of you. This page is that drive.
+
+   SIGNATURE: vertical scrolling moves the page HORIZONTALLY. You travel across
+   the estate rather than down a document — the one mechanic in the set that
+   changes the axis, and the only one that feels like going somewhere.
    ============================================================ */
 :root{
-  --paper:#FBFAF6;
-  --paper-warm:#F3F1E8;
-  --ink:#1F241C;
-  --meadow:#3A4A34;      /* small text + labels: ~9:1 on paper */
-  --gold:#8A6D14;        /* display only */
-  --sage:#8D9C84;        /* rules and marks, never text */
+  --mist:#D9E0DA;
+  --mist-2:#C7D1C9;
+  --pine:#16211A;
+  --pine-2:#22301F;
+  --gold:#57430D;        /* 7:1 on mist */
+  --gold-lit:#E0B96A;    /* on dark only */
+  --stone:#3E4840;
   --display:'Fraunces',Georgia,serif;
   --sans:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.19,1,.22,1);
   --pad:clamp(1.25rem,5vw,5rem);
-  --margin-col:clamp(9rem,15vw,14rem);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);
+body{margin:0;background:var(--mist);color:var(--pine);
   font-family:var(--sans);font-weight:400;line-height:1.75;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
-h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.1;margin:0}
-p{margin:0 0 1.2em}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08;margin:0}
+p{margin:0 0 1.15em}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--meadow);outline-offset:3px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
-nav{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;
-  align-items:baseline;padding:1.4rem var(--pad);color:var(--paper)}
-.brand{font-family:var(--display);font-size:1rem;letter-spacing:.2em;text-transform:uppercase}
-.navcta{font-size:.74rem;letter-spacing:.18em;font-weight:500;text-transform:uppercase;
-  text-decoration:none;border-bottom:1px solid rgba(251,250,246,.5);padding-bottom:.25rem}
+/* ---- intro ---- */
+#loader{position:fixed;inset:0;z-index:200;background:var(--pine);display:grid;place-items:center;
+  transition:opacity .8s var(--ease),visibility .8s}
+body.loaded #loader{opacity:0;visibility:hidden}
+#loader .lname{font-family:var(--display);color:var(--mist);font-size:clamp(1.6rem,4.4vw,2.8rem);
+  letter-spacing:.05em;opacity:0;transform:translateY(14px);animation:lIn .9s var(--ease) .15s forwards}
+#loader .lline{width:0;height:1px;background:var(--gold-lit);margin-top:1.5rem;animation:lLine 1s var(--ease) .5s forwards}
+@keyframes lIn{to{opacity:1;transform:none}}
+@keyframes lLine{to{width:140px}}
 
-/* ---- hero: a specimen plate ---- */
-.hero{position:relative;min-height:78svh;display:grid;align-items:end;overflow:hidden;background:var(--ink)}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.88}
-.hero::after{content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(20,26,18,.5),rgba(20,26,18,.1) 45%,rgba(20,26,18,.72))}
-.hero-in{position:relative;z-index:2;padding:0 var(--pad) clamp(2.5rem,7vh,4.5rem);width:100%}
-.hero-in h1{font-size:clamp(2.8rem,9vw,7rem);color:var(--paper);letter-spacing:-.02em}
-.binomial{font-family:var(--display);font-style:italic;font-size:clamp(.95rem,1.5vw,1.2rem);
-  color:rgba(251,250,246,.82);margin-top:.7rem;letter-spacing:.02em}
+nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;
+  align-items:center;padding:1.2rem var(--pad);color:var(--mist);
+  background:linear-gradient(rgba(22,33,26,.8),transparent)}
+.brand{font-family:var(--display);font-size:1rem;letter-spacing:.22em;text-transform:uppercase}
+.navcta{font-size:.76rem;letter-spacing:.16em;font-weight:500;text-transform:uppercase;
+  text-decoration:none;color:var(--gold-lit);border-bottom:1px solid rgba(224,185,106,.5);padding-bottom:.25rem}
 
-/* ---- the annotated column ----
-   SIGNATURE: a persistent margin of observed facts. Not decoration — every
-   entry is something true about the land that changes how you'd plan a day
-   on it. */
-.leaf{display:grid;gap:clamp(1.5rem,4vw,3rem);padding:clamp(4rem,11vh,8rem) var(--pad);
-  max-width:78rem;margin:0 auto;align-items:start}
-@media(min-width:900px){.leaf{grid-template-columns:var(--margin-col) 1fr}}
-.margin{border-top:2px solid var(--ink);padding-top:.9rem}
-.margin dl{margin:0;display:grid;gap:.9rem}
-.margin dt{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--meadow);font-weight:500}
-.margin dd{margin:0 0 .5rem;font-family:var(--display);font-size:1.02rem;line-height:1.3}
-.body h2{font-size:clamp(1.9rem,4.2vw,3.1rem);text-wrap:balance;max-width:22ch}
-.body p{margin-top:1.4rem;max-width:46ch;font-size:clamp(1.02rem,1.3vw,1.12rem);color:#333A2F}
-.tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--meadow);
-  font-weight:500;margin-bottom:1.4rem;display:block}
+/* ---- the drive: vertical scroll, horizontal travel ---- */
+.drive{position:relative;height:520vh;background:var(--pine)}
+.drive-pin{position:sticky;top:0;height:100svh;overflow:hidden}
+.track{display:flex;height:100%;width:max-content;will-change:transform}
+.chapter{position:relative;width:100svw;height:100%;flex:0 0 auto;overflow:hidden}
+.chapter img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.chapter::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(22,33,26,.86) 0%,rgba(22,33,26,.3) 46%,rgba(22,33,26,.72) 100%)}
+.chapter .copy{position:absolute;z-index:2;left:var(--pad);bottom:clamp(3rem,12vh,7rem);max-width:min(34rem,74vw)}
+.chapter .mile{font-size:.76rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lit);
+  font-weight:500;margin-bottom:1.1rem}
+.chapter h2{font-size:clamp(2rem,5.6vw,4.2rem);color:var(--mist);text-wrap:balance}
+.chapter p{margin-top:1.1rem;color:rgba(217,224,218,.88);font-size:clamp(1rem,1.3vw,1.14rem)}
 
-.rule{height:1px;background:var(--sage);opacity:.5;max-width:78rem;margin:0 auto}
+/* progress along the drive */
+.odo{position:absolute;left:var(--pad);top:calc(var(--pad) + 2.6rem);z-index:3;display:flex;align-items:center;gap:.9rem}
+.odo-bar{width:clamp(6rem,14vw,12rem);height:1px;background:rgba(217,224,218,.3)}
+.odo-bar i{display:block;height:100%;width:var(--p,0%);background:var(--gold-lit)}
+.odo span{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(217,224,218,.75);
+  font-variant-numeric:tabular-nums}
+.hint{position:absolute;right:var(--pad);bottom:clamp(3rem,12vh,7rem);z-index:3;
+  font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(217,224,218,.6)}
 
-/* ---- plates ---- */
-.plates{display:grid;gap:clamp(1rem,2.5vw,2rem);padding:0 var(--pad) clamp(4rem,10vh,7rem);
-  max-width:78rem;margin:0 auto;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
-figure{margin:0}
-.plates img{width:100%;aspect-ratio:3/4;object-fit:cover}
-.plates figcaption{margin-top:.7rem;font-size:.78rem;color:var(--meadow);letter-spacing:.04em}
-.plates figcaption i{font-family:var(--display);font-style:italic}
+/* Without JS the track can't translate, so the chapters become an ordinary
+   stack of full-width panels rather than a row nobody can reach. */
+html:not(.js) .drive{height:auto}
+html:not(.js) .drive-pin{position:relative;height:auto}
+html:not(.js) .track{display:block;width:auto}
+html:not(.js) .chapter{width:auto;height:78svh}
 
-.band{background:var(--paper-warm);padding:clamp(4rem,11vh,8rem) var(--pad)}
-.band .leaf{padding:0}
+/* ---- arrival ---- */
+section{padding:clamp(5rem,13vh,9rem) var(--pad)}
+.wrap{max-width:64rem;margin:0 auto}
+.tag{font-size:.76rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:1.3rem}
+h2.big{font-size:clamp(2rem,4.6vw,3.4rem);text-wrap:balance;max-width:20ch}
+.lead{margin-top:1.5rem;color:var(--stone);font-size:clamp(1.02rem,1.35vw,1.16rem);max-width:46ch}
 
-.count{display:grid;gap:1px;background:var(--sage);max-width:78rem;margin:0 auto;
-  grid-template-columns:repeat(auto-fit,minmax(11rem,1fr))}
-.count div{background:var(--paper);padding:1.9rem 1.4rem}
-.count b{display:block;font-family:var(--display);font-size:2.3rem;font-weight:400;color:var(--gold);line-height:1;margin-bottom:.4rem}
-.count span{font-size:.88rem;color:var(--meadow)}
+.counts{display:grid;gap:1px;background:var(--mist-2);margin-top:clamp(3rem,7vh,5rem);
+  grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));border:1px solid var(--mist-2)}
+.counts div{background:var(--mist);padding:2rem 1.4rem}
+.counts b{display:block;font-family:var(--display);font-size:2.6rem;line-height:1;color:var(--gold);margin-bottom:.4rem;font-variant-numeric:tabular-nums}
+.counts span{font-size:.9rem;color:var(--stone)}
 
-.close{text-align:center;padding:clamp(4rem,11vh,8rem) var(--pad)}
-.close h2{font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:24ch;margin:0 auto}
-.close p{max-width:44ch;margin:1.4rem auto 0;color:#333A2F}
-.btn{display:inline-block;margin-top:2.2rem;text-decoration:none;font-size:.74rem;letter-spacing:.2em;
-  font-weight:600;text-transform:uppercase;padding:1.1rem 2.6rem;background:var(--meadow);color:var(--paper);
+.dark{background:var(--pine);color:var(--mist)}
+.dark .lead{color:rgba(217,224,218,.82)}
+.dark .tag{color:var(--gold-lit)}
+
+.pair{display:grid;gap:clamp(1.2rem,3vw,2.2rem);margin-top:clamp(2.5rem,6vh,4rem)}
+@media(min-width:820px){.pair{grid-template-columns:1fr 1fr}}
+.pair figure{margin:0;overflow:hidden}
+.pair img{width:100%;aspect-ratio:4/5;object-fit:cover}
+
+.btn{display:inline-block;margin-top:2rem;text-decoration:none;font-size:.76rem;letter-spacing:.2em;
+  font-weight:600;text-transform:uppercase;padding:1.1rem 2.6rem;background:var(--gold);color:var(--mist);
   transition:background .35s}
-.btn:hover{background:var(--ink)}
+.btn:hover{background:var(--pine)}
+.dark .btn{background:var(--gold-lit);color:var(--pine)}
 
-.more{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));
-  max-width:78rem;margin:0 auto;padding:0 var(--pad) clamp(4rem,10vh,7rem)}
-.more a{text-decoration:none;border-top:2px solid var(--ink);padding-top:.9rem}
+.more{display:grid;gap:1.3rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin-top:2.4rem}
+.more a{text-decoration:none;border-top:1px solid var(--mist-2);padding-top:.9rem}
+.dark .more a{border-color:rgba(217,224,218,.28)}
 .more b{display:block;font-family:var(--display);font-weight:400;font-size:1.2rem}
-.more span{font-size:.86rem;color:var(--meadow)}
+.more span{font-size:.88rem;color:var(--stone)}
+.dark .more span{color:rgba(217,224,218,.78)}
 
-footer{padding:2.5rem var(--pad);border-top:1px solid var(--sage);font-size:.84rem;color:var(--meadow)}
+footer{padding:2.5rem var(--pad);border-top:1px solid var(--mist-2);font-size:.86rem;color:var(--stone)}
 
-.js .r{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(.19,1,.22,1),transform .9s cubic-bezier(.19,1,.22,1)}
+.js .r{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .js .r.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}
+.js .r.d1{transition-delay:.12s}.js .r.d2{transition-delay:.24s}.js .r.d3{transition-delay:.36s}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .js .r{opacity:1;transform:none}
+  .drive{height:auto}
+  .drive-pin{position:relative;height:auto}
+  .track{display:block;width:auto;transform:none!important}
+  .chapter{width:auto;height:74svh}
+  #loader{display:none}
+}
 </style>
 </head>
 <body>
+
+<div id="loader"><div style="text-align:center"><div class="lname">Valley Venues</div><div class="lline"></div></div></div>
 
 <nav>
   <div class="brand">Valley Venues</div>
   <a class="navcta" href="#plan">Enquire</a>
 </nav>
 
-<header class="hero">
-  <img src="../_img/aerial-valley.webp" alt="The valley meadow seen from above, ridge behind">
-  <div class="hero-in">
-    <h1>The Valley</h1>
-    <div class="binomial">Open meadow · south-facing · 74-acre estate, Wildwood, Georgia</div>
-  </div>
-</header>
+<div class="drive" id="drive">
+  <div class="drive-pin">
+    <div class="odo" aria-hidden="true">
+      <div class="odo-bar"><i id="odoFill"></i></div>
+      <span id="odoTxt">The gate</span>
+    </div>
 
-<div class="leaf">
-  <aside class="margin r">
-    <dl>
-      <dt>Aspect</dt><dd>South-facing</dd>
-      <dt>Held by</dt><dd>Ridge on three sides</dd>
-      <dt>Best light</dt><dd>4:30 – 6:15 pm</dd>
-      <dt>Capacity</dt><dd>300 seated</dd>
-    </dl>
-  </aside>
-  <div class="body">
-    <span class="tag r">Vows beneath an open sky</span>
-    <h2 class="r">Three hundred people can stand here and it still feels like yours.</h2>
-    <p class="r">The meadow sits low between ridgelines, which is why it works. Sound stays in it. Wind drops in it. And the hills hold the last of the sun a good half-hour after the light has left the grass — the reason every photographer who works here asks for a late-afternoon ceremony.</p>
+    <div class="track" id="track">
+      <article class="chapter">
+        <img src="../_img/manor-lawn.webp" alt="The estate seen from the drive">
+        <div class="copy">
+          <div class="mile">The gate</div>
+          <h2>You turn off the road, and the noise stops.</h2>
+          <p>Pope Creek Road, fifteen minutes out of Chattanooga. The gate closes behind you and the next seventy-four acres belong to your weekend.</p>
+        </div>
+      </article>
+
+      <article class="chapter">
+        <img src="../_img/vintage-car.webp" alt="The oak at the top of the drive">
+        <div class="copy">
+          <div class="mile">The oak</div>
+          <h2>Then the climb, and the oak at the top of it.</h2>
+          <p>Every car that comes up this drive slows here. It is the first place people realise the photographs are going to be good.</p>
+        </div>
+      </article>
+
+      <article class="chapter">
+        <img src="../_img/aerial-valley.webp" alt="The meadow opening between the ridgelines">
+        <div class="copy">
+          <div class="mile">The meadow</div>
+          <h2>And the valley opens all at once.</h2>
+          <p>Held on three sides by ridgeline. Sound stays in it, wind drops in it, and three hundred people can stand in it without it feeling crowded.</p>
+        </div>
+      </article>
+
+      <article class="chapter">
+        <img src="../_img/valley-autumn.webp" alt="A ceremony set in the meadow">
+        <div class="copy">
+          <div class="mile">The aisle</div>
+          <h2>Where it points is up to you.</h2>
+          <p>Not where you face, not where your family sits, not what stands behind you in the photographs your grandchildren will look at. A June ceremony and an October one point different ways, and both are right.</p>
+        </div>
+      </article>
+
+      <article class="chapter">
+        <img src="../_img/fog-walk.webp" alt="The valley at dusk">
+        <div class="copy">
+          <div class="mile">Last light</div>
+          <h2>And nobody drives back down it that night.</h2>
+          <p>The ridge holds the sun a half-hour after it leaves the grass. When it finally goes, the people staying on the estate simply walk home.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="hint" id="hint">Scroll to drive in</div>
   </div>
 </div>
 
-<div class="rule"></div>
-
-<div class="leaf">
-  <aside class="margin r">
-    <dl>
-      <dt>Aisle</dt><dd>Runs any bearing</dd>
-      <dt>Wet plan</dt><dd>Davis Hall, 4 min</dd>
-      <dt>Access</dt><dd>Golf cart to the gate</dd>
-      <dt>Ground</dt><dd>Mown meadow grass</dd>
-    </dl>
-  </aside>
-  <div class="body">
-    <span class="tag r">Set the scene</span>
-    <h2 class="r">The aisle runs whichever way the light is better that month.</h2>
-    <p class="r">Nothing here is fixed — not where you face, not where your family sits, not what stands behind you in the photographs your grandchildren will look at. A June ceremony and an October one point in different directions, and both are right.</p>
-  </div>
-</div>
-
-<div class="plates">
-  <figure class="r"><img src="../_img/valley-autumn.webp" alt="An autumn ceremony set in the meadow" loading="lazy"><figcaption><i>Late October</i> — wooden chairs, arch set toward the ridge</figcaption></figure>
-  <figure class="r"><img src="../_img/valley-arch.webp" alt="A white floral arch in the meadow" loading="lazy"><figcaption><i>Early summer</i> — full sun on the meadow at six</figcaption></figure>
-  <figure class="r"><img src="../_img/meadow-pair.webp" alt="A couple in the meadow beneath the ridge" loading="lazy"><figcaption><i>The ridge</i> — held on three sides, which is what keeps the wind out</figcaption></figure>
-  <figure class="r"><img src="../_img/fog-walk.webp" alt="A couple walking through low cloud on the estate" loading="lazy"><figcaption><i>Valley fog</i> — most mornings in autumn, gone by ten</figcaption></figure>
-</div>
-
-<div class="band">
-  <div class="leaf">
-    <aside class="margin r">
-      <dl>
-        <dt>Recorded</dt><dd>On the estate</dd>
-        <dt>Season</dt><dd>April – November</dd>
-      </dl>
-    </aside>
-    <div class="body">
-      <span class="tag r">By the numbers</span>
-      <h2 class="r">What the land actually gives you.</h2>
+<section>
+  <div class="wrap">
+    <div class="tag r">Arrival</div>
+    <h2 class="big r d1">A destination that doesn't cost your guests a travel day.</h2>
+    <p class="lead r d2">Far enough that the gate feels like a threshold. Close enough that nobody books a connecting flight, and the people who can't stay over are back in a Chattanooga hotel bed in twenty minutes.</p>
+    <div class="counts r d2">
+      <div><b data-count="74">74</b><span>Private acres</span></div>
+      <div><b data-count="300">300</b><span>Seated in the meadow</span></div>
+      <div><b data-count="34">34</b><span>Stay the night</span></div>
+      <div><b data-count="15">15</b><span>Minutes to Chattanooga</span></div>
     </div>
   </div>
-  <div class="count r" style="margin-top:clamp(2.5rem,6vh,4rem)">
-    <div><b>300</b><span>Guests seated beneath the ridge</span></div>
-    <div><b>74</b><span>Private acres, gates closed</span></div>
-    <div><b>34</b><span>Guests who can stay the night</span></div>
-    <div><b>15</b><span>Minutes from downtown Chattanooga</span></div>
-  </div>
-</div>
-
-<section class="close" id="plan">
-  <h2 class="r">Walk it before you decide.</h2>
-  <p class="r">Come at four in the afternoon and stand where the arch would go. It is a difficult place to say no to at that hour.</p>
-  <a class="btn r" href="mailto:Info@thevalleyvenues.com">Book a Visit</a>
 </section>
 
-<div class="more r">
-  <a href="../../../davis-hall.html"><b>Davis Hall</b><span>Reception, and the wet plan</span></a>
-  <a href="../../../lookout-deck.html"><b>Lookout Deck</b><span>Cocktails above the valley</span></a>
-  <a href="../../../magnolia-house.html"><b>Magnolia House</b><span>An 1890s manor</span></a>
-  <a href="../../../lodging.html"><b>Lodging</b><span>Stay the whole weekend</span></a>
-</div>
+<section class="dark">
+  <div class="wrap">
+    <div class="tag r">The meadow</div>
+    <h2 class="big r d1">Three hundred people, and it still feels like yours.</h2>
+    <p class="lead r d2">It sits low between the ridgelines. That is not scenery — it is why the sound stays put, why the wind drops, and why the hills keep the light after the grass has lost it.</p>
+    <div class="pair">
+      <figure class="r d1" data-parallax="0.05"><img src="../_img/valley-arch.webp" alt="A floral arch in the meadow" loading="lazy"></figure>
+      <figure class="r d2" data-parallax="0.09"><img src="../_img/deck-table.webp" alt="A table set above the valley" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
 
-<footer>Style 03 · Field Guide — internal design study. Fraunces + Outfit.</footer>
+<section id="plan">
+  <div class="wrap">
+    <div class="tag r">Visit</div>
+    <h2 class="big r d1">Drive it yourself, at four in the afternoon.</h2>
+    <p class="lead r d2">That is the hour the ridge starts throwing shadow across the meadow, and it is a difficult place to say no to.</p>
+    <a class="btn r d3" href="mailto:Info@thevalleyvenues.com">Book a Visit</a>
+    <div class="more r d3">
+      <a href="../../../davis-hall.html"><b>Davis Hall</b><span>Reception, and the wet plan</span></a>
+      <a href="../../../lookout-deck.html"><b>Lookout Deck</b><span>Cocktails above the valley</span></a>
+      <a href="../../../magnolia-house.html"><b>Magnolia House</b><span>An 1890s manor</span></a>
+      <a href="../../../lodging.html"><b>Lodging</b><span>Stay the whole weekend</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>Style 03 · The Approach — internal design study. Fraunces + Outfit.</footer>
 
 <script>
 (function(){
   var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* intro */
+  var done = function(){ document.body.classList.add('loaded'); };
+  addEventListener('load', function(){ setTimeout(done, rm ? 0 : 900); });
+  setTimeout(done, 3000);                      /* fallback if load never fires */
+
+  /* reveals: positional sweep, not IO, and not rAF-gated */
   var pend = [].slice.call(document.querySelectorAll('.r'));
   if (rm){ pend.forEach(function(e){ e.classList.add('in'); }); pend = []; }
   function reveal(){
@@ -219,10 +274,72 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--sage);font-size:.84r
     }
     pend = still;
   }
-  addEventListener('scroll', reveal, {passive:true});
-  addEventListener('resize', reveal, {passive:true});
-  addEventListener('load', reveal);
-  reveal();
+
+  /* ---- the drive ----
+     Scroll distance through .drive maps to horizontal travel across the track.
+     Chapter count drives the maths, so adding a chapter needs no JS change. */
+  var drive = document.getElementById('drive'),
+      track = document.getElementById('track'),
+      fill  = document.getElementById('odoFill'),
+      txt   = document.getElementById('odoTxt'),
+      hint  = document.getElementById('hint'),
+      chapters = [].slice.call(document.querySelectorAll('.chapter')),
+      miles = chapters.map(function(c){ return c.querySelector('.mile').textContent; });
+
+  function drivePos(){
+    if (rm || !drive || !track) return;
+    var r = drive.getBoundingClientRect(),
+        travel = r.height - innerHeight,
+        p = travel > 0 ? Math.min(1, Math.max(0, -r.top / travel)) : 0,
+        max = track.scrollWidth - innerWidth;
+
+    track.style.transform = 'translate3d(' + (-max * p).toFixed(1) + 'px,0,0)';
+    if (fill) fill.style.width = (p * 100).toFixed(1) + '%';
+
+    var idx = Math.min(chapters.length - 1, Math.round(p * (chapters.length - 1)));
+    if (txt && txt.textContent !== miles[idx]) txt.textContent = miles[idx];
+    if (hint) hint.style.opacity = p > 0.04 ? 0 : 1;
+  }
+
+  /* ---- parallax (per-element speed, as on the live site) ---- */
+  var pxEls = [].slice.call(document.querySelectorAll('[data-parallax]'));
+  function parallax(){
+    if (rm) return;
+    var vh = innerHeight;
+    for (var i=0;i<pxEls.length;i++){
+      var r = pxEls[i].getBoundingClientRect();
+      if (r.bottom < -150 || r.top > vh + 150) continue;
+      var speed = parseFloat(pxEls[i].dataset.parallax) || .08;
+      pxEls[i].style.transform =
+        'translateY(' + ((r.top + r.height/2 - vh/2) * -speed).toFixed(1) + 'px)';
+    }
+  }
+
+  /* ---- count-up ---- */
+  var counted = false;
+  function counts(){
+    if (counted || rm) return;
+    var box = document.querySelector('.counts');
+    if (!box || box.getBoundingClientRect().top > innerHeight * .85) return;
+    counted = true;
+    [].forEach.call(box.querySelectorAll('[data-count]'), function(el){
+      var to = parseInt(el.getAttribute('data-count'), 10), t0 = null, dur = 1400;
+      setTimeout(function(){ el.textContent = to; }, dur + 400);   /* backstop */
+      el.textContent = '0';
+      (function step(t){
+        if (t0 === null) t0 = t;
+        var p = Math.min(1, (t - t0) / dur);
+        el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      })(performance.now());
+    });
+  }
+
+  function onScroll(){ reveal(); drivePos(); parallax(); counts(); }
+  addEventListener('scroll', onScroll, {passive:true});
+  addEventListener('resize', onScroll, {passive:true});
+  addEventListener('load', onScroll);
+  onScroll();
 })();
 </script>
 </body>
