@@ -214,11 +214,25 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
     im.src = src;
   }
 
-  function pixels(im){
+  /* Every quad is filled with a single colour, so the picture can never carry
+     more than one colour per cell of the mesh. Reading one pixel out of a
+     1400px image to stand for all of them is point-sampling, and point-sampling
+     an image with hard edges in it is precisely what produces jagged, stepped
+     boundaries. Scaling the texture down to the density of the mesh first makes
+     each quad the *average* of the ground it covers, so an edge crossing a cell
+     comes out as a blend rather than a staircase. It is the same trick as a
+     mipmap, for the same reason. */
+  var TEXN = 256;               /* matches the terrain grid */
+
+  function pixels(im, size){
+    var w = size || im.width, h = size || im.height;
     var c = document.createElement('canvas');
-    c.width = im.width; c.height = im.height;
-    c.getContext('2d').drawImage(im, 0, 0);
-    return c.getContext('2d').getImageData(0, 0, im.width, im.height).data;
+    c.width = w; c.height = h;
+    var g = c.getContext('2d');
+    g.imageSmoothingEnabled = true;
+    g.imageSmoothingQuality = 'high';
+    g.drawImage(im, 0, 0, w, h);
+    return g.getImageData(0, 0, w, h).data;
   }
 
   loadImg('terrain.png', function(im){
@@ -230,11 +244,11 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
     if (++ready === 3) draw();
   });
   loadImg('aerial.webp', function(im){
-    if (im){ TN = im.width; tex = pixels(im); }
+    if (im){ TN = TEXN; tex = pixels(im, TEXN); }
     if (++ready === 3) drawThenRefine();
   });
   loadImg('illustrated.webp', function(im){
-    if (im){ TN = im.width; texIll = pixels(im); }
+    if (im){ TN = TEXN; texIll = pixels(im, TEXN); }
     else if (!tex) { mode = 'lines'; }     /* no imagery at all? use the engraving */
     if (++ready === 3) drawThenRefine();
   });
@@ -266,6 +280,12 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
   /* Surface normal dotted with a low western sun. This is what turns a flat
      photograph into something with form — without it the drape reads as a
      sticker rather than as land. */
+  /* The six places sit within the middle third of the property, so the whole
+     74 acres in frame puts them on top of each other. Closer in crops the
+     outlying woodland — which carries no information — and lets the venues
+     stand apart from one another. */
+  var ZOOM = 1.45;
+
   var LX = -0.62, LY = -0.34, LZ = 0.70;
   var cellM = METRES / (N - 1);
   function shade(i, j){
@@ -290,7 +310,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
     var r = sizeCanvas(), W = r.width, H = r.height;
     ctx.clearRect(0, 0, W, H);
 
-    var S = Math.min(W, H) * 0.95, cx = W / 2, cy = H * 0.52;
+    var S = Math.min(W, H) * 0.95 * ZOOM, cx = W / 2, cy = H * 0.52;
     var zScale = (RELIEF * VEX) / METRES;
     /* One flat colour per quad is what made this look low-resolution — the
        source imagery was never the limit. Facets are ~6m when still, ~16m while
@@ -382,15 +402,22 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
 
   /* ---- progressive sharpening ----
      The finest mesh is what kills the faceted look, but drawing all of it in
-     one go costs the best part of a second. So it is painted in bands across
-     successive frames, over the top of the coarse render, in the same depth
-     order — the picture simply resolves. Any interaction cancels it. */
+     one go costs the best part of a second. So it is painted in bands, over
+     the top of the coarse render, in the same depth order — the picture simply
+     resolves. Any interaction cancels it.
+
+     The bands are scheduled with setTimeout rather than requestAnimationFrame.
+     rAF only fires while the page is actually being composited, so in a
+     background tab, an inactive window or an embedded frame the chain stops
+     dead after a single band and the model is left permanently coarse. This is
+     not an animation — it is the picture finishing — so it must not be tied to
+     whether anyone happens to be looking. */
   var fineToken = 0;
   function startFine(){
     if (mode === 'lines') return;
     var token = ++fineToken;
     var r = frame.getBoundingClientRect();
-    var S = Math.min(r.width, r.height) * 0.95, cx = r.width / 2, cy = r.height * 0.52;
+    var S = Math.min(r.width, r.height) * 0.95 * ZOOM, cx = r.width / 2, cy = r.height * 0.52;
     var zScale = (RELIEF * VEX) / METRES;
     var rows = rowOrder(1), at = 0, BAND = 26;
     (function band(){
@@ -399,7 +426,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
       if (!slice.length) return;
       drawSurface(S, cx, cy, zScale, 1, slice);
       at += BAND;
-      if (at < rows.length) requestAnimationFrame(band);
+      if (at < rows.length) setTimeout(band, 0);
       else { if (showCont) drawContours(S, cx, cy, zScale); if (showPins) drawPins(S, cx, cy, zScale); }
     })();
   }
@@ -503,6 +530,10 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
 
   /* ---- interaction ---- */
   frame.addEventListener('pointerdown', function(e){
+    /* The controls sit over the model, so their clicks arrive here too. Without
+       this the Turning button appears dead: pointerdown switches the turn off,
+       and the button's own handler then toggles it straight back on. */
+    if (e.target.closest('button')) return;
     dragging = true; idle = 0;
     if (spin){ spin = false; press('bSpin', false); }
     frame.classList.add('dragging');
