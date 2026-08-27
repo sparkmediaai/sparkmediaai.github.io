@@ -53,14 +53,18 @@ for y in range(H):
         else:
             c = GRASS_L if lum > 0.5 else GRASS_D
 
-        # keep a little of the original modulation so it isn't posterised flat
-        k = 0.16
+        # Keep a good deal of the original modulation. Flat posterised classes
+        # are what read as "pixelated" once they are chopped into facets — the
+        # eye needs tone inside each class, not six solid colours.
+        k = 0.34
         op[x, y] = (
             int(c[0] * (1 - k) + r * k),
             int(c[1] * (1 - k) + g * k),
             int(c[2] * (1 - k) + b * k),
         )
 
-out = out.filter(ImageFilter.SMOOTH)
+# Soften the class boundaries so they read as painted edges rather than jaggies.
+out = out.filter(ImageFilter.GaussianBlur(radius=2.2))
+out = out.filter(ImageFilter.SMOOTH_MORE)
 out.save(os.path.join(HERE, "illustrated.webp"), quality=82, method=5)
 print("illustrated.webp %dx%d  %d KB" % (W, H, os.path.getsize(os.path.join(HERE, "illustrated.webp")) // 1024))
