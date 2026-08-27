@@ -16,9 +16,11 @@
    Terrain: USGS 3DEP 1m LiDAR. Texture: USGS NAIP aerial, same footprint, so
    the photograph lands on the ground it was taken of.
 
-   Two ways to look at it. PHOTOGRAPHIC drapes the aerial over the surface and
-   lights it from a low western sun. ENGRAVED throws the photo away and draws
-   the land as profile lines. Both are the same model; only the skin changes.
+   Three ways to look at it, all the same model — only the skin changes.
+   PHOTOGRAPHIC drapes the raw aerial over the surface. ILLUSTRATED drapes a
+   version of that photograph reclassified into the estate's palette — truthful
+   about the land but far better looking than a satellite frame. ENGRAVED
+   throws the image away and draws the land as profile lines.
    ============================================================ */
 :root{
   --paper:#F4F0E6;
@@ -71,6 +73,17 @@ header p{color:var(--ink-soft);margin-top:1.1rem;max-width:44rem}
   text-transform:uppercase;color:var(--ink);transition:opacity .6s;text-shadow:0 1px 3px rgba(244,240,230,.9)}
 .grab.gone{opacity:0}
 
+.card{position:absolute;z-index:5;width:min(15rem,52vw);background:var(--paper);
+  border:1px solid rgba(42,51,38,.28);box-shadow:0 18px 40px -18px rgba(20,28,22,.55);
+  opacity:0;visibility:hidden;transform:translate(-50%,-108%) scale(.97);
+  transition:opacity .22s ease,transform .22s ease,visibility .22s;pointer-events:none}
+.card.on{opacity:1;visibility:visible;transform:translate(-50%,-108%) scale(1)}
+.card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--paper-2)}
+.card-b{padding:.6rem .75rem .7rem}
+.card-b b{display:block;font-family:var(--display);font-weight:400;font-size:1.15rem;line-height:1.15}
+.card-b span{display:block;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);margin-top:.2rem}
+
 .nojs{display:none}
 html:not(.js) .nojs{display:block;width:100%}
 html:not(.js) .frame{aspect-ratio:auto}
@@ -98,7 +111,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
 <header>
   <div class="eyebrow">Valley Venues · Wildwood, Georgia</div>
   <h1>The estate, in relief</h1>
-  <p>Seventy-four acres of Lookout Valley, modelled from survey elevation data and draped with aerial photography of the same ground. Nothing here is drawn. Drag to turn the land.</p>
+  <p>Seventy-four acres of Lookout Valley, modelled from survey elevation data. The ground you see is the real ground — every ridge and hollow measured, then skinned three ways. Drag to turn the land, and hover a place to see it.</p>
 </header>
 
 <div class="stage">
@@ -106,17 +119,22 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
     <canvas id="view"></canvas>
     <img class="nojs" src="contour-fallback.webp" alt="Contour map of the Valley Venues estate">
     <div class="hud">
-      <button id="bPhoto" aria-pressed="true">Photographic</button>
+      <button id="bPhoto" aria-pressed="false">Photographic</button>
+      <button id="bIllus" aria-pressed="true">Illustrated</button>
       <button id="bLines" aria-pressed="false">Engraved</button>
       <button id="bCont"  aria-pressed="false">Contours</button>
       <button id="bPins"  aria-pressed="true">Places</button>
       <button id="bSpin"  aria-pressed="true">Turning</button>
     </div>
+    <div class="card" id="card" aria-hidden="true">
+      <img id="cardImg" src="" alt="">
+      <div class="card-b"><b id="cardName"></b><span id="cardNote"></span></div>
+    </div>
     <div class="grab" id="grab">Drag to turn</div>
     <div class="readout" id="readout">—</div>
     <div class="scalebar"><i id="scaleRule" style="width:80px"></i><span>200 m</span></div>
   </div>
-  <p class="caption">Elevation: USGS 3DEP 1-metre LiDAR. Imagery: USGS NAIP, October 2023, same footprint. Vertical scale exaggerated 2.2× so the valley reads.</p>
+  <p class="caption">Elevation: USGS 3DEP 1-metre LiDAR. Imagery: USGS NAIP, October 2023, 0.57&thinsp;m per pixel, same footprint. The illustrated skin is that photograph reclassified into the estate palette — woodland, mown grass, track, water — so it is drawn from the land rather than merely of it. Vertical scale exaggerated 2.2&times;.</p>
 </div>
 
 <section>
@@ -151,20 +169,37 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
   var ctx = cv.getContext('2d');
 
   /* PROVISIONAL — read off the October 2023 aerial, not the owners' plan. */
+  var IMG = '../styles/_img/';
   var PLACES = [
-    {u:.727, v:.561, name:'The Valley'},
-    {u:.597, v:.499, name:'Davis Hall'},
-    {u:.506, v:.415, name:'Overlook Village'},
-    {u:.398, v:.547, name:'Magnolia House'},
-    {u:.352, v:.450, name:'Lookout Deck'},
-    {u:.443, v:.596, name:'Arrival'}
+    {u:.727, v:.561, name:'The Valley',       note:'Ceremony · 300 seated', img:IMG+'valley-autumn.webp'},
+    {u:.597, v:.499, name:'Davis Hall',       note:'Reception',             img:IMG+'arch-florals.webp'},
+    {u:.506, v:.415, name:'Overlook Village', note:'Lodging',               img:IMG+'meadow-house.webp'},
+    {u:.398, v:.547, name:'Magnolia House',   note:'1890s manor',           img:IMG+'manor-lawn.webp'},
+    {u:.352, v:.450, name:'Lookout Deck',     note:'Cocktails · sunset',    img:IMG+'deck-ceremony.webp'},
+    {u:.443, v:.596, name:'Arrival',          note:'Parking · the drive',   img:IMG+'vintage-car.webp'}
   ];
+  /* Warm the images so the first hover is never a blank frame. */
+  PLACES.forEach(function(p){ var w = new Image(); w.src = p.img; });
 
-  var N = 0, hm = null, tex = null, TN = 0;
+  var N = 0, hm = null, tex = null, texIll = null, TN = 0;
   var RELIEF = 73.2, METRES = 800, VEX = 2.2;
   var az = -0.62, tilt = 0.68;
-  var mode = 'photo', showCont = false, showPins = true, spin = !rm;
+  var mode = 'illus', showCont = false, showPins = true, spin = !rm;
   var dragging = false, lastX = 0, lastY = 0, idle = 0, ready = 0;
+  var quality = 2, refineTimer = null;
+
+  /* Paint now at whatever quality is cheap, then quietly sharpen. A 255-square
+     mesh is the sharpest but costs ~850ms a frame — a visible freeze. */
+  function drawThenRefine(){
+    quality = 3;
+    draw();
+    clearTimeout(refineTimer);
+    refineTimer = setTimeout(function(){
+      if (dragging) return;
+      quality = 2;
+      draw();
+    }, 90);
+  }
 
   function sizeCanvas(){
     var r = frame.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 1.75);
@@ -194,12 +229,16 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
     var d = pixels(im);
     hm = new Float32Array(N * N);
     for (var i = 0; i < N * N; i++) hm[i] = d[i * 4] / 255;
-    if (++ready === 2) draw();
+    if (++ready === 3) draw();
   });
   loadImg('aerial.webp', function(im){
     if (im){ TN = im.width; tex = pixels(im); }
-    else { mode = 'lines'; }               /* no photo? fall back to the engraving */
-    if (++ready === 2) draw();
+    if (++ready === 3) draw();
+  });
+  loadImg('illustrated.webp', function(im){
+    if (im){ TN = im.width; texIll = pixels(im); }
+    else if (!tex) { mode = 'lines'; }     /* no imagery at all? use the engraving */
+    if (++ready === 3) draw();
   });
 
   function fail(){
@@ -215,10 +254,11 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
 
   /* colour of the aerial at grid position (i,j) */
   function texel(i, j){
-    if (!tex) return [150, 158, 132];
+    var t = (mode === 'illus' && texIll) ? texIll : tex;
+    if (!t) return [150, 158, 132];
     var tx = Math.round(i / (N - 1) * (TN - 1)), ty = Math.round(j / (N - 1) * (TN - 1));
     var k = (ty * TN + tx) * 4;
-    return [tex[k], tex[k + 1], tex[k + 2]];
+    return [t[k], t[k + 1], t[k + 2]];
   }
 
   /* Surface normal dotted with a low western sun. This is what turns a flat
@@ -250,10 +290,12 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
 
     var S = Math.min(W, H) * 0.95, cx = W / 2, cy = H * 0.52;
     var zScale = (RELIEF * VEX) / METRES;
-    /* coarser mesh while dragging keeps the turn responsive */
-    var step = dragging ? 3 : 2;
+    /* One flat colour per quad is what made this look low-resolution — the
+       source imagery was never the limit. Facets are ~6m when still, ~16m while
+       dragging, and the release refines a beat later. */
+    var step = dragging ? 5 : quality;
 
-    if (mode === 'photo') drawSurface(S, cx, cy, zScale, step);
+    if (mode !== 'lines') drawSurface(S, cx, cy, zScale, step);
     else drawLines(S, cx, cy, zScale, step);
 
     if (showCont) drawContours(S, cx, cy, zScale);
@@ -391,12 +433,15 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
     }
   }
 
+  var hits = [];   /* pin screen positions, refreshed every draw, for hover */
+
   function drawPins(S, cx, cy, zScale){
-    PLACES.map(function(p){
+    hits = PLACES.map(function(p){
       var i = Math.round(p.u * (N - 1)), j = Math.round(p.v * (N - 1));
       var g = project(p.u - 0.5, p.v - 0.5, h(i, j) * zScale, S, cx, cy);
       return {p:p, sx:g[0], sy:g[1], depth:g[2]};
-    }).sort(function(a, b){ return a.depth - b.depth; }).forEach(function(s){
+    });
+    hits.slice().sort(function(a, b){ return a.depth - b.depth; }).forEach(function(s){
       ctx.beginPath();
       ctx.moveTo(s.sx, s.sy);
       ctx.lineTo(s.sx, s.sy - 26);
@@ -429,26 +474,68 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
     lastX = e.clientX; lastY = e.clientY;
     if (frame.setPointerCapture) frame.setPointerCapture(e.pointerId);
   });
+  var card = document.getElementById('card'),
+      cardImg = document.getElementById('cardImg'),
+      cardName = document.getElementById('cardName'),
+      cardNote = document.getElementById('cardNote'),
+      hovered = null;
+
+  function hoverAt(clientX, clientY){
+    if (!showPins || !hits.length) return hideCard();
+    var r = frame.getBoundingClientRect(), mx = clientX - r.left, my = clientY - r.top;
+    var best = null, bestD = 34;
+    for (var i = 0; i < hits.length; i++){
+      var dx = hits[i].sx - mx, dy = hits[i].sy - my;
+      var d = Math.sqrt(dx * dx + dy * dy);
+      if (d < bestD){ bestD = d; best = hits[i]; }
+    }
+    if (!best) return hideCard();
+    if (hovered !== best.p){
+      hovered = best.p;
+      cardImg.src = best.p.img;
+      cardImg.alt = best.p.name;
+      cardName.textContent = best.p.name;
+      cardNote.textContent = best.p.note;
+    }
+    card.style.left = best.sx + 'px';
+    card.style.top  = (best.sy - 14) + 'px';
+    card.classList.add('on');
+    card.setAttribute('aria-hidden', 'false');
+    frame.style.cursor = 'pointer';
+  }
+  function hideCard(){
+    hovered = null;
+    card.classList.remove('on');
+    card.setAttribute('aria-hidden', 'true');
+    if (!dragging) frame.style.cursor = '';
+  }
+  frame.addEventListener('pointerleave', hideCard);
+
   frame.addEventListener('pointermove', function(e){
-    if (!dragging) return;
+    if (!dragging){ hoverAt(e.clientX, e.clientY); return; }
+    hideCard();
     az   += (e.clientX - lastX) * 0.008;
     tilt += (e.clientY - lastY) * 0.004;
     tilt = Math.max(0.2, Math.min(1.2, tilt));
     lastX = e.clientX; lastY = e.clientY;
     draw();
   });
-  function up(){ if (dragging){ dragging = false; frame.classList.remove('dragging'); draw(); } }
+  function up(){ if (dragging){ dragging = false; frame.classList.remove('dragging'); drawThenRefine(); } }
   addEventListener('pointerup', up);
   addEventListener('pointercancel', up);
   addEventListener('resize', draw, {passive:true});
 
   function press(id, on){ var b = document.getElementById(id); b.setAttribute('aria-pressed', on ? 'true' : 'false'); }
-  document.getElementById('bPhoto').addEventListener('click', function(){
-    mode = 'photo'; press('bPhoto', true); press('bLines', false); draw();
-  });
-  document.getElementById('bLines').addEventListener('click', function(){
-    mode = 'lines'; press('bPhoto', false); press('bLines', true); draw();
-  });
+  function setMode(m){
+    mode = m;
+    press('bPhoto', m === 'photo');
+    press('bIllus', m === 'illus');
+    press('bLines', m === 'lines');
+    drawThenRefine();
+  }
+  document.getElementById('bPhoto').addEventListener('click', function(){ setMode('photo'); });
+  document.getElementById('bIllus').addEventListener('click', function(){ setMode('illus'); });
+  document.getElementById('bLines').addEventListener('click', function(){ setMode('lines'); });
   document.getElementById('bCont').addEventListener('click', function(){
     showCont = !showCont; press('bCont', showCont); draw();
   });

@@ -14,7 +14,7 @@ from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC  = r"C:/Users/DAVE~1.MCC/AppData/Local/Temp/claude/C--Users-dave-mccormick-Something/9113fdc1-8166-47e1-8097-b0e3ebb5a721/scratchpad/usgs/close.tif"
-N    = 180                     # grid resolution the page renders
+N    = 256                     # grid resolution the page renders
 
 BBOX = {"west": -85.40990, "east": -85.40110, "south": 34.95684, "north": 34.96404}
 
