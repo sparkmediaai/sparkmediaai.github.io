@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The Estate in Relief — Valley Venues</title>
-<meta name="description" content="Seventy-four acres of Lookout Valley, modelled from survey elevation data. Drag to turn the land.">
+<meta name="description" content="Seventy-four acres of Lookout Valley, modelled from survey elevation data and draped with aerial photography. Drag to turn the land.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,23 +13,21 @@
 <style>
 /* ============================================================
    THE ESTATE IN RELIEF
-   A rotatable model of the actual land, built from USGS 3DEP 1-metre LiDAR.
-   Nothing here is illustrated: every ridge and hollow is survey data.
+   Terrain: USGS 3DEP 1m LiDAR. Texture: USGS NAIP aerial, same footprint, so
+   the photograph lands on the ground it was taken of.
 
-   Drawn as engraved profile lines rather than a shaded 3D mesh — each row of
-   the terrain is filled with paper and then stroked, so rows in front occlude
-   the rows behind them. Hidden-line removal for free, and it looks like an
-   engraving instead of a video game.
+   Two ways to look at it. PHOTOGRAPHIC drapes the aerial over the surface and
+   lights it from a low western sun. ENGRAVED throws the photo away and draws
+   the land as profile lines. Both are the same model; only the skin changes.
    ============================================================ */
 :root{
   --paper:#F4F0E6;
   --paper-2:#E9E3D4;
   --ink:#2A3326;
   --ink-soft:#48533F;
-  --line:#8C9578;
   --gold:#6B5310;
-  --gold-lit:#B9913F;
-  --water:#6E93A6;
+  --sky-1:#DCE4E6;
+  --sky-2:#EFEADC;
   --display:'Cormorant Garamond',Georgia,serif;
   --sans:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
   --pad:clamp(1.25rem,5vw,4rem);
@@ -48,36 +46,38 @@ header{padding:clamp(2.2rem,6vh,4rem) var(--pad) clamp(1.2rem,3vh,2rem);max-widt
 h1{font-size:clamp(2.2rem,6vw,4.2rem);margin-top:1rem}
 header p{color:var(--ink-soft);margin-top:1.1rem;max-width:44rem}
 
-/* ---- the model ---- */
 .stage{position:relative;margin:0 auto;max-width:78rem;padding:0 var(--pad)}
-.frame{position:relative;background:var(--paper);border:1px solid rgba(42,51,38,.18);
-  aspect-ratio:16/11;overflow:hidden;touch-action:none;cursor:grab}
+.frame{position:relative;border:1px solid rgba(42,51,38,.18);aspect-ratio:16/11;
+  overflow:hidden;touch-action:none;cursor:grab;
+  background:linear-gradient(180deg,var(--sky-1) 0%,var(--sky-2) 62%,var(--paper) 100%)}
 .frame.dragging{cursor:grabbing}
 #view{position:absolute;inset:0;width:100%;height:100%;display:block}
 
-.hud{position:absolute;left:1rem;top:1rem;z-index:3;display:flex;gap:.5rem;flex-wrap:wrap}
-.hud button{font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
-  font-weight:600;padding:.5rem .9rem;border:1px solid rgba(42,51,38,.3);background:rgba(244,240,230,.9);
-  color:var(--ink);cursor:pointer;transition:background .3s,border-color .3s}
-.hud button:hover,.hud button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.hud{position:absolute;left:1rem;top:1rem;z-index:3;display:flex;gap:.4rem;flex-wrap:wrap;max-width:calc(100% - 2rem)}
+.hud button{font-family:var(--sans);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:600;padding:.45rem .8rem;border:1px solid rgba(42,51,38,.3);background:rgba(244,240,230,.92);
+  color:var(--ink);cursor:pointer;transition:background .3s,border-color .3s,color .3s}
+.hud button:hover{border-color:var(--ink)}
+.hud button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 
 .scalebar{position:absolute;right:1rem;bottom:1rem;z-index:3;text-align:right;
-  font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
-.scalebar i{display:block;height:1px;background:var(--ink);margin-bottom:.35rem}
+  font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
+  text-shadow:0 1px 3px rgba(244,240,230,.9)}
+.scalebar i{display:block;height:2px;background:var(--ink);margin-bottom:.35rem}
 .readout{position:absolute;left:1rem;bottom:1rem;z-index:3;font-size:.7rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+  text-transform:uppercase;color:var(--ink);font-variant-numeric:tabular-nums;
+  text-shadow:0 1px 3px rgba(244,240,230,.9)}
 .grab{position:absolute;right:1rem;top:1rem;z-index:3;font-size:.68rem;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--ink-soft);transition:opacity .6s}
+  text-transform:uppercase;color:var(--ink);transition:opacity .6s;text-shadow:0 1px 3px rgba(244,240,230,.9)}
 .grab.gone{opacity:0}
 
 .nojs{display:none}
 html:not(.js) .nojs{display:block;width:100%}
 html:not(.js) .frame{aspect-ratio:auto}
-html:not(.js) #view,html:not(.js) .hud,html:not(.js) .grab,html:not(.js) .readout{display:none}
+html:not(.js) #view,html:not(.js) .hud,html:not(.js) .grab,html:not(.js) .readout,html:not(.js) .scalebar{display:none}
 
 .caption{max-width:78rem;margin:1rem auto 0;padding:0 var(--pad);font-size:.86rem;color:var(--ink-soft)}
 
-/* ---- notes ---- */
 section{padding:clamp(3.5rem,9vh,6rem) var(--pad);max-width:64rem;margin:0 auto}
 .grid{display:grid;gap:clamp(1.5rem,4vw,3rem);margin-top:2rem}
 @media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
@@ -90,7 +90,6 @@ h2{font-size:clamp(1.6rem,3.4vw,2.4rem);max-width:22ch}
 .facts b{display:block;font-family:var(--display);font-size:2rem;line-height:1;color:var(--gold);margin-bottom:.3rem}
 .facts span{font-size:.86rem;color:var(--ink-soft)}
 footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-size:.84rem;color:var(--ink-soft)}
-
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -99,7 +98,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
 <header>
   <div class="eyebrow">Valley Venues · Wildwood, Georgia</div>
   <h1>The estate, in relief</h1>
-  <p>Seventy-four acres of Lookout Valley, modelled from survey elevation data — not drawn. Every ridge, hollow and flat below is the real shape of the ground. Drag to turn the land.</p>
+  <p>Seventy-four acres of Lookout Valley, modelled from survey elevation data and draped with aerial photography of the same ground. Nothing here is drawn. Drag to turn the land.</p>
 </header>
 
 <div class="stage">
@@ -107,15 +106,17 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
     <canvas id="view"></canvas>
     <img class="nojs" src="contour-fallback.webp" alt="Contour map of the Valley Venues estate">
     <div class="hud">
-      <button id="bPins"   aria-pressed="true">Places</button>
-      <button id="bWater"  aria-pressed="true">Low ground</button>
-      <button id="bSpin"   aria-pressed="true">Turning</button>
+      <button id="bPhoto" aria-pressed="true">Photographic</button>
+      <button id="bLines" aria-pressed="false">Engraved</button>
+      <button id="bCont"  aria-pressed="false">Contours</button>
+      <button id="bPins"  aria-pressed="true">Places</button>
+      <button id="bSpin"  aria-pressed="true">Turning</button>
     </div>
     <div class="grab" id="grab">Drag to turn</div>
     <div class="readout" id="readout">—</div>
-    <div class="scalebar"><i id="scaleRule" style="width:80px"></i><span id="scaleTxt">200 m</span></div>
+    <div class="scalebar"><i id="scaleRule" style="width:80px"></i><span>200 m</span></div>
   </div>
-  <p class="caption">Elevation: USGS 3DEP 1-metre LiDAR via nationalmap.gov. Vertical scale is exaggerated 2.2× so the valley reads — the land is dramatic, but not that dramatic.</p>
+  <p class="caption">Elevation: USGS 3DEP 1-metre LiDAR. Imagery: USGS NAIP, October 2023, same footprint. Vertical scale exaggerated 2.2× so the valley reads.</p>
 </div>
 
 <section>
@@ -123,11 +124,11 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
   <div class="grid">
     <div>
       <h3>The meadow sits in a bowl</h3>
-      <p>The flat, nearly featureless plain through the middle is the ceremony ground. Everything around it climbs. That is why sound stays in it, why the wind drops, and why the hills hold the last half-hour of light after it has left the grass.</p>
+      <p>The flat, open ground through the middle is where the ceremonies happen. Everything around it climbs. That is why sound stays in it, why the wind drops, and why the hills hold the last half-hour of light after it has left the grass.</p>
     </div>
     <div>
       <h3>Seventy-three metres of relief</h3>
-      <p>From the low ground to the high ridge inside this frame is a 240-foot climb. A flat plan of the property cannot show that, which is the whole reason this exists.</p>
+      <p>From the low ground to the high ridge inside this frame is a 240-foot climb. A flat plan cannot show that, which is the entire reason this exists.</p>
     </div>
   </div>
   <div class="facts">
@@ -139,7 +140,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
 </section>
 
 <footer>
-  Concept · The Estate in Relief. Terrain is real survey data; the marked places are positioned provisionally from aerial imagery and will be corrected against the owners' own plan.
+  Concept · The Estate in Relief. Terrain and imagery are real public survey data; the marked places are positioned provisionally from the aerial and will be corrected against the owners' own plan.
 </footer>
 
 <script>
@@ -149,49 +150,92 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
   if (!cv || !cv.getContext) return;
   var ctx = cv.getContext('2d');
 
-  /* Places are PROVISIONAL — read off October 2023 aerial imagery, not from the
-     owners' plan. u,v are fractions of the modelled box (0,0 = NW corner). */
+  /* PROVISIONAL — read off the October 2023 aerial, not the owners' plan. */
   var PLACES = [
-    {u:.727, v:.561, name:'The Valley',       note:'ceremony meadow'},
-    {u:.597, v:.499, name:'Davis Hall',       note:'reception'},
-    {u:.506, v:.415, name:'Overlook Village', note:'lodging'},
-    {u:.398, v:.547, name:'Magnolia House',   note:'1890s manor'},
-    {u:.352, v:.450, name:'Lookout Deck',     note:'the view'},
-    {u:.443, v:.596, name:'Arrival',          note:'parking'}
+    {u:.727, v:.561, name:'The Valley'},
+    {u:.597, v:.499, name:'Davis Hall'},
+    {u:.506, v:.415, name:'Overlook Village'},
+    {u:.398, v:.547, name:'Magnolia House'},
+    {u:.352, v:.450, name:'Lookout Deck'},
+    {u:.443, v:.596, name:'Arrival'}
   ];
 
-  var N = 0, hm = null, relief = 73.2, METRES = 800, VEX = 2.2;
-  var az = -0.62, tilt = 0.72, spin = !rm, showPins = true, showWater = true;
-  var dragging = false, lastX = 0, lastY = 0, idle = 0;
+  var N = 0, hm = null, tex = null, TN = 0;
+  var RELIEF = 73.2, METRES = 800, VEX = 2.2;
+  var az = -0.62, tilt = 0.68;
+  var mode = 'photo', showCont = false, showPins = true, spin = !rm;
+  var dragging = false, lastX = 0, lastY = 0, idle = 0, ready = 0;
 
   function sizeCanvas(){
-    var r = frame.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+    var r = frame.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 1.75);
     cv.width = Math.round(r.width * dpr);
     cv.height = Math.round(r.height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     return r;
   }
 
-  /* Load the heightmap and read it back off an offscreen canvas. */
-  var img = new Image();
-  img.onload = function(){
-    N = img.width;
-    var oc = document.createElement('canvas');
-    oc.width = oc.height = N;
-    var octx = oc.getContext('2d');
-    octx.drawImage(img, 0, 0);
-    var d = octx.getImageData(0, 0, N, N).data;
+  function loadImg(src, cb){
+    var im = new Image();
+    im.onload = function(){ cb(im); };
+    im.onerror = function(){ cb(null); };
+    im.src = src;
+  }
+
+  function pixels(im){
+    var c = document.createElement('canvas');
+    c.width = im.width; c.height = im.height;
+    c.getContext('2d').drawImage(im, 0, 0);
+    return c.getContext('2d').getImageData(0, 0, im.width, im.height).data;
+  }
+
+  loadImg('terrain.png', function(im){
+    if (!im){ fail(); return; }
+    N = im.width;
+    var d = pixels(im);
     hm = new Float32Array(N * N);
     for (var i = 0; i < N * N; i++) hm[i] = d[i * 4] / 255;
-    draw();
-  };
-  img.onerror = function(){ frame.querySelector('.nojs').style.display = 'block'; cv.style.display='none'; };
-  img.src = 'terrain.png';
+    if (++ready === 2) draw();
+  });
+  loadImg('aerial.webp', function(im){
+    if (im){ TN = im.width; tex = pixels(im); }
+    else { mode = 'lines'; }               /* no photo? fall back to the engraving */
+    if (++ready === 2) draw();
+  });
 
-  function h(i, j){ return hm[j * N + i]; }
+  function fail(){
+    cv.style.display = 'none';
+    frame.querySelector('.nojs').style.display = 'block';
+  }
 
-  /* world -> screen. Rotate about the vertical axis, then tilt the whole thing
-     toward the viewer. Height pushes a point UP the screen. */
+  function h(i, j){
+    i = i < 0 ? 0 : (i > N - 1 ? N - 1 : i);
+    j = j < 0 ? 0 : (j > N - 1 ? N - 1 : j);
+    return hm[j * N + i];
+  }
+
+  /* colour of the aerial at grid position (i,j) */
+  function texel(i, j){
+    if (!tex) return [150, 158, 132];
+    var tx = Math.round(i / (N - 1) * (TN - 1)), ty = Math.round(j / (N - 1) * (TN - 1));
+    var k = (ty * TN + tx) * 4;
+    return [tex[k], tex[k + 1], tex[k + 2]];
+  }
+
+  /* Surface normal dotted with a low western sun. This is what turns a flat
+     photograph into something with form — without it the drape reads as a
+     sticker rather than as land. */
+  var LX = -0.62, LY = -0.34, LZ = 0.70;
+  var cellM = METRES / (N - 1);
+  function shade(i, j){
+    var dzdx = (h(i + 1, j) - h(i - 1, j)) * RELIEF / (2 * cellM);
+    var dzdy = (h(i, j + 1) - h(i, j - 1)) * RELIEF / (2 * cellM);
+    var nx = -dzdx, ny = -dzdy, nz = 1;
+    var len = Math.sqrt(nx * nx + ny * ny + 1);
+    var dot = (nx * LX + ny * LY + nz * LZ) / len;
+    if (dot < 0) dot = 0;
+    return 0.42 + 0.78 * dot;               /* ambient + direct */
+  }
+
   function project(x, y, z, S, cx, cy){
     var ca = Math.cos(az), sa = Math.sin(az);
     var xr = x * ca - y * sa, yr = x * sa + y * ca;
@@ -204,140 +248,221 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
     var r = sizeCanvas(), W = r.width, H = r.height;
     ctx.clearRect(0, 0, W, H);
 
-    var S = Math.min(W, H) * 0.92;          // world units are -0.5..0.5
-    var cx = W / 2, cy = H * 0.54;
-    var zScale = (relief * VEX) / METRES;   // keep height in the same units as x/y
+    var S = Math.min(W, H) * 0.95, cx = W / 2, cy = H * 0.52;
+    var zScale = (RELIEF * VEX) / METRES;
+    /* coarser mesh while dragging keeps the turn responsive */
+    var step = dragging ? 3 : 2;
 
-    /* rows sorted far -> near so each fill occludes what is behind it */
-    var order = [], j;
-    for (j = 0; j < N; j++){
-      var mid = (j / (N - 1)) - 0.5;
-      order.push([j, mid * Math.cos(az)]);
+    if (mode === 'photo') drawSurface(S, cx, cy, zScale, step);
+    else drawLines(S, cx, cy, zScale, step);
+
+    if (showCont) drawContours(S, cx, cy, zScale);
+    if (showPins) drawPins(S, cx, cy, zScale);
+
+    document.getElementById('scaleRule').style.width = Math.round((200 / METRES) * S) + 'px';
+    document.getElementById('readout').textContent =
+      'Bearing ' + Math.round(((-az * 180 / Math.PI) % 360 + 360) % 360) + '°  ·  73 m relief';
+  }
+
+  /* ---- textured surface ----
+     Heightfield painter's algorithm: iterate each axis in whichever direction
+     runs away from the camera, so quads are laid down back to front and near
+     ground covers far ground. No sorting needed. */
+  /* A cut edge below the surface, so the model reads as a block of land lifted
+     out of the map rather than a sheet floating in the air. Drawn before the
+     surface: the terrain then covers whichever walls are behind it. */
+  function drawSkirt(S, cx, cy, zScale, step){
+    var BASE = -0.055;
+    function wall(i0, j0, i1, j1, tone){
+      var a = project(i0 / (N - 1) - 0.5, j0 / (N - 1) - 0.5, h(i0, j0) * zScale, S, cx, cy);
+      var b = project(i1 / (N - 1) - 0.5, j1 / (N - 1) - 0.5, h(i1, j1) * zScale, S, cx, cy);
+      var c = project(i1 / (N - 1) - 0.5, j1 / (N - 1) - 0.5, BASE, S, cx, cy);
+      var d = project(i0 / (N - 1) - 0.5, j0 / (N - 1) - 0.5, BASE, S, cx, cy);
+      ctx.beginPath();
+      ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]);
+      ctx.lineTo(c[0], c[1]); ctx.lineTo(d[0], d[1]);
+      ctx.closePath();
+      ctx.fillStyle = tone; ctx.fill();
+      ctx.strokeStyle = tone; ctx.lineWidth = 1; ctx.stroke();
     }
-    order.sort(function(a, b){ return a[1] - b[1]; });
+    for (var k = 0; k < N - 1 - step; k += step){
+      wall(k, 0, k + step, 0, '#6E6047');                 /* north */
+      wall(k, N - 1, k + step, N - 1, '#847356');         /* south */
+      wall(0, k, 0, k + step, '#5E5340');                  /* west  */
+      wall(N - 1, k, N - 1, k + step, '#8E7C5E');          /* east  */
+    }
+  }
 
-    var STEP = N > 140 ? 2 : 1;             // draw every other row: cleaner engraving
+  function drawSurface(S, cx, cy, zScale, step){
+    drawSkirt(S, cx, cy, zScale, step);
+    var sa = Math.sin(az), ca = Math.cos(az);
+    var iFwd = sa >= 0, jFwd = ca >= 0;
+    var iStart = iFwd ? 0 : N - 1 - step, iEnd = iFwd ? N - 1 - step : 0, iStep = iFwd ? step : -step;
+    var jStart = jFwd ? 0 : N - 1 - step, jEnd = jFwd ? N - 1 - step : 0, jStep = jFwd ? step : -step;
+
+    for (var j = jStart; jFwd ? j <= jEnd : j >= jEnd; j += jStep){
+      for (var i = iStart; iFwd ? i <= iEnd : i >= iEnd; i += iStep){
+        var x0 = i / (N - 1) - 0.5, x1 = (i + step) / (N - 1) - 0.5;
+        var y0 = j / (N - 1) - 0.5, y1 = (j + step) / (N - 1) - 0.5;
+        var a = project(x0, y0, h(i, j) * zScale, S, cx, cy);
+        var b = project(x1, y0, h(i + step, j) * zScale, S, cx, cy);
+        var c = project(x1, y1, h(i + step, j + step) * zScale, S, cx, cy);
+        var d = project(x0, y1, h(i, j + step) * zScale, S, cx, cy);
+
+        var col = texel(i + step / 2, j + step / 2);
+        var s = shade(i + step / 2, j + step / 2);
+        var fill = 'rgb(' + Math.min(255, col[0] * s | 0) + ',' +
+                            Math.min(255, col[1] * s | 0) + ',' +
+                            Math.min(255, col[2] * s | 0) + ')';
+        ctx.beginPath();
+        ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]);
+        ctx.lineTo(c[0], c[1]); ctx.lineTo(d[0], d[1]);
+        ctx.closePath();
+        ctx.fillStyle = fill;
+        ctx.fill();
+        ctx.strokeStyle = fill;   /* hides hairline seams between quads */
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+  }
+
+  /* ---- engraved profile lines ---- */
+  function drawLines(S, cx, cy, zScale, step){
+    var order = [], j;
+    for (j = 0; j < N; j += step) order.push([j, ((j / (N - 1)) - 0.5) * Math.cos(az)]);
+    order.sort(function(p, q){ return p[1] - q[1]; });
+    var H = cv.height;
     for (var k = 0; k < order.length; k++){
       j = order[k][0];
-      if (j % STEP) continue;
       var pts = [], i;
-      for (i = 0; i < N; i += STEP){
-        var x = (i / (N - 1)) - 0.5, y = (j / (N - 1)) - 0.5;
-        pts.push(project(x, y, h(i, j) * zScale, S, cx, cy));
+      for (i = 0; i < N; i += step){
+        pts.push(project(i / (N - 1) - 0.5, j / (N - 1) - 0.5, h(i, j) * zScale, S, cx, cy));
       }
-      if (pts.length < 2) continue;
-
       ctx.beginPath();
       ctx.moveTo(pts[0][0], pts[0][1]);
       for (i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
-      /* skirt below the canvas so the fill hides the rows behind */
       ctx.lineTo(pts[pts.length - 1][0], H + 400);
       ctx.lineTo(pts[0][0], H + 400);
       ctx.closePath();
       ctx.fillStyle = '#F4F0E6';
       ctx.fill();
-
       ctx.beginPath();
       ctx.moveTo(pts[0][0], pts[0][1]);
       for (i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
-      /* low ground picked out in water blue, high ground in ink */
-      var mean = 0;
-      for (i = 0; i < N; i += STEP) mean += h(i, j);
-      mean /= Math.ceil(N / STEP);
-      if (showWater && mean < 0.16){ ctx.strokeStyle = '#6E93A6'; ctx.lineWidth = 1.4; }
-      else { ctx.strokeStyle = 'rgba(42,51,38,' + (0.30 + mean * 0.55).toFixed(2) + ')'; ctx.lineWidth = 1; }
+      var mean = 0, n = 0;
+      for (i = 0; i < N; i += step){ mean += h(i, j); n++; }
+      mean /= n;
+      ctx.strokeStyle = 'rgba(42,51,38,' + (0.30 + mean * 0.55).toFixed(2) + ')';
+      ctx.lineWidth = 1;
       ctx.stroke();
     }
+  }
 
-    if (showPins) drawPins(S, cx, cy, zScale);
-    updateScale(S);
+  /* ---- contour overlay, drawn on the 3D surface ---- */
+  function drawContours(S, cx, cy, zScale){
+    var levels = 14, step = 2;
+    ctx.lineWidth = 1;
+    for (var L = 1; L < levels; L++){
+      var lv = L / levels;
+      ctx.strokeStyle = (L % 4 === 0) ? 'rgba(28,34,24,.7)' : 'rgba(28,34,24,.34)';
+      ctx.beginPath();
+      for (var j = 0; j < N - step; j += step){
+        for (var i = 0; i < N - step; i += step){
+          var v = [h(i, j), h(i + step, j), h(i + step, j + step), h(i, j + step)];
+          if (Math.min.apply(null, v) > lv || Math.max.apply(null, v) < lv) continue;
+          var cs = [[i, j], [i + step, j], [i + step, j + step], [i, j + step]], seg = [];
+          for (var e = 0; e < 4; e++){
+            var p = e, q = (e + 1) % 4;
+            if ((v[p] < lv) !== (v[q] < lv)){
+              var t = (lv - v[p]) / (v[q] - v[p]);
+              var gi = cs[p][0] + (cs[q][0] - cs[p][0]) * t;
+              var gj = cs[p][1] + (cs[q][1] - cs[p][1]) * t;
+              seg.push(project(gi / (N - 1) - 0.5, gj / (N - 1) - 0.5, lv * zScale, S, cx, cy));
+            }
+          }
+          if (seg.length >= 2){
+            ctx.moveTo(seg[0][0], seg[0][1]);
+            ctx.lineTo(seg[1][0], seg[1][1]);
+          }
+        }
+      }
+      ctx.stroke();
+    }
   }
 
   function drawPins(S, cx, cy, zScale){
-    var shots = PLACES.map(function(p){
+    PLACES.map(function(p){
       var i = Math.round(p.u * (N - 1)), j = Math.round(p.v * (N - 1));
-      var x = p.u - 0.5, y = p.v - 0.5, z = h(i, j) * zScale;
-      var g = project(x, y, z, S, cx, cy);
-      var base = project(x, y, 0, S, cx, cy);
-      return {p:p, sx:g[0], sy:g[1], bx:base[0], by:base[1], depth:g[2]};
-    }).sort(function(a, b){ return a.depth - b.depth; });
-
-    shots.forEach(function(s){
-      ctx.beginPath();                       /* stem down to the datum */
+      var g = project(p.u - 0.5, p.v - 0.5, h(i, j) * zScale, S, cx, cy);
+      return {p:p, sx:g[0], sy:g[1], depth:g[2]};
+    }).sort(function(a, b){ return a.depth - b.depth; }).forEach(function(s){
+      ctx.beginPath();
       ctx.moveTo(s.sx, s.sy);
-      ctx.lineTo(s.bx, s.by);
-      ctx.strokeStyle = 'rgba(107,83,16,.45)';
-      ctx.lineWidth = 1;
+      ctx.lineTo(s.sx, s.sy - 26);
+      ctx.strokeStyle = 'rgba(244,240,230,.85)';
+      ctx.lineWidth = 2;
       ctx.stroke();
-
       ctx.beginPath();
       ctx.arc(s.sx, s.sy, 4.5, 0, Math.PI * 2);
-      ctx.fillStyle = '#6B5310';
+      ctx.fillStyle = '#F4F0E6';
       ctx.fill();
-      ctx.strokeStyle = '#F4F0E6';
-      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = '#2A3326';
+      ctx.lineWidth = 1.6;
       ctx.stroke();
 
       ctx.font = '600 11px Montserrat, system-ui, sans-serif';
       ctx.textAlign = 'center';
-      var label = s.p.name.toUpperCase();
-      var w = ctx.measureText(label).width;
-      ctx.fillStyle = 'rgba(244,240,230,.86)';
-      ctx.fillRect(s.sx - w / 2 - 5, s.sy - 26, w + 10, 15);
+      var label = s.p.name.toUpperCase(), w = ctx.measureText(label).width;
+      ctx.fillStyle = 'rgba(244,240,230,.94)';
+      ctx.fillRect(s.sx - w / 2 - 6, s.sy - 41, w + 12, 16);
       ctx.fillStyle = '#2A3326';
-      ctx.fillText(label, s.sx, s.sy - 15);
+      ctx.fillText(label, s.sx, s.sy - 29);
     });
   }
 
-  function updateScale(S){
-    /* the bar shows 200 m at the current projection scale */
-    var px = (200 / METRES) * S;
-    document.getElementById('scaleRule').style.width = Math.round(px) + 'px';
-    document.getElementById('readout').textContent =
-      'Bearing ' + Math.round(((-az * 180 / Math.PI) % 360 + 360) % 360) + '°  ·  73 m relief';
-  }
-
   /* ---- interaction ---- */
-  function onDown(e){
+  frame.addEventListener('pointerdown', function(e){
     dragging = true; idle = 0;
     frame.classList.add('dragging');
     document.getElementById('grab').classList.add('gone');
     lastX = e.clientX; lastY = e.clientY;
-    frame.setPointerCapture && frame.setPointerCapture(e.pointerId);
-  }
-  function onMove(e){
+    if (frame.setPointerCapture) frame.setPointerCapture(e.pointerId);
+  });
+  frame.addEventListener('pointermove', function(e){
     if (!dragging) return;
     az   += (e.clientX - lastX) * 0.008;
     tilt += (e.clientY - lastY) * 0.004;
-    tilt = Math.max(0.18, Math.min(1.25, tilt));
+    tilt = Math.max(0.2, Math.min(1.2, tilt));
     lastX = e.clientX; lastY = e.clientY;
     draw();
-  }
-  function onUp(){ dragging = false; frame.classList.remove('dragging'); }
-
-  frame.addEventListener('pointerdown', onDown);
-  frame.addEventListener('pointermove', onMove);
-  addEventListener('pointerup', onUp);
-  addEventListener('pointercancel', onUp);
+  });
+  function up(){ if (dragging){ dragging = false; frame.classList.remove('dragging'); draw(); } }
+  addEventListener('pointerup', up);
+  addEventListener('pointercancel', up);
   addEventListener('resize', draw, {passive:true});
 
-  function toggle(btn, get, set){
-    btn.addEventListener('click', function(){
-      set(!get());
-      btn.setAttribute('aria-pressed', get() ? 'true' : 'false');
-      draw();
-    });
-  }
-  toggle(document.getElementById('bPins'),  function(){ return showPins; },  function(v){ showPins = v; });
-  toggle(document.getElementById('bWater'), function(){ return showWater; }, function(v){ showWater = v; });
-  toggle(document.getElementById('bSpin'),  function(){ return spin; },      function(v){ spin = v; });
+  function press(id, on){ var b = document.getElementById(id); b.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+  document.getElementById('bPhoto').addEventListener('click', function(){
+    mode = 'photo'; press('bPhoto', true); press('bLines', false); draw();
+  });
+  document.getElementById('bLines').addEventListener('click', function(){
+    mode = 'lines'; press('bPhoto', false); press('bLines', true); draw();
+  });
+  document.getElementById('bCont').addEventListener('click', function(){
+    showCont = !showCont; press('bCont', showCont); draw();
+  });
+  document.getElementById('bPins').addEventListener('click', function(){
+    showPins = !showPins; press('bPins', showPins); draw();
+  });
+  document.getElementById('bSpin').addEventListener('click', function(){
+    spin = !spin; press('bSpin', spin);
+  });
 
-  /* Idle turn — stops the moment anyone touches it, and never runs under
-     reduced motion. */
   (function tick(){
-    if (spin && !dragging && !rm){
+    if (spin && !dragging && !rm && hm){
       idle++;
-      if (idle > 40){ az += 0.0016; draw(); }
+      if (idle > 45){ az += 0.0014; draw(); }
     }
     requestAnimationFrame(tick);
   })();
