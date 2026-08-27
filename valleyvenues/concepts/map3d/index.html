@@ -169,14 +169,16 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
   var ctx = cv.getContext('2d');
 
   /* PROVISIONAL — read off the October 2023 aerial, not the owners' plan. */
-  var IMG = '../styles/_img/';
+  /* Photographs are the venue's own, taken from thevalleyvenues.com — so each
+     pin shows the actual room or view rather than a stand-in. */
+  var IMG = 'places/';
   var PLACES = [
-    {u:.727, v:.561, name:'The Valley',       note:'Ceremony · 300 seated', img:IMG+'valley-autumn.webp'},
-    {u:.597, v:.499, name:'Davis Hall',       note:'Reception',             img:IMG+'arch-florals.webp'},
-    {u:.506, v:.415, name:'Overlook Village', note:'Lodging',               img:IMG+'meadow-house.webp'},
-    {u:.398, v:.547, name:'Magnolia House',   note:'1890s manor',           img:IMG+'manor-lawn.webp'},
-    {u:.352, v:.450, name:'Lookout Deck',     note:'Cocktails · sunset',    img:IMG+'deck-ceremony.webp'},
-    {u:.443, v:.596, name:'Arrival',          note:'Parking · the drive',   img:IMG+'vintage-car.webp'}
+    {u:.727, v:.561, name:'The Valley',       note:'Ceremony · up to 300',  img:IMG+'the-valley.webp'},
+    {u:.597, v:.499, name:'Davis Hall',       note:'Reception · seated dining', img:IMG+'davis-hall.webp'},
+    {u:.506, v:.415, name:'Overlook Village', note:'Lodging · stay the weekend', img:IMG+'overlook-village.webp'},
+    {u:.398, v:.547, name:'Magnolia House',   note:'1890s manor',           img:IMG+'magnolia-house.webp'},
+    {u:.352, v:.450, name:'Lookout Deck',     note:'Cocktails · sunset',    img:IMG+'lookout-deck.webp'},
+    {u:.443, v:.596, name:'Arrival',          note:'The drive in',          img:IMG+'arrival.webp'}
   ];
   /* Warm the images so the first hover is never a blank frame. */
   PLACES.forEach(function(p){ var w = new Image(); w.src = p.img; });
@@ -194,11 +196,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
     quality = 3;
     draw();
     clearTimeout(refineTimer);
-    refineTimer = setTimeout(function(){
-      if (dragging) return;
-      quality = 2;
-      draw();
-    }, 90);
+    refineTimer = setTimeout(function(){ if (!dragging) startFine(); }, 60);
   }
 
   function sizeCanvas(){
@@ -233,12 +231,12 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
   });
   loadImg('aerial.webp', function(im){
     if (im){ TN = im.width; tex = pixels(im); }
-    if (++ready === 3) draw();
+    if (++ready === 3) drawThenRefine();
   });
   loadImg('illustrated.webp', function(im){
     if (im){ TN = im.width; texIll = pixels(im); }
     else if (!tex) { mode = 'lines'; }     /* no imagery at all? use the engraving */
-    if (++ready === 3) draw();
+    if (++ready === 3) drawThenRefine();
   });
 
   function fail(){
@@ -246,7 +244,11 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
     frame.querySelector('.nojs').style.display = 'block';
   }
 
+  /* Callers sample at half-cell offsets (the centre of a quad), so round to the
+     nearest sample before indexing — a fractional index reads undefined, and the
+     NaN that follows paints the facet black. */
   function h(i, j){
+    i = Math.round(i); j = Math.round(j);
     i = i < 0 ? 0 : (i > N - 1 ? N - 1 : i);
     j = j < 0 ? 0 : (j > N - 1 ? N - 1 : j);
     return hm[j * N + i];
@@ -335,14 +337,23 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
     }
   }
 
-  function drawSurface(S, cx, cy, zScale, step){
-    drawSkirt(S, cx, cy, zScale, step);
-    var sa = Math.sin(az), ca = Math.cos(az);
-    var iFwd = sa >= 0, jFwd = ca >= 0;
-    var iStart = iFwd ? 0 : N - 1 - step, iEnd = iFwd ? N - 1 - step : 0, iStep = iFwd ? step : -step;
-    var jStart = jFwd ? 0 : N - 1 - step, jEnd = jFwd ? N - 1 - step : 0, jStep = jFwd ? step : -step;
+  /* Row order for the painter's algorithm: each axis walks in whichever
+     direction runs away from the camera, so quads land back to front. */
+  function rowOrder(step){
+    var jFwd = Math.cos(az) >= 0, out = [];
+    if (jFwd){ for (var j = 0; j <= N - 1 - step; j += step) out.push(j); }
+    else     { for (var j2 = N - 1 - step; j2 >= 0; j2 -= step) out.push(j2); }
+    return out;
+  }
 
-    for (var j = jStart; jFwd ? j <= jEnd : j >= jEnd; j += jStep){
+  function drawSurface(S, cx, cy, zScale, step, rows){
+    if (!rows){ drawSkirt(S, cx, cy, zScale, step); rows = rowOrder(step); }
+    var sa = Math.sin(az);
+    var iFwd = sa >= 0;
+    var iStart = iFwd ? 0 : N - 1 - step, iEnd = iFwd ? N - 1 - step : 0, iStep = iFwd ? step : -step;
+
+    for (var ri = 0; ri < rows.length; ri++){
+      var j = rows[ri];
       for (var i = iStart; iFwd ? i <= iEnd : i >= iEnd; i += iStep){
         var x0 = i / (N - 1) - 0.5, x1 = (i + step) / (N - 1) - 0.5;
         var y0 = j / (N - 1) - 0.5, y1 = (j + step) / (N - 1) - 0.5;
@@ -367,6 +378,30 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
         ctx.stroke();
       }
     }
+  }
+
+  /* ---- progressive sharpening ----
+     The finest mesh is what kills the faceted look, but drawing all of it in
+     one go costs the best part of a second. So it is painted in bands across
+     successive frames, over the top of the coarse render, in the same depth
+     order — the picture simply resolves. Any interaction cancels it. */
+  var fineToken = 0;
+  function startFine(){
+    if (mode === 'lines') return;
+    var token = ++fineToken;
+    var r = frame.getBoundingClientRect();
+    var S = Math.min(r.width, r.height) * 0.95, cx = r.width / 2, cy = r.height * 0.52;
+    var zScale = (RELIEF * VEX) / METRES;
+    var rows = rowOrder(1), at = 0, BAND = 26;
+    (function band(){
+      if (token !== fineToken || dragging || spin) return;
+      var slice = rows.slice(at, at + BAND);
+      if (!slice.length) return;
+      drawSurface(S, cx, cy, zScale, 1, slice);
+      at += BAND;
+      if (at < rows.length) requestAnimationFrame(band);
+      else { if (showCont) drawContours(S, cx, cy, zScale); if (showPins) drawPins(S, cx, cy, zScale); }
+    })();
   }
 
   /* ---- engraved profile lines ---- */
@@ -469,6 +504,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
   /* ---- interaction ---- */
   frame.addEventListener('pointerdown', function(e){
     dragging = true; idle = 0;
+    if (spin){ spin = false; press('bSpin', false); }
     frame.classList.add('dragging');
     document.getElementById('grab').classList.add('gone');
     lastX = e.clientX; lastY = e.clientY;
@@ -514,6 +550,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
   frame.addEventListener('pointermove', function(e){
     if (!dragging){ hoverAt(e.clientX, e.clientY); return; }
     hideCard();
+    fineToken++;                      /* abandon any refinement in progress */
     az   += (e.clientX - lastX) * 0.008;
     tilt += (e.clientY - lastY) * 0.004;
     tilt = Math.max(0.2, Math.min(1.2, tilt));
@@ -544,12 +581,21 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
   });
   document.getElementById('bSpin').addEventListener('click', function(){
     spin = !spin; press('bSpin', spin);
+    if (spin){ spun = 0; idle = 46; fineToken++; }   /* abandon any refinement */
+    else drawThenRefine();
   });
 
+  /* The turn is an introduction, not a state. It runs briefly so the model
+     announces itself as three-dimensional, then stops and hands over to the
+     sharpening pass — which it would otherwise overwrite every frame. */
+  var spun = 0;
   (function tick(){
     if (spin && !dragging && !rm && hm){
       idle++;
-      if (idle > 45){ az += 0.0014; draw(); }
+      if (idle > 45){
+        az += 0.0016; draw(); spun++;
+        if (spun > 300){ spin = false; press('bSpin', false); drawThenRefine(); }
+      }
     }
     requestAnimationFrame(tick);
   })();
