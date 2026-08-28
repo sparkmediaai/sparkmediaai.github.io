@@ -166,6 +166,24 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);font-size:.86r
   .js .mapwrap .hot{opacity:1;transform:translate(-50%,-50%) scale(1)}
   .estatesvg .creek-flow{display:none}
 }
+/* ---------- the terrain model ---------- */
+.model{padding:clamp(3.5rem,8vh,6rem) var(--pad);background:var(--parch-2);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.model-in{max-width:70rem;margin:0 auto}
+.model .tag{font-family:var(--sans);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--brass);display:flex;align-items:center;gap:.7rem;margin-bottom:1.1rem}
+.model .tag i{font-style:normal;border:1px solid var(--brass);border-radius:2em;
+  padding:.24rem .7rem;letter-spacing:.16em}
+.model h2{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,3.6vw,2.8rem);
+  line-height:1.12;margin:0 0 1rem}
+.model p{color:var(--ink-soft);max-width:44rem;margin:0 0 1rem}
+.model-frame{position:relative;margin-top:2.2rem;border:1px solid var(--line);
+  background:var(--parch);aspect-ratio:16/11;overflow:hidden}
+.model-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.model-note{margin-top:1.2rem;font-size:.82rem;color:var(--ink-soft);max-width:52rem}
+.model-note b{font-weight:500;color:var(--ink)}
+@media (max-width:640px){.model-frame{aspect-ratio:4/5}}
+
 </style>
 </head>
 <body>
@@ -227,6 +245,28 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);font-size:.86r
       <div><b>34</b><span>Guests who can stay the night</span></div>
       <div><b>15</b><span>Minutes from Chattanooga</span></div>
     </div>
+  </div>
+</section>
+
+<!-- THE MODEL -->
+<section class="model" id="model">
+  <div class="model-in">
+    <div class="tag r"><span>The same estate, measured</span><i>Prototype</i></div>
+    <h2 class="r">And underneath the drawing, the actual ground.</h2>
+    <p class="lead r d1">The map above is drawn. This is not. It is the real surface of the property, built from survey elevation readings and turned so you can look at the valley from any side — the fall of the land toward the creek, the ridge that holds the light, the shelf the deck sits on.</p>
+    <p class="r d1">Drag to turn it. Hover a marker to see the place.</p>
+
+    <div class="model-frame r d2">
+      <iframe src="../../map3d/embed.html" title="A rotatable three-dimensional model of the estate" loading="lazy"></iframe>
+    </div>
+
+    <p class="model-note r">
+      <b>Still in prototype.</b> This is a working piece rather than a finished one: the six markers are read from aerial photography rather than from the owners&rsquo; site plan, and the ground is modelled at roughly three-metre resolution.
+      <br><br>
+      <b>Where the ground comes from.</b> Elevation is USGS 3DEP one-metre LiDAR, sampled through The National Map. The imagery draped over it is USGS NAIP, flown October 2023 at 0.57&thinsp;m per pixel over the same footprint, reclassified into the estate palette. Both are public domain federal survey data, free to publish. Vertical scale is exaggerated 2.2&times; so the valley reads at this size.
+      <br><br>
+      <a href="../../map3d/">Open the model on its own page &rarr;</a>
+    </p>
   </div>
 </section>
 
