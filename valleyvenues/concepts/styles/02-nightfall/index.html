@@ -108,9 +108,16 @@ h2{font-size:clamp(1.9rem,4.4vw,3.2rem);text-wrap:balance}
 .btn:hover{background:var(--bone)}
 
 .more{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin-top:2.6rem}
-.more a{text-decoration:none;border-top:1px solid rgba(154,163,148,.3);padding-top:1rem;transition:border-color .4s}
-.more a:hover{border-color:var(--lamp)}
-.more b{display:block;font-family:var(--serif);font-weight:400;font-size:1.2rem}
+.more a{text-decoration:none;display:block}
+/* The rule sits under the picture rather than over it, so each card reads
+   image, line, name — the same hairline grammar as the rest of the page. */
+.more .mimg{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;
+  filter:brightness(.72) saturate(.85);transition:filter .6s ease}
+.more a:hover .mimg{filter:brightness(1) saturate(1)}
+.more b{display:block;font-family:var(--serif);font-weight:400;font-size:1.2rem;
+  border-top:1px solid rgba(154,163,148,.3);padding-top:.85rem;margin-top:1rem;
+  transition:border-color .4s}
+.more a:hover b{border-color:var(--lamp)}
 .more span{font-size:.86rem;color:rgba(239,233,220,.7)}
 
 footer{position:relative;z-index:2;padding:3rem var(--pad);border-top:1px solid rgba(154,163,148,.2);
@@ -222,10 +229,10 @@ body.loaded #loader{opacity:0;visibility:hidden}
   <div class="wrap">
     <div class="mark r">More of the estate</div>
     <div class="more r">
-      <a href="../../../davis-hall.html"><b>Davis Hall</b><span>Drapery, chandeliers, dancing</span></a>
-      <a href="../../../lookout-deck.html"><b>Lookout Deck</b><span>Cocktails above the valley</span></a>
-      <a href="../../../magnolia-house.html"><b>Magnolia House</b><span>White columns, glass, the ridge</span></a>
-      <a href="../../../lodging.html"><b>Lodging</b><span>Cottages, and three mornings</span></a>
+      <a href="../../../davis-hall.html"><img class="mimg" src="../../_places/davis-hall.webp" alt="Davis Hall under its drapery, lit for a reception" width="900" height="600" loading="lazy" decoding="async"><b>Davis Hall</b><span>Drapery, chandeliers, dancing</span></a>
+      <a href="../../../lookout-deck.html"><img class="mimg" src="../../_places/lookout-deck.webp" alt="Chairs set out on the Lookout Deck above the valley" width="900" height="600" loading="lazy" decoding="async"><b>Lookout Deck</b><span>Cocktails above the valley</span></a>
+      <a href="../../../magnolia-house.html"><img class="mimg" src="../../_places/magnolia-house.webp" alt="The columned front of Magnolia House" width="900" height="600" loading="lazy" decoding="async"><b>Magnolia House</b><span>White columns, glass, the ridge</span></a>
+      <a href="../../../lodging.html"><img class="mimg" src="../../_places/lodging.webp" alt="A guest bedroom on the estate, panelled in green" width="900" height="600" loading="lazy" decoding="async"><b>Lodging</b><span>Cottages, and three mornings</span></a>
     </div>
   </div>
 </section>
