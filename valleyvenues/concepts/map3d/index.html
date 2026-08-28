@@ -173,12 +173,12 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
      pin shows the actual room or view rather than a stand-in. */
   var IMG = 'places/';
   var PLACES = [
-    {u:.727, v:.561, name:'The Valley',       note:'Ceremony · up to 300',  img:IMG+'the-valley.webp'},
-    {u:.597, v:.499, name:'Davis Hall',       note:'Reception · seated dining', img:IMG+'davis-hall.webp'},
-    {u:.506, v:.415, name:'Overlook Village', note:'Lodging · stay the weekend', img:IMG+'overlook-village.webp'},
-    {u:.398, v:.547, name:'Magnolia House',   note:'1890s manor',           img:IMG+'magnolia-house.webp'},
-    {u:.352, v:.450, name:'Lookout Deck',     note:'Cocktails · sunset',    img:IMG+'lookout-deck.webp'},
-    {u:.443, v:.596, name:'Arrival',          note:'The drive in',          img:IMG+'arrival.webp'}
+    {u:.727, v:.561, name:'The Valley',       note:'Ceremony · up to 300',  mark:'arch',   img:IMG+'the-valley.webp'},
+    {u:.597, v:.499, name:'Davis Hall',       note:'Reception · seated dining', mark:'hall',   img:IMG+'davis-hall.webp'},
+    {u:.506, v:.415, name:'Overlook Village', note:'Lodging · stay the weekend', mark:'cabins', img:IMG+'overlook-village.webp'},
+    {u:.398, v:.547, name:'Magnolia House',   note:'1890s manor',           mark:'bloom',  img:IMG+'magnolia-house.webp'},
+    {u:.352, v:.450, name:'Lookout Deck',     note:'Cocktails · sunset',    mark:'deck',   img:IMG+'lookout-deck.webp'},
+    {u:.443, v:.596, name:'Arrival',          note:'The drive in',          mark:'drive',  img:IMG+'arrival.webp'}
   ];
   /* Warm the images so the first hover is never a blank frame. */
   PLACES.forEach(function(p){ var w = new Image(); w.src = p.img; });
@@ -497,34 +497,117 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
 
   var hits = [];   /* pin screen positions, refreshed every draw, for hover */
 
+
+  /* ---- the marks ----
+     A dot says a place is here; a mark says what it is. These are drawn rather
+     than set in a font so they stay crisp at any pixel ratio and share the
+     map's ink. Each is described in a box running -1..1 about its own centre,
+     then scaled, so the whole set resizes from one number.
+
+     They read as a legend even before the labels: an arbour, a hall, cabins on
+     a ridge, a magnolia in flower, a rail with the ridges beyond it, the drive
+     winding in between its posts. Each is only about fifteen pixels across on
+     the map, so they are cut to a handful of strokes — anything finer turns to
+     mush at size, and they have to differ in silhouette rather than in detail. */
+  function mark(kind, x, y, s){
+    function M(a, b){ ctx.moveTo(x + a * s, y + b * s); }
+    function L(a, b){ ctx.lineTo(x + a * s, y + b * s); }
+    function Q(a, b, c, d){ ctx.quadraticCurveTo(x + a * s, y + b * s, x + c * s, y + d * s); }
+    function A(a, b, r, f, t){ ctx.arc(x + a * s, y + b * s, r * s, f, t); }
+
+    ctx.beginPath();
+    switch (kind){
+      case 'arch':                                   /* the ceremony arbour */
+        M(-0.72, 0.9); L(-0.72, 0.02);
+        A(0, 0.02, 0.72, Math.PI, 0);
+        ctx.moveTo(x + 0.72 * s, y + 0.02 * s); L(0.72, 0.9);
+        break;
+
+      case 'hall':                                   /* the long room */
+        M(-0.92, -0.12); L(0, -0.78); L(0.92, -0.12);
+        M(-0.72, -0.12); L(-0.72, 0.8); L(0.72, 0.8); L(0.72, -0.12);
+        M(-0.2, 0.8); L(-0.2, 0.26); L(0.2, 0.26); L(0.2, 0.8);
+        break;
+
+      case 'cabins':                                 /* a cluster to stay in */
+        M(-0.98, 0.04); L(-0.5, -0.52); L(-0.02, 0.04);
+        M(-0.82, 0.04); L(-0.82, 0.6);
+        M(-0.18, 0.04); L(-0.18, 0.6);
+        M(0.02, 0.04); L(0.5, -0.52); L(0.98, 0.04);
+        M(0.18, 0.04); L(0.18, 0.6);
+        M(0.82, 0.04); L(0.82, 0.6);
+        M(-1, 0.6); L(1, 0.6);
+        break;
+
+      case 'deck':                                   /* a rail, and the view */
+        M(-0.95, -0.26); L(-0.45, -0.76); L(-0.05, -0.32); L(0.4, -0.8); L(0.95, -0.26);
+        M(-0.95, 0.24); L(0.95, 0.24);
+        M(-0.6, 0.24); L(-0.6, 0.8);
+        M(0.6, 0.24); L(0.6, 0.8);
+        M(-0.95, 0.8); L(0.95, 0.8);
+        break;
+
+      case 'drive':                                  /* the way in */
+        M(-0.9, 0.56); L(-0.9, 0.96);
+        M(-0.22, 0.56); L(-0.22, 0.96);
+        M(-0.56, 0.9);
+        Q(-0.56, 0.2, 0, 0.02);
+        Q(0.56, -0.16, 0.56, -0.9);
+        break;
+    }
+    ctx.stroke();
+
+    /* The magnolia is petals, so it wants its own pass rather than one path. */
+    if (kind === 'bloom'){
+      for (var k = 0; k < 5; k++){
+        var a = k * 2 * Math.PI / 5 - Math.PI / 2;
+        ctx.beginPath();
+        ctx.ellipse(x + Math.cos(a) * 0.5 * s, y + Math.sin(a) * 0.5 * s,
+                    0.46 * s, 0.27 * s, a, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.beginPath();
+      ctx.arc(x, y, 0.18 * s, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+  }
+
   function drawPins(S, cx, cy, zScale){
     hits = PLACES.map(function(p){
       var i = Math.round(p.u * (N - 1)), j = Math.round(p.v * (N - 1));
       var g = project(p.u - 0.5, p.v - 0.5, h(i, j) * zScale, S, cx, cy);
       return {p:p, sx:g[0], sy:g[1], depth:g[2]};
     });
+    var R = 13;                       /* radius of the paper disc */
+    var named = frame.getBoundingClientRect().width >= 560;
     hits.slice().sort(function(a, b){ return a.depth - b.depth; }).forEach(function(s){
+      /* A disc of paper under each mark. The land runs from deep canopy to
+         pale field, so nothing drawn straight onto it stays legible in both
+         places — the disc is what makes the ink readable anywhere. */
       ctx.beginPath();
-      ctx.moveTo(s.sx, s.sy);
-      ctx.lineTo(s.sx, s.sy - 26);
-      ctx.strokeStyle = 'rgba(244,240,230,.85)';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.arc(s.sx, s.sy, 4.5, 0, Math.PI * 2);
-      ctx.fillStyle = '#F4F0E6';
+      ctx.arc(s.sx, s.sy, R, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(244,240,230,.95)';
       ctx.fill();
       ctx.strokeStyle = '#2A3326';
-      ctx.lineWidth = 1.6;
+      ctx.lineWidth = 1.1;
       ctx.stroke();
 
+      ctx.lineWidth = 1.35;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      mark(s.p.mark, s.sx, s.sy, R * 0.58);
+
+      /* On a narrow frame six labels sit on top of one another and the map
+         becomes unreadable. The marks carry the meaning on their own, and a
+         tap still brings up the card, so below this width the names come off. */
+      if (!named) return;
       ctx.font = '600 11px Montserrat, system-ui, sans-serif';
       ctx.textAlign = 'center';
       var label = s.p.name.toUpperCase(), w = ctx.measureText(label).width;
       ctx.fillStyle = 'rgba(244,240,230,.94)';
-      ctx.fillRect(s.sx - w / 2 - 6, s.sy - 41, w + 12, 16);
+      ctx.fillRect(s.sx - w / 2 - 6, s.sy - R - 21, w + 12, 16);
       ctx.fillStyle = '#2A3326';
-      ctx.fillText(label, s.sx, s.sy - 29);
+      ctx.fillText(label, s.sx, s.sy - R - 9);
     });
   }
 
