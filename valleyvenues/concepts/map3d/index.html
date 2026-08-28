@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Estate in Relief — Valley Venues</title>
+<title>The Estate in Relief — The Valley</title>
 <meta name="description" content="Seventy-four acres of Lookout Valley, modelled from survey elevation data and draped with aerial photography. Drag to turn the land.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,7 +109,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
 <body>
 
 <header>
-  <div class="eyebrow">Valley Venues · Wildwood, Georgia</div>
+  <div class="eyebrow">The Valley · Wildwood, Georgia</div>
   <h1>The estate, in relief</h1>
   <p>Seventy-four acres of Lookout Valley, modelled from survey elevation data. The ground you see is the real ground — every ridge and hollow measured, then skinned three ways. Drag to turn the land, and hover a place to see it.</p>
 </header>
@@ -117,7 +117,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
 <div class="stage">
   <div class="frame" id="frame">
     <canvas id="view"></canvas>
-    <img class="nojs" src="contour-fallback.webp" alt="Contour map of the Valley Venues estate">
+    <img class="nojs" src="contour-fallback.webp" alt="Contour map of the estate">
     <div class="hud">
       <button id="bPhoto" aria-pressed="false">Photographic</button>
       <button id="bIllus" aria-pressed="true">Illustrated</button>
@@ -173,11 +173,11 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
      pin shows the actual room or view rather than a stand-in. */
   var IMG = 'places/';
   var PLACES = [
-    {u:.727, v:.561, name:'The Valley',       note:'Ceremony · up to 300',  mark:'arch',   img:IMG+'the-valley.webp'},
+    {u:.727, v:.561, name:'The Valley',       note:'Ceremony · one at a time',  mark:'arch',   img:IMG+'the-valley.webp'},
     {u:.597, v:.499, name:'Davis Hall',       note:'Reception · seated dining', mark:'hall',   img:IMG+'davis-hall.webp'},
-    {u:.506, v:.415, name:'Overlook Village', note:'Lodging · stay the weekend', mark:'cabins', img:IMG+'overlook-village.webp'},
-    {u:.398, v:.547, name:'Magnolia House',   note:'1890s manor',           mark:'bloom',  img:IMG+'magnolia-house.webp'},
-    {u:.352, v:.450, name:'Lookout Deck',     note:'Cocktails · sunset',    mark:'deck',   img:IMG+'lookout-deck.webp'},
+    {u:.506, v:.415, name:'Overlook Village', note:'Cottages · stay the weekend', mark:'cottages', img:IMG+'overlook-village.webp'},
+    {u:.398, v:.547, name:'Magnolia House',   note:'Columns, glass, the ridge',           mark:'bloom',  img:IMG+'magnolia-house.webp'},
+    {u:.352, v:.450, name:'Lookout Deck',     note:'Cocktails · Lookout Mountain',    mark:'deck',   img:IMG+'lookout-deck.webp'},
     {u:.443, v:.596, name:'Arrival',          note:'The drive in',          mark:'drive',  img:IMG+'arrival.webp'}
   ];
   /* Warm the images so the first hover is never a blank frame. */
@@ -504,7 +504,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
      map's ink. Each is described in a box running -1..1 about its own centre,
      then scaled, so the whole set resizes from one number.
 
-     They read as a legend even before the labels: an arbour, a hall, cabins on
+     They read as a legend even before the labels: an arbour, a hall, cottages on
      a ridge, a magnolia in flower, a rail with the ridges beyond it, the drive
      winding in between its posts. Each is only about fifteen pixels across on
      the map, so they are cut to a handful of strokes — anything finer turns to
@@ -529,7 +529,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid rgba(42,51,38,.16);font-si
         M(-0.2, 0.8); L(-0.2, 0.26); L(0.2, 0.26); L(0.2, 0.8);
         break;
 
-      case 'cabins':                                 /* a cluster to stay in */
+      case 'cottages':                               /* a cluster to stay in */
         M(-0.98, 0.04); L(-0.5, -0.52); L(-0.02, 0.04);
         M(-0.82, 0.04); L(-0.82, 0.6);
         M(-0.18, 0.04); L(-0.18, 0.6);

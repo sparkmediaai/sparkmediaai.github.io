@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Estate — Valley Venues</title>
+<title>The Drawn Estate — The Valley</title>
 <meta name="description" content="Seventy-four acres, drawn. Explore every space on the estate and see how they sit together.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -171,31 +171,31 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);font-size:.86r
 <body>
 
 <nav>
-  <div class="brand">Valley Venues</div>
+  <div class="brand">The Valley</div>
   <a class="navcta" href="#plan">Enquire</a>
 </nav>
 
 <div class="titleblock">
   <div class="sub r">Wildwood, Georgia</div>
   <h1 class="r d1">Seventy-four acres, drawn</h1>
-  <p class="note r d2">Not a list of venues — one estate. Hover any point to see the space, and how far it is from the next one.</p>
+  <p class="note r d2">Not a list of venues — one estate, and for one weekend all of it is yours. Hover any point to see the space, and how far it is from the next one.</p>
 </div>
 
 <div class="mapwrap" id="mapwrap">
   <div class="mapinner" id="mapinner">
     <!-- The artwork is injected here. This <img> is the no-JS / fetch-failure
          fallback: static, but the map is still present and legible. -->
-    <img class="mapfallback" id="mapfallback" src="../../../assets/estate-map.svg" alt="A drawn map of the Valley Venues estate">
+    <img class="mapfallback" id="mapfallback" src="../../../assets/estate-map.svg" alt="A drawn map of the estate">
 
-    <button class="hot" style="left:26.9%;top:47%"   data-label="Magnolia House"   data-img="venue-magnolia-house.jpg" data-url="../../../magnolia-house.html" data-desc="An 1890s Southern manor — the storied, romantic heart of the estate."><span class="dot"></span></button>
-    <button class="hot" style="left:43.1%;top:35%"   data-label="Overlook Village" data-img="map-overlook.jpg"         data-url="../../../lodging.html"        data-desc="Hilltop cabins where your closest guests stay the whole weekend."><span class="dot"></span></button>
-    <button class="hot" style="left:43.75%;top:50.5%" data-label="The Lodge"       data-img="lg-0006.jpg"              data-url="../../../lodging.html"        data-desc="A retreat on the estate, part of lodging that sleeps up to 34 guests."><span class="dot"></span></button>
-    <button class="hot" style="left:55%;top:47%"     data-label="Davis Hall"       data-img="venue-davis-hall.jpg"     data-url="../../../davis-hall.html"     data-desc="The bright, airy indoor reception hall for seated dining and dancing."><span class="dot"></span></button>
-    <button class="hot" style="left:60.3%;top:56.5%" data-label="The Lookout Deck" data-img="ld-hero.jpg"              data-url="../../../lookout-deck.html"   data-desc="A railed deck with a floral arch, overlooking the valley and the sunset."><span class="dot"></span></button>
-    <button class="hot" style="left:39.4%;top:60%"   data-label="Ivy Barn"                                                                                     data-desc="Character and timeless charm for celebrations of every kind."><span class="dot"></span></button>
-    <button class="hot" style="left:46.25%;top:66%"  data-label="The Valley"       data-img="map-valley.jpg"           data-url="../../../the-valley.html"     data-desc="The signature open-air ceremony lawn, framed by tree lines and sky."><span class="dot"></span></button>
-    <button class="hot" style="left:48.1%;top:82%"   data-label="The Greenhouse"                                                                                data-desc="A light-filled garden setting for intimate vows and portraits."><span class="dot"></span></button>
-    <button class="hot" style="left:32.5%;top:69%"   data-label="Parking"                                                                                       data-desc="Ample on-site parking with a short, level walk to every venue."><span class="dot"></span></button>
+    <button class="hot" style="left:26.9%;top:47%"   data-label="Magnolia House"   data-img="venue-magnolia-house.jpg" data-url="../../../magnolia-house.html" data-desc="White columns and glass against the ridge, and the conservatory for when the weather turns."><span class="dot"></span></button>
+    <button class="hot" style="left:43.1%;top:35%"   data-label="Overlook Village" data-img="map-overlook.jpg"         data-url="../../../lodging.html"        data-desc="Hilltop cottages where your closest guests stay the whole weekend."><span class="dot"></span></button>
+    <button class="hot" style="left:43.75%;top:50.5%" data-label="The Lodge"       data-img="lg-0006.jpg"              data-url="../../../lodging.html"        data-desc="Part of the lodging that sleeps thirty-four, with a hotel six minutes out for everyone else."><span class="dot"></span></button>
+    <button class="hot" style="left:55%;top:47%"     data-label="Davis Hall"       data-img="venue-davis-hall.jpg"     data-url="../../../davis-hall.html"     data-desc="Drapery, chandeliers, and the room where the dancing happens."><span class="dot"></span></button>
+    <button class="hot" style="left:60.3%;top:56.5%" data-label="The Lookout Deck" data-img="ld-hero.jpg"              data-url="../../../lookout-deck.html"   data-desc="A railed deck above the valley, facing Lookout Mountain at six."><span class="dot"></span></button>
+    <button class="hot" style="left:39.4%;top:60%"   data-label="The Ivy"                                                                                     data-desc="Character and timeless charm, whatever the celebration asks for."><span class="dot"></span></button>
+    <button class="hot" style="left:46.25%;top:66%"  data-label="The Valley"       data-img="map-valley.jpg"           data-url="../../../the-valley.html"     data-desc="The open-air ceremony meadow, held on three sides by ridgeline."><span class="dot"></span></button>
+    <button class="hot" style="left:48.1%;top:82%"   data-label="Conservatory at Magnolia House"                                                                                data-desc="The conservatory at Magnolia House — glass, light, and the weather plan that costs nothing."><span class="dot"></span></button>
+    <button class="hot" style="left:32.5%;top:69%"   data-label="Parking"                                                                                       data-desc="Arrive once. Level walking to everything, and a golf cart when you would rather not."><span class="dot"></span></button>
 
     <div class="mappop" id="mappop" role="status" aria-live="polite"></div>
   </div>
@@ -205,8 +205,8 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);font-size:.86r
 <div class="band">
   <div class="wrap">
     <div class="tag r">Vows beneath an open sky</div>
-    <h2 class="r d1">Three hundred people can stand in the meadow and it still feels like yours.</h2>
-    <p class="lead r d2">It sits low between ridgelines, which is why it works. Sound stays in it, the wind drops in it, and the hills hold the last of the light a good half-hour after it has left the grass.</p>
+    <h2 class="r d1">One estate. One couple. One weekend. One wedding at a time.</h2>
+    <p class="lead r d2">Seventy-four acres cannot be split, so they are not. No second bride, no other family's flowers going out the far door, no cocktail hour audible from your ceremony. The meadow sits low between ridgelines, which is why sound stays in it and the hills hold the last of the light a good half-hour after it has left the grass.</p>
     <div class="plates">
       <figure class="r"><img src="../_img/valley-autumn.webp" alt="An autumn ceremony set in the meadow" loading="lazy"><figcaption>October, set toward the ridge</figcaption></figure>
       <figure class="r d1"><img src="../_img/valley-arch.webp" alt="A floral arch standing in the meadow" loading="lazy"><figcaption>June, full sun at six</figcaption></figure>
@@ -220,7 +220,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);font-size:.86r
   <div class="wrap">
     <div class="tag r">Everything within a walk</div>
     <h2 class="r d1">The distance between the manor and the deck is the tour.</h2>
-    <p class="lead r d2">Guests walk from where they got ready to where you say your vows to where they eat. Nobody gets in a car, nobody follows directions, and nobody arrives late because the estate is one place rather than four addresses.</p>
+    <p class="lead r d2">Guests walk from where they got ready to where you say your vows to where they eat. Nobody gets in a car, nobody follows directions, and nobody arrives late, because the estate is one place rather than four addresses.</p>
     <div class="ledger r">
       <div><b>300</b><span>Guests seated beneath the ridge</span></div>
       <div><b>74</b><span>Private acres, gates closed</span></div>
@@ -232,8 +232,8 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);font-size:.86r
 
 <section class="close" id="plan">
   <h2 class="r">Walk the whole map in an afternoon.</h2>
-  <p class="lead r d1">Come at four, start at the manor, and finish on the deck as the light goes.</p>
-  <a class="btn r d2" href="mailto:Info@thevalleyvenues.com">Book a Visit</a>
+  <p class="lead r d1">Come at four, start at Magnolia House, and finish on the deck as Lookout Mountain turns gold.</p>
+  <a class="btn r d2" href="mailto:Info@thevalleyvenues.com">Walk the Property</a>
 </section>
 
 <footer>Style 05 · The Drawn Estate — internal design study. Marcellus + Jost.</footer>
