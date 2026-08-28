@@ -52,7 +52,11 @@ nav.solid .navcta{border-color:var(--ink);color:var(--ink)}
 
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden}
-.hero-img{position:absolute;inset:0;background:url('../../assets/images/hero-valley.jpg') center/cover no-repeat;
+/* Its own hero rather than the one the original concept opens with. The focal
+   point is off-centre on purpose: the copy runs along the bottom-left, so she
+   is held to the upper right where a narrow screen — which crops this sideways
+   and hard — still keeps her face in frame and clear of the headline. */
+.hero-img{position:absolute;inset:0;background:url('../_places/hero-weekend.webp') 55% 12%/cover no-repeat;
   transform:scale(1.12);animation:drift 22s ease-out forwards}
 @keyframes drift{to{transform:scale(1)}}
 .hero::after{content:'';position:absolute;inset:0;
@@ -247,7 +251,7 @@ footer a:hover{color:var(--amber-light)}
 
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-img" role="img" aria-label="The Valley at golden hour"></div>
+  <div class="hero-img" role="img" aria-label="A bride laughing on the Lookout Deck at golden hour"></div>
   <div class="hero-inner">
     <div class="eyebrow rv"><span style="animation-delay:.1s">Wildwood, Georgia · 15 minutes from Chattanooga</span></div>
     <h1>
