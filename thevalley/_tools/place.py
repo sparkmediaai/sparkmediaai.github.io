@@ -47,6 +47,27 @@ SLOTS = [
     ("planners",       "01 Mountain & landscape", "ValleyVenuesStyledShoot-061.jpg", 2000, 1000, 0.52),
     ("vendors",        "08 Details & decor",      "WeddingDay-20.jpg",              2000, 1000, 0.50),
     ("about",          "03 Magnolia House",       "ValleyVenuesStyledShoot-124.jpg", 2000, 1000, 0.46),
+# --- the hero, read as a clock ---------------------------------------
+    # Five frames from one property across one day. The estate's whole claim is
+    # that it belongs to one family for the length of a weekend, so the hero
+    # moves through hours rather than through venues. Order matters here.
+    ("hero-1", "03 Magnolia House",        "ValleyVenuesStyledShoot-106.jpg", 2200, 1100, 0.50),
+    ("hero-2", "10 Getting ready",         "ValleyVenuesStyledShoot-040.jpg", 2200, 1100, 0.46),
+    ("hero-3", "02 The Valley",            "WeddingDay-648.jpg",              2200, 1100, 0.50),
+    ("hero-4", "01 Mountain & landscape",  "WeddingDay-1096.jpg",             2200, 1100, 0.42),
+    ("hero-5", "03 Magnolia House",        "ValleyVenueSSSneakPeaks-46.jpg",  2200, 1100, 0.50),
+
+    # --- the weekend, one frame per movement ------------------------------
+    ("wk-fri",  "10 Getting ready",        "WeddingDay-116.jpg",              1200, 900, 0.50),
+    ("wk-dawn", "10 Getting ready",        "ValleyVenuesStyledShoot-042.jpg", 1200, 900, 0.46),
+    ("wk-gold", "04 Lookout Deck",         "WeddingDay-1419.jpg",             1200, 900, 0.46),
+    # The copy here is about three mornings and breakfast, so the frame has to be
+    # daylight. The sparkler shot that was here reads as the night before, and it
+    # is also nearly the same photograph as the closing band further down.
+    ("wk-sun",  "06 Lodging & cottages",   "Valley-Venues-Wedding-Day-10-16.jpg", 1200, 900, 0.50),
+
+    # --- the close, held back until last ----------------------------------
+    ("close-woods", "06 Lodging & cottages", "Valley-Venues-Wedding-Day-15-11.jpg", 1600, 900, 0.44),
 ]
 
 TARGET = 0.55          # the set is nudged toward one mean so the pages agree

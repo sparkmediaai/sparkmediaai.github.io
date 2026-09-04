@@ -63,8 +63,8 @@ def shell(page):
                          for t, h in links) + "\n          ")
         for head, links in FOOTER)
 
-    hero = ""
-    if page.get("hero_img"):
+    hero = page.get("hero_html", "")
+    if not hero and page.get("hero_img"):
         hero += '  <div class="hero-img" role="img" aria-label="%s" style="background-image:url(\'%sassets/img/%s\')"></div>\n' % (
             page["hero_alt"], depth_root, page["hero_img"])
     actions = ""
@@ -86,7 +86,7 @@ def shell(page):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="%(root)sassets/site.css">
-</head>
+%(head)s</head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
@@ -131,7 +131,7 @@ def shell(page):
     <span>Photography is existing estate imagery, standing in.</span>
   </div>
 </footer>
-
+%(foot_js)s
 </body>
 </html>
 """ % {
@@ -140,6 +140,7 @@ def shell(page):
         "hero": hero, "eyebrow": page["eyebrow"], "h1": page["h1"],
         "standfirst": page["standfirst"], "actions": actions,
         "body": page["body"], "foot": foot,
+        "head": page.get("head", ""), "foot_js": page.get("foot_js", ""),
     }
 
 
@@ -148,8 +149,12 @@ PAGES = {}
 
 PAGES["index.html"] = dict(
     nav=None, title="%s | %s" % (SITE, TAGLINE), desc=TAGLINE,
-    hero_img="hero-mountain.webp",
-    hero_alt="The ceremony aisle set out in the meadow, the ridge behind it",
+    head='<link rel="stylesheet" href="/thevalley/assets/home.css">\n'
+         '<link rel="preload" as="image" href="/thevalley/assets/img/hero-1.webp"\n'
+         '      imagesrcset="/thevalley/assets/img/hero-1-sm.webp 1100w, /thevalley/assets/img/hero-1.webp 2200w"\n'
+         '      imagesizes="100vw">\n',
+    foot_js='<script src="/thevalley/assets/home.js" defer></script>',
+    hero_html='  <div class="hero-stage">\n    <figure class="slide is-on" data-moment="The arrival"><img src="/thevalley/assets/img/hero-1.webp" srcset="/thevalley/assets/img/hero-1-sm.webp 1100w, /thevalley/assets/img/hero-1.webp 2200w" sizes="100vw" alt="Magnolia House, white columns above the lawn" width="2200" height="1100" fetchpriority="high" decoding="async"></figure>\n    <figure class="slide" data-moment="The morning"><img data-src="/thevalley/assets/img/hero-2.webp" data-srcset="/thevalley/assets/img/hero-2-sm.webp 1100w, /thevalley/assets/img/hero-2.webp 2200w" sizes="100vw" alt="A bride at the window of her room, the gown waiting" width="2200" height="1100" decoding="async"></figure>\n    <figure class="slide" data-moment="The meadow, set"><img data-src="/thevalley/assets/img/hero-3.webp" data-srcset="/thevalley/assets/img/hero-3-sm.webp 1100w, /thevalley/assets/img/hero-3.webp 2200w" sizes="100vw" alt="The ceremony aisle set out, the ridge behind it" width="2200" height="1100" decoding="async"></figure>\n    <figure class="slide" data-moment="Golden hour"><img data-src="/thevalley/assets/img/hero-4.webp" data-srcset="/thevalley/assets/img/hero-4-sm.webp 1100w, /thevalley/assets/img/hero-4.webp 2200w" sizes="100vw" alt="A couple in the meadow as the light goes" width="2200" height="1100" decoding="async"></figure>\n    <figure class="slide" data-moment="After dark"><img data-src="/thevalley/assets/img/hero-5.webp" data-srcset="/thevalley/assets/img/hero-5-sm.webp 1100w, /thevalley/assets/img/hero-5.webp 2200w" sizes="100vw" alt="The conservatory at Magnolia House, lit for dinner" width="2200" height="1100" decoding="async"></figure>\n    <p class="hero-hour"><span>The arrival</span></p>\n    <div class="hero-dots" role="group" aria-label="Choose a moment">\n      <button type="button" aria-current="true"><span class="skip">The arrival</span></button>\n      <button type="button" aria-current="false"><span class="skip">The morning</span></button>\n      <button type="button" aria-current="false"><span class="skip">The meadow, set</span></button>\n      <button type="button" aria-current="false"><span class="skip">Golden hour</span></button>\n      <button type="button" aria-current="false"><span class="skip">After dark</span></button>\n    </div>\n  </div>\n',
     eyebrow="Wildwood, Georgia &middot; Fifteen minutes from Chattanooga",
     h1="One Private Mountain Estate. All for You.",
     standfirst="Seventy-four private acres beneath Lookout Mountain, fifteen minutes from "
@@ -159,7 +164,7 @@ PAGES["index.html"] = dict(
              ("Walk the Estate", "/thevalley/the-estate/")],
     body="""
 <section>
-  <div class="lede">
+  <div class="lede reveal">
     <div class="eyebrow">Why any of this matters</div>
     <h2>This is one of the best days of your life.</h2>
     <p>It is also one of the only times in a life when nearly everyone you love is in one
@@ -173,7 +178,7 @@ PAGES["index.html"] = dict(
 </section>
 
 <section>
-  <div class="statement">
+  <div class="statement reveal">
     <div class="eyebrow">What makes this different</div>
     <h2>One estate. One couple. One weekend.</h2>
     <p>Larger estates in this region run two and sometimes three weddings on a single
@@ -203,20 +208,36 @@ PAGES["index.html"] = dict(
     <p>The ceremony takes thirty minutes. Most venues sell those thirty minutes and the
        eight hours around them. This estate sells the two days you live inside.</p>
   </div>
-  <div class="steps">
-    <div class="step"><span class="when">Fri</span>
-      <div><b>You arrive once</b><p>Through the gate, and for the next two days this is
-      simply where you are. The rehearsal happens where the vows will.</p></div></div>
-    <div class="step"><span class="when">Sat</span>
-      <div><b>Sunrise comes with the room</b><p>Light comes up over Lookout Mountain and
-      fills the room you are already standing in. No commute in a wedding dress.</p></div></div>
-    <div class="step"><span class="when">Sat</span>
-      <div><b>The mountain turns gold at six</b><p>Guests walk from the ceremony to the
-      overlook. Nobody drives. Nobody leaves at eleven.</p></div></div>
-    <div class="step"><span class="when">Sun</span>
-      <div><b>Goodnight instead of goodbye</b><p>Two nights means three mornings, and the
-      last thing you do together is breakfast rather than a parking lot.</p></div></div>
-  </div>
+  <ol class="weekend">
+    <li class="wk reveal">
+      <figure><img src="/thevalley/assets/img/wk-fri.webp" alt="Groomsmen in the clubhouse, late" width="1200" height="900" loading="lazy" decoding="async"></figure>
+      <span class="wk-when">Friday</span>
+      <b>You arrive once</b>
+      <p>Through the gate, and for the next two days this is simply where you are. The
+         rehearsal happens where the vows will, and nobody goes back to a hotel.</p>
+    </li>
+    <li class="wk reveal">
+      <figure><img src="/thevalley/assets/img/wk-dawn.webp" alt="A suite on the estate in the morning" width="1200" height="900" loading="lazy" decoding="async"></figure>
+      <span class="wk-when">Saturday, early</span>
+      <b>Sunrise comes with the room</b>
+      <p>Light comes up over Lookout Mountain and fills the room you are already standing
+         in. Hair can start at five. There is no commute in a wedding dress.</p>
+    </li>
+    <li class="wk reveal">
+      <figure><img src="/thevalley/assets/img/wk-gold.webp" alt="A couple dancing on the deck as the light goes" width="1200" height="900" loading="lazy" decoding="async"></figure>
+      <span class="wk-when">Saturday, six</span>
+      <b>The mountain turns gold</b>
+      <p>Guests walk from the ceremony to the overlook. Nobody drives, nobody follows
+         directions, and nobody starts looking for their keys at eleven.</p>
+    </li>
+    <li class="wk reveal">
+      <figure><img src="/thevalley/assets/img/wk-sun.webp" alt="The cottages on the hill at dusk" width="1200" height="900" loading="lazy" decoding="async"></figure>
+      <span class="wk-when">Sunday</span>
+      <b>Goodnight instead of goodbye</b>
+      <p>Two nights means three mornings, and the last thing you do together is breakfast
+         rather than a car park.</p>
+    </li>
+  </ol>
 </section>
 
 <section>
@@ -225,15 +246,15 @@ PAGES["index.html"] = dict(
     <h2>Celebrate, or simply stay.</h2>
   </div>
   <div class="grid">
-    <article class="card">
-      <img src="/thevalley/assets/img/weddings.webp" alt="A ceremony under way in the meadow" loading="lazy">
+    <article class="card reveal">
+      <img src="/thevalley/assets/img/weddings.webp" alt="A ceremony under way in the meadow" width="2000" height="1000" loading="lazy" decoding="async">
       <div class="eyebrow">Celebrate</div>
       <h3>The Estate Weekend</h3>
       <p>Friday afternoon to Sunday morning, the property held for one couple.</p>
       <a class="btn" href="/thevalley/weddings/">Weddings</a>
     </article>
-    <article class="card">
-      <img src="/thevalley/assets/img/stay.webp" alt="A cottage in the woods" loading="lazy">
+    <article class="card reveal">
+      <img src="/thevalley/assets/img/stay.webp" alt="A cottage in the woods" width="1600" height="800" loading="lazy" decoding="async">
       <div class="eyebrow">Stay</div>
       <h3>Lodging on the estate</h3>
       <p>Cottages facing the ridge, open when there is no wedding on the property.</p>
@@ -242,12 +263,15 @@ PAGES["index.html"] = dict(
   </div>
 </section>
 
-<section>
-  <div class="lede">
-    <div class="eyebrow">The ending</div>
-    <h2>And then you disappear, without leaving.</h2>
+<section class="closing">
+  <div class="closing-img" role="img" aria-label="A cottage in the woods, lit at night"
+       style="background-image:url('/thevalley/assets/img/close-woods.webp')"></div>
+  <div class="closing-body">
+    <div class="eyebrow">And then</div>
+    <h2>You disappear, without leaving.</h2>
     <p>A cottage in the woods at the far edge of the property, a short ride from the music.
        Married, alone, and thirty seconds from everyone you love.</p>
+    <a class="btn" href="/thevalley/book-a-tour/">Book a tour</a>
   </div>
 </section>
 """)
