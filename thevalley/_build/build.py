@@ -149,7 +149,7 @@ PAGES = {}
 PAGES["index.html"] = dict(
     nav=None, title="%s | %s" % (SITE, TAGLINE), desc=TAGLINE,
     hero_img="hero-mountain.webp",
-    hero_alt="A couple crossing the meadow with Lookout Mountain behind them",
+    hero_alt="The ceremony aisle set out in the meadow, the ridge behind it",
     eyebrow="Wildwood, Georgia &middot; Fifteen minutes from Chattanooga",
     h1="One Private Mountain Estate. All for You.",
     standfirst="Seventy-four private acres beneath Lookout Mountain, fifteen minutes from "
@@ -226,14 +226,14 @@ PAGES["index.html"] = dict(
   </div>
   <div class="grid">
     <article class="card">
-      <img src="/thevalley/assets/img/weddings.webp" alt="A ceremony set out in the meadow" loading="lazy">
+      <img src="/thevalley/assets/img/weddings.webp" alt="A ceremony under way in the meadow" loading="lazy">
       <div class="eyebrow">Celebrate</div>
       <h3>The Estate Weekend</h3>
       <p>Friday afternoon to Sunday morning, the property held for one couple.</p>
       <a class="btn" href="/thevalley/weddings/">Weddings</a>
     </article>
     <article class="card">
-      <img src="/thevalley/assets/img/stay.webp" alt="A guest bedroom on the estate" loading="lazy">
+      <img src="/thevalley/assets/img/stay.webp" alt="A cottage in the woods" loading="lazy">
       <div class="eyebrow">Stay</div>
       <h3>Lodging on the estate</h3>
       <p>Cottages facing the ridge, open when there is no wedding on the property.</p>
@@ -255,7 +255,7 @@ PAGES["index.html"] = dict(
 PAGES["weddings/index.html"] = dict(
     nav="Weddings", title="Weddings | %s" % SITE,
     desc="The Estate Weekend at The Valley Venues.",
-    hero_img="weddings.webp", hero_alt="A ceremony set out in the meadow",
+    hero_img="weddings.webp", hero_alt="A ceremony under way in the meadow, guests seated toward the ridge",
     eyebrow="Celebrate",
     h1="More Than a Wedding Day",
     standfirst="There will be a ceremony. There will be dinner. There will be dancing. "
@@ -314,7 +314,7 @@ PAGES["weddings/index.html"] = dict(
 PAGES["weddings/whats-included/index.html"] = dict(
     nav="Weddings", title="What's Included | %s" % SITE,
     desc="What comes with the estate, and what happens when the weather turns.",
-    hero_img="included.webp", hero_alt="Davis Hall dressed for a reception",
+    hero_img="included.webp", hero_alt="The conservatory at Magnolia House, glass on three sides",
     eyebrow="Celebrate &middot; What's included",
     h1="Fewer separate decisions.",
     standfirst="The questions a mother asks: what is included, where does everyone sleep, "
@@ -359,7 +359,7 @@ PAGES["weddings/whats-included/index.html"] = dict(
 PAGES["weddings/real-weddings/index.html"] = dict(
     nav="Weddings", title="Real Weddings | %s" % SITE,
     desc="Weddings that have happened on the estate.",
-    hero_img="real-weddings.webp", hero_alt="A couple walking out to the ceremony",
+    hero_img="real-weddings.webp", hero_alt="A couple in the meadow at golden hour",
     eyebrow="Celebrate &middot; Real weddings",
     h1="Weddings that happened here.",
     standfirst="Each one credited to the couple, the planner, the photographer and the "
@@ -383,7 +383,7 @@ PAGES["weddings/real-weddings/index.html"] = dict(
 PAGES["weddings/single-day/index.html"] = dict(
     nav="Weddings", title="Single-Day Celebrations | %s" % SITE,
     desc="A single-day celebration on the estate.",
-    hero_img="single-day.webp", hero_alt="A small ceremony set in the autumn meadow",
+    hero_img="single-day.webp", hero_alt="The meadow, quiet, with the ridge beyond",
     eyebrow="Celebrate &middot; Single day",
     h1="A day, rather than a weekend.",
     standfirst="Not every celebration wants two nights. The estate still closes around one "
@@ -411,7 +411,7 @@ PAGES["weddings/single-day/index.html"] = dict(
 PAGES["stay/index.html"] = dict(
     nav="Stay", title="Stay | %s" % SITE,
     desc="Private mountainside lodging on a 74-acre estate near Chattanooga.",
-    hero_img="stay.webp", hero_alt="A guest bedroom on the estate",
+    hero_img="stay.webp", hero_alt="A cottage in the woods at the edge of the property",
     eyebrow="Stay",
     h1="Stay Where the Story Continues",
     standfirst="The cottages are open when there is no wedding on the property. A creek, a "
@@ -457,7 +457,7 @@ PAGES["stay/index.html"] = dict(
 PAGES["the-estate/index.html"] = dict(
     nav="The Estate", title="The Estate | %s" % SITE,
     desc="Seventy-four acres beneath Lookout Mountain, as one property.",
-    hero_img="estate.webp", hero_alt="The meadow opening beneath Lookout Mountain",
+    hero_img="estate.webp", hero_alt="The meadow opening beneath the ridge, the deck at its edge",
     eyebrow="One estate",
     h1="One property, one map, one path.",
     standfirst="This page replaces a dropdown that listed four venues. There are not four "
@@ -472,7 +472,7 @@ PAGES["the-estate/index.html"] = dict(
          photograph almost every guest takes, through the windshield on the way up. The
          conservatory at Magnolia House is also the weather plan that costs nothing.</p>
     </div>
-    <img src="/thevalley/assets/img/magnolia-house.webp" alt="The columned front of Magnolia House" loading="lazy">
+    <img src="/thevalley/assets/img/magnolia-house.webp" alt="Magnolia House, white columns above the lawn" loading="lazy">
   </div>
 </section>
 
@@ -485,7 +485,7 @@ PAGES["the-estate/index.html"] = dict(
          Sound stays in it and the wind drops in it. Nothing is visible from it that the
          estate does not own.</p>
     </div>
-    <img src="/thevalley/assets/img/the-valley.webp" alt="Guests seated for a ceremony in the meadow" loading="lazy">
+    <img src="/thevalley/assets/img/the-valley.webp" alt="The processional crossing the meadow" loading="lazy">
   </div>
 </section>
 
@@ -497,7 +497,7 @@ PAGES["the-estate/index.html"] = dict(
       <p>A railed deck out over the valley, facing the mountain. It turns gold at six, tip
          to tip, and everyone stops talking.</p>
     </div>
-    <img src="/thevalley/assets/img/lookout-deck.webp" alt="Chairs set out on the Lookout Deck above the valley" loading="lazy">
+    <img src="/thevalley/assets/img/lookout-deck.webp" alt="A couple dancing on the Lookout Deck, the ridge behind" loading="lazy">
   </div>
 </section>
 
@@ -509,7 +509,7 @@ PAGES["the-estate/index.html"] = dict(
       <p>Drapery, chandeliers, and the room where the dancing happens. It carries the
          largest receptions on the property.</p>
     </div>
-    <img src="/thevalley/assets/img/included.webp" alt="Davis Hall dressed for a reception" loading="lazy">
+    <img src="/thevalley/assets/img/davis-hall.webp" alt="Davis Hall under its drapery, lit for the first dance" loading="lazy">
   </div>
 </section>
 
@@ -533,7 +533,7 @@ PAGES["the-estate/index.html"] = dict(
 PAGES["planners/index.html"] = dict(
     nav="Planners", title="For Planners | %s" % SITE,
     desc="Site logistics, load-in and how a weekend runs at The Valley Venues.",
-    hero_img="planners.webp", hero_alt="The estate at golden hour",
+    hero_img="planners.webp", hero_alt="The estate from the deck, looking down the valley",
     eyebrow="For planners",
     h1="Bring your vision. We know the estate.",
     standfirst="Planners send couples here repeatedly once they trust the operation. This "
@@ -583,7 +583,7 @@ PAGES["planners/index.html"] = dict(
 PAGES["planners/vendors/index.html"] = dict(
     nav="Planners", title="Preferred Vendors | %s" % SITE,
     desc="Planners and vendors who know the estate.",
-    hero_img="vendors.webp", hero_alt="A vintage car beneath the oak, dressed with flowers",
+    hero_img="vendors.webp", hero_alt="An invitation suite and two rings",
     eyebrow="For planners &middot; Preferred vendors",
     h1="The people who know this property.",
     standfirst="Most couples reach this site before they have hired a planner. This list "
@@ -619,7 +619,7 @@ PAGES["planners/vendors/index.html"] = dict(
 PAGES["about/index.html"] = dict(
     nav="About", title="About | %s" % SITE,
     desc="The family behind the estate, and the design thinking behind the experience.",
-    hero_img="about.webp", hero_alt="Magnolia House at dusk with the porch set for dinner",
+    hero_img="about.webp", hero_alt="Magnolia House, columns and glass against the ridge",
     eyebrow="About",
     h1="The Question Behind Every Room",
     standfirst="A family estate, and a design philosophy that starts somewhere unusual for a "
