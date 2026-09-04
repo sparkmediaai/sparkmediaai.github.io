@@ -63,7 +63,8 @@ def resolve(data, assign):
                 by_name[n] = cat
             shoot = rule.get("shoot")
             if shoot is not None:
-                by_shoot.setdefault(shoot, []).append((cat, rule.get("range")))
+                by_shoot.setdefault(shoot, []).append(
+                    (cat, rule.get("range"), rule.get("green_below"), rule.get("green_above")))
 
     # Position within a shoot, counted over its keepers in capture order —
     # the same numbering the contact sheets carry.
@@ -82,14 +83,23 @@ def resolve(data, assign):
         if r["name"] in by_name:
             out[r["name"]] = by_name[r["name"]]
             continue
-        for cat, rng in by_shoot.get(r.get("shoot"), []):
+        # Rules are tried in the order they appear in the file, so a narrow
+        # rule placed above a broad one wins. That is how the one genuinely
+        # interleaved stretch is handled: while the reception room was being
+        # set the photographer kept crossing between it and the meadow, and no
+        # range can separate those. Greenness can — a white room full of linen
+        # is not green and a meadow is.
+        for cat, rng, gb, ga in by_shoot.get(r.get("shoot"), []):
             p = pos.get(r["name"])
-            if rng is None:
-                out[r["name"]] = cat
-                break
-            if p is not None and rng[0] <= p <= rng[1]:
-                out[r["name"]] = cat
-                break
+            if rng is not None and not (p is not None and rng[0] <= p <= rng[1]):
+                continue
+            g = r.get("green")
+            if gb is not None and (g is None or g >= gb):
+                continue
+            if ga is not None and (g is None or g <= ga):
+                continue
+            out[r["name"]] = cat
+            break
     return out
 
 
