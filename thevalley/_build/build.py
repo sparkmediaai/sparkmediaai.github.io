@@ -152,21 +152,32 @@ PAGES["index.html"] = dict(
     hero_alt="A couple crossing the meadow with Lookout Mountain behind them",
     eyebrow="Wildwood, Georgia &middot; Fifteen minutes from Chattanooga",
     h1="One Private Mountain Estate. All for You.",
-    standfirst="Seventy-four private acres beneath Lookout Mountain. For one weekend, "
-               "the whole estate belongs to one couple, and not one square foot of it "
-               "belongs to anyone else.",
+    standfirst="Seventy-four private acres beneath Lookout Mountain, fifteen minutes from "
+               "Chattanooga. One wedding at a time, ever. For your two days the gate closes "
+               "behind one family, and every field, every porch and every bed is yours.",
     actions=[("Book a Tour", "/thevalley/book-a-tour/"),
              ("Walk the Estate", "/thevalley/the-estate/")],
     body="""
 <section>
-  <div class="lede">
-    <div class="eyebrow">The reveal</div>
+  <div class="statement">
+    <div class="eyebrow">What makes this different</div>
     <h2>One estate. One couple. One weekend.</h2>
-    <p>Not one ballroom. Not one ceremony lawn. Not a collection of unrelated venues.
-       Larger estates in this region run two and sometimes three weddings on a single
-       Saturday. Seventy-four acres cannot be split, so they are not.</p>
-    <p>Every celebration includes every space &mdash; Magnolia House, The Valley, the
-       Lookout Deck, Davis Hall, the trails, the meadows and the lodging on the hill.</p>
+    <p>Larger estates in this region run two and sometimes three weddings on a single
+       Saturday. It is how the acreage pays for itself &mdash; and it means another bride is
+       on the property, another family&rsquo;s flowers are going out the far door, and
+       another cocktail hour is audible from the ceremony. Someone else&rsquo;s arch is
+       coming down while yours goes up.</p>
+    <p>Seventy-four acres cannot be split, so they are not. From the moment you arrive to
+       the moment you leave, the estate is arranged around one family, held that way for
+       two days, and then put away and arranged again around the next.</p>
+    <ul class="nots">
+      <li>No second wedding on the property</li>
+      <li>Nothing flipped or reset around you</li>
+      <li>Nothing shared, overheard, or hurried</li>
+      <li>Every gate, every field, every bed</li>
+    </ul>
+    <p class="close">Not one ballroom. Not one ceremony lawn. Not a collection of unrelated
+       venues. For a little while, an entire mountain estate is simply yours.</p>
     <a class="btn" href="/thevalley/the-estate/">See the whole property</a>
   </div>
 </section>

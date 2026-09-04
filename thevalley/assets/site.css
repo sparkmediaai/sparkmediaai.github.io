@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* ============================================================================
    The Valley Venues — prototype scaffolding
 
@@ -167,6 +168,35 @@ section:last-of-type{border-bottom:0}
   display:flex;flex-direction:column;gap:.5rem;margin-top:2rem}
 .note p{font-size:.9rem;color:var(--ink-soft)}
 .note b{font-weight:600;color:var(--ink)}
+
+/* The one place this scaffold raises its voice. Pillar One of the framework and
+   the brand essence itself — the claim the rest of the page is evidence for. It
+   gets a panel, a larger setting, and room around it, and nothing else on the
+   page competes at this size. */
+.statement{
+  background:var(--ground-2);border:1px solid var(--line);
+  padding:clamp(1.8rem,5vw,3.4rem);
+  display:flex;flex-direction:column;gap:1.2rem;align-items:flex-start;
+}
+.statement h2{font-size:clamp(2rem,4.8vw,3.1rem);max-width:16ch}
+.statement p{max-width:46rem;color:var(--ink-soft)}
+.statement .close{color:var(--ink);font-size:1.05rem}
+.nots{
+  list-style:none;padding:0;margin:.8rem 0 0;width:100%;
+  display:grid;gap:0 clamp(1.5rem,4vw,3rem);
+  /* four points, so two rows of two rather than three and a widow */
+  grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--line);
+}
+.nots li{
+  padding:.85rem 0;border-bottom:1px solid var(--line-soft);
+  font-size:.95rem;display:flex;gap:.7rem;align-items:baseline;
+}
+@media (max-width:620px){.nots{grid-template-columns:1fr}}
+.nots li::before{
+  content:"";flex:none;display:inline-block;
+  width:.95rem;height:1px;background:var(--taupe);transform:translateY(-.35em);
+}
 
 /* ------------------------------------------------------------------ forms */
 .form{display:flex;flex-direction:column;gap:1.5rem;max-width:34rem;margin-top:2rem}
