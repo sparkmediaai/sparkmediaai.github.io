@@ -162,32 +162,6 @@
 .wk b{font-family:var(--display);font-weight:400;font-size:1.28rem;line-height:1.2}
 .wk p{font-size:.93rem;color:var(--ink-soft)}
 
-/* ------------------------------------------------------------- the closing
-   The only dark band on the site. The cottage in the woods is the reward at the
-   end of the journey and the direction holds it back deliberately, so it is the
-   last thing on the page and the one place the ground changes. */
-.closing{
-  position:relative;margin:var(--gap) calc(var(--pad) * -1) 0;
-  min-height:26rem;display:grid;align-items:end;overflow:hidden;
-  border-top:1px solid var(--line);
-}
-.closing-img{position:absolute;inset:0;background:#141a13 center/cover no-repeat}
-.closing::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(16,20,14,.30) 0%,rgba(16,20,14,.86) 88%);
-}
-.closing-body{
-  position:relative;z-index:2;padding:clamp(2.5rem,7vh,5rem) var(--pad);
-  display:flex;flex-direction:column;gap:1rem;align-items:flex-start;
-  max-width:46rem;
-}
-.closing-body .eyebrow{color:var(--ivory)}
-.closing-body h2{color:#fff}
-.closing-body p{color:rgba(255,255,255,.88)}
-.closing-body .btn{border-color:var(--ivory);color:var(--ivory)}
-.closing-body .btn:hover,.closing-body .btn:focus-visible{
-  background:var(--ivory);color:#1b2118}
-
 /* ============================================================================
    Staggers for the two sequences this page owns.
 
