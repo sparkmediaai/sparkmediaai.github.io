@@ -8,9 +8,50 @@ pages are data and the shell is code.
 
 Run:  python thevalley/_build/build.py
 """
-import os, re
+import os, re, struct
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+IMG = os.path.join(ROOT, "assets", "img")
+
+
+def webp_size(path):
+    """Width and height of a WebP, without a dependency.
+
+    Every img on this site carries width and height attributes so the page
+    reserves the right space before the bytes arrive. Typing those by hand is
+    how they end up wrong, and a wrong height is not a cosmetic problem: the
+    attributes set a presentational height, and a presentational height
+    silently defeats aspect-ratio. Three separate bugs on this site had that
+    one cause. So the numbers are read from the file instead.
+    """
+    with open(path, "rb") as f:
+        head = f.read(30)
+    fmt = head[12:16]
+    if fmt == b"VP8X":
+        w = struct.unpack("<I", head[24:27] + b"\0")[0] + 1
+        h = struct.unpack("<I", head[27:30] + b"\0")[0] + 1
+        return w, h
+    if fmt == b"VP8L":
+        b = struct.unpack("<I", head[21:25])[0]
+        return (b & 0x3FFF) + 1, ((b >> 14) & 0x3FFF) + 1
+    if fmt == b"VP8 ":
+        w, h = struct.unpack("<HH", head[26:30])
+        return w & 0x3FFF, h & 0x3FFF
+    raise ValueError("not a webp: %s" % path)
+
+
+_IMG = re.compile(r"\{\{img:([^|}]+)\|([^|}]*)\|?([^}]*)\}\}")
+
+
+def expand(body):
+    """Turn {{img:file.webp|alt text|extra attributes}} into a real img tag."""
+    def one(m):
+        name, alt, extra = m.group(1), m.group(2), m.group(3)
+        w, h = webp_size(os.path.join(IMG, name))
+        return ('<img src="/thevalley/assets/img/%s" alt="%s" width="%d" '
+                'height="%d" loading="lazy" decoding="async"%s>'
+                % (name, alt, w, h, (" " + extra) if extra else ""))
+    return _IMG.sub(one, body)
 
 SITE = "The Valley Venues"
 TAGLINE = "One Private Mountain Estate. All for You."
@@ -63,10 +104,18 @@ def shell(page):
                          for t, h in links) + "\n          ")
         for head, links in FOOTER)
 
-    hero = page.get("hero_html", "")
+    # Two kinds of hero, and both put the words on the photograph. The home
+    # page brings its own markup because its hero is a clock; every other page
+    # gets one frame and the shared scrim over it.
+    hero, hero_class = page.get("hero_html", ""), "hero-clock"
     if not hero and page.get("hero_img"):
-        hero += '  <div class="hero-img" role="img" aria-label="%s" style="background-image:url(\'%sassets/img/%s\')"></div>\n' % (
-            page["hero_alt"], depth_root, page["hero_img"])
+        w, h = webp_size(os.path.join(IMG, page["hero_img"]))
+        hero_class = "hero-photo"
+        hero = ('  <img class="hero-bg" src="%sassets/img/%s" alt="%s" '
+                'width="%d" height="%d" fetchpriority="high" decoding="async">\n'
+                % (depth_root, page["hero_img"], page["hero_alt"], w, h))
+    elif not hero:
+        hero_class = ""
     actions = ""
     if page.get("actions"):
         actions = '\n    <div class="hero-actions">%s</div>' % "".join(
@@ -86,6 +135,7 @@ def shell(page):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="%(root)sassets/site.css">
+<link rel="stylesheet" href="%(root)sassets/motion.css">
 %(head)s</head>
 <body>
 
@@ -103,7 +153,7 @@ def shell(page):
   </div>
 </header>
 
-<header class="hero">
+<header class="hero %(hero_class)s">
 %(hero)s  <div class="hero-body">
     <div class="eyebrow">%(eyebrow)s</div>
     <h1>%(h1)s</h1>
@@ -139,7 +189,8 @@ def shell(page):
         "site": SITE, "nav": nav, "cta_href": CTA[1], "cta_text": CTA[0],
         "hero": hero, "eyebrow": page["eyebrow"], "h1": page["h1"],
         "standfirst": page["standfirst"], "actions": actions,
-        "body": page["body"], "foot": foot,
+        "body": expand(page["body"]), "foot": foot,
+        "hero_class": hero_class,
         "head": page.get("head", ""), "foot_js": page.get("foot_js", ""),
     }
 
@@ -332,24 +383,32 @@ PAGES["weddings/index.html"] = dict(
   </div>
   <div class="grid">
     <article class="card">
+      {{img:w-weekend.webp|A ceremony under way in the meadow, the congregation seated|class="wipe"}}
       <div class="eyebrow">Hero experience</div>
       <h3>The Estate Weekend</h3>
       <p>Two nights, the whole property, one couple. Wedding, lodging, time and privacy
          as a single thing rather than four invoices.</p>
     </article>
     <article class="card">
+      {{img:w-premium.webp|Bridesmaids beside tall floral arrangements at golden hour|class="wipe"}}
       <div class="eyebrow">Premium</div>
       <h3>All-Inclusive Estate Experience</h3>
       <p>Adds deeper design, planning, food, beverage, coordination and vendor support &mdash;
          and Kobi's own hand in the design.</p>
     </article>
     <article class="card">
+      {{img:w-single.webp|The ceremony set out and waiting, seen through the tall grass|class="wipe"}}
       <div class="eyebrow">Alternate</div>
       <h3>Single-Day Celebration</h3>
       <p>A real offering for couples who want the day rather than the weekend.
          <a href="/thevalley/weddings/single-day/">See single-day celebrations</a>.</p>
     </article>
   </div>
+</section>
+
+<section class="band">
+  {{img:band-vows.webp|The meadow with the arch standing in it, and nothing else|class="band-img"}}
+  <p>Nobody else&rsquo;s arch comes down while yours goes up.</p>
 </section>
 
 <section id="investment">
@@ -382,31 +441,37 @@ PAGES["weddings/whats-included/index.html"] = dict(
 <section>
   <div class="grid">
     <article class="card">
+      {{img:inc-decor.webp|A long table laid with white linen, black chargers and greenery|class="wipe"}}
       <h3>Already on the property</h3>
       <p>Tables, chairs, linens and an extensive decor inventory, included rather than
          rented &mdash; so fewer details become their own vendor, their own invoice and
          their own phone call.</p>
     </article>
     <article class="card">
+      {{img:inc-rain.webp|The conservatory from the lawn, glass on three sides|class="wipe"}}
       <h3>It rained, and nothing changed</h3>
       <p>Glass, cover and the whole property to move into, including the conservatory at
          Magnolia House. No tent. No five o'clock panic. No flip fee.</p>
     </article>
     <article class="card">
+      {{img:inc-team.webp|The dance floor full, late in the evening|class="wipe"}}
       <h3>Handled behind the scenes</h3>
       <p>Setup, cleanup, golf carts, parking, security and coordination, by people who have
          worked this property hundreds of times and know where the kitchen is.</p>
     </article>
     <article class="card">
+      {{img:inc-food.webp|Copper mugs and a garnished cocktail on a wooden board|class="wipe"}}
       <h3>In-house catering</h3>
       <p>Food actually served here, by a kitchen that works this estate every weekend.</p>
     </article>
     <article class="card">
+      {{img:inc-sleep.webp|The cottages of Overlook Village along the hillside|class="wipe"}}
       <h3>Where everyone sleeps</h3>
       <p>Thirty-four people stay on the estate. A hotel is six minutes away for everyone
          else, and the airport is thirty.</p>
     </article>
     <article class="card">
+      {{img:inc-yours.webp|An invitation suite, a ring dish and a bottle of scent|class="wipe"}}
       <h3>Your own team, welcome</h3>
       <p>Bring your planner and your vendors. We would rather support your plan than
          replace it. <a href="/thevalley/planners/">For planners</a>.</p>
@@ -427,14 +492,28 @@ PAGES["weddings/real-weddings/index.html"] = dict(
 <section>
   <div class="lede">
     <h2>Gallery</h2>
-    <p>This page holds the real-weddings gallery. It is intentionally empty in the
-       prototype: the framework asks for current work only, credited, and refreshed as
-       weddings happen rather than left to age.</p>
+    <p>Eight frames from the estate&rsquo;s existing photography, standing in for the
+       structure of the real thing: a wall you scroll rather than a lightbox you open,
+       and every wedding credited underneath it.</p>
+  </div>
+  <div class="gallery">
+    <figure>{{img:g-1.webp|The couple at the arch, the ridge behind them}}</figure>
+    <figure>{{img:g-2.webp|A first look on the path, the valley beyond}}</figure>
+    <figure>{{img:g-3.webp|The first dance under the drapery and lights}}</figure>
+    <figure>{{img:g-4.webp|The couple on the drive, Lookout Mountain behind}}</figure>
+    <figure>{{img:g-5.webp|The dance floor late, glow sticks up}}</figure>
+    <figure>{{img:g-6.webp|The rehearsal table laid under the pergola}}</figure>
+    <figure>{{img:g-7.webp|The wedding party walking down through the trees}}</figure>
+    <figure>{{img:g-8.webp|The recessional back up the aisle}}</figure>
   </div>
   <div class="note">
-    <p><b>Awaiting content.</b> Needs a first set of six to eight weddings with the couple's
-       permission, the vendor credits, and photography from the current season. Nothing from
-       before the property changed.</p>
+    <p><b>Awaiting content.</b> These are estate frames, not credited real weddings. The
+       page needs a first set of six to eight weddings with the couple&rsquo;s permission,
+       the planner and vendor credits under each, and photography from the current season.
+       Nothing from before the property changed.</p>
+    <p>The credits are not a courtesy. A vendor who is named here has a reason to name the
+       estate on her own site, which is the whole mechanism of the
+       <a href="/thevalley/planners/vendors/">preferred vendor list</a>.</p>
   </div>
 </section>
 """)
@@ -449,15 +528,20 @@ PAGES["weddings/single-day/index.html"] = dict(
                "couple for the day, and nothing is shared.",
     body="""
 <section>
-  <div class="lede">
-    <h2>What stays the same</h2>
-    <p>One celebration on the property. The whole estate to move through. The same
-       inclusions, the same weather alternatives, the same people running it.</p>
-    <h2>What is different</h2>
-    <p>No lodging night, no rehearsal evening, and no breakfast the morning after &mdash;
-       which is to say, none of the parts most couples tell us afterwards they did not
-       expect to love.</p>
-    <a class="btn" href="/thevalley/weddings/">See the Estate Weekend</a>
+  <div class="split">
+    <div class="split-text">
+      <h2>What stays the same</h2>
+      <p>One celebration on the property. The whole estate to move through. The same
+         inclusions, the same weather alternatives, the same people running it.</p>
+      <h2 style="margin-top:1.5rem">What is different</h2>
+      <p>No lodging night, no rehearsal evening, and no breakfast the morning after
+         &mdash; which is to say, none of the parts most couples tell us afterwards they
+         did not expect to love.</p>
+      <a class="btn" href="/thevalley/weddings/">See the Estate Weekend</a>
+    </div>
+    <figure class="frame">
+      {{img:sd-fire.webp|The fire pit lit at golden hour, florals on either side|class="par"}}
+    </figure>
   </div>
   <div class="note">
     <p><b>Positioning note.</b> This is a real offering and should convert, but the framework
@@ -485,6 +569,9 @@ PAGES["stay/index.html"] = dict(
        two nights has seen the whole estate &mdash; which is how a good many weddings here
        begin.</p>
   </div>
+  <div class="names" aria-hidden="true">
+    <div class="names-track"><span>Phoenix</span><span>Bluebird</span><span>Goldfinch</span><span>Hummingbird</span><span>Willow</span><span>Mahogany</span><span>Overlook Village</span><span>The Lodge</span><span>Phoenix</span><span>Bluebird</span><span>Goldfinch</span><span>Hummingbird</span><span>Willow</span><span>Mahogany</span><span>Overlook Village</span><span>The Lodge</span></div>
+  </div>
   <ul class="named">
     <li>Phoenix <span>Cottage</span></li>
     <li>Bluebird <span>Cottage</span></li>
@@ -495,11 +582,28 @@ PAGES["stay/index.html"] = dict(
     <li>Overlook Village <span>Cottages on the hill</span></li>
     <li>The Lodge <span>The larger house</span></li>
   </ul>
+  <div class="grid">
+    <article class="card">
+      {{img:stay-village.webp|The cottages of Overlook Village along the hillside|class="wipe"}}
+      <div class="eyebrow">Overlook Village</div>
+      <p>A row of cottages along the hill, each one facing out rather than at the next.</p>
+    </article>
+    <article class="card">
+      {{img:stay-inside.webp|A cottage bathroom in timber, twin basins under twin mirrors|class="wipe"}}
+      <div class="eyebrow">Inside</div>
+      <p>Timber, glass and quiet. Built to be lived in for two nights, not checked into.</p>
+    </article>
+  </div>
   <div class="note">
     <p><b>Deliberately not listed here:</b> Lost in the Woods. The framework folds it into
        the Estate Weekend as the emotional close, rather than offering it as a separate
        bookable stay.</p>
   </div>
+</section>
+
+<section class="band">
+  {{img:band-return.webp|A couple close together, the estate soft behind them|class="band-img"}}
+  <p>Come once for the wedding. Come back for the anniversary.</p>
 </section>
 
 <section>
@@ -531,7 +635,9 @@ PAGES["the-estate/index.html"] = dict(
          photograph almost every guest takes, through the windshield on the way up. The
          conservatory at Magnolia House is also the weather plan that costs nothing.</p>
     </div>
-    <img src="/thevalley/assets/img/magnolia-house.webp" alt="Magnolia House, white columns above the lawn" loading="lazy">
+    <figure class="frame">
+      {{img:magnolia-house.webp|Magnolia House, white columns above the lawn|class="par"}}
+    </figure>
   </div>
 </section>
 
@@ -544,7 +650,9 @@ PAGES["the-estate/index.html"] = dict(
          Sound stays in it and the wind drops in it. Nothing is visible from it that the
          estate does not own.</p>
     </div>
-    <img src="/thevalley/assets/img/the-valley.webp" alt="The processional crossing the meadow" loading="lazy">
+    <figure class="frame">
+      {{img:the-valley.webp|The processional crossing the meadow|class="par"}}
+    </figure>
   </div>
 </section>
 
@@ -556,7 +664,9 @@ PAGES["the-estate/index.html"] = dict(
       <p>A railed deck out over the valley, facing the mountain. It turns gold at six, tip
          to tip, and everyone stops talking.</p>
     </div>
-    <img src="/thevalley/assets/img/lookout-deck.webp" alt="A couple dancing on the Lookout Deck, the ridge behind" loading="lazy">
+    <figure class="frame">
+      {{img:lookout-deck.webp|A couple dancing on the Lookout Deck, the ridge behind|class="par"}}
+    </figure>
   </div>
 </section>
 
@@ -568,8 +678,15 @@ PAGES["the-estate/index.html"] = dict(
       <p>Drapery, chandeliers, and the room where the dancing happens. It carries the
          largest receptions on the property.</p>
     </div>
-    <img src="/thevalley/assets/img/davis-hall.webp" alt="Davis Hall under its drapery, lit for the first dance" loading="lazy">
+    <figure class="frame">
+      {{img:davis-hall.webp|Davis Hall under its drapery, lit for the first dance|class="par"}}
+    </figure>
   </div>
+</section>
+
+<section class="band">
+  {{img:band-ground.webp|The couple standing at the arch in the open meadow|class="band-img"}}
+  <p>Four places on one map, and you never leave the property to reach any of them.</p>
 </section>
 
 <section>
@@ -631,6 +748,14 @@ PAGES["planners/index.html"] = dict(
          alongside a planner rather than instead of one.</p>
     </article>
   </div>
+</section>
+
+<section class="band">
+  {{img:pl-deck.webp|A group on the Lookout Deck with the mountain behind them|class="band-img"}}
+  <p>One load-in. One site. One team who has done this here before.</p>
+</section>
+
+<section>
   <div class="note">
     <p><b>Prototype note.</b> This page carries its own capture, and that list is tagged and
        worked separately from bridal enquiries. The operational detail above needs filling in
@@ -658,9 +783,16 @@ PAGES["planners/vendors/index.html"] = dict(
     <li>Planner name <span>Studio &middot; website &middot; social</span></li>
     <li>Planner name <span>Studio &middot; website &middot; social</span></li>
   </ul>
-  <div class="lede" style="margin-top:2.5rem">
-    <h2>Vendors</h2>
-    <p>Photography, florals, music, hair and makeup, rentals, officiants.</p>
+  <div class="split flip" style="margin-top:3rem">
+    <div class="split-text">
+      <h2>Vendors</h2>
+      <p>Photography, florals, music, hair and makeup, rentals, officiants.</p>
+      <p>Rentals is the shortest list, because the tables, the chairs, the linens and a
+         good deal of the decor are already on the property.</p>
+    </div>
+    <figure class="frame">
+      {{img:vend-table.webp|Glassware and candles down the length of a laid table|class="par par-mid"}}
+    </figure>
   </div>
   <ul class="named">
     <li>Vendor name <span>Category &middot; website &middot; social</span></li>
@@ -686,6 +818,7 @@ PAGES["about/index.html"] = dict(
                "standing in it.",
     body="""
 <section>
+ <div class="stakes flip">
   <div class="lede">
     <div class="eyebrow">Kobi Cummings</div>
     <h2>Co-founder, certified wedding planner, experiential designer.</h2>
@@ -698,11 +831,25 @@ PAGES["about/index.html"] = dict(
        around. Whoever sits closest to the dance floor is in every photograph of your first
        dance. That should be someone you love.</p>
   </div>
+  <div class="cluster wide">
+    <figure class="cl-1">{{img:ab-toast.webp|The bride and her party raising a glass together indoors}}</figure>
+    <figure class="cl-2">{{img:inc-decor.webp|A table laid with linen, chargers and greenery}}</figure>
+    <figure class="cl-3">{{img:g-3.webp|The first dance under the drapery and lights}}</figure>
+  </div>
+ </div>
   <div class="note">
     <p><b>Approval required.</b> This wording follows Draft 2 of the brand framework and needs
        approving word for word before it appears publicly. Claims stay first person and
        factual, with no sole credit anywhere.</p>
+    <p><b>Missing.</b> There is no photograph of Kobi in the 2,472-image library. An About
+       page whose subject is a person needs one, and it is the single most useful frame the
+       next shoot could produce.</p>
   </div>
+</section>
+
+<section class="band">
+  {{img:band-family.webp|A couple walking together in the meadow|class="band-img"}}
+  <p>What should the guest feel, standing in this moment?</p>
 </section>
 
 <section>
@@ -720,6 +867,8 @@ PAGES["about/index.html"] = dict(
 PAGES["book-a-tour/index.html"] = dict(
     nav=None, title="Book a Tour | %s" % SITE,
     desc="Reserve a tour of the estate.",
+    hero_img="tour.webp",
+    hero_alt="A couple turning together in the open meadow, the ridge beyond",
     eyebrow="Book a tour",
     h1="Come and stand in it.",
     standfirst="More than half of the couples who walk this property book it. Tell us a "

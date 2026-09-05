@@ -82,6 +82,70 @@ SLOTS = [
     # --- a full-bleed breath, tall enough to move behind its frame -------
     ("band-estate", r"C:/Users/dave.mccormick/Downloads/drive-download-20260828T222918Z-1-001",
      "DJI_0679.jpg", 1600, 900, 0.50),
+    # ================= the other ten pages ==============================
+    # Everything below was cut in one pass after the home page, from category
+    # contact sheets rather than from shoot sheets -- once the library is
+    # sorted the question is no longer "what is this shoot" but "what in this
+    # category can carry a page". See catsheet.py.
+
+    # --- weddings ---------------------------------------------------------
+    ("w-weekend",   "02 The Valley",           "WeddingDay-862.jpg",                 1200, 900, 0.48),
+    ("w-premium",   "08 Details & decor",      "Valley-Venues-Wedding-Day-9-12.jpg", 1200, 900, 0.46),
+    ("w-single",    "02 The Valley",           "ValleyVenuesStyledShoot-010.jpg",    1200, 900, 0.50),
+    # An empty meadow with an arch in it and nothing else. The quietest frame
+    # in the library, which is what a band with type over it needs.
+    ("band-vows",   "01 Mountain & landscape", "WeddingDay-1145.jpg",                1800, 900, 0.50),
+
+    # --- what's included --------------------------------------------------
+    ("inc-decor",   "08 Details & decor",      "Valley-Venues-Wedding-Day-6-4.jpg",  1200, 900, 0.50),
+    # The conservatory from outside, glass on three sides. The page answers
+    # "what happens if it rains" and this is the answer, photographed.
+    ("inc-rain",    "01 Mountain & landscape", "ValleyVenuesStyledShoot-068.jpg",    1200, 900, 0.50),
+    ("inc-team",    "05 Davis Hall",           "WeddingDay-1388.jpg",                1200, 900, 0.46),
+    ("inc-food",    "11 Food & catering",      "Valley-Venues-Wedding-Day-7-15.jpg", 1200, 900, 0.50),
+    ("inc-sleep",   "01 Mountain & landscape", "ValleyVenuesStyledShoot-064.jpg",    1200, 900, 0.52),
+    ("inc-yours",   "08 Details & decor",      "WeddingDay-10.jpg",                  1200, 900, 0.50),
+
+    # --- real weddings, a gallery of what exists --------------------------
+    # g-1 and g-5 are the two frames the gallery gives double width to, so they
+    # are cut wide here rather than cropped wide by object-fit later. A 4:3
+    # frame reduced to 11:4 in the browser crops from the centre, which took
+    # the top of the officiant's head off.
+    ("g-1", "02 The Valley",      "WeddingDay-848.jpg",                 1400, 510, 0.25),
+    ("g-2", "09 People & candid", "WeddingDay-520.jpg",                 1000, 750, 0.46),
+    ("g-3", "05 Davis Hall",      "WeddingDay-1237.jpg",                1000, 750, 0.46),
+    ("g-4", "09 People & candid", "WeddingDay-561.jpg",                 1000, 750, 0.44),
+    ("g-5", "09 People & candid", "WeddingDay-1620.jpg",                1400, 510, 0.22),
+    ("g-6", "08 Details & decor", "Valley-Venues-Wedding-Day-3-4(1).jpg", 1000, 750, 0.50),
+    ("g-7", "09 People & candid", "WeddingDay-403.jpg",                 1000, 750, 0.44),
+    ("g-8", "02 The Valley",      "WeddingDay-886.jpg",                 1000, 750, 0.48),
+
+    # --- single day -------------------------------------------------------
+    ("sd-fire",     "08 Details & decor",      "Valley-Venues-Wedding-Day-9-14.jpg", 1200, 900, 0.50),
+
+    # --- stay -------------------------------------------------------------
+    # Overlook Village from across the lawn. The cottages had only ever
+    # appeared on this site one at a time, which undersells eight of them.
+    ("stay-village","01 Mountain & landscape", "ValleyVenuesStyledShoot-066.jpg",    1600, 900, 0.52),
+    ("stay-inside", "06 Lodging & cottages",   "Valley-Venues-Wedding-Day-17-9.jpg", 1200, 900, 0.50),
+    ("band-return", "01 Mountain & landscape", "WeddingDay-1130.jpg",                1800, 900, 0.44),
+
+    # --- the estate -------------------------------------------------------
+    ("band-ground", "01 Mountain & landscape", "SneakPeek-65.jpg",                   1800, 900, 0.50),
+
+    # --- planners and vendors ---------------------------------------------
+    ("pl-deck",     "09 People & candid",      "WeddingDay-1484.jpg",                1800, 900, 0.46),
+    ("vend-table",  "05 Davis Hall",           "WeddingDay-1194.jpg",                1200, 900, 0.50),
+
+    # --- about ------------------------------------------------------------
+    # Not the swan centrepiece that was here. The page is about what a person
+    # feels standing in a room, and a close-up of a table ornament is the one
+    # thing on the estate that answers a different question.
+    ("ab-toast",    "08 Details & decor",      "Valley-Venues-Wedding-Day-6-12.jpg", 1200, 900, 0.46),
+    ("band-family", "01 Mountain & landscape", "WeddingDay-1076.jpg",                1800, 900, 0.42),
+
+    # --- book a tour ------------------------------------------------------
+    ("tour",        "01 Mountain & landscape", "WeddingDay-1100.jpg",                2000, 1000, 0.44),
 ]
 
 TARGET = 0.55          # the set is nudged toward one mean so the pages agree

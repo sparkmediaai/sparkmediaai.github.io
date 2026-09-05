@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="/thevalley/assets/site.css">
+<link rel="stylesheet" href="/thevalley/assets/motion.css">
 </head>
 <body>
 
@@ -31,8 +32,8 @@
   </div>
 </header>
 
-<header class="hero">
-  <div class="hero-img" role="img" aria-label="The meadow, quiet, with the ridge beyond" style="background-image:url('/thevalley/assets/img/single-day.webp')"></div>
+<header class="hero hero-photo">
+  <img class="hero-bg" src="/thevalley/assets/img/single-day.webp" alt="The meadow, quiet, with the ridge beyond" width="2000" height="1000" fetchpriority="high" decoding="async">
   <div class="hero-body">
     <div class="eyebrow">Celebrate &middot; Single day</div>
     <h1>A day, rather than a weekend.</h1>
@@ -43,15 +44,20 @@
 <main id="main">
 
 <section>
-  <div class="lede">
-    <h2>What stays the same</h2>
-    <p>One celebration on the property. The whole estate to move through. The same
-       inclusions, the same weather alternatives, the same people running it.</p>
-    <h2>What is different</h2>
-    <p>No lodging night, no rehearsal evening, and no breakfast the morning after &mdash;
-       which is to say, none of the parts most couples tell us afterwards they did not
-       expect to love.</p>
-    <a class="btn" href="/thevalley/weddings/">See the Estate Weekend</a>
+  <div class="split">
+    <div class="split-text">
+      <h2>What stays the same</h2>
+      <p>One celebration on the property. The whole estate to move through. The same
+         inclusions, the same weather alternatives, the same people running it.</p>
+      <h2 style="margin-top:1.5rem">What is different</h2>
+      <p>No lodging night, no rehearsal evening, and no breakfast the morning after
+         &mdash; which is to say, none of the parts most couples tell us afterwards they
+         did not expect to love.</p>
+      <a class="btn" href="/thevalley/weddings/">See the Estate Weekend</a>
+    </div>
+    <figure class="frame">
+      <img src="/thevalley/assets/img/sd-fire.webp" alt="The fire pit lit at golden hour, florals on either side" width="1200" height="900" loading="lazy" decoding="async" class="par">
+    </figure>
   </div>
   <div class="note">
     <p><b>Positioning note.</b> This is a real offering and should convert, but the framework
