@@ -16,12 +16,50 @@
    clock, and one reveal on scroll. Everything else is still.
    ========================================================================== */
 
-/* ---------------------------------------------------------------- the hero */
-.hero-stage{
-  position:relative;aspect-ratio:2/1;overflow:hidden;background:var(--ground-2);
-  isolation:isolate;
+/* ---------------------------------------------------------------- the hero
+   The copy decides the height and the photograph fills whatever that comes to.
+   Anchoring words to a fixed-aspect box is what breaks a hero on a narrow
+   screen: at 384px the copy wants 1184px and the box is 512px, so it spills
+   out of the top. Here the body sits in normal flow, the stage is underneath
+   it at inset 0, and the two cannot disagree. */
+.hero{
+  position:relative;display:grid;align-items:end;
+  min-height:clamp(30rem,52vw,44rem);overflow:hidden;
 }
-@media (max-width:760px){.hero-stage{aspect-ratio:4/5}}
+.hero-stage{
+  position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--ground-2);
+}
+
+/* The scrim is sized by measurement, not by eye. The five frames put pure white
+   under the words — a white house, a lit window, white chairs — and white type
+   on white is 1:1. Reaching 7:1 on the worst of them needs about 70% ink, so it
+   is spent only where the words are: nothing in the top third, then a ramp that
+   is already deep by the time the headline starts. 68% is the number: on the
+   brightest frame that puts white type at 7.9:1, and anything heavier only
+   costs photograph for contrast nobody needs. Ink rather than black, because
+   black goes cold and the brand is explicit that it should not. */
+.hero-stage::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    /* across: deep where the column of words is, gone by two thirds */
+    linear-gradient(90deg,
+      rgba(16,20,14,.76) 0%,
+      rgba(16,20,14,.68) 54%,
+      rgba(16,20,14,.22) 70%,
+      rgba(16,20,14,0) 82%),
+    /* down: a light weight at the foot, to seat the clock marks */
+    linear-gradient(180deg,
+      rgba(16,20,14,0) 55%,
+      rgba(16,20,14,.34) 100%);
+}
+@media (max-width:760px){
+  /* A portrait crop has no clean right-hand side to protect, so the scrim goes
+     back to a single downward ramp and simply gets deep enough. */
+  .hero{min-height:34rem}
+  .hero-stage::after{background:linear-gradient(180deg,
+    rgba(16,20,14,.08) 0%, rgba(16,20,14,.38) 30%,
+    rgba(16,20,14,.64) 55%, rgba(16,20,14,.74) 100%)}
+}
 
 .slide{
   position:absolute;inset:0;margin:0;opacity:0;
@@ -42,17 +80,36 @@
 @keyframes drift-alt{from{transform:scale(1) translate3d(-.8%,0,0)}
                      to{transform:scale(1.045) translate3d(0,0,0)}}
 
-/* The label for the moment. Not a clock face — these are real photographs and
-   inventing timestamps for them would be a small lie. */
-.hero-hour{
-  position:absolute;right:0;bottom:0;z-index:2;margin:0;
-  padding:.7rem 1.1rem;background:rgba(20,24,18,.55);
-  color:#fff;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;
-  font-weight:600;backdrop-filter:blur(3px);
+/* The copy sits over the frame, bottom left, where the scrim is deepest. It
+   stays in normal flow so it can never be taller than the box that holds it. */
+.hero-body{
+  position:relative;z-index:3;
+  /* 44rem, not 52: the words have to finish before the scrim starts fading,
+     or the end of a long line ends up on an unprotected patch of sky. */
+  max-width:44rem;
+  padding-top:clamp(6rem,22vh,12rem);
+  padding-bottom:clamp(3.75rem,9vh,5.5rem);
 }
-.hero-dots{
-  position:absolute;left:0;bottom:0;z-index:2;display:flex;gap:.5rem;
-  padding:.9rem 1.1rem;
+.hero-body .eyebrow{color:var(--ivory)}
+.hero-body h1{color:#fff}
+.hero-body p{color:rgba(255,255,255,.94)}
+.hero-body .btn-ghost,.hero-body .btn:not(.btn-solid){border-color:#fff;color:#fff}
+.hero-body .btn:not(.btn-solid):hover,
+.hero-body .btn:not(.btn-solid):focus-visible{background:#fff;color:var(--ink)}
+
+/* The clock marks move out of the way of the words, to the opposite corner. */
+.hero-marks{
+  position:absolute;right:0;bottom:0;z-index:4;
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem clamp(1.15rem,5vw,3.5rem);
+}
+.hero-hour{
+  margin:0;color:#fff;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;
+  font-weight:600;white-space:nowrap;
+}
+.hero-dots{display:flex;gap:.5rem}
+@media (max-width:600px){
+  .hero-marks{left:0;justify-content:space-between}
 }
 .hero-dots button{
   width:2.2rem;height:2px;padding:0;border:0;cursor:pointer;

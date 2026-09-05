@@ -52,7 +52,11 @@ SLOTS = [
     # that it belongs to one family for the length of a weekend, so the hero
     # moves through hours rather than through venues. Order matters here.
     ("hero-1", "03 Magnolia House",        "ValleyVenuesStyledShoot-106.jpg", 2200, 1100, 0.50),
-    ("hero-2", "10 Getting ready",         "ValleyVenuesStyledShoot-040.jpg", 2200, 1100, 0.46),
+    # Chosen for its shadow, not just its subject. A hero that carries type needs
+    # somewhere dark for the type to sit: this frame is 73% shadow in the text
+    # column against the 19% of the bedroom shot that was here, which turned to
+    # mush the moment a scrim went over it.
+    ("hero-2", "10 Getting ready",         "WeddingDay-136.jpg",              2200, 1100, 0.46),
     ("hero-3", "02 The Valley",            "WeddingDay-648.jpg",              2200, 1100, 0.50),
     ("hero-4", "01 Mountain & landscape",  "WeddingDay-1096.jpg",             2200, 1100, 0.42),
     ("hero-5", "03 Magnolia House",        "ValleyVenueSSSneakPeaks-46.jpg",  2200, 1100, 0.50),
