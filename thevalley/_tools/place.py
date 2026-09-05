@@ -146,6 +146,28 @@ SLOTS = [
 
     # --- book a tour ------------------------------------------------------
     ("tour",        "01 Mountain & landscape", "WeddingDay-1100.jpg",                2000, 1000, 0.44),
+    # --- one dark close per page ------------------------------------------
+    # Every page now ends the way the home page does: a full-bleed frame, the
+    # last thing the page has to say, and the invitation. They are chosen dark
+    # or low-key on purpose -- the scrim over them is heavy, and a bright frame
+    # under it just looks like a bright frame that has been ruined.
+    ("close-weddings", "03 Magnolia House",     "ValleyVenuesStyledShoot-269.jpg",    1800, 1000, 0.50),
+    ("close-included", "03 Magnolia House",     "ValleyVenuesStyledShoot-289.jpg",    1800, 1000, 0.50),
+    ("close-real",     "09 People & candid",    "WeddingDay-1555.jpg",                1800, 1000, 0.45),
+    ("close-single",   "10 Getting ready",      "ValleyVenuesStyledShoot-006.jpg",    1800, 1000, 0.50),
+    ("close-stay",     "06 Lodging & cottages", "Valley-Venues-Wedding-Day-15-12.jpg",1800, 1000, 0.50),
+    ("close-estate",   "10 Getting ready",      "Valley-Venues-Wedding-Day-22-2.jpg", 1800, 1000, 0.42),
+    ("close-planners", "04 Lookout Deck",       "WeddingDay-1426.jpg",                1800, 1000, 0.42),
+    ("close-vendors",  "03 Magnolia House",     "ValleyVenuesStyledShoot-213.jpg",    1800, 1000, 0.50),
+    ("close-about",    "10 Getting ready",      "WeddingDay-186.jpg",                 1800, 1000, 0.40),
+    ("close-tour",     "03 Magnolia House",     "ValleyVenuesStyledShoot-121.jpg",    1800, 1000, 0.50),
+
+    # --- a few more inside the pages --------------------------------------
+    ("inc-glass",  "03 Magnolia House", "ValleyVenuesStyledShoot-240.jpg", 1600, 1200, 0.50),
+    # The meadow from above with the arch small in the middle of it. Almost
+    # nothing in the frame, which is what a band carrying one line wants.
+    ("band-quiet", "10 Getting ready",  "ValleyVenuesStyledShoot-056.jpg", 1800,  900, 0.50),
+    ("pl-night",   "10 Getting ready",  "WeddingDay-144.jpg",              1200,  900, 0.50),
 ]
 
 TARGET = 0.55          # the set is nudged toward one mean so the pages agree

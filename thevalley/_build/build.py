@@ -411,6 +411,20 @@ PAGES["weddings/index.html"] = dict(
   <p>Nobody else&rsquo;s arch comes down while yours goes up.</p>
 </section>
 
+<section>
+  <div class="statement">
+    <div class="eyebrow">What you are actually booking</div>
+    <h2 class="rise-words"><span>You</span> <span>are</span> <span>not</span> <span>renting</span> <span>a</span> <span>room.</span> <span>You</span> <span>are</span> <span>moving</span> <span>in</span> <span>for</span> <span>the</span> <span>weekend.</span></h2>
+    <p>A venue sells you a room and a window of hours. Everything in that model
+       follows from the room having to be used again. The doors open at four
+       because they were being reset until three, and they close at eleven
+       because somebody has to be in at seven.</p>
+    <p class="close">Here the property is not being reset around you, because
+       there is nothing to reset it for. You arrive on Friday and you leave on
+       Sunday, and in between the gate is closed behind one family.</p>
+  </div>
+</section>
+
 <section id="investment">
   <div class="lede">
     <div class="eyebrow">Investment</div>
@@ -427,6 +441,17 @@ PAGES["weddings/index.html"] = dict(
        absence of everything else is what produces the enquiry.</p>
   </div>
 </section>
+
+<section class="closing">
+  <div class="closing-img" role="img" aria-label="The conservatory lit from within after dark"
+       style="background-image:url('/thevalley/assets/img/close-weddings.webp')"></div>
+  <div class="closing-body">
+    <div class="eyebrow">One weekend at a time</div>
+    <h2>Most Saturdays are already spoken for.</h2>
+    <p>The estate holds one wedding at a time, which means the calendar is shorter than it looks. Walking the property is how most couples decide, and it costs nothing but an afternoon.</p>
+    <a class="btn" href="/thevalley/book-a-tour/">Book a tour</a>
+  </div>
+</section>
 """)
 
 PAGES["weddings/whats-included/index.html"] = dict(
@@ -438,6 +463,20 @@ PAGES["weddings/whats-included/index.html"] = dict(
     standfirst="The questions a mother asks: what is included, where does everyone sleep, "
                "what happens if it rains, and who is responsible for what.",
     body="""
+<section>
+  <div class="statement">
+    <div class="eyebrow">The short version</div>
+    <h2 class="rise-words"><span>The</span> <span>list</span> <span>of</span> <span>things</span> <span>you</span> <span>still</span> <span>have</span> <span>to</span> <span>arrange</span> <span>is</span> <span>the</span> <span>short</span> <span>one.</span></h2>
+    <p>Most of what a wedding costs is not the wedding. It is the coordination
+       of eleven separate companies who have never worked together, each with
+       its own contract, its own arrival time and its own idea of where the
+       power is.</p>
+    <p class="close">Tables, chairs, linens, decor, catering, setup, cleanup,
+       parking, security and coordination are already here and already know
+       each other. What is left for you to arrange is the interesting part.</p>
+  </div>
+</section>
+
 <section>
   <div class="grid">
     <article class="card">
@@ -478,6 +517,36 @@ PAGES["weddings/whats-included/index.html"] = dict(
     </article>
   </div>
 </section>
+
+<section>
+  <div class="stakes flip">
+    <div class="lede">
+      <div class="eyebrow">The one everybody asks about</div>
+      <h2>And if it rains?</h2>
+      <p>Nothing is struck, nothing is tented and nothing costs extra. The
+         conservatory at Magnolia House is glass on three sides and already
+         part of the property, so the wet-weather plan is a room you would have
+         been happy to use anyway.</p>
+      <p>The decision gets made at a sensible hour by people who have made it
+         before, and the answer is a different room rather than a different
+         day.</p>
+    </div>
+    <figure class="frame">
+      {{img:inc-glass.webp|The conservatory inside, chandeliers over the floor|class="par"}}
+    </figure>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="closing-img" role="img" aria-label="Sparklers at the doors of Magnolia House at night"
+       style="background-image:url('/thevalley/assets/img/close-included.webp')"></div>
+  <div class="closing-body">
+    <div class="eyebrow">Still counting</div>
+    <h2>The rest of the answers take about an hour.</h2>
+    <p>Bring the questions your mother has been asking. They are usually the sharpest ones, and they are easier to answer standing in the room.</p>
+    <a class="btn" href="/thevalley/book-a-tour/">Book a tour</a>
+  </div>
+</section>
 """)
 
 PAGES["weddings/real-weddings/index.html"] = dict(
@@ -516,6 +585,30 @@ PAGES["weddings/real-weddings/index.html"] = dict(
        <a href="/thevalley/planners/vendors/">preferred vendor list</a>.</p>
   </div>
 </section>
+
+<section>
+  <div class="statement">
+    <div class="eyebrow">What you are looking at</div>
+    <h2 class="rise-words"><span>Every</span> <span>wedding</span> <span>on</span> <span>this</span> <span>page</span> <span>had</span> <span>the</span> <span>property</span> <span>to</span> <span>itself.</span></h2>
+    <p>There is no frame on this page taken around another wedding. No corner
+       cropped to hide somebody else&rsquo;s reception, no shot timed for the
+       ten minutes the lawn was free, no guests waiting behind a rope while a
+       different family finished.</p>
+    <p class="close">It is a small thing to claim and a difficult one to fake,
+       and it is visible in almost every photograph once you know to look.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="closing-img" role="img" aria-label="The dance floor late in the evening, lit purple"
+       style="background-image:url('/thevalley/assets/img/close-real.webp')"></div>
+  <div class="closing-body">
+    <div class="eyebrow">Yours next</div>
+    <h2>Every one of these was somebody&rsquo;s ordinary Saturday.</h2>
+    <p>Until it was not. Come and walk the property, and we will show you where each of these was standing.</p>
+    <a class="btn" href="/thevalley/book-a-tour/">Book a tour</a>
+  </div>
+</section>
 """)
 
 PAGES["weddings/single-day/index.html"] = dict(
@@ -547,6 +640,35 @@ PAGES["weddings/single-day/index.html"] = dict(
     <p><b>Positioning note.</b> This is a real offering and should convert, but the framework
        is explicit that it must not appear in the brand essence, the hero, or the homepage
        story. The weekend is the differentiator.</p>
+  </div>
+</section>
+
+<section class="band">
+  {{img:band-quiet.webp|The meadow from above, the arch small in the middle of it|class="band-img"}}
+  <p>Whatever else changes, the property is still yours alone for the day.</p>
+</section>
+
+<section>
+  <div class="statement">
+    <div class="eyebrow">What does not change</div>
+    <h2 class="rise-words"><span>One</span> <span>celebration</span> <span>on</span> <span>the</span> <span>property.</span> <span>That</span> <span>part</span> <span>never</span> <span>moves.</span></h2>
+    <p>The single-day celebration is a shorter answer to the same question,
+       not a cheaper version of somebody else&rsquo;s. There is still one
+       wedding on the property. There is still no second arch coming down at
+       the far end of the field.</p>
+    <p class="close">What you give up is the two nights, and most couples who
+       have had them will tell you that is the part they would keep.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="closing-img" role="img" aria-label="The ceremony set out and empty, under a heavy sky"
+       style="background-image:url('/thevalley/assets/img/close-single.webp')"></div>
+  <div class="closing-body">
+    <div class="eyebrow">Either way</div>
+    <h2>Come and see which one it wants to be.</h2>
+    <p>Most couples arrive certain they want the day and leave having worked out what the weekend would cost. It is an easier conversation on the property than off it.</p>
+    <a class="btn" href="/thevalley/book-a-tour/">Book a tour</a>
   </div>
 </section>
 """)
@@ -615,6 +737,30 @@ PAGES["stay/index.html"] = dict(
        Saturdays.</p>
   </div>
 </section>
+
+<section>
+  <div class="statement">
+    <div class="eyebrow">Why an events estate has beds in it</div>
+    <h2 class="rise-words"><span>Nobody</span> <span>drives</span> <span>home.</span> <span>That</span> <span>is</span> <span>the</span> <span>whole</span> <span>idea.</span></h2>
+    <p>Thirty-four people sleeping on the property is not a convenience that
+       was added afterwards. It is the reason the weekend works at all: the
+       rehearsal can run late, the morning can start slowly, and nobody spends
+       the best day of their life reading directions on a phone.</p>
+    <p class="close">Between Saturdays the same cottages are simply a quiet
+       place in the woods with a creek at the bottom of it.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="closing-img" role="img" aria-label="A sparkler lit outside a cottage after dark"
+       style="background-image:url('/thevalley/assets/img/close-stay.webp')"></div>
+  <div class="closing-body">
+    <div class="eyebrow">Stay first</div>
+    <h2>Book two nights before you book a wedding.</h2>
+    <p>A guest who has slept here has already seen the property at six in the morning and at eleven at night, which is more than any tour can show you.</p>
+    <a class="btn" href="/thevalley/book-a-tour/">Enquire about a stay</a>
+  </div>
+</section>
 """)
 
 PAGES["the-estate/index.html"] = dict(
@@ -626,6 +772,19 @@ PAGES["the-estate/index.html"] = dict(
     standfirst="This page replaces a dropdown that listed four venues. There are not four "
                "venues. There is one estate, and every celebration includes all of it.",
     body="""
+<section>
+  <div class="statement">
+    <div class="eyebrow">Read this first</div>
+    <h2 class="rise-words"><span>There</span> <span>are</span> <span>not</span> <span>four</span> <span>venues.</span> <span>There</span> <span>is</span> <span>one</span> <span>estate.</span></h2>
+    <p>The old site listed four venues in a dropdown, which is how a guest
+       learns to ask which one they are getting. It is the wrong question. The
+       four places below are not alternatives to choose between; they are four
+       points on one walk, and every celebration here includes all of them.</p>
+    <p class="close">You arrive at the house, you marry in the meadow, you
+       drink on the deck and you dance in the hall. Nobody drives between them.</p>
+  </div>
+</section>
+
 <section>
   <div class="split">
     <div class="split-text">
@@ -704,6 +863,17 @@ PAGES["the-estate/index.html"] = dict(
        rather than from a site plan.</p>
   </div>
 </section>
+
+<section class="closing">
+  <div class="closing-img" role="img" aria-label="A bride at the deck rail, looking out at the mountain"
+       style="background-image:url('/thevalley/assets/img/close-estate.webp')"></div>
+  <div class="closing-body">
+    <div class="eyebrow">The whole of it</div>
+    <h2>Seventy-four acres does not photograph.</h2>
+    <p>You can see the four places on this page. What you cannot see from a screen is how far apart they are, how quiet the meadow is, or how the deck turns at six.</p>
+    <a class="btn" href="/thevalley/book-a-tour/">Book a tour</a>
+  </div>
+</section>
 """)
 
 PAGES["planners/index.html"] = dict(
@@ -750,6 +920,46 @@ PAGES["planners/index.html"] = dict(
   </div>
 </section>
 
+<section>
+  <div class="lede">
+    <div class="eyebrow">The shape of it</div>
+    <h2>How a weekend actually runs.</h2>
+    <p>Times are indicative and get confirmed with the operations team, but the
+       sequence is the same every weekend and it is the sequence that matters
+       when you are building a timeline.</p>
+  </div>
+  <div class="steps">
+    <div class="step"><span class="when">Fri</span>
+      <div><b>Load-in from midday</b><p>Vehicle access to all four spaces. Nothing
+      is being cleared from the weekend before, because there was no weekend
+      before &mdash; the property was reset on Monday.</p></div></div>
+    <div class="step"><span class="when">Fri</span>
+      <div><b>Rehearsal, then dinner on the property</b><p>The rehearsal happens
+      where the ceremony will. Guests who are staying check in and do not leave
+      again.</p></div></div>
+    <div class="step"><span class="when">Sat</span>
+      <div><b>Your call time is not the venue&rsquo;s call time</b><p>Getting-ready
+      spaces are already occupied, so hair and makeup can start whenever you
+      need them to rather than whenever the doors open.</p></div></div>
+    <div class="step"><span class="when">Sat</span>
+      <div><b>Weather decision, made early</b><p>The alternative is a room, not a
+      tent, so the call can be made in the morning and does not need to be
+      revisited at five.</p></div></div>
+    <div class="step"><span class="when">Sat</span>
+      <div><b>Ceremony to deck to hall, on foot</b><p>No shuttle, no staged
+      release of guests, no second parking plan. Golf carts for anyone who needs
+      one.</p></div></div>
+    <div class="step"><span class="when">Sun</span>
+      <div><b>Clear on Sunday, not at midnight</b><p>Nothing has to be off the
+      property before breakfast, because nothing is arriving behind you.</p></div></div>
+  </div>
+  <div class="note">
+    <p><b>To confirm.</b> Load-in times, vehicle routes, power and kitchen access,
+       overnight staffing and the weather call time all need filling in from the
+       operations team. It is the part planners read first.</p>
+  </div>
+</section>
+
 <section class="band">
   {{img:pl-deck.webp|A group on the Lookout Deck with the mountain behind them|class="band-img"}}
   <p>One load-in. One site. One team who has done this here before.</p>
@@ -758,8 +968,31 @@ PAGES["planners/index.html"] = dict(
 <section>
   <div class="note">
     <p><b>Prototype note.</b> This page carries its own capture, and that list is tagged and
-       worked separately from bridal enquiries. The operational detail above needs filling in
-       from the team &mdash; it is the part planners actually read.</p>
+       worked separately from bridal enquiries.</p>
+  </div>
+</section>
+
+<section>
+  <div class="statement">
+    <div class="eyebrow">The part that matters to you</div>
+    <h2 class="rise-words"><span>A</span> <span>weekend</span> <span>here</span> <span>has</span> <span>one</span> <span>moving</span> <span>part,</span> <span>and</span> <span>it</span> <span>is</span> <span>yours.</span></h2>
+    <p>One load-in. One site. One team, on the property overnight, who have run
+       this weekend before and know which door the kitchen is behind. No shared
+       loading bay, no other planner&rsquo;s truck in the way, no negotiation
+       over who gets the ceremony lawn at four.</p>
+    <p class="close">You are not competing for the venue&rsquo;s attention,
+       because there is nobody else to give it to.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="closing-img" role="img" aria-label="A couple at the rail of the Lookout Deck, the ridge behind"
+       style="background-image:url('/thevalley/assets/img/close-planners.webp')"></div>
+  <div class="closing-body">
+    <div class="eyebrow">Trade enquiries</div>
+    <h2>Come and walk it without a couple.</h2>
+    <p>Planner site visits are welcome on their own, and are a good deal more useful than a floor plan. Bring a timeline and we will tell you what it actually takes here.</p>
+    <a class="btn" href="/thevalley/book-a-tour/">Register as a planner</a>
   </div>
 </section>
 """)
@@ -803,6 +1036,31 @@ PAGES["planners/vendors/index.html"] = dict(
     <p><b>Why this page exists.</b> Being listed here gives a planner cause to name the estate
        on her own site and in her guides. The referral runs both directions, and the estate
        holds the list.</p>
+  </div>
+</section>
+
+<section>
+  <div class="statement">
+    <div class="eyebrow">How this list is meant to work</div>
+    <h2 class="rise-words"><span>A</span> <span>referral</span> <span>is</span> <span>worth</span> <span>more</span> <span>than</span> <span>an</span> <span>advertisement.</span></h2>
+    <p>Most couples find a venue before they find a planner. By the time
+       somebody is reading this page they have already decided where the wedding
+       is, which makes it the least competitive introduction a planner will get
+       all year.</p>
+    <p class="close">In return, the estate gets named on a dozen other sites by
+       people with no reason to flatter it. That is the entire mechanism, and it
+       only works if the list stays short and honest.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="closing-img" role="img" aria-label="Candles and low light on a dressed table"
+       style="background-image:url('/thevalley/assets/img/close-vendors.webp')"></div>
+  <div class="closing-body">
+    <div class="eyebrow">For vendors</div>
+    <h2>Worked here before?</h2>
+    <p>If you have run a wedding on this property and it went well, tell us. The list is built from people the team has actually stood beside at one in the morning.</p>
+    <a class="btn" href="/thevalley/book-a-tour/">Get in touch</a>
   </div>
 </section>
 """)
@@ -853,6 +1111,21 @@ PAGES["about/index.html"] = dict(
 </section>
 
 <section>
+  <div class="statement">
+    <div class="eyebrow">The working method</div>
+    <h2 class="rise-words"><span>A</span> <span>room</span> <span>is</span> <span>not</span> <span>a</span> <span>look.</span> <span>It</span> <span>is</span> <span>a</span> <span>feeling</span> <span>somebody</span> <span>has</span> <span>standing</span> <span>in</span> <span>it.</span></h2>
+    <p>Themed entertainment design starts from the guest and works backwards.
+       Not <em>what should this room look like</em> but <em>what should a person
+       feel standing in it, at this hour, having just done the thing they came
+       here to do.</em></p>
+    <p class="close">It is why the seating chart matters more than the
+       centrepieces, why the walk from the ceremony to the deck is a walk and
+       not a shuttle, and why the last thing on the property is a cottage in the
+       woods rather than a car park.</p>
+  </div>
+</section>
+
+<section>
   <div class="lede">
     <div class="eyebrow">The family</div>
     <h2>A family story, still.</h2>
@@ -860,6 +1133,17 @@ PAGES["about/index.html"] = dict(
        daughter Kobi began restoring and reimagining it, and what emerged was not a
        collection of event spaces but a hospitality estate.</p>
     <p>The estate should grow without anyone becoming a room number. Clients are known here.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="closing-img" role="img" aria-label="A mother settling her daughter's veil before the ceremony"
+       style="background-image:url('/thevalley/assets/img/close-about.webp')"></div>
+  <div class="closing-body">
+    <div class="eyebrow">Come and meet them</div>
+    <h2>You will be dealing with the family.</h2>
+    <p>Not a sales office. The people who answer the enquiry are the people who will be on the property at eleven at night on your Saturday.</p>
+    <a class="btn" href="/thevalley/book-a-tour/">Book a tour</a>
   </div>
 </section>
 """)
@@ -912,6 +1196,25 @@ PAGES["book-a-tour/index.html"] = dict(
     <button class="btn btn-solid" type="submit">Request a tour</button>
   </form>
 
+  <div class="lede" style="margin-top:3rem">
+    <div class="eyebrow">What happens next</div>
+    <h2>Three things, in this order.</h2>
+  </div>
+  <div class="steps">
+    <div class="step"><span class="when">One</span>
+      <div><b>A reply from a person</b><p>Naming the two or three configurations
+      that actually fit what you described, with figures. Not a brochure and not
+      a price list.</p></div></div>
+    <div class="step"><span class="when">Two</span>
+      <div><b>An afternoon on the property</b><p>An hour and a half, on foot,
+      including the parts most tours skip. Bring whoever is going to ask the
+      hard questions.</p></div></div>
+    <div class="step"><span class="when">Three</span>
+      <div><b>A date held while you think</b><p>Nothing on this property is
+      shared, which means a date either is yours or it is not. We will tell you
+      plainly which ones are still open.</p></div></div>
+  </div>
+
   <div class="note">
     <p><b>Prototype note.</b> The form does not submit. Note what it does not ask: your total
        budget. That question closes more doors than it filters, and guest count arrives
@@ -920,6 +1223,17 @@ PAGES["book-a-tour/index.html"] = dict(
     <p>What should come back is a recommendation naming the two or three configurations that
        fit, priced, in the brand voice, and signed by Kobi &mdash; within minutes rather than
        a pamphlet within seconds.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="closing-img" role="img" aria-label="Magnolia House at the top of the drive, the ridge behind it"
+       style="background-image:url('/thevalley/assets/img/close-tour.webp')"></div>
+  <div class="closing-body">
+    <div class="eyebrow">The drive up</div>
+    <h2>More than half of the couples who walk it book it.</h2>
+    <p>That is not a sales line, it is a description of what the property does to people. It is fifteen minutes from Chattanooga and the tour is free.</p>
+    <a class="btn" href="#main">Request a tour</a>
   </div>
 </section>
 """)
