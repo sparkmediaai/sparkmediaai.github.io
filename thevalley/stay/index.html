@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="/thevalley/assets/site.css">
+<link rel="stylesheet" href="/thevalley/assets/motion.css">
 </head>
 <body>
 
@@ -31,8 +32,8 @@
   </div>
 </header>
 
-<header class="hero">
-  <div class="hero-img" role="img" aria-label="A cottage in the woods at the edge of the property" style="background-image:url('/thevalley/assets/img/stay.webp')"></div>
+<header class="hero hero-photo">
+  <img class="hero-bg" src="/thevalley/assets/img/stay.webp" alt="A cottage in the woods at the edge of the property" width="1600" height="800" fetchpriority="high" decoding="async">
   <div class="hero-body">
     <div class="eyebrow">Stay</div>
     <h1>Stay Where the Story Continues</h1>
@@ -52,6 +53,9 @@
        two nights has seen the whole estate &mdash; which is how a good many weddings here
        begin.</p>
   </div>
+  <div class="names" aria-hidden="true">
+    <div class="names-track"><span>Phoenix</span><span>Bluebird</span><span>Goldfinch</span><span>Hummingbird</span><span>Willow</span><span>Mahogany</span><span>Overlook Village</span><span>The Lodge</span><span>Phoenix</span><span>Bluebird</span><span>Goldfinch</span><span>Hummingbird</span><span>Willow</span><span>Mahogany</span><span>Overlook Village</span><span>The Lodge</span></div>
+  </div>
   <ul class="named">
     <li>Phoenix <span>Cottage</span></li>
     <li>Bluebird <span>Cottage</span></li>
@@ -62,11 +66,28 @@
     <li>Overlook Village <span>Cottages on the hill</span></li>
     <li>The Lodge <span>The larger house</span></li>
   </ul>
+  <div class="grid">
+    <article class="card">
+      <img src="/thevalley/assets/img/stay-village.webp" alt="The cottages of Overlook Village along the hillside" width="1024" height="576" loading="lazy" decoding="async" class="wipe">
+      <div class="eyebrow">Overlook Village</div>
+      <p>A row of cottages along the hill, each one facing out rather than at the next.</p>
+    </article>
+    <article class="card">
+      <img src="/thevalley/assets/img/stay-inside.webp" alt="A cottage bathroom in timber, twin basins under twin mirrors" width="1200" height="900" loading="lazy" decoding="async" class="wipe">
+      <div class="eyebrow">Inside</div>
+      <p>Timber, glass and quiet. Built to be lived in for two nights, not checked into.</p>
+    </article>
+  </div>
   <div class="note">
     <p><b>Deliberately not listed here:</b> Lost in the Woods. The framework folds it into
        the Estate Weekend as the emotional close, rather than offering it as a separate
        bookable stay.</p>
   </div>
+</section>
+
+<section class="band">
+  <img src="/thevalley/assets/img/band-return.webp" alt="A couple close together, the estate soft behind them" width="1800" height="900" loading="lazy" decoding="async" class="band-img">
+  <p>Come once for the wedding. Come back for the anniversary.</p>
 </section>
 
 <section>
