@@ -198,3 +198,189 @@
 .closing-body .btn{border-color:var(--ivory);color:var(--ivory)}
 .closing-body .btn:hover,.closing-body .btn:focus-visible{
   background:var(--ivory);color:#1b2118}
+
+/* ============================================================================
+   Motion, part two.
+
+   Everything below runs on a view timeline: the animation's clock is the
+   element's own travel through the viewport, not wall time. That matters for
+   two reasons. It cannot fire early or late, and it degrades correctly — a
+   browser without animation-timeline never enters the @supports block and
+   simply shows finished content, whereas an IntersectionObserver that fails
+   to fire leaves a page of invisible text.
+
+   Scroll timelines ignore animation-delay, so a stagger is expressed as a
+   different animation-range per item rather than as a delay.
+   ========================================================================== */
+
+/* ------------------------------------------------- the stakes, with people
+   Words left, three portraits right, staggered rather than aligned.
+
+   The first version had one frame span both rows and stretch to fill them.
+   At this column width that came to 269x809 -- a 1:3 sliver that cropped the
+   people out of a photograph of people. Every frame here keeps its own 3:4
+   and the second column is simply dropped down the page instead, which gives
+   the same broken grid without asking any image to be a shape it is not. */
+.stakes{display:grid;gap:clamp(1.8rem,4vw,3.5rem);align-items:start}
+@media (min-width:900px){
+  .stakes{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+}
+.cluster{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(.7rem,1.8vw,1.2rem);align-items:start;
+}
+.cluster figure{margin:0;overflow:hidden;background:var(--ground-2)}
+.cluster img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}
+.cl-1{grid-column:1;grid-row:1}
+.cl-3{grid-column:1;grid-row:2}
+/* Spanning both rows, not sitting in the first one: a margin on a single-row
+   item grows that row and opens a matching hole in the other column. */
+.cluster .cl-2{grid-column:2;grid-row:1/3;align-self:start;
+  margin-top:clamp(2rem,9vw,6.5rem)}
+
+/* Parallax at three different rates, so the cluster has depth rather than
+   sliding as one board. The scale is what buys the travel: without it the
+   translate would drag empty figure into view at the edges. */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .cluster img{
+      animation:par-slow linear both;
+      animation-timeline:view();animation-range:cover 0% cover 100%;
+    }
+    .cl-2 img{animation-name:par-fast}
+    .cl-3 img{animation-name:par-mid}
+  }
+}
+@keyframes par-slow{from{transform:scale(1.1) translateY(2.4%)}
+                    to{transform:scale(1.1) translateY(-2.4%)}}
+@keyframes par-mid {from{transform:scale(1.12) translateY(4%)}
+                    to{transform:scale(1.12) translateY(-4%)}}
+@keyframes par-fast{from{transform:scale(1.14) translateY(5.5%)}
+                    to{transform:scale(1.14) translateY(-5.5%)}}
+
+/* -------------------------------------------------- the claim, word by word
+   The one sentence the whole page is evidence for, so it is the one piece of
+   type that assembles itself. Six words, each starting a little later than the
+   last and each finished before the sentence has finished scrolling past. */
+.rise-words span{display:inline-block}
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .rise-words span{
+      animation:word-rise linear both;
+      animation-timeline:view();animation-range:entry 14% entry 74%;
+    }
+    .rise-words span:nth-child(2){animation-range:entry 20% entry 80%}
+    .rise-words span:nth-child(3){animation-range:entry 26% entry 86%}
+    .rise-words span:nth-child(4){animation-range:entry 32% entry 92%}
+    .rise-words span:nth-child(5){animation-range:entry 38% entry 98%}
+    .rise-words span:nth-child(6){animation-range:entry 44% cover 6%}
+
+    /* the four denials underneath, in the same direction, one after another */
+    .nots li{
+      animation:reveal-in linear both;
+      animation-timeline:view();animation-range:entry 30% entry 95%;
+    }
+    .nots li:nth-child(2){animation-range:entry 36% cover 2%}
+    .nots li:nth-child(3){animation-range:entry 42% cover 8%}
+    .nots li:nth-child(4){animation-range:entry 48% cover 14%}
+  }
+}
+@keyframes word-rise{
+  from{opacity:0;transform:translateY(.42em) rotate(1.5deg)}
+  to{opacity:1;transform:none}
+}
+
+/* ---------------------------------------------------------------- the band
+   One wide photograph with one line over it, sitting between the claim and the
+   evidence for it. By this point the page is a column of text blocks and the
+   eye needs somewhere to rest.
+
+   The image is deliberately taller than the band and hangs over both edges, so
+   it has room to travel without ever showing the ground behind it. */
+.band{
+  position:relative;margin:var(--gap) calc(var(--pad) * -1);
+  min-height:clamp(19rem,40vw,30rem);
+  display:grid;place-items:center;overflow:hidden;background:#141a13;
+  padding:0;border-bottom:0;
+}
+.band-img{
+  position:absolute;top:-11%;left:0;width:100%;height:122%;
+  object-fit:cover;max-width:none;
+}
+.band::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(16,20,14,.30),rgba(16,20,14,.52));
+}
+.band p{
+  position:relative;z-index:2;margin:0;color:#fff;text-align:center;
+  font-family:var(--display);font-weight:400;line-height:1.18;
+  font-size:clamp(1.55rem,4.4vw,3rem);
+  max-width:26ch;padding:clamp(3rem,8vw,5rem) var(--pad);
+  text-wrap:balance;
+}
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .band-img{animation:band-pan linear both;
+      animation-timeline:view();animation-range:cover 0% cover 100%}
+    .band p{animation:band-word linear both;
+      animation-timeline:view();animation-range:entry 30% cover 34%}
+  }
+}
+@keyframes band-pan{from{transform:translateY(-9%)}to{transform:translateY(9%)}}
+@keyframes band-word{from{opacity:0;letter-spacing:.06em}
+                     to{opacity:1;letter-spacing:normal}}
+
+/* --------------------------------------------------------------- the names
+   The lodgings have names, not numbers, and the names are half the charm. A
+   list would bury them; a slow drift lets them read as a place rather than as
+   inventory. Hidden from assistive tech — the duplicated track would read
+   twice — with the real list carried in a visually hidden paragraph. */
+.names{
+  margin:calc(var(--gap) * .7) calc(var(--pad) * -1) 0;
+  padding:clamp(1rem,2.5vw,1.6rem) 0;overflow:hidden;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+}
+.names-track{display:flex;width:max-content}
+.names-track span{
+  font-family:var(--display);font-size:clamp(1.25rem,3vw,2rem);
+  color:var(--ink-faint);white-space:nowrap;display:flex;align-items:center;
+  padding:0 clamp(1rem,2.6vw,2.2rem);gap:clamp(1rem,2.6vw,2.2rem);
+}
+.names-track span::after{
+  content:"";width:4px;height:4px;border-radius:50%;background:var(--taupe);
+  flex:none;opacity:.6;
+}
+@media (prefers-reduced-motion:no-preference){
+  /* The track holds the nine names twice, so -50% is one seamless lap. */
+  .names-track{animation:lap 52s linear infinite}
+}
+@keyframes lap{to{transform:translateX(-50%)}}
+
+/* --------------------------------------------------------------- the wipes
+   The frames at the foot of the page are uncovered rather than faded. The
+   clip-path goes on the frame, not on the img, which is already carrying its
+   own hover transform. */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .wipe img,.wk figure{
+      animation:wipe-in linear both;
+      animation-timeline:view();animation-range:entry 8% cover 26%;
+    }
+    /* the weekend is a sequence, so it uncovers as one */
+    .weekend .wk:nth-child(2) figure{animation-range:entry 14% cover 32%}
+    .weekend .wk:nth-child(3) figure{animation-range:entry 20% cover 38%}
+    .weekend .wk:nth-child(4) figure{animation-range:entry 26% cover 44%}
+    .weekend .wk:nth-child(2){animation-range:entry 11% cover 30%}
+    .weekend .wk:nth-child(3){animation-range:entry 17% cover 36%}
+    .weekend .wk:nth-child(4){animation-range:entry 23% cover 42%}
+
+    /* the hero lets go as it leaves, rather than scrolling away rigidly */
+    .hero-body{animation:hero-out linear both;
+      animation-timeline:view();animation-range:exit 10% exit 100%}
+  }
+}
+@keyframes wipe-in{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes hero-out{from{opacity:1;transform:none}
+                    to{opacity:0;transform:translateY(-3rem)}}

@@ -164,6 +164,7 @@ PAGES["index.html"] = dict(
              ("Walk the Estate", "/thevalley/the-estate/")],
     body="""
 <section>
+ <div class="stakes">
   <div class="lede reveal">
     <div class="eyebrow">Why any of this matters</div>
     <h2>This is one of the best days of your life.</h2>
@@ -175,12 +176,24 @@ PAGES["index.html"] = dict(
        ceremony, cocktail hour, reception, leave. Everything below follows from thinking
        that is the wrong way round.</p>
   </div>
+  <div class="cluster">
+    <figure class="cl-1"><img src="/thevalley/assets/img/note-1.webp"
+      alt="The wedding party throwing petals over the couple" width="900" height="1200"
+      loading="lazy" decoding="async"></figure>
+    <figure class="cl-2"><img src="/thevalley/assets/img/note-2.webp"
+      alt="A hand resting on a shoulder before the ceremony" width="900" height="1200"
+      loading="lazy" decoding="async"></figure>
+    <figure class="cl-3"><img src="/thevalley/assets/img/note-3.webp"
+      alt="The couple holding each other in the meadow" width="900" height="1200"
+      loading="lazy" decoding="async"></figure>
+  </div>
+ </div>
 </section>
 
 <section>
   <div class="statement reveal">
     <div class="eyebrow">What makes this different</div>
-    <h2>One estate. One couple. One weekend.</h2>
+    <h2 class="rise-words"><span>One</span> <span>estate.</span> <span>One</span> <span>couple.</span> <span>One</span> <span>weekend.</span></h2>
     <p>Larger estates in this region run two and sometimes three weddings on a single
        Saturday. It is how the acreage pays for itself &mdash; and it means another bride is
        on the property, another family&rsquo;s flowers are going out the far door, and
@@ -199,6 +212,13 @@ PAGES["index.html"] = dict(
        venues. For a little while, an entire mountain estate is simply yours.</p>
     <a class="btn" href="/thevalley/the-estate/">See the whole property</a>
   </div>
+</section>
+
+<section class="band">
+  <img class="band-img" src="/thevalley/assets/img/band-estate.webp"
+       alt="The estate from above, the meadow and the ridge beyond it"
+       width="1600" height="900" loading="lazy" decoding="async">
+  <p>For two days, the only people on seventy&#8209;four acres are the ones you invited.</p>
 </section>
 
 <section>
@@ -241,19 +261,34 @@ PAGES["index.html"] = dict(
 </section>
 
 <section>
+  <div class="lede reveal">
+    <div class="eyebrow">Everyone stays</div>
+    <h2>Nobody drives home.</h2>
+    <p>Cottages, suites and lodges spread across the property, each with a name rather
+       than a number. Your family is not at a hotel by the interstate; they are up the
+       hill, and they come down for breakfast.</p>
+  </div>
+  <div class="names" aria-hidden="true">
+    <div class="names-track"><span>Phoenix</span><span>Bluebird</span><span>Goldfinch</span><span>Hummingbird</span><span>Willow</span><span>Mahogany</span><span>Overlook Village</span><span>The Lodge</span><span>Lost in the Woods</span><span>Phoenix</span><span>Bluebird</span><span>Goldfinch</span><span>Hummingbird</span><span>Willow</span><span>Mahogany</span><span>Overlook Village</span><span>The Lodge</span><span>Lost in the Woods</span></div>
+  </div>
+  <p class="skip">Phoenix, Bluebird, Goldfinch, Hummingbird, Willow, Mahogany,
+     Overlook Village, The Lodge, and Lost in the Woods.</p>
+</section>
+
+<section>
   <div class="lede">
     <div class="eyebrow">Two ways to be here</div>
     <h2>Celebrate, or simply stay.</h2>
   </div>
   <div class="grid">
-    <article class="card reveal">
+    <article class="card reveal wipe">
       <img src="/thevalley/assets/img/weddings.webp" alt="A ceremony under way in the meadow" width="2000" height="1000" loading="lazy" decoding="async">
       <div class="eyebrow">Celebrate</div>
       <h3>The Estate Weekend</h3>
       <p>Friday afternoon to Sunday morning, the property held for one couple.</p>
       <a class="btn" href="/thevalley/weddings/">Weddings</a>
     </article>
-    <article class="card reveal">
+    <article class="card reveal wipe">
       <img src="/thevalley/assets/img/stay.webp" alt="A cottage in the woods" width="1600" height="800" loading="lazy" decoding="async">
       <div class="eyebrow">Stay</div>
       <h3>Lodging on the estate</h3>
