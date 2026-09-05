@@ -72,12 +72,28 @@ SLOTS = [
 
     # --- the close, held back until last ----------------------------------
     ("close-woods", "06 Lodging & cottages", "Valley-Venues-Wedding-Day-15-11.jpg", 1600, 900, 0.44),
+# --- the stakes: a cluster beside the words --------------------------
+    # The library is 61% portrait and almost none of it was being used. This
+    # section is about people being in one place, so it gets people.
+    ("note-1", "09 People & candid",     "0B6A1658.jpg",  900, 1200, 0.42),
+    ("note-2", "10 Getting ready",       "1B0A3346.jpg",  900, 1200, 0.46),
+    ("note-3", "09 People & candid",     "0B6A0960.jpg",  900, 1200, 0.40),
+
+    # --- a full-bleed breath, tall enough to move behind its frame -------
+    ("band-estate", r"C:/Users/dave.mccormick/Downloads/drive-download-20260828T222918Z-1-001",
+     "DJI_0679.jpg", 1600, 900, 0.50),
 ]
 
 TARGET = 0.55          # the set is nudged toward one mean so the pages agree
 
 
+# A slot's "category" is normally a folder inside the sorted library, but it can
+# also be an absolute path — some frames came straight from the client rather
+# than through the sort, and there is no reason to launder them through it.
 def find(cat, name):
+    if os.path.isabs(cat):
+        p = os.path.join(cat, name)
+        return p if os.path.exists(p) else None
     for orient in ("landscape", "portrait", "square"):
         p = os.path.join(LIB, cat, orient, name)
         if os.path.exists(p):
