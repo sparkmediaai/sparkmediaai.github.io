@@ -20,9 +20,6 @@ OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
 # (destination, category folder, filename, width, height, vertical bias)
 SLOTS = [
     # --- the home page --------------------------------------------------
-    # The aisle set and waiting, with the ridge behind it. An empty meadow
-    # says "held for you" in a way a crowded one cannot.
-    ("hero-mountain", "02 The Valley", "WeddingDay-648.jpg", 2200, 1100, 0.50),
 
     # --- the estate -----------------------------------------------------
     ("estate",         "01 Mountain & landscape", "ValleyVenuesStyledShoot-062.jpg", 2200, 1100, 0.52),
@@ -167,7 +164,6 @@ SLOTS = [
     # The meadow from above with the arch small in the middle of it. Almost
     # nothing in the frame, which is what a band carrying one line wants.
     ("band-quiet", "10 Getting ready",  "ValleyVenuesStyledShoot-056.jpg", 1800,  900, 0.50),
-    ("pl-night",   "10 Getting ready",  "WeddingDay-144.jpg",              1200,  900, 0.50),
 ]
 
 TARGET = 0.55          # the set is nudged toward one mean so the pages agree

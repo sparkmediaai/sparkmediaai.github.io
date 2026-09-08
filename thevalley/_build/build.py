@@ -41,6 +41,7 @@ def webp_size(path):
 
 
 _IMG = re.compile(r"\{\{img:([^|}]+)\|([^|}]*)\|?([^}]*)\}\}")
+_INLINE = re.compile(r"\{\{inline:([^}]+)\}\}")
 
 
 def expand(body):
@@ -51,9 +52,18 @@ def expand(body):
         return ('<img src="/thevalley/assets/img/%s" alt="%s" width="%d" '
                 'height="%d" loading="lazy" decoding="async"%s>'
                 % (name, alt, w, h, (" " + extra) if extra else ""))
-    return _IMG.sub(one, body)
+    body = _IMG.sub(one, body)
+
+    # {{inline:plan.svg}} drops a generated asset straight into the markup.
+    # The plan has to be inline: CSS animates individual marks and legs inside
+    # it, and nothing reaches inside an <img>.
+    def inline(m):
+        path = os.path.join(ROOT, "assets", m.group(1).strip())
+        return open(path, encoding="utf-8").read().strip()
+    return _INLINE.sub(inline, body)
 
 SITE = "The Valley Venues"
+BASE = "https://www.sparkmedia.ai/thevalley/"
 TAGLINE = "One Private Mountain Estate. All for You."
 
 # Primary navigation. Five destinations and one invitation — the Venues
@@ -90,9 +100,10 @@ FOOTER = [
 ]
 
 
-def shell(page):
+def shell(page, path="index.html"):
     """Wrap one page's body in the site chrome."""
     depth_root = "/thevalley/"
+    url = BASE + (path[:-len("index.html")] if path.endswith("index.html") else path)
     nav = "\n".join(
         '        <li><a href="%s"%s>%s</a></li>'
         % (href, ' aria-current="page"' if page["nav"] == label else "", label)
@@ -131,12 +142,26 @@ def shell(page):
 <title>%(title)s</title>
 <meta name="description" content="%(desc)s">
 <meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="%(root)sassets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="%(root)sassets/icon-180.png">
+<meta name="theme-color" content="#23291F">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="%(site)s">
+<meta property="og:title" content="%(title)s">
+<meta property="og:description" content="%(desc)s">
+<meta property="og:url" content="%(url)s">
+<meta property="og:image" content="%(base)sassets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The ceremony aisle set out in the meadow beneath Lookout Mountain">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Libre+Franklin:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="%(root)sassets/site.css">
 <link rel="stylesheet" href="%(root)sassets/motion.css">
-%(head)s</head>
+%(head)s<script>if(/[?&]notes\b/.test(location.search))document.documentElement.classList.add("notes")</script>
+</head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
@@ -177,8 +202,9 @@ def shell(page):
     </div>
   </div>
   <div class="colophon">
-    <span>Prototype &mdash; structure and placeholder copy. Not a live site.</span>
-    <span>Photography is existing estate imagery, standing in.</span>
+    <span>Prototype for The Valley Venues. Photography is existing estate imagery.</span>
+    <a class="notes-on" href="?notes">Show working notes</a>
+    <a class="notes-off" href="?">Hide working notes</a>
   </div>
 </footer>
 %(foot_js)s
@@ -186,6 +212,7 @@ def shell(page):
 </html>
 """ % {
         "title": page["title"], "desc": page["desc"], "root": depth_root,
+        "url": url, "base": BASE,
         "site": SITE, "nav": nav, "cta_href": CTA[1], "cta_text": CTA[0],
         "hero": hero, "eyebrow": page["eyebrow"], "h1": page["h1"],
         "standfirst": page["standfirst"], "actions": actions,
@@ -767,6 +794,7 @@ PAGES["the-estate/index.html"] = dict(
     nav="The Estate", title="The Estate | %s" % SITE,
     desc="Seventy-four acres beneath Lookout Mountain, as one property.",
     hero_img="estate.webp", hero_alt="The meadow opening beneath the ridge, the deck at its edge",
+    head='<link rel="stylesheet" href="/thevalley/assets/plan.css">\n',
     eyebrow="One estate",
     h1="One property, one map, one path.",
     standfirst="This page replaces a dropdown that listed four venues. There are not four "
@@ -785,61 +813,69 @@ PAGES["the-estate/index.html"] = dict(
   </div>
 </section>
 
-<section>
-  <div class="split">
-    <div class="split-text">
-      <div class="eyebrow">Arrival</div>
-      <h2>Magnolia House</h2>
-      <p>White columns and glass against the ridge, at the top of the drive. It is the first
-         photograph almost every guest takes, through the windshield on the way up. The
-         conservatory at Magnolia House is also the weather plan that costs nothing.</p>
-    </div>
-    <figure class="frame">
-      {{img:magnolia-house.webp|Magnolia House, white columns above the lawn|class="par"}}
-    </figure>
+<section class="walk">
+  <div class="lede">
+    <div class="eyebrow">The walk</div>
+    <h2>Six places, and the ground between them.</h2>
+    <p>The drawing is the estate&rsquo;s own survey &mdash; contours every five
+       metres, off the same LiDAR the county holds. Six places, and the walk
+       between them, at the size it actually is.</p>
   </div>
-</section>
-
-<section>
-  <div class="split flip">
-    <div class="split-text">
-      <div class="eyebrow">Ceremony</div>
-      <h2>The Valley</h2>
-      <p>An open meadow held on three sides by ridgeline, with Lookout Mountain beyond.
-         Sound stays in it and the wind drops in it. Nothing is visible from it that the
-         estate does not own.</p>
-    </div>
-    <figure class="frame">
-      {{img:the-valley.webp|The processional crossing the meadow|class="par"}}
+  <div class="walk-grid">
+    <figure class="walk-map">
+      {{inline:plan.svg}}
+      <figcaption>Contours at 5&thinsp;m. The whole weekend is
+        <b>928&thinsp;m</b> of walking &mdash; 0.58 miles, spread over two days.
+        Elevation is USGS 3DEP one-metre LiDAR; place positions are read from
+        aerial imagery and want confirming against a site plan.</figcaption>
     </figure>
-  </div>
-</section>
-
-<section>
-  <div class="split">
-    <div class="split-text">
-      <div class="eyebrow">Cocktails</div>
-      <h2>The Lookout Deck</h2>
-      <p>A railed deck out over the valley, facing the mountain. It turns gold at six, tip
-         to tip, and everyone stops talking.</p>
+    <div class="walk-steps">
+    <div class="wstep ws-1">
+      <div class="eyebrow"><span>Friday</span></div>
+      <h3>Arrival</h3>
+      <p>You turn off Pope Creek Road and the gate closes behind you. For the next two days nothing arrives that you did not invite, and nothing leaves until you do. This is the only drive anybody makes all weekend.</p>
     </div>
-    <figure class="frame">
-      {{img:lookout-deck.webp|A couple dancing on the Lookout Deck, the ridge behind|class="par"}}
-    </figure>
-  </div>
-</section>
-
-<section>
-  <div class="split flip">
-    <div class="split-text">
-      <div class="eyebrow">Reception</div>
-      <h2>Davis Hall</h2>
-      <p>Drapery, chandeliers, and the room where the dancing happens. It carries the
-         largest receptions on the property.</p>
+    <div class="wstep ws-2">
+      <div class="eyebrow"><span>Friday</span><span class="dist">53 m from the gate</span></div>
+      <h3>Magnolia House</h3>
+      <p>White columns and glass against the ridge, at the top of the drive. It is the first photograph almost every guest takes, through the windshield on the way up. The conservatory behind it is also the weather plan that costs nothing.</p>
+      <figure class="frame">
+        {{img:magnolia-house.webp|Magnolia House, white columns above the lawn|class="par"}}
+      </figure>
     </div>
-    <figure class="frame">
-      {{img:davis-hall.webp|Davis Hall under its drapery, lit for the first dance|class="par"}}
-    </figure>
+    <div class="wstep ws-3">
+      <div class="eyebrow"><span>Saturday, four</span><span class="dist">263 m from the front door</span></div>
+      <h3>The Valley</h3>
+      <p>An open meadow held on three sides by ridgeline, with Lookout Mountain beyond. Sound stays in it and the wind drops in it. Nothing is visible from it that the estate does not own.</p>
+      <figure class="frame">
+        {{img:the-valley.webp|The processional crossing the meadow|class="par"}}
+      </figure>
+    </div>
+    <div class="wstep ws-4">
+      <div class="eyebrow"><span>Saturday, six</span><span class="dist">313 m &mdash; the longest walk of the weekend</span></div>
+      <h3>The Lookout Deck</h3>
+      <p>A railed deck out over the valley, facing the mountain. It turns gold at six, tip to tip, and everyone stops talking. Guests walk here from the ceremony; there is no shuttle because there is nothing to shuttle across.</p>
+      <figure class="frame">
+        {{img:lookout-deck.webp|A couple dancing on the Lookout Deck, the ridge behind|class="par"}}
+      </figure>
+    </div>
+    <div class="wstep ws-5">
+      <div class="eyebrow"><span>Saturday, eight</span><span class="dist">200 m from the deck</span></div>
+      <h3>Davis Hall</h3>
+      <p>Drapery, chandeliers, and the room where the dancing happens. It carries the largest receptions on the property, and nobody has to find their car to get to it.</p>
+      <figure class="frame">
+        {{img:davis-hall.webp|Davis Hall under its drapery, lit for the first dance|class="par"}}
+      </figure>
+    </div>
+    <div class="wstep ws-6">
+      <div class="eyebrow"><span>Saturday, late</span><span class="dist">99 m, and then bed</span></div>
+      <h3>Overlook Village</h3>
+      <p>Cottages along the hill, thirty-four beds, and the end of the evening about a minute from the end of the party. This is the leg that every other venue replaces with a taxi rank.</p>
+      <figure class="frame">
+        {{img:stay-village.webp|The cottages of Overlook Village along the hillside|class="par"}}
+      </figure>
+    </div>
+    </div>
   </div>
 </section>
 
@@ -851,16 +887,18 @@ PAGES["the-estate/index.html"] = dict(
 <section>
   <div class="lede">
     <div class="eyebrow">The ground itself</div>
-    <h2>And underneath the drawing, the actual ground.</h2>
-    <p>A model of the real surface of the property, built from survey elevation readings and
-       turned so the valley can be looked at from any side.</p>
+    <h2>And the same ground, from the side.</h2>
+    <p>The plan above flattens a property that is anything but flat: from the low
+       ground to the high ridge inside that frame is a 240-foot climb. This is the
+       same survey built as a model and turned, so the valley can be looked at
+       from any angle.</p>
     <a class="btn" href="/valleyvenues/concepts/map3d/">Open the terrain model</a>
   </div>
   <div class="note">
     <p><b>Still in prototype.</b> Elevation is USGS 3DEP one-metre LiDAR through The National
        Map; the imagery over it is USGS NAIP, October 2023, at 0.57&thinsp;m per pixel. Both
-       are public domain federal survey data. The markers are read from aerial photography
-       rather than from a site plan.</p>
+       are public domain federal survey data. The terrain model still lives at its old
+       address and is not styled to match this site.</p>
   </div>
 </section>
 
@@ -1243,7 +1281,7 @@ PAGES["book-a-tour/index.html"] = dict(
 for path, page in PAGES.items():
     dest = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(dest), exist_ok=True)
-    html = shell(page)
+    html = shell(page, path)
     open(dest, "w", encoding="utf-8").write(html)
     print("%-44s %5d bytes" % (path, len(html)))
 

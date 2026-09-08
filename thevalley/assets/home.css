@@ -29,6 +29,9 @@
 }
 .hero-stage{
   position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--ground-2);
+  /* the same transition name the inner pages give their hero photograph, so
+     arriving from here grows this frame into that one */
+  view-transition-name:hero-frame;
 }
 
 /* The scrim is sized by measurement, not by eye. The five frames put pure white

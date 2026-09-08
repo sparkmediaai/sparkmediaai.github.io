@@ -35,7 +35,14 @@
   --accent:var(--forest);
 
   --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
-  --sans:Montserrat,system-ui,-apple-system,"Segoe UI",sans-serif;
+  /* Libre Franklin, not Montserrat. Montserrat came out of the brand framework
+     marked "Option One, placeholder" and it is the single most-used sans on
+     wedding venue sites -- geometric, perfectly circular, and anonymous at the
+     small letterspaced sizes this site leans on hardest. Libre Franklin is
+     Franklin Gothic's line, which is American editorial rather than European
+     luxury pastiche, and it holds its shape at 0.68rem in caps where the
+     geometric faces turn to beads. */
+  --sans:"Libre Franklin",system-ui,-apple-system,"Segoe UI",sans-serif;
 
   --pad:clamp(1.15rem,5vw,3.5rem);
   --measure:38rem;
@@ -150,11 +157,16 @@ p{margin:0;max-width:var(--measure)}
 .hero-photo::after{
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
+    /* Five stops rather than three. Falling .74 to .30 across a fifth of the
+       frame is a steep enough ramp to band visibly on a smooth sky, and the
+       edge of it reads as a vertical seam down the photograph. */
     linear-gradient(90deg,
-      rgba(16,20,14,.78) 0%,
-      rgba(16,20,14,.74) 58%,
-      rgba(16,20,14,.30) 78%,
-      rgba(16,20,14,0) 92%),
+      rgba(16,20,14,.79) 0%,
+      rgba(16,20,14,.75) 46%,
+      rgba(16,20,14,.62) 62%,
+      rgba(16,20,14,.34) 76%,
+      rgba(16,20,14,.12) 88%,
+      rgba(16,20,14,0) 97%),
     linear-gradient(180deg,
       rgba(16,20,14,0) 25%,
       rgba(16,20,14,.45) 100%);
@@ -363,6 +375,36 @@ section:last-of-type{border-bottom:0}
   border-top:1px solid var(--line-soft);font-size:.78rem;color:var(--ink-faint);
   display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;
 }
+
+/* ------------------------------------------------------- moving between pages
+   A cross-document view transition. The browser snapshots the page you are
+   leaving and the page you are arriving at and tweens between them, so the
+   masthead holds still and the hero photograph grows into the next hero
+   instead of the screen going white and starting again.
+
+   Nothing here needs JavaScript and nothing breaks without support: a browser
+   that does not implement it simply navigates. Off entirely under reduced
+   motion, where a full-screen cross-fade is exactly the wrong thing. */
+@view-transition{navigation:auto}
+@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}
+
+.site-head{view-transition-name:masthead}
+.hero-photo .hero-bg{view-transition-name:hero-frame}
+::view-transition-group(hero-frame){animation-duration:.5s}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.4s}
+::view-transition-old(masthead),::view-transition-new(masthead){animation:none}
+
+/* --------------------------------------------------- the working notes
+   Hidden unless the address asks for them. They are notes to ourselves about
+   open decisions, and in front of a client they read as unfinished rather than
+   as thinking. /thevalley/about/?notes brings them back. */
+.note{display:none}
+.notes .note{display:flex}
+.colophon .notes-off,.notes .colophon .notes-on{display:none}
+.notes .colophon .notes-off{display:inline}
+.colophon a{color:var(--ink-faint);text-decoration:underline;
+  text-underline-offset:2px}
+.colophon a:hover,.colophon a:focus-visible{color:var(--ink-soft)}
 
 /* skip link */
 .skip{position:absolute;left:-9999px}
