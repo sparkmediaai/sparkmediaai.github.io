@@ -1,0 +1,25 @@
+/* A2P legal footer safety net */
+.site-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding: 1.25rem 1rem 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  color: var(--color-text-muted, #93A0B5);
+  font-size: 0.95rem;
+  text-align: center;
+  align-items: center;
+}
+.site-foot a,
+.footer-link {
+  color: var(--color-secondary, #00C2FF);
+  text-decoration: none;
+}
+.site-foot a:hover,
+.footer-link:hover {
+  color: #FFFFFF;
+}
+.footer {
+  scroll-snap-align: start;
+}
