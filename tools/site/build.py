@@ -13,14 +13,14 @@ import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
 from content import (  # noqa: E402
-    SERVICES, SOLUTIONS, HOME, SERVICES_PAGE, SOLUTIONS_PAGE, INDUSTRIES_PAGE, ABOUT_PAGE, CONTACT_PAGE,
+    SERVICES, SOLUTIONS, HOME, SERVICES_PAGE, SOLUTIONS_PAGE, INDUSTRIES_PAGE, ABOUT_PAGE, CONTACT_PAGE, PAGE_MEDIA,
 )
 from icons import icon  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 SITE = "https://sparkmedia.ai"
 BRAND = "Spark Media"
-ASSET_V = "1"
+ASSET_V = "2"
 OG_IMAGE = f"{SITE}/assets/images/og-image.png"
 
 FOOTER_DESC = ("Spark Media combines marketing, creative, AI and business systems to help companies "
@@ -135,7 +135,7 @@ def footer():
 </footer>"""
 
 
-def page(path, title, desc, body, current=None, canonical=None, extra_head="", jsonld=None, noindex=False):
+def page(path, title, desc, body, current=None, canonical=None, extra_head="", jsonld=None, noindex=False, dark_header=False):
     canonical = canonical or (SITE + path)
     ld = f'<script type="application/ld+json">{json.dumps(jsonld, separators=(",", ":"))}</script>' if jsonld else ""
     robots = '<meta name="robots" content="noindex">' if noindex else ""
@@ -165,7 +165,7 @@ def page(path, title, desc, body, current=None, canonical=None, extra_head="", j
   <script>document.documentElement.classList.add('js')</script>
   {extra_head}{ld}
 </head>
-<body>
+<body{' class="home-page"' if dark_header else ""}>
   <a class="skip" href="#main">Skip to content</a>
   {header(current)}
   <main id="main">
@@ -199,14 +199,18 @@ def crumbs(items):
     return f'<ol class="crumbs" aria-label="Breadcrumb">{lis}</ol>'
 
 
-def page_hero(eyebrow, h1, intro, trail=None, buttons=""):
-    return f"""    <section class="page-hero">
-      <div class="wrap">
-        {crumbs(trail) if trail else ""}
-        <p class="eyebrow">{e(eyebrow)}</p>
-        <h1>{e(h1)}</h1>
-        <p class="lede">{e(intro)}</p>
-        {f'<div class="btn-row">{buttons}</div>' if buttons else ""}
+def page_hero(eyebrow, h1, intro, trail=None, buttons="", media=None):
+    split = " has-media" if media else ""
+    return f"""    <section class="page-hero{split}">
+      <div class="wrap page-hero-grid">
+        <div class="page-hero-copy">
+          {crumbs(trail) if trail else ""}
+          <p class="eyebrow">{e(eyebrow)}</p>
+          <h1>{e(h1)}</h1>
+          <p class="lede">{e(intro)}</p>
+          {f'<div class="btn-row">{buttons}</div>' if buttons else ""}
+        </div>
+        {hero_media(media)}
       </div>
     </section>"""
 
@@ -221,13 +225,16 @@ def checklist(items):
 
 
 def closing(h, copy, cta_label, cta_href="/contact/", secondary=None):
-    sec = btn(secondary[0], secondary[1], "secondary", False) if secondary else ""
+    sec = btn(secondary[0], secondary[1], "ghost-light", False) if secondary else ""
     return f"""    <section class="section">
       <div class="wrap">
         <div class="closing reveal">
-          <h2>{e(h)}</h2>
-          {f"<p>{e(copy)}</p>" if copy else ""}
-          <div class="btn-row">{btn(cta_label, cta_href)}{sec}</div>
+          {img_tag("abs-ribbons.jpg", "", cls="closing-bg")}
+          <div class="closing-inner">
+            <h2>{e(h)}</h2>
+            {f"<p>{e(copy)}</p>" if copy else ""}
+            <div class="btn-row">{btn(cta_label, cta_href, "light")}{sec}</div>
+          </div>
         </div>
       </div>
     </section>"""
@@ -238,13 +245,50 @@ def related(title, items):
     return f'<h2 class="related-title">{e(title)}</h2><div class="related">{links}</div>'
 
 
+def img_tag(src, alt, w=1536, h=1024, lazy=True, cls=""):
+    c = f' class="{cls}"' if cls else ""
+    load = ' loading="lazy"' if lazy else ' fetchpriority="high"'
+    return f'<img{c} src="/assets/images/site/{src}" width="{w}" height="{h}" alt="{e(alt)}"{load} decoding="async">'
+
+
+def hero_media(m):
+    if not m:
+        return ""
+    if m.get("abstract"):
+        return f'<div class="hero-media hero-media-abstract" aria-hidden="true">{img_tag(m["img"], "", lazy=False)}</div>'
+    chips = "".join(
+        f'<div class="chip chip-{i + 1}"><span class="n-icon">{icon(c[0])}</span><span>{e(c[1])}<small>{e(c[2])}</small></span></div>'
+        for i, c in enumerate(m.get("chips", []))
+    )
+    return (f'<div class="hero-media"><div class="hero-photo">{img_tag(m["img"], m["alt"], lazy=False)}</div>'
+            f'<div aria-hidden="true">{chips}</div></div>')
+
+
+def image_band(img, h, p, eyebrow=None):
+    eb = f'<p class="eyebrow">{e(eyebrow)}</p>' if eyebrow else ""
+    return f"""    <section class="band">
+      {img_tag(img, "", cls="band-bg")}
+      <div class="wrap band-inner reveal">{eb}<h2>{e(h)}</h2><p>{e(p)}</p></div>
+    </section>"""
+
+
+def related_cards(title, items):
+    cards = "".join(
+        f'<a class="mini-card" href="{it["href"]}">{img_tag(PAGE_MEDIA[it["key"]]["img"], "")}<span><strong>{e(it["nav"])}</strong><small>{e(it.get("summary", ""))}</small></span>{arrow()}</a>'
+        for it in items
+    )
+    return f'<h2 class="related-title">{e(title)}</h2><div class="mini-cards">{cards}</div>'
+
+
 # ---------------------------------------------------------------- pages
 
 def build_home():
     h = HOME
+    card_imgs = ["svc-web.jpg", "svc-ads.jpg", "svc-ai.jpg", "svc-integration.jpg"]
+    card_links = ["/services/websites-branding/", "/services/paid-media/", "/services/ai-agents-automation/", "/services/ai-consulting-integration/"]
     cards = "".join(
-        f"""<article class="card reveal"><span class="icon-tile">{icon(c["icon"])}</span><h3>{e(c["title"])}</h3><p>{e(c["body"])}</p></article>"""
-        for c in h["cards"]
+        f"""<a class="card card-media reveal" href="{card_links[i]}"><div class="card-img"><div class="card-img-clip">{img_tag(card_imgs[i], "")}</div><span class="icon-tile">{icon(c["icon"])}</span></div><div class="card-body"><h3>{e(c["title"])}</h3><p>{e(c["body"])}</p><span class="link-arrow">Learn more {arrow()}</span></div></a>"""
+        for i, c in enumerate(h["cards"])
     )
     journey = "".join(
         f'<li class="reveal"><span class="j-dot">{icon(j[0])}</span><div><strong>{e(j[1])}</strong><span>{e(j[2])}</span></div></li>'
@@ -254,30 +298,41 @@ def build_home():
     tools = "".join(
         f'<span class="tool{(" " + t[1]) if t[1] else ""}"><i></i>{e(t[0])}</span>' for t in h["tools"]
     )
+    ticker_items = [s["nav"] for s in SERVICES] + [s["nav"] for s in SOLUTIONS]
+    ticker = "".join(f"<span>{e(t)}</span>" for t in ticker_items * 2)
+    inds = INDUSTRIES_PAGE["items"]
+    bento = "".join(
+        f"""<a class="bento-item b{i + 1} reveal" href="/industries/">{img_tag(it["img"], it["alt"])}<span class="bento-cap"><small>{e(it["eyebrow"])}</small>{e(it["title"])}</span></a>"""
+        for i, it in enumerate(inds)
+    )
 
-    body = f"""    <section class="hero">
+    body = f"""    <section class="hero hero-dark">
+      {img_tag("abs-network.jpg", "", lazy=False, cls="hero-bg")}
       <div class="wrap hero-grid">
         <div>
           <p class="eyebrow">{e(h["eyebrow"])}</p>
-          <h1>{e(h["h1"])}</h1>
+          <h1>Make every part of your business <span class="grad-text">work together.</span></h1>
           <p class="lede">{e(h["body"])}</p>
-          <div class="btn-row">{btn("Let’s Talk About Your Business", "/contact/")}{btn("Explore What We Do", "/services/", "secondary", False)}</div>
+          <div class="btn-row">{btn("Let’s Talk About Your Business", "/contact/", "light")}{btn("Explore What We Do", "/services/", "ghost-light", False)}</div>
         </div>
         {system_diagram()}
       </div>
     </section>
 
-    <section class="section section-soft">
+    <div class="ticker" aria-hidden="true"><div class="ticker-track">{ticker}</div></div>
+
+    <section class="section">
       <div class="wrap split split-top">
         <div class="reveal">
           <p class="eyebrow">Why it matters</p>
           <h2>{e(h["intro_h2"])}</h2>
+          <div class="intro-art reveal">{img_tag("abs-glass.jpg", "")}</div>
         </div>
         <div class="prose lede reveal">{paras(h["intro_body"])}</div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section-soft">
       <div class="wrap">
         <div class="section-head reveal">
           <p class="eyebrow">What we do</p>
@@ -288,7 +343,7 @@ def build_home():
       </div>
     </section>
 
-    <section class="section section-soft">
+    <section class="section">
       <div class="wrap split split-wide">
         <div>
           <div class="reveal">
@@ -297,18 +352,19 @@ def build_home():
             <div class="prose lede" style="margin-top:20px">{paras(h["connect_body"])}</div>
             <div class="btn-row" style="margin-top:28px">{btn("See Our Solutions", "/solutions/", "secondary")}</div>
           </div>
-          <div class="photo photo-frame reveal" style="margin-top:40px;aspect-ratio:3/2">
-            <img src="/assets/images/site/journey.jpg" width="1536" height="1024" loading="lazy" decoding="async" alt="A business owner checks a phone next to a laptop showing a simple sales dashboard">
+          <div class="photo photo-frame photo-accent reveal" style="margin-top:40px;aspect-ratio:3/2">
+            {img_tag("journey.jpg", "A business owner checks a phone next to a laptop showing a simple sales dashboard")}
           </div>
         </div>
-        <div>
+        <div class="journey-card reveal">
           <ol class="journey">{journey}</ol>
-          <p class="caption-note reveal">An illustrative example of a connected customer journey, not a claim about a specific result.</p>
+          <p class="caption-note">An illustrative example of a connected customer journey, not a claim about a specific result.</p>
         </div>
       </div>
     </section>
 
     <section class="section section-dark">
+      {img_tag("abs-blocks.jpg", "", cls="section-bg")}
       <div class="wrap stack-grid">
         <div class="reveal">
           <p class="eyebrow">The disconnected stack</p>
@@ -316,7 +372,7 @@ def build_home():
           <div class="prose lede" style="margin-top:20px">{paras(h["stack_body"])}</div>
           <div class="btn-row" style="margin-top:30px">{btn("Connect My Systems", "/solutions/connect-your-systems/", "light")}</div>
         </div>
-        <div class="reveal">
+        <div class="reveal stack-panel">
           <div class="tool-cloud" aria-label="Examples of tools a growing business may use">{tools}</div>
           <div class="stack-legend" aria-hidden="true">
             <span><i style="background:#C4B1FF"></i>Connected</span>
@@ -330,10 +386,22 @@ def build_home():
     <section class="section">
       <div class="wrap">
         <div class="section-head reveal">
+          <p class="eyebrow">Who we work with</p>
+          <h2>Different businesses. Connected thinking.</h2>
+          <p class="lede">Venues, B2B companies, healthcare and wellness practices, and local service businesses each have their own buying journey. We build around yours.</p>
+        </div>
+        <div class="bento">{bento}</div>
+        <p style="margin-top:28px" class="reveal"><a class="link-arrow" href="/industries/">Explore industries {arrow()}</a></p>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="wrap">
+        <div class="section-head reveal">
           <p class="eyebrow">Our approach</p>
           <h2>{e(h["approach_h2"])}</h2>
         </div>
-        <ol class="steps reveal-group">{steps}</ol>
+        <ol class="steps steps-line reveal-group">{steps}</ol>
       </div>
     </section>
 
@@ -354,7 +422,7 @@ def build_home():
     }
     write("index.html", page("/", "Spark Media | Marketing, AI & Connected Business Systems",
                              "Websites, advertising, AI agents and connected business systems built to turn more opportunities into customers.",
-                             body, current="home", jsonld=ld))
+                             body, current="home", jsonld=ld, dark_header=True))
 
 
 def system_diagram():
@@ -390,38 +458,37 @@ def system_diagram():
 def build_services():
     p = SERVICES_PAGE
     cards = "".join(
-        f"""<a class="card reveal" href="{s["href"]}"><span class="icon-tile">{icon(s["icon"])}</span><h3>{e(s["nav"])}</h3><p>{e(s["summary"])}</p><span class="link-arrow">{e(s["link"])} {arrow()}</span></a>"""
+        f"""<a class="card card-media reveal" href="{s["href"]}"><div class="card-img"><div class="card-img-clip">{img_tag(PAGE_MEDIA[s["key"]]["img"], "")}</div><span class="icon-tile">{icon(s["icon"])}</span></div><div class="card-body"><h3>{e(s["nav"])}</h3><p>{e(s["summary"])}</p><span class="link-arrow">{e(s["link"])} {arrow()}</span></div></a>"""
         for s in SERVICES
     )
-    body = f"""{page_hero("Services", p["h1"], p["intro"], [("Home", "/"), ("Services", None)])}
+    body = f"""{page_hero("Services", p["h1"], p["intro"], [("Home", "/"), ("Services", None)], media=PAGE_MEDIA["services"])}
     <section class="section">
       <div class="wrap">
         <div class="grid grid-3 reveal-group">{cards}</div>
       </div>
     </section>
+{image_band("abs-network.jpg", "One team across the whole journey.", "Creative, technical and operational skills working from the same plan, so each piece supports the next.")}
 {closing(p["close_h2"], p["close_body"], "Talk Through Your Goals")}"""
     write("services/index.html", page("/services/", "Services | Spark Media",
                                       "Explore Spark Media’s website, advertising, creative, AI automation, CRM and systems integration services.",
                                       body, current="services"))
 
     for s in SERVICES:
+        m = PAGE_MEDIA[s["key"]]
         sections = ""
         for i, blk in enumerate(s["blocks"]):
-            side = ""
             if i == 0:
                 note = f'<p class="note">{e(s["note"])}</p>' if s.get("note") else ""
-                side = f'<aside class="panel reveal"><h3>What we can help with</h3>{checklist(s["help"])}{note}</aside>'
-            soft = " section-soft" if i % 2 == 0 else ""
-            if side:
-                sections += f"""    <section class="section{soft}">
+                sections += f"""    <section class="section">
       <div class="wrap split split-top">
         <div class="reveal"><h2>{e(blk[0])}</h2><div class="prose lede" style="margin-top:20px">{paras(blk[1])}</div></div>
-        {side}
+        <aside class="panel panel-accent reveal"><h3>What we can help with</h3>{checklist(s["help"])}{note}</aside>
       </div>
     </section>
 """
+                sections += image_band(m["band"][0], m["band"][1], m["band"][2]) + "\n"
             else:
-                sections += f"""    <section class="section{soft}">
+                sections += f"""    <section class="section">
       <div class="wrap split split-top">
         <div class="reveal"><h2>{e(blk[0])}</h2></div>
         <div class="prose lede reveal">{paras(blk[1])}</div>
@@ -433,10 +500,10 @@ def build_services():
         rel_solutions = [x for x in SOLUTIONS if x["key"] in s["solutions"]]
         others = [x for x in SERVICES if x["key"] != s["key"]]
         body = f"""{page_hero(s["eyebrow"], s["h1"], s["intro"], [("Home", "/"), ("Services", "/services/"), (s["nav"], None)],
-                             btn(s["cta"], "/contact/") + btn("All services", "/services/", "secondary", False))}
-{sections}    <section class="section">
+                             btn(s["cta"], "/contact/") + btn("All services", "/services/", "secondary", False), media=m)}
+{sections}    <section class="section section-soft">
       <div class="wrap">
-        <div class="reveal">{related("Solutions that use this", rel_solutions)}{extra_html}</div>
+        <div class="reveal">{related_cards("Solutions that use this", rel_solutions)}{extra_html}</div>
       </div>
     </section>
 {closing(s["close_h2"], s.get("close_body", ""), s["cta"])}
@@ -449,10 +516,10 @@ def build_services():
 def build_solutions():
     p = SOLUTIONS_PAGE
     cards = "".join(
-        f"""<a class="card card-problem reveal" href="{s["href"]}"><span class="icon-tile">{icon(s["icon"])}</span><span class="q">{e(s["problem"])}</span><p>{e(s["summary"])}</p><span class="link-arrow">{e(s["nav"])} {arrow()}</span></a>"""
+        f"""<a class="card card-media card-problem reveal" href="{s["href"]}"><div class="card-img"><div class="card-img-clip">{img_tag(PAGE_MEDIA[s["key"]]["img"], "")}</div><span class="icon-tile">{icon(s["icon"])}</span></div><div class="card-body"><span class="q">{e(s["problem"])}</span><p>{e(s["summary"])}</p><span class="link-arrow">{e(s["nav"])} {arrow()}</span></div></a>"""
         for s in SOLUTIONS
     )
-    body = f"""{page_hero("Solutions", p["h1"], p["intro"], [("Home", "/"), ("Solutions", None)])}
+    body = f"""{page_hero("Solutions", p["h1"], p["intro"], [("Home", "/"), ("Solutions", None)], media=PAGE_MEDIA["solutions"])}
     <section class="section">
       <div class="wrap">
         <div class="grid grid-2 reveal-group">{cards}</div>
@@ -464,22 +531,23 @@ def build_solutions():
                                        body, current="solutions"))
 
     for s in SOLUTIONS:
+        m = PAGE_MEDIA[s["key"]]
         blocks = ""
         for i, blk in enumerate(s["blocks"]):
-            soft = " section-soft" if i % 2 == 0 else ""
-            blocks += f"""    <section class="section{soft}">
+            blocks += f"""    <section class="section">
       <div class="wrap split split-top">
         <div class="reveal"><h2>{e(blk[0])}</h2></div>
         <div class="prose lede reveal">{paras(blk[1])}</div>
       </div>
     </section>
 """
+        blocks += image_band(m["band"][0], m["band"][1], m["band"][2]) + "\n"
         if s.get("steps"):
             steps = "".join(f'<li class="step reveal"><p>{e(t)}</p></li>' for t in s["steps"])
             detail = f"""    <section class="section">
       <div class="wrap">
         <div class="section-head reveal"><p class="eyebrow">How we work</p><h2>Our approach</h2></div>
-        <ol class="steps steps-compact reveal-group">{steps}</ol>
+        <ol class="steps steps-compact steps-line reveal-group">{steps}</ol>
         {f'<p class="lede reveal" style="margin-top:36px;max-width:760px">{e(s["outcome"])}</p>' if s.get("outcome") else ""}
       </div>
     </section>
@@ -488,16 +556,16 @@ def build_solutions():
             detail = f"""    <section class="section">
       <div class="wrap split split-top">
         <div class="reveal"><p class="eyebrow">Possible components</p><h2>What the system can include</h2><p class="lede" style="margin-top:18px">Every business is different. We choose the pieces that fit your workflow, tools and customers.</p></div>
-        <aside class="panel reveal">{checklist(s["components"])}</aside>
+        <aside class="panel panel-accent reveal">{checklist(s["components"])}</aside>
       </div>
     </section>
 """
         rel = [x for x in SERVICES if x["key"] in s["services"]]
         others = [x for x in SOLUTIONS if x["key"] != s["key"]]
         body = f"""{page_hero("Solutions · " + s["nav"], s["h1"], s["intro"], [("Home", "/"), ("Solutions", "/solutions/"), (s["nav"], None)],
-                             btn(s["cta"], "/contact/") + btn("All solutions", "/solutions/", "secondary", False))}
+                             btn(s["cta"], "/contact/") + btn("All solutions", "/solutions/", "secondary", False), media=m)}
 {blocks}{detail}    <section class="section section-soft">
-      <div class="wrap reveal">{related("Services involved", rel)}</div>
+      <div class="wrap reveal">{related_cards("Services involved", rel)}</div>
     </section>
 {closing(s.get("close_h2", "Tell us where it’s getting stuck."), s.get("close_body", "We’ll start with the problem, then bring in the right mix of marketing, AI and systems work."), s["cta"])}
     <section class="section">
@@ -510,13 +578,13 @@ def build_industries():
     p = INDUSTRIES_PAGE
     rows = "".join(
         f"""<article class="industry reveal">
-          <div class="photo"><img src="/assets/images/site/{it["img"]}" width="1536" height="1024" loading="lazy" decoding="async" alt="{e(it["alt"])}"></div>
+          <div class="photo photo-accent">{img_tag(it["img"], it["alt"])}</div>
           <div><p class="eyebrow">{e(it["eyebrow"])}</p><h2>{e(it["title"])}</h2><p class="lede">{e(it["body"])}</p>
           <ul class="tags">{"".join(f"<li>{e(t)}</li>" for t in it["tags"])}</ul></div>
         </article>"""
         for it in p["items"]
     )
-    body = f"""{page_hero("Industries", p["h1"], p["intro"], [("Home", "/"), ("Industries", None)])}
+    body = f"""{page_hero("Industries", p["h1"], p["intro"], [("Home", "/"), ("Industries", None)], media=PAGE_MEDIA["industries"])}
     <section class="section">
       <div class="wrap">{rows}</div>
     </section>
@@ -529,24 +597,25 @@ def build_industries():
 def build_about():
     p = ABOUT_PAGE
     principles = "".join(
-        f'<article class="principle reveal"><h2>{e(h)}</h2><div class="prose lede">{paras(b)}</div></article>'
-        for h, b in p["principles"]
+        f'<article class="principle reveal"><div><span class="p-num">0{i + 1}</span><h2>{e(h)}</h2></div><div class="prose lede">{paras(b)}</div></article>'
+        for i, (h, b) in enumerate(p["principles"])
     )
-    body = f"""{page_hero("About", p["h1"], p["intro"], [("Home", "/"), ("About", None)])}
+    body = f"""{page_hero("About", p["h1"], p["intro"], [("Home", "/"), ("About", None)], media=PAGE_MEDIA["about"])}
     <section class="section">
       <div class="wrap">
-        <div class="photo photo-frame reveal" style="aspect-ratio:21/9">
-          <img src="/assets/images/site/about-team.jpg" width="1536" height="1024" loading="lazy" decoding="async" alt="A small team of marketers and technical specialists working together around a table, with a workflow sketched on the whiteboard behind them">
+        <div class="photo photo-frame photo-accent reveal" style="aspect-ratio:21/9">
+          {img_tag("about-team.jpg", "A small team of marketers and technical specialists working together around a table, with a workflow sketched on the whiteboard behind them")}
         </div>
       </div>
     </section>
     <section class="section">
       <div class="wrap">{principles}</div>
     </section>
-    <section class="section section-soft">
+{image_band("abs-network.jpg", "Marketing and systems, planned together.", "Each investment should support the next: the campaign, the page, the response and what your team sees afterward.")}
+    <section class="section">
       <div class="wrap split split-top">
-        <div class="reveal"><p class="eyebrow">Leadership</p><h2>Who you’ll work with.</h2></div>
-        <div class="prose lede reveal"><p>{e(p["founder"])}</p></div>
+        <div class="reveal"><p class="eyebrow">Leadership</p><h2>Who you’ll work with.</h2><div class="prose lede" style="margin-top:20px"><p>{e(p["founder"])}</p></div></div>
+        <div class="photo photo-frame reveal" style="aspect-ratio:3/2">{img_tag("home-bento.jpg", "A team shares a good moment around a laptop in a bright office")}</div>
       </div>
     </section>
 {closing("Let’s see if we’re a fit.", "Tell us about your business and what you want to improve. We’ll be straightforward about where we can help.", "Get to Know Us")}"""
@@ -584,7 +653,7 @@ BOOK_CONSENT = """By providing your phone number and checking the SMS consent bo
 def build_contact():
     p = CONTACT_PAGE
     topics = "".join(f"<li>{e(t)}</li>" for t in p["topics"])
-    body = f"""{page_hero("Contact", p["h1"], p["intro"], [("Home", "/"), ("Contact", None)])}
+    body = f"""{page_hero("Contact", p["h1"], p["intro"], [("Home", "/"), ("Contact", None)], media=PAGE_MEDIA["contact"])}
     <section class="section">
       <div class="wrap contact-grid">
         <div class="form-card">
@@ -663,6 +732,7 @@ def build_legal():
 
 def build_404():
     body = f"""    <section class="notfound">
+      {img_tag("abs-orbs.jpg", "", lazy=False, cls="notfound-bg")}
       <div class="wrap">
         <span class="code">404</span>
         <h1>This page got disconnected.</h1>
