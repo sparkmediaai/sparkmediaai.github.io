@@ -676,14 +676,6 @@ def build_contact():
             <h3>What we can help with</h3>
             <ul class="checklist" style="margin-top:14px">{topics}</ul>
           </div>
-          <div class="aside-card">
-            <h3>Reach us directly</h3>
-            <ul class="aside-list">
-              <li><span>Phone</span><a href="tel:+17023341443">(702) 334-1443</a></li>
-              <li><span>Email</span><a href="mailto:dave@sparkmedia.ai">dave@sparkmedia.ai</a></li>
-              <li><span>Office</span>McCormick Solutions, LLC dba SparkMedia.ai<br>8690 Lloyd Ct, Las Vegas, NV 89145</li>
-            </ul>
-          </div>
         </div>
       </div>
     </section>"""
