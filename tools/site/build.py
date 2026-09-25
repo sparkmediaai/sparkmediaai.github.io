@@ -122,8 +122,8 @@ def footer():
     </div>
     <div class="footer-legal">
       <div>
-        <p>SparkMedia.ai is a DBA of McCormick Solutions, LLC · 8690 Lloyd Ct, Las Vegas, NV 89145</p>
-        <p><a href="tel:+17023341443">(702) 334-1443</a> · <a href="mailto:dave@sparkmedia.ai">dave@sparkmedia.ai</a></p>
+        <p>SparkMedia.ai is a DBA of McCormick Solutions, LLC</p>
+        <p><a href="tel:+17027475589">(702) 747-5589</a></p>
       </div>
       <div class="row">
         <a href="/privacy.html">Privacy Policy</a>
@@ -415,10 +415,7 @@ def build_home():
         "url": SITE + "/",
         "logo": SITE + "/assets/logo/sparkmedia-logo-light.png",
         "description": "Spark Media connects marketing, AI and business systems so companies can attract customers, respond faster and work smarter.",
-        "email": "dave@sparkmedia.ai",
-        "telephone": "+1-702-334-1443",
-        "address": {"@type": "PostalAddress", "streetAddress": "8690 Lloyd Ct", "addressLocality": "Las Vegas",
-                    "addressRegion": "NV", "postalCode": "89145", "addressCountry": "US"},
+        "telephone": "+1-702-747-5589",
     }
     write("index.html", page("/", "Spark Media | Marketing, AI & Connected Business Systems",
                              "Websites, advertising, AI agents and connected business systems built to turn more opportunities into customers.",

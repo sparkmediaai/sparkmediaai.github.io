@@ -342,7 +342,7 @@ ABOUT_PAGE = {
          ["Your workflows, customers and existing platforms shape the solution. We aim to make the systems you rely on more useful and give your team a clearer view of what happens next.",
           "Your business should have appropriate access to and ownership of its client-facing assets, accounts and data, as defined in the project agreement."]),
     ],
-    "founder": "Spark Media is led by founder Dave McCormick. If you’d like to talk through your goals directly, you can reach Dave at dave@sparkmedia.ai.",
+    "founder": "Spark Media is led by founder Dave McCormick. If you’d like to talk through your goals directly, call (702) 747-5589 or book a conversation.",
 }
 
 CONTACT_PAGE = {
