@@ -1,11 +1,11 @@
 {
-  "name": "SparkMedia.AI",
-  "short_name": "SparkMedia",
-  "description": "AI-Powered Marketing & Automation for Local Service Businesses",
+  "name": "Spark Media",
+  "short_name": "Spark Media",
+  "description": "Marketing, AI and connected business systems.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0C0F14",
-  "theme_color": "#FF005C",
+  "background_color": "#0F172A",
+  "theme_color": "#0F172A",
   "icons": [
     {
       "src": "android-chrome-192x192.png",

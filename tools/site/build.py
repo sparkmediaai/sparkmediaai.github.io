@@ -20,7 +20,7 @@ from icons import icon  # noqa: E402
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 SITE = "https://sparkmedia.ai"
 BRAND = "Spark Media"
-ASSET_V = "2"
+ASSET_V = "3"
 OG_IMAGE = f"{SITE}/assets/images/og-image.png"
 
 FOOTER_DESC = ("Spark Media combines marketing, creative, AI and business systems to help companies "
@@ -82,7 +82,7 @@ def header(current):
         '<header class="site-header" data-header><div class="wrap header-inner">'
         f'<a class="brand" href="/" aria-label="{BRAND} home"><img src="/assets/logo/sparkmedia-logo-light.png" alt="{BRAND}" width="600" height="159"></a>'
         + desktop
-        + f'<a class="btn btn-primary btn-sm header-cta" href="/contact/">Let’s Talk</a>'
+        + f'<a class="btn btn-dark btn-sm header-cta" href="/contact/">Let’s Talk</a>'
         '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu" data-menu>'
         f'{icon("menu", "i-open")}{icon("close", "i-close")}</button>'
         "</div></header>"
@@ -233,7 +233,7 @@ def closing(h, copy, cta_label, cta_href="/contact/", secondary=None):
           <div class="closing-inner">
             <h2>{e(h)}</h2>
             {f"<p>{e(copy)}</p>" if copy else ""}
-            <div class="btn-row">{btn(cta_label, cta_href, "light")}{sec}</div>
+            <div class="btn-row">{btn(cta_label, cta_href)}{sec}</div>
           </div>
         </div>
       </div>
@@ -307,13 +307,13 @@ def build_home():
     )
 
     body = f"""    <section class="hero hero-dark">
-      {img_tag("abs-network.jpg", "", lazy=False, cls="hero-bg")}
+      {img_tag("abs-hero.jpg", "", lazy=False, cls="hero-bg")}
       <div class="wrap hero-grid">
         <div>
           <p class="eyebrow">{e(h["eyebrow"])}</p>
           <h1>Make every part of your business <span class="grad-text">work together.</span></h1>
           <p class="lede">{e(h["body"])}</p>
-          <div class="btn-row">{btn("Let’s Talk About Your Business", "/contact/", "light")}{btn("Explore What We Do", "/services/", "ghost-light", False)}</div>
+          <div class="btn-row">{btn("Let’s Talk About Your Business", "/contact/")}{btn("Explore What We Do", "/services/", "ghost-light", False)}</div>
         </div>
         {system_diagram()}
       </div>
@@ -375,9 +375,9 @@ def build_home():
         <div class="reveal stack-panel">
           <div class="tool-cloud" aria-label="Examples of tools a growing business may use">{tools}</div>
           <div class="stack-legend" aria-hidden="true">
-            <span><i style="background:#C4B1FF"></i>Connected</span>
-            <span><i style="background:#4B5373"></i>Works on its own</span>
-            <span><i style="background:#E3407F"></i>Handoff breaks</span>
+            <span><i style="background:#67E8F9"></i>Connected</span>
+            <span><i style="background:#475569"></i>Works on its own</span>
+            <span><i style="background:#F87171"></i>Handoff breaks</span>
           </div>
         </div>
       </div>
@@ -444,7 +444,7 @@ def system_diagram():
         )
     return f"""<div class="system" role="img" aria-label="Diagram: ads, website, phone and text, scheduling, CRM and reporting all connected through one system">
           <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-            <defs><linearGradient id="flowGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3407F"/><stop offset="1" stop-color="#6A36E8"/></linearGradient></defs>
+            <defs><linearGradient id="flowGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22D3EE"/><stop offset="1" stop-color="#2563EB"/></linearGradient></defs>
             {"".join(paths)}
           </svg>
           <div class="hub" aria-hidden="true"><div><strong>One connected<br>system</strong><span>AI + automation</span></div></div>
