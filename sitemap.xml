@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://sparkmedia.ai/</loc><lastmod>2026-08-22</lastmod></url>
-  <url><loc>https://sparkmedia.ai/audit.html</loc><lastmod>2026-08-22</lastmod></url>
-  <url><loc>https://sparkmedia.ai/book.html</loc><lastmod>2026-08-22</lastmod></url>
-  <url><loc>https://sparkmedia.ai/pricing.html</loc><lastmod>2026-08-22</lastmod></url>
-  <url><loc>https://sparkmedia.ai/industries.html</loc><lastmod>2026-08-22</lastmod></url>
+  <url><loc>https://sparkmedia.ai/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/services/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/services/websites-branding/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/services/ai-agents-automation/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/services/paid-media/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/services/content-creative/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/services/crm-sales-enablement/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/services/ai-consulting-integration/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/solutions/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/solutions/connect-your-systems/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/solutions/capture-convert-leads/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/solutions/never-miss-an-opportunity/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/solutions/reactivate-your-database/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/industries/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/about/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/contact/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/book.html</loc><lastmod>2026-09-25</lastmod></url>
   <url><loc>https://sparkmedia.ai/social/</loc><lastmod>2026-09-25</lastmod></url>
-  <url><loc>https://sparkmedia.ai/plumber-marketing.html</loc><lastmod>2026-08-22</lastmod></url>
-  <url><loc>https://sparkmedia.ai/hvac-marketing.html</loc><lastmod>2026-08-22</lastmod></url>
-  <url><loc>https://sparkmedia.ai/electrician-marketing.html</loc><lastmod>2026-08-22</lastmod></url>
-  <url><loc>https://sparkmedia.ai/locksmith-marketing.html</loc><lastmod>2026-08-22</lastmod></url>
-  <url><loc>https://sparkmedia.ai/garage-door-marketing.html</loc><lastmod>2026-08-22</lastmod></url>
+  <url><loc>https://sparkmedia.ai/blog.html</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/privacy.html</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://sparkmedia.ai/terms.html</loc><lastmod>2026-09-25</lastmod></url>
 </urlset>
