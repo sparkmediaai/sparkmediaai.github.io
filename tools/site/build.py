@@ -298,7 +298,7 @@ def build_home():
             <div class="btn-row" style="margin-top:28px">{btn("See Our Solutions", "/solutions/", "secondary")}</div>
           </div>
           <div class="photo photo-frame reveal" style="margin-top:40px;aspect-ratio:3/2">
-            <img src="/assets/images/site/journey.jpg" width="1536" height="1024" loading="lazy" decoding="async" alt="A business owner checks a phone next to a laptop showing a simple sales pipeline">
+            <img src="/assets/images/site/journey.jpg" width="1536" height="1024" loading="lazy" decoding="async" alt="A business owner checks a phone next to a laptop showing a simple sales dashboard">
           </div>
         </div>
         <div>

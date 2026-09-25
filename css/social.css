@@ -370,8 +370,13 @@
 }
 
 .format-card:hover .mini-photo { transform: scale(1.05); }
-.scene-reel-2 .mini-photo { object-position: 50% 18%; }
-.scene-reel .mini-photo { object-position: 50% 45%; }
+.scene-reel-2 .mini-photo { object-position: 50% 30%; }
+.scene-reel .mini-photo { object-position: 50% 28%; }
+
+/* Photo tiles: keep faces clear by moving the play button to a corner badge */
+.has-photo .play { top: 12px; left: auto; right: 12px; width: 40px; height: 40px; transform: none; }
+.has-photo .play::after { left: 15px; top: 11px; border-left-width: 13px; border-top-width: 9px; border-bottom-width: 9px; }
+.format-card:hover .has-photo .play { transform: scale(1.12); }
 
 /* Photo tiles: stop the gradient drift and darken top and bottom so overlays stay legible */
 .mini-phone.has-photo { animation: none; }
