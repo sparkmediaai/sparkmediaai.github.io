@@ -371,7 +371,7 @@
 
 .format-card:hover .mini-photo { transform: scale(1.05); }
 .scene-reel-2 .mini-photo { object-position: 50% 18%; }
-.scene-reel .mini-photo { object-position: 50% 80%; }
+.scene-reel .mini-photo { object-position: 50% 45%; }
 
 /* Photo tiles: stop the gradient drift and darken top and bottom so overlays stay legible */
 .mini-phone.has-photo { animation: none; }
