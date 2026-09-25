@@ -350,3 +350,50 @@ CONTACT_PAGE = {
     "intro": "Tell us what you’re trying to improve. A clearer website? Better lead flow? Faster responses? A software stack that finally works together? We’ll start with a conversation about the goal and the obstacles in the way.",
     "topics": ["Website & Branding", "Advertising", "AI & Automation", "CRM & Sales", "Systems Integration", "Not sure yet? That’s fine too."],
 }
+
+
+# ---------------------------------------------------------------- imagery
+# Photos and abstract art live in /assets/images/site/. "chips" are the small floating UI notes over hero photos;
+# they illustrate the kind of thing the system does and are not claims about results.
+
+PAGE_MEDIA = {
+    # services
+    "web": {"img": "svc-web.jpg", "alt": "A designer and a business owner review a website layout on a large monitor",
+            "chips": [("web", "Landing page live", "Built for the campaign"), ("form", "New inquiry", "Sent to the CRM")],
+            "band": ("abs-glass.jpg", "Every page should lead somewhere.", "Clear message, clear next step, connected to the people who follow up.")},
+    "ai": {"img": "svc-ai.jpg", "alt": "A café owner glances at a phone notification about a customer conversation while her team works",
+           "chips": [("ai", "Conversation handled", "Details captured"), ("calendar", "Call booked", "Thu 10:30 AM")],
+           "band": ("abs-network.jpg", "Fast answers. Clear handoffs.", "AI handles the routine parts of the conversation and brings in your team when it matters.")},
+    "ads": {"img": "svc-ads.jpg", "alt": "Two marketers review advertising performance charts on a laptop",
+            "chips": [("ads", "Campaign", "Search + social"), ("chart", "Source tracked", "From click to booking")],
+            "band": ("abs-ribbons.jpg", "Attention is the start, not the finish.", "Campaigns work harder when the page, the response and the reporting are built with them.")},
+    "creative": {"img": "svc-creative.jpg", "alt": "A small crew films a business owner talking to camera in her boutique",
+                 "chips": [("creative", "Short-form video", "Cut for every channel"), ("users", "Real people", "Your team and customers")],
+                 "band": ("abs-orbs.jpg", "Say something worth stopping for.", "Content shaped around the questions your customers actually ask.")},
+    "crm": {"img": "svc-crm.jpg", "alt": "A sales coordinator with a headset works at a desk with a pipeline board on the monitor",
+            "chips": [("crm", "Pipeline updated", "Stage: Consultation"), ("users", "Owner assigned", "Next step is clear")],
+            "band": ("abs-blocks.jpg", "Everyone can see the next step.", "A pipeline your team trusts is one they actually use.")},
+    "integration": {"img": "svc-integration.jpg", "alt": "A consultant and an operations manager map a workflow with sticky notes on a glass wall",
+                    "chips": [("integrate", "Systems connected", "CRM · scheduling · billing"), ("connect", "Data in sync", "No re-typing")],
+                    "band": ("abs-blocks.jpg", "Staff shouldn’t be the integration.", "Let the systems pass the information along, so people can focus on the work.")},
+    # solutions
+    "connect": {"img": "sol-connect.jpg", "alt": "An operations manager at a standing desk with two monitors showing simple connected dashboards",
+                "chips": [("connect", "Handoff automated", "Form → CRM → team"), ("chart", "One clear view", "First contact to done")],
+                "band": ("abs-network.jpg", "Fewer blind spots.", "Information reaches the right place without anyone carrying it there by hand.")},
+    "capture": {"img": "sol-capture.jpg", "alt": "A young professional on a sofa fills out a short inquiry form on a phone",
+                "chips": [("form", "Form submitted", "Routed in seconds"), ("calendar", "Time offered", "Book a consultation")],
+                "band": ("abs-ribbons.jpg", "Interest fades fast.", "The experience right after “submit” decides what happens next.")},
+    "missed": {"img": "sol-missed.jpg", "alt": "A restaurant host helps guests while a phone on the counter lights up with a call",
+               "chips": [("phone", "Missed call", "Text sent right away"), ("ai", "Question answered", "Team alerted")],
+               "band": ("abs-orbs.jpg", "Be there on the first try.", "A dependable first response, even when everyone is busy.")},
+    "reactivate": {"img": "sol-reactivate.jpg", "alt": "A woman at her kitchen table smiles as she reads a text message on her phone",
+                   "chips": [("reactivate", "Reply received", "“Yes, still interested”"), ("calendar", "Moved to booking", "Team notified")],
+                   "band": ("abs-waves.jpg", "Pick the conversation back up.", "Relevant, respectful outreach to people who already raised their hand.")},
+    # other pages
+    "services": {"img": "abs-glass.jpg", "alt": "", "abstract": True},
+    "solutions": {"img": "abs-orbs.jpg", "alt": "", "abstract": True},
+    "industries": {"img": "abs-waves.jpg", "alt": "", "abstract": True},
+    "about": {"img": "abs-ribbons.jpg", "alt": "", "abstract": True},
+    "contact": {"img": "contact.jpg", "alt": "A consultant shakes hands with a small business owner across a cafe table",
+                "chips": [("users", "Real conversation", "About your goals"), ("calendar", "Pick a time", "That works for you")]},
+}
