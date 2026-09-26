@@ -397,3 +397,152 @@ PAGE_MEDIA = {
     "contact": {"img": "contact.jpg", "alt": "A consultant shakes hands with a small business owner across a cafe table",
                 "chips": [("users", "Real conversation", "About your goals"), ("calendar", "Pick a time", "That works for you")]},
 }
+
+
+# ---------------------------------------------------------------- home services (emergency Google Search offer)
+
+TIERS = [
+    {"label": "Most start here", "name": "Phone ring", "price": "$249", "per": "/mo",
+     "summary": "Call-only Google Ads. Emergency search. The call hits your phone.",
+     "items": ["Call-only Google Search campaigns", "Emergency, call-now keywords", "Tight geo targeting",
+               "Calls route to your phone", "Ad spend is yours, extra"]},
+    {"label": "Adds follow-up", "name": "Ring + follow-up", "price": "$399", "per": "/mo",
+     "summary": "Everything in Phone ring, plus GoHighLevel so a missed ring is not a missed job.",
+     "items": ["Everything in Phone ring", "Missed-call text-back", "Job follow-up",
+               "Review ask after the job", "Ad spend is still yours, extra"], "featured": True},
+]
+
+OFFER_FAQ = [
+    ("Is ad spend included?", "No. $249 and $399 are our management fees. You pay Google for the clicks."),
+    ("Long-term contract?", "No. Month-to-month. We keep the account by making the phone ring."),
+    ("Do I need a new website?", "No. This is call-only. The ad’s job is to make your phone ring."),
+    ("Who is this for?", "Plumbers, HVAC, electricians, locksmiths and garage door companies: trades where people call the moment something breaks."),
+]
+
+OFFER_STEPS = [
+    ("Strategy call", "15–20 minutes. We learn the trade, the service area, and whether you can pick up emergency calls. If it is not a fit, we say so."),
+    ("The offer", "$249/mo: call-only Google Ads to your phone. $399/mo adds missed-call text, job follow-up, and a review ask. Ad spend is yours, extra."),
+    ("If we turn it on", "Emergency keywords. Tight geo. The homeowner taps Call. It rings your phone."),
+]
+
+TRADES = [
+    {"slug": "plumber", "path": "/plumber-marketing.html", "name": "Plumber", "kind": "emergency", "img": "trade-plumber.jpg",
+     "alt": "A plumber repairs pipes under a kitchen sink in a bright home",
+     "h1": "Burst pipe. The Google call hits your phone.",
+     "lede": "They are not shopping. Water is on the floor. They Google “emergency plumber” and tap Call. We run that ad. $249/mo. Ad spend extra.",
+     "search": "emergency plumber", "related": ["hvac", "electrician", "locksmith"]},
+    {"slug": "hvac", "path": "/hvac-marketing.html", "name": "HVAC", "kind": "emergency", "img": "trade-hvac.jpg",
+     "alt": "An HVAC technician checks an outdoor air conditioning unit beside a house",
+     "h1": "No AC. The Google call hits your phone.",
+     "lede": "House is hot. They are not reading a blog. They Google “AC not cooling” and tap Call. We run that ad. $249/mo. Ad spend extra.",
+     "search": "AC not cooling", "related": ["plumber", "electrician", "garage-door"]},
+    {"slug": "electrician", "path": "/electrician-marketing.html", "name": "Electrician", "kind": "emergency", "img": "trade-electrician.jpg",
+     "alt": "An electrician in safety glasses works on a residential electrical panel",
+     "h1": "No power. The Google call hits your phone.",
+     "lede": "Lights out. Outlet sparking. They Google “emergency electrician” and tap Call. We run that ad. $249/mo. Ad spend extra.",
+     "search": "emergency electrician", "related": ["plumber", "hvac", "locksmith"]},
+    {"slug": "locksmith", "path": "/locksmith-marketing.html", "name": "Locksmith", "kind": "emergency", "img": "trade-locksmith.jpg",
+     "alt": "A locksmith rekeys the front door lock of a modern home",
+     "h1": "Locked out. The Google call hits your phone.",
+     "lede": "Keys in the car. Door won’t open. They Google “locksmith near me” and tap Call. We run that ad. $249/mo. Ad spend extra.",
+     "search": "locksmith near me", "related": ["plumber", "hvac", "garage-door"]},
+    {"slug": "garage-door", "path": "/garage-door-marketing.html", "name": "Garage door", "kind": "emergency", "img": "trade-garage-door.jpg",
+     "alt": "A technician adjusts the spring and track of a residential garage door",
+     "h1": "Door won’t open. The Google call hits your phone.",
+     "lede": "Spring broke. Late for work. They Google “garage door won’t open” and tap Call. We run that ad. $249/mo. Ad spend extra.",
+     "search": "garage door won’t open", "related": ["plumber", "hvac", "locksmith"]},
+    {"slug": "roofer", "path": "/roofer-marketing.html", "name": "Roofing", "kind": "search", "img": "trade-roofer.jpg",
+     "alt": "A roofer in a safety harness inspects shingles on a residential roof",
+     "h1": "More booked jobs for roofing companies.",
+     "lede": "If you do great work but your phone isn’t ringing consistently, you don’t need “more marketing.” You need to show up when someone in your area is ready to hire, and turn that click into a call.",
+     "noun": "roofing companies", "related": ["tree-removal", "window-cleaning", "hvac"]},
+    {"slug": "tree-removal", "path": "/tree-removal-marketing.html", "name": "Tree removal", "kind": "search", "img": "trade-tree-removal.jpg",
+     "alt": "An arborist crew safely removes a large tree limb in a backyard",
+     "h1": "More booked jobs for tree removal.",
+     "lede": "If you do great work but your phone isn’t ringing consistently, you don’t need “more marketing.” You need to show up when someone in your area is ready to hire, and turn that click into a call.",
+     "noun": "tree removal services", "related": ["roofer", "window-cleaning", "plumber"]},
+    {"slug": "window-cleaning", "path": "/window-cleaners.html", "name": "Window cleaning", "kind": "search", "img": "trade-window-cleaning.jpg",
+     "alt": "A window cleaner uses a squeegee on the large windows of a modern home",
+     "h1": "Get more window cleaning jobs from Google searches.",
+     "lede": "We help window cleaning businesses show up when people search “window cleaning near me”, and turn those high-intent searches into booked customers.",
+     "noun": "window cleaning businesses", "related": ["roofer", "tree-removal", "garage-door"],
+     "challenges": [
+         ("Wasted ad spend", "Paying for clicks that don’t convert because ads target the wrong keywords or show to people not ready to book."),
+         ("Missed local searches", "When someone searches “window cleaning near me” or “commercial window cleaning” in your city, your business doesn’t appear on the first page."),
+         ("Manual lead follow-up", "Hours spent calling leads that go nowhere, instead of cleaning windows and growing the business."),
+     ]},
+]
+
+SEARCH_PILLARS = [
+    ("ads", "High-intent keywords", "We focus on searches from people who need the service now, not browsers."),
+    ("web", "Call-first landing", "Fast, mobile-first pages designed to turn clicks into calls and form leads."),
+    ("chart", "Clear tracking", "Call tracking and conversion tracking so you know what it costs to get a booked job."),
+]
+SEARCH_STEPS = [
+    ("Campaign build and targeting", "Tight geo targeting, intent-based ad groups, negatives, and call-focused ads."),
+    ("Landing page and lead capture", "A conversion-first page that makes it easy to call, request service, and trust you."),
+    ("Call and conversion tracking", "Track calls, forms, and booked jobs, so we optimize toward profit, not vanity metrics."),
+    ("Ongoing optimization", "Search terms, bids, ads, and landing page improvements, reviewed every week."),
+]
+SEARCH_FAQ = [
+    ("How fast can I get leads?", "Most accounts can start generating calls within days of launch. Optimization improves costs over weeks."),
+    ("Do you require a long-term contract?", "No. We keep it month-to-month and earn retention by performance and communication."),
+    ("What’s the best budget to start?", "It depends on your service area and cost per click. On the strategy call, we’ll recommend a budget that can win."),
+    ("Do you build the landing page?", "Yes. We can build a dedicated page for your trade and wire up tracking so results are measurable."),
+]
+
+HOME_SERVICES = {
+    "h1": "When it’s an emergency, the Google call hits your phone.",
+    "intro": "Call-only Google Ads for plumbers, HVAC, electricians, locksmiths and garage door companies, plus search campaigns and lead capture for roofing, tree removal and window cleaning.",
+}
+
+# ---------------------------------------------------------------- social / UGC
+
+SOCIAL = {
+    "h1": "Content that looks like the feed, not an ad.",
+    "intro": "Real people. Real places. Short vertical video your customers actually stop for. We script it, shoot it, edit it, and post it, or hand it off ready to run as ads.",
+    "why_h2": "People trust people.",
+    "why_body": "Polished brand videos get skipped. A chef plating tonight’s special, a family’s Saturday out, a tech showing the fix: that reads like a friend’s post. It earns the watch, the follow, and the visit.",
+    "why": [
+        ("Native to the feed", "Vertical, fast, captioned, sound-on or off. Built for how Instagram actually plays."),
+        ("Shows the real work", "Your team, your space, your work. Proof you can’t fake with stock footage."),
+        ("Doubles as ad creative", "The same clips can run as paid ads on Instagram and Facebook, cut to length with hooks up front."),
+        ("Keeps you top of mind", "When it’s time to book, order or call, they already know your name and face."),
+    ],
+    "formats": [
+        ("ugc.jpg", "Mom filming a selfie video at an indoor family fun center while her kids run and jump behind her", "UGC video", "Creator-style testimonials, unboxings, walk-throughs and “day in the life” clips featuring your team or real customers."),
+        ("reels.jpg", "Bartender pouring a cocktail while a phone on a small tripod films the pour", "Instagram Reels", "Hook in the first second, trending audio where it fits, on-screen captions, tight edits. 15–60 seconds."),
+        ("carousel.jpg", "Overhead shot of tacos, a burger, salad and drinks shared on a restaurant table", "Carousels", "Swipeable tips, checklists and before/afters that get saved and shared: the posts that keep working."),
+        ("stories.jpg", "Service crew chatting beside their van in early morning light", "Stories", "Behind-the-scenes, polls, Q&A stickers and offers. Quick, daily, and personal."),
+    ],
+    "steps": [
+        ("Brief", "We learn your services, your area and your customers, then write hooks and scripts for the month."),
+        ("Shoot", "On-site filming with your team, or creators who fit your audience. Phone-native, so it looks real."),
+        ("Edit", "Cut into Reels, stories and carousels. Captions, pacing, cover frames and ad-ready versions."),
+        ("Post", "Scheduled to your Instagram with captions and hashtags, plus files you own to reuse anywhere."),
+    ],
+    "get_h2": "A feed that stays full.",
+    "get_body": "Monthly packages scale with how often you want to post. Every package includes the raw files. The content is yours.",
+    "get": ["Monthly content calendar and hooks", "Scripted UGC and Reels shot on location", "Vertical edits with captions and covers",
+            "Carousels and story sets from every shoot", "Ad-ready cuts for Instagram and Facebook", "Posting and scheduling on your account",
+            "Raw and final files you own"],
+    "faq": [
+        ("Do I have to be on camera?", "No. We can feature your team, real customers, or creators we cast for you. Whoever fits the brand."),
+        ("Can you post for us?", "Yes. We schedule and post to your Instagram, or deliver the files if your team prefers to post."),
+        ("Can the videos run as ads?", "Yes. Every shoot includes ad-ready cuts sized for Instagram and Facebook placements."),
+        ("Who owns the content?", "You do. You get the finals and the raw footage to use anywhere."),
+    ],
+}
+
+# ---------------------------------------------------------------- insights (blog)
+
+POSTS = [
+    {"slug": "post-1", "path": "/blog/post-1.html", "category": "AI Automation", "date": "March 7, 2026", "read": "5 min read",
+     "title": "How OpenClaw Will Streamline Business Automation in 2026",
+     "excerpt": "What once required teams of specialists and hours of admin work can now run automatically. Here’s where AI automation saves the most time.",
+     "img": "blog-automation.jpg", "alt": "Abstract glass blocks connected by glowing data lines"},
+    {"slug": "post-2", "path": "/blog/post-2.html", "category": "Cost Optimization", "date": "March 7, 2026", "read": "6 min read",
+     "title": "Stop Wasting Money: How AI Cut Ad Spend by 40% in 2026",
+     "excerpt": "Poor targeting, the wrong hours and ignored data quietly drain ad budgets. How AI-driven optimization finds and stops the waste.",
+     "img": "blog-adspend.jpg", "alt": "Abstract glass coins beside a gently descending line of light"},
+]

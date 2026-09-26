@@ -14,19 +14,27 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 from content import (  # noqa: E402
     SERVICES, SOLUTIONS, HOME, SERVICES_PAGE, SOLUTIONS_PAGE, INDUSTRIES_PAGE, ABOUT_PAGE, CONTACT_PAGE, PAGE_MEDIA,
+    TIERS, OFFER_FAQ, OFFER_STEPS, TRADES, SEARCH_PILLARS, SEARCH_STEPS, SEARCH_FAQ, HOME_SERVICES, SOCIAL, POSTS,
 )
 from icons import icon  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 SITE = "https://sparkmedia.ai"
 BRAND = "Spark Media"
-ASSET_V = "3"
+ASSET_V = "4"
 OG_IMAGE = f"{SITE}/assets/images/og-image.png"
 
 FOOTER_DESC = ("Spark Media combines marketing, creative, AI and business systems to help companies "
                "attract customers, respond faster and work smarter.")
 
 e = html.escape
+
+INDUSTRY_NAV = [
+    {"href": "/industries/#hospitality", "icon": "calendar", "nav": "Hospitality & venues", "blurb": "Inquiries, tours and bookings"},
+    {"href": "/industries/#b2b", "icon": "integrate", "nav": "B2B & industrial", "blurb": "Longer buying cycles, clear handoffs"},
+    {"href": "/industries/#healthcare", "icon": "users", "nav": "Healthcare & wellness", "blurb": "Clear next steps for patients"},
+    {"href": "/industries/home-services/", "icon": "phone", "nav": "Home services", "blurb": "Emergency Google calls to your phone"},
+]
 
 
 def arrow():
@@ -59,7 +67,7 @@ def header(current):
         '<nav class="nav" aria-label="Primary"><ul class="nav-list">'
         + nav_dropdown("Services", "services", SERVICES, "/services/", "View all services", current)
         + nav_dropdown("Solutions", "solutions", SOLUTIONS, "/solutions/", "View all solutions", current)
-        + top("/industries/", "Industries", "industries")
+        + nav_dropdown("Industries", "industries", INDUSTRY_NAV, "/industries/", "View all industries", current)
         + top("/about/", "About", "about")
         + top("/contact/", "Contact", "contact")
         + "</ul></nav>"
@@ -74,7 +82,8 @@ def header(current):
         '<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">'
         + group("Services", SERVICES, "/services/")
         + group("Solutions", SOLUTIONS, "/solutions/")
-        + '<a href="/industries/">Industries</a><a href="/about/">About</a><a href="/contact/">Contact</a>'
+        + group("Industries", INDUSTRY_NAV, "/industries/")
+        + '<a href="/about/">About</a><a href="/contact/">Contact</a>'
         + f'<a class="btn btn-primary" href="/contact/">Let’s Talk {arrow()}</a>'
         + "</nav>"
     )
@@ -114,7 +123,10 @@ def footer():
         <div class="footer-col"><h3>Solutions</h3><ul><li><a href="/solutions/">All solutions</a></li>{sol}</ul></div>
         <div class="footer-col"><h3>Company</h3><ul>
           <li><a href="/industries/">Industries</a></li>
+          <li><a href="/industries/home-services/">Home services</a></li>
+          <li><a href="/pricing.html">Home services pricing</a></li>
           <li><a href="/about/">About</a></li>
+          <li><a href="/blog.html">Insights</a></li>
           <li><a href="/contact/">Contact</a></li>
           <li><a href="/book.html">Book a conversation</a></li>
         </ul></div>
@@ -248,7 +260,8 @@ def related(title, items):
 def img_tag(src, alt, w=1536, h=1024, lazy=True, cls=""):
     c = f' class="{cls}"' if cls else ""
     load = ' loading="lazy"' if lazy else ' fetchpriority="high"'
-    return f'<img{c} src="/assets/images/site/{src}" width="{w}" height="{h}" alt="{e(alt)}"{load} decoding="async">'
+    path = src if src.startswith("/") else f"/assets/images/site/{src}"
+    return f'<img{c} src="{path}" width="{w}" height="{h}" alt="{e(alt)}"{load} decoding="async">'
 
 
 def hero_media(m):
@@ -571,15 +584,19 @@ def build_solutions():
         write(f'solutions/{s["slug"]}/index.html', page(s["href"], s["seo_title"], s["seo_desc"], body, current="solutions"))
 
 
+IND_IDS = ["hospitality", "b2b", "healthcare", "local"]
+
+
 def build_industries():
     p = INDUSTRIES_PAGE
     rows = "".join(
-        f"""<article class="industry reveal">
+        f"""<article class="industry reveal" id="{IND_IDS[i]}">
           <div class="photo photo-accent">{img_tag(it["img"], it["alt"])}</div>
           <div><p class="eyebrow">{e(it["eyebrow"])}</p><h2>{e(it["title"])}</h2><p class="lede">{e(it["body"])}</p>
-          <ul class="tags">{"".join(f"<li>{e(t)}</li>" for t in it["tags"])}</ul></div>
+          <ul class="tags">{"".join(f"<li>{e(t)}</li>" for t in it["tags"])}</ul>
+          {f'<p style="margin-top:22px"><a class="link-arrow" href="/industries/home-services/">Explore home services {arrow()}</a></p>' if IND_IDS[i] == "local" else ""}</div>
         </article>"""
-        for it in p["items"]
+        for i, it in enumerate(p["items"])
     )
     body = f"""{page_hero("Industries", p["h1"], p["intro"], [("Home", "/"), ("Industries", None)], media=PAGE_MEDIA["industries"])}
     <section class="section">
@@ -732,6 +749,326 @@ def build_404():
     write("404.html", page("/404.html", "Page not found | Spark Media", "This page got disconnected.", body, noindex=True))
 
 
+# ---------------------------------------------------------------- home services, trades, pricing, audit
+
+TRADE_BY = {t["slug"]: t for t in TRADES}
+
+
+def tiers_block(cta_href="/audit.html"):
+    cards = "".join(
+        f"""<article class="tier{' tier-featured' if t.get('featured') else ''} reveal">
+          <p class="tier-label">{e(t["label"])}</p>
+          <h3>{e(t["name"])}</h3>
+          <p class="tier-price"><strong>{e(t["price"])}</strong><span>{e(t["per"])}</span></p>
+          <p class="tier-summary">{e(t["summary"])}</p>
+          {checklist(t["items"])}
+          <div class="btn-row">{btn("Book a strategy call", cta_href, "primary" if t.get("featured") else "secondary", t.get("featured", False))}</div>
+        </article>"""
+        for t in TIERS
+    )
+    return f'<div class="tiers reveal-group">{cards}</div>'
+
+
+def faq_block(items):
+    return '<div class="faq">' + "".join(
+        f'<details class="faq-item reveal"><summary>{e(q)}{icon("chev")}</summary><p>{e(a)}</p></details>' for q, a in items
+    ) + "</div>"
+
+
+def numbered_steps(items, compact=False):
+    cls = "steps steps-3 steps-line" + (" steps-compact" if compact else "")
+    return f'<ol class="{cls} reveal-group">' + "".join(
+        f'<li class="step reveal"><h3>{e(h)}</h3><p>{e(b)}</p></li>' for h, b in items) + "</ol>"
+
+
+def trade_cards(slugs, cls="grid grid-3"):
+    out = []
+    for sl in slugs:
+        t = TRADE_BY[sl]
+        tag = "$249/mo ring" if t["kind"] == "emergency" else "Google Search + lead capture"
+        out.append(f"""<a class="card card-media reveal" href="{t["path"]}"><div class="card-img"><div class="card-img-clip">{img_tag(t["img"], "")}</div></div><div class="card-body"><span class="pill">{e(tag)}</span><h3>{e(t["name"])}</h3><span class="link-arrow">{e(t["name"])} marketing {arrow()}</span></div></a>""")
+    return f'<div class="{cls} reveal-group">' + "".join(out) + "</div>"
+
+
+def build_home_services():
+    h = HOME_SERVICES
+    media = {"img": "home-services.jpg", "alt": "A home service technician greets a homeowner at the front door, with a service van in the driveway",
+             "chips": [("phone", "Incoming call", "From Google Search"), ("calendar", "Job booked", "Today, 2:30 PM")]}
+    emergency = [t["slug"] for t in TRADES if t["kind"] == "emergency"]
+    search = [t["slug"] for t in TRADES if t["kind"] == "search"]
+    body = f"""{page_hero("Industries · Home services", h["h1"], h["intro"], [("Home", "/"), ("Industries", "/industries/"), ("Home services", None)],
+                         btn("Book a strategy call", "/audit.html") + btn("See pricing", "/pricing.html", "secondary", False), media=media)}
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><p class="eyebrow">Emergency trades</p><h2>When something breaks, they call the first ad they see.</h2>
+          <p class="lede">Call-only Google Ads for trades where people pick up the phone the moment there’s a problem. $249/mo. Ad spend extra.</p></div>
+        {trade_cards(emergency, "grid grid-5")}
+      </div>
+    </section>
+    <section class="section section-soft">
+      <div class="wrap">
+        <div class="section-head reveal"><p class="eyebrow">Pricing</p><h2>The phone rings. That’s the product.</h2>
+          <p class="lede">Ad spend is yours, paid to Google. Our fee is management. Month-to-month.</p></div>
+        {tiers_block()}
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><p class="eyebrow">How it works</p><h2>A short call, a clear offer, a ringing phone.</h2></div>
+        {numbered_steps(OFFER_STEPS)}
+      </div>
+    </section>
+    <section class="section section-soft">
+      <div class="wrap">
+        <div class="section-head reveal"><p class="eyebrow">Planned work</p><h2>For jobs people research first.</h2>
+          <p class="lede">Roofing, tree removal and window cleaning customers compare before they book. We build search campaigns, call-first landing pages and tracking around that decision.</p></div>
+        {trade_cards(search)}
+      </div>
+    </section>
+{image_band("abs-network.jpg", "The call is only the start.", "Missed-call text-back, follow-up and review requests keep a ringing phone from turning into a missed job.")}
+    <section class="section">
+      <div class="wrap split split-top">
+        <div class="reveal"><p class="eyebrow">Questions</p><h2>Before you ask.</h2></div>
+        {faq_block(OFFER_FAQ)}
+      </div>
+    </section>
+{closing("See if emergency Google Search is a fit.", "A 15–20 minute strategy call. If it isn’t a fit, we’ll say so.", "Book a strategy call", "/audit.html")}"""
+    write("industries/home-services/index.html", page("/industries/home-services/", "Home Services Marketing | Spark Media",
+          "Call-only Google Ads for plumbers, HVAC, electricians, locksmiths and garage door companies, plus search campaigns for roofing, tree removal and window cleaning.",
+          body, current="industries"))
+
+
+def build_trades():
+    for t in TRADES:
+        trail = [("Home", "/"), ("Home services", "/industries/home-services/"), (t["name"], None)]
+        if t["kind"] == "emergency":
+            media = {"img": t["img"], "alt": t["alt"],
+                     "chips": [("ads", "Google Search", f"“{t['search']}”"), ("phone", "Tap to call", "Rings your phone")]}
+            hero = page_hero(f"{t['name']} · Emergency Google Search", t["h1"], t["lede"], trail,
+                             btn("Book a strategy call", "/audit.html") + btn("See pricing", "/pricing.html", "secondary", False), media=media)
+            body = f"""{hero}
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><p class="eyebrow">How it works</p><h2>They search. They tap Call. Your phone rings.</h2></div>
+        {numbered_steps(OFFER_STEPS)}
+      </div>
+    </section>
+    <section class="section section-soft">
+      <div class="wrap">
+        <div class="section-head reveal"><p class="eyebrow">Pricing</p><h2>Two simple tiers.</h2><p class="lede">Ad spend is yours, paid to Google. Our fee is management. Month-to-month.</p></div>
+        {tiers_block()}
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap split split-top">
+        <div class="reveal"><p class="eyebrow">Questions</p><h2>Before you ask.</h2></div>
+        {faq_block(OFFER_FAQ)}
+      </div>
+    </section>"""
+        else:
+            media = {"img": t["img"], "alt": t["alt"],
+                     "chips": [("ads", "High-intent search", "Ready to hire"), ("phone", "Call or request", "Tracked to the job")]}
+            hero = page_hero(f"{t['name']} · Google Ads", t["h1"], t["lede"], trail,
+                             btn("Book a strategy call", "/audit.html") + btn("All home services", "/industries/home-services/", "secondary", False), media=media)
+            pillars = "".join(f'<article class="card reveal"><span class="icon-tile">{icon(ic)}</span><h3>{e(a)}</h3><p>{e(b)}</p></article>' for ic, a, b in SEARCH_PILLARS)
+            challenges = ""
+            if t.get("challenges"):
+                cards = "".join(f'<article class="card reveal"><h3>{e(a)}</h3><p>{e(b)}</p></article>' for a, b in t["challenges"])
+                challenges = f"""    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><p class="eyebrow">The challenge</p><h2>Great work doesn’t help if nobody finds you.</h2></div>
+        <div class="grid grid-3 reveal-group">{cards}</div>
+      </div>
+    </section>
+"""
+            body = f"""{hero}
+    <section class="section">
+      <div class="wrap">
+        <div class="grid grid-3 reveal-group">{pillars}</div>
+      </div>
+    </section>
+{challenges}    <section class="section section-soft">
+      <div class="wrap">
+        <div class="section-head reveal"><p class="eyebrow">What we do</p><h2>What we do for {e(t["noun"])}.</h2><p class="lede">A simple system built around Google Search, the highest-intent channel.</p></div>
+        {numbered_steps(SEARCH_STEPS, compact=True).replace("steps-3", "")}
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap split split-top">
+        <div class="reveal"><p class="eyebrow">Questions</p><h2>Answers before you book.</h2></div>
+        {faq_block(SEARCH_FAQ)}
+      </div>
+    </section>"""
+        body += f"""
+    <section class="section section-soft">
+      <div class="wrap">
+        <h2 class="related-title reveal">Other home services</h2>
+        {trade_cards(t["related"])}
+      </div>
+    </section>
+{closing("See if Google Search is a fit for your business.", "A 15–20 minute strategy call about your trade, your service area and how you handle calls.", "Book a strategy call", "/audit.html")}"""
+        desc = t["lede"] if len(t["lede"]) < 170 else t["lede"][:157].rsplit(" ", 1)[0] + "…"
+        write(t["path"].lstrip("/"), page(t["path"], f'{t["name"]} Marketing | Spark Media', desc, body, current="industries"))
+
+
+def build_pricing():
+    body = f"""{page_hero("Home services pricing", "The phone rings. That’s the product.", "Call-only Google Ads for emergency home service trades. Ad spend is yours, paid to Google. Our fee is management. Month-to-month.",
+                         [("Home", "/"), ("Home services", "/industries/home-services/"), ("Pricing", None)], media={"img": "abs-orbs.jpg", "alt": "", "abstract": True})}
+    <section class="section">
+      <div class="wrap">
+        {tiers_block()}
+        <p class="caption-note reveal" style="margin-top:22px">Websites, AI automation, CRM and systems integration work are scoped per project. <a href="/contact/">Tell us what you need</a>.</p>
+      </div>
+    </section>
+    <section class="section section-soft">
+      <div class="wrap split split-top">
+        <div class="reveal"><p class="eyebrow">Questions</p><h2>Before you ask.</h2></div>
+        {faq_block(OFFER_FAQ)}
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap">
+        <h2 class="related-title reveal">Trades we run this for</h2>
+        {trade_cards([t["slug"] for t in TRADES if t["kind"] == "emergency"], "grid grid-5")}
+      </div>
+    </section>
+{closing("See if emergency Google Search is a fit.", "A 15–20 minute strategy call. If it isn’t a fit, we’ll say so.", "Book a strategy call", "/audit.html")}"""
+    write("pricing.html", page("/pricing.html", "Home Services Pricing | Spark Media",
+          "Call-only Google Ads for emergency trades. $249/mo, or $399/mo with missed-call text-back, follow-up and review asks. Ad spend extra.",
+          body, current="industries"))
+
+
+AUDIT_CONSENT = """By providing your phone number and checking the SMS consent box, you agree to receive non-marketing text messages from SparkMedia.ai (McCormick Solutions, LLC) about your appointment and inquiry, including booking confirmations, reminders, and follow-ups. We do not send marketing texts to numbers collected through this booking form. Message frequency varies. Msg &amp; data rates may apply. Reply HELP for help, STOP to opt out. Consent is not a condition of purchase. See our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms &amp; Conditions</a>."""
+
+
+def build_audit():
+    steps = "".join(f'<li class="step reveal"><h3>{e(h)}</h3><p>{e(b)}</p></li>' for h, b in OFFER_STEPS)
+    body = f"""{page_hero("Strategy call", "See if emergency Google Search is a fit.", "Dead AC. Leaking pipe. Locked out. They Google it and tap Call. We run call-only ads so that call hits your phone. $249/mo. Ad spend extra.",
+                         [("Home", "/"), ("Home services", "/industries/home-services/"), ("Strategy call", None)])}
+    <section class="section">
+      <div class="wrap contact-grid">
+        <div class="form-card booking-embed">
+          <h2>Book your strategy call</h2>
+          <p>Pick a time for a 15–20 minute call about your trade and service area.</p>
+          <div style="margin-top:18px">
+            <iframe src="https://api.leadconnectorhq.com/widget/booking/CrDctUVUZMiKEAYPEYJ9" style="width:100%; height:600px; border:none; overflow:hidden;" scrolling="no" id="CrDctUVUZMiKEAYPEYJ9" title="Book a strategy call with Spark Media"></iframe>
+            <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+          </div>
+          <div class="consent">
+            {AUDIT_CONSENT}
+          </div>
+          <p class="caption-note">Prefer to talk? Call <a href="tel:+17027475589">(702) 747-5589</a></p>
+        </div>
+        <div class="aside-sticky">
+          <div class="aside-card aside-soft">
+            <h3>How the call works</h3>
+            <ol class="steps steps-compact" style="grid-template-columns:1fr;margin-top:14px">{steps}</ol>
+          </div>
+          <div class="aside-card">
+            <h3>Who it’s for</h3>
+            <p>Plumbers, HVAC, electricians, locksmiths and garage door companies that can pick up emergency calls.</p>
+            <a class="btn btn-light" href="/pricing.html">See pricing {arrow()}</a>
+          </div>
+        </div>
+      </div>
+    </section>"""
+    write("audit.html", page("/audit.html", "Book a Strategy Call | Spark Media",
+          "Book a 15–20 minute strategy call to see if call-only Google Ads for emergency home service trades are a fit.",
+          body, current="industries"))
+
+
+# ---------------------------------------------------------------- social (UGC) and insights
+
+def build_social():
+    s_ = SOCIAL
+    media = {"img": "/assets/images/social/hero-reel.jpg", "alt": "An HVAC technician films a selfie-style video beside an outdoor AC unit",
+             "chips": [("creative", "Reels", "Shot on location"), ("users", "Real people", "Your team and customers")]}
+    why = "".join(f'<article class="card reveal"><h3>{e(a)}</h3><p>{e(b)}</p></article>' for a, b in s_["why"])
+    formats = "".join(
+        f"""<article class="card card-media card-tall reveal"><div class="card-img"><div class="card-img-clip">{img_tag("/assets/images/social/" + f, alt, 1024, 1536)}</div></div><div class="card-body"><h3>{e(h)}</h3><p>{e(b)}</p></div></article>"""
+        for f, alt, h, b in s_["formats"]
+    )
+    body = f"""{page_hero("Content & Creative · UGC + Instagram", s_["h1"], s_["intro"], [("Home", "/"), ("Services", "/services/"), ("Content & Creative", "/services/content-creative/"), ("UGC + Instagram", None)],
+                         btn("Book a content call", "/contact/") + btn("See what we make", "#formats", "secondary", False), media=media)}
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><p class="eyebrow">Why UGC</p><h2>{e(s_["why_h2"])}</h2><p class="lede">{e(s_["why_body"])}</p></div>
+        <div class="grid grid-4 reveal-group">{why}</div>
+      </div>
+    </section>
+    <section class="section section-soft" id="formats">
+      <div class="wrap">
+        <div class="section-head reveal"><p class="eyebrow">What we make</p><h2>Four formats. One content engine.</h2><p class="lede">Each shoot gets cut into every format, so one day of filming feeds weeks of posts.</p></div>
+        <div class="grid grid-4 reveal-group">{formats}</div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><p class="eyebrow">How it works</p><h2>Brief. Shoot. Edit. Post.</h2></div>
+        <ol class="steps steps-line reveal-group">{"".join(f'<li class="step reveal"><h3>{e(h)}</h3><p>{e(b)}</p></li>' for h, b in s_["steps"])}</ol>
+      </div>
+    </section>
+{image_band("/assets/images/social/shoot.jpg", "Shot where you work.", "Phone-native shoots at your real location. No studio, no stock footage.")}
+    <section class="section">
+      <div class="wrap split split-top">
+        <div class="reveal"><p class="eyebrow">What you get</p><h2>{e(s_["get_h2"])}</h2><p class="lede" style="margin-top:18px">{e(s_["get_body"])}</p>
+          <div class="btn-row" style="margin-top:26px">{btn("Get a content plan", "/contact/")}</div></div>
+        <aside class="panel panel-accent reveal">{checklist(s_["get"])}</aside>
+      </div>
+    </section>
+    <section class="section section-soft">
+      <div class="wrap split split-top">
+        <div class="reveal"><p class="eyebrow">Questions</p><h2>Before you ask.</h2></div>
+        {faq_block(s_["faq"])}
+      </div>
+    </section>
+{closing("Let’s fill your feed.", "Tell us what you do and where you work. We’ll come back with hooks, formats and a posting plan.", "Book a content call")}"""
+    write("social/index.html", page("/social/", "UGC & Instagram Content | Spark Media",
+          "UGC videos, Instagram Reels, carousels and stories for restaurants, bars, family venues and home services. Shot for the feed and ready to post or run as ads.",
+          body, current="services"))
+
+
+def build_blog():
+    cards = "".join(
+        f"""<a class="card card-media reveal" href="{p_["path"]}"><div class="card-img"><div class="card-img-clip">{img_tag(p_["img"], p_["alt"])}</div></div><div class="card-body"><span class="pill">{e(p_["category"])}</span><h3>{e(p_["title"])}</h3><p>{e(p_["excerpt"])}</p><span class="post-meta">{e(p_["date"])} · {e(p_["read"])}</span><span class="link-arrow">Read article {arrow()}</span></div></a>"""
+        for p_ in POSTS
+    )
+    body = f"""{page_hero("Insights", "Notes on marketing, AI and connected systems.", "Practical thinking on automation, advertising and the customer journey.", [("Home", "/"), ("Insights", None)], media={"img": "abs-waves.jpg", "alt": "", "abstract": True})}
+    <section class="section">
+      <div class="wrap">
+        <div class="grid grid-2 reveal-group">{cards}</div>
+      </div>
+    </section>
+{closing("Want to talk it through?", "Tell us what you’re trying to improve and we’ll share what we’d try first.", "Start a Conversation")}"""
+    write("blog.html", page("/blog.html", "Insights | Spark Media", "Notes on marketing, AI automation and connected business systems from Spark Media.", body, current=None))
+
+    for p_ in POSTS:
+        with open(os.path.join(os.path.dirname(__file__), "posts", p_["slug"] + ".html")) as f:
+            article = f.read()
+        others = [x for x in POSTS if x["slug"] != p_["slug"]]
+        more = "".join(f'<a class="mini-card" href="{x["path"]}">{img_tag(x["img"], "")}<span><strong>{e(x["title"])}</strong><small>{e(x["date"])} · {e(x["read"])}</small></span>{arrow()}</a>' for x in others)
+        body = f"""    <section class="post-hero">
+      <div class="wrap post-wrap">
+        {crumbs([("Home", "/"), ("Insights", "/blog.html"), (p_["category"], None)])}
+        <p class="eyebrow">{e(p_["category"])}</p>
+        <h1>{e(p_["title"])}</h1>
+        <p class="post-meta">{e(p_["date"])} · {e(p_["read"])}</p>
+      </div>
+    </section>
+    <section class="section" style="padding-top:0">
+      <div class="wrap post-wrap">
+        <div class="post-cover">{img_tag(p_["img"], p_["alt"], lazy=False)}</div>
+        <article class="post-body">
+          {article}
+        </article>
+        <h2 class="related-title" style="margin-top:56px">More insights</h2>
+        <div class="mini-cards" style="grid-template-columns:1fr">{more}</div>
+      </div>
+    </section>
+{closing("Ready to put this to work?", "Tell us where your customer journey breaks down. We’ll help you find a practical way to connect the pieces.", "Start a Conversation")}"""
+        write(p_["path"].lstrip("/"), page(p_["path"], f'{p_["title"]} | Spark Media', p_["excerpt"], body, extra_head='<meta property="og:type" content="article">'))
+
+
 def build_redirects():
     moves = {"industries.html": "/industries/"}
     for src, dest in moves.items():
@@ -753,8 +1090,9 @@ def build_redirects():
 
 def build_sitemap():
     paths = ["/", "/services/"] + [s["href"] for s in SERVICES] + ["/solutions/"] + [s["href"] for s in SOLUTIONS] + [
-        "/industries/", "/about/", "/contact/", "/book.html", "/social/", "/blog.html", "/privacy.html", "/terms.html"]
-    urls = "\n".join(f"  <url><loc>{SITE}{p}</loc><lastmod>2026-09-25</lastmod></url>" for p in paths)
+        "/industries/", "/industries/home-services/", "/pricing.html", "/audit.html"] + [t["path"] for t in TRADES] + [
+        "/about/", "/contact/", "/book.html", "/social/", "/blog.html"] + [p_["path"] for p_ in POSTS] + ["/privacy.html", "/terms.html"]
+    urls = "\n".join(f"  <url><loc>{SITE}{p}</loc><lastmod>2026-09-26</lastmod></url>" for p in paths)
     write("sitemap.xml", f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {urls}
@@ -772,5 +1110,11 @@ if __name__ == "__main__":
     build_book()
     build_legal()
     build_404()
+    build_home_services()
+    build_trades()
+    build_pricing()
+    build_audit()
+    build_social()
+    build_blog()
     build_redirects()
     build_sitemap()
