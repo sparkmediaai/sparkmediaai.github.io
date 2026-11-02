@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Should Grok Bot Run on a Schedule or React to Events? | Spark Media</title>
+  <meta name="description" content="Use schedules for time-based work like morning briefs and weekly follow-ups, and event triggers for anything a customer is waiting on. A practical guide to Grok Bot routines for small businesses.">
+  <link rel="canonical" href="https://sparkmedia.ai/blog/should-grok-bot-run-on-a-schedule-or-react-to-events/">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Spark Media">
+  <meta property="og:title" content="Should Grok Bot Run on a Schedule or React to Events? | Spark Media">
+  <meta property="og:description" content="Use schedules for time-based work like morning briefs and weekly follow-ups, and event triggers for anything a customer is waiting on. A practical guide to Grok Bot routines for small businesses.">
+  <meta property="og:url" content="https://sparkmedia.ai/blog/should-grok-bot-run-on-a-schedule-or-react-to-events/">
+  <meta property="og:image" content="https://sparkmedia.ai/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" href="/assets/logo/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/logo/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css?v=4">
+  <script>document.documentElement.classList.add('js')</script>
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2026-11-02">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Should Grok Bot Run on a Schedule or React to Events?", "description": "Use schedules for time-based work like morning briefs and weekly follow-ups, and event triggers for anything a customer is waiting on. A practical guide to Grok Bot routines for small businesses.", "datePublished": "2026-11-02", "dateModified": "2026-11-02", "author": {"@type": "Person", "name": "David McCormick"}, "publisher": {"@type": "Organization", "name": "Spark Media", "logo": {"@type": "ImageObject", "url": "https://sparkmedia.ai/assets/logo/sparkmedia-logo.png"}}, "mainEntityOfPage": "https://sparkmedia.ai/blog/should-grok-bot-run-on-a-schedule-or-react-to-events/", "image": "https://sparkmedia.ai/assets/images/site/blog-automation.jpg"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can one Grok Bot use both schedules and triggers?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. A bot can have several routines, some on a schedule and some waiting for events, and each one can have its own instruction."}}, {"@type": "Question", "name": "How often can a scheduled routine run?", "acceptedAnswer": {"@type": "Answer", "text": "Grok Bot routines can run as often as every few minutes, but frequent checks use more of your plan. Start with the least frequent schedule that still gets the job done."}}, {"@type": "Question", "name": "Can Grok Bot react to a GoHighLevel form submission?", "acceptedAnswer": {"@type": "Answer", "text": "It can if GoHighLevel sends a webhook to the bot's routine when the form is submitted. Test it with a sample submission first, and keep replies as drafts until you trust the setup."}}, {"@type": "Question", "name": "Will an event-driven bot reply to customers on its own?", "acceptedAnswer": {"@type": "Answer", "text": "Only if you tell it to. You can have it draft every reply for your approval, which is what we recommend until it has handled real inquiries reliably."}}, {"@type": "Question", "name": "What is the best first routine for a small business?", "acceptedAnswer": {"@type": "Answer", "text": "Usually an event trigger on new inquiries, because first response time is where most leads are lost, followed by a weekday morning brief so nothing waits on you unnoticed."}}]}</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" data-header><div class="wrap header-inner"><a class="brand" href="/" aria-label="Spark Media home"><img src="/assets/logo/sparkmedia-logo-light.png" alt="Spark Media" width="600" height="159"></a><nav class="nav" aria-label="Primary"><ul class="nav-list"><li class="nav-item" data-dropdown><button class="nav-link" type="button" aria-expanded="false" aria-controls="dd-services">Services<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></button><div class="dropdown" id="dd-services"><a href="/services/websites-branding/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/><path d="M7 13h6M7 16h10"/></svg></span><strong>Websites &amp; Branding</strong><small>Positioning, websites and landing pages</small></a><a href="/services/ai-agents-automation/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 12.5a7.5 7.5 0 0 1-11 6.6L4 20l1-4.3A7.5 7.5 0 1 1 20 12.5z"/><path d="M12.5 8.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/></svg></span><strong>AI Agents &amp; Automation</strong><small>Voice, messaging and workflow automation</small></a><a href="/services/paid-media/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></span><strong>Paid Media</strong><small>Google and Meta campaigns, tracked end to end</small></a><a href="/services/content-creative/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="13" height="14" rx="2.5"/><path d="M16 10l5-3v10l-5-3"/><path d="M8 9.5v5l4-2.5z"/></svg></span><strong>Content &amp; Creative</strong><small>Campaign creative, short-form video and UGC</small></a><a href="/services/crm-sales-enablement/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><strong>CRM &amp; Sales Enablement</strong><small>Pipelines, routing and follow-up</small></a><a href="/services/ai-consulting-integration/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><path d="M10 6.5h4a3.5 3.5 0 0 1 3.5 3.5v4M14 17.5h-4A3.5 3.5 0 0 1 6.5 14v-4"/></svg></span><strong>AI Consulting &amp; Integration</strong><small>Connect your software and find useful AI</small></a><a class="d-all" href="/services/">View all services</a></div></li><li class="nav-item" data-dropdown><button class="nav-link" type="button" aria-expanded="false" aria-controls="dd-solutions">Solutions<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></button><div class="dropdown" id="dd-solutions"><a href="/solutions/connect-your-systems/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8.5 6h7M7.2 8.2l3.6 7.6M16.8 8.2l-3.6 7.6"/></svg></span><strong>Connect Your Systems</strong><small>Get your software sharing the right information</small></a><a href="/solutions/capture-convert-leads/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></span><strong>Capture &amp; Convert Leads</strong><small>Turn inquiries into real conversations</small></a><a href="/solutions/never-miss-an-opportunity/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.6 3.5h2.5l1.3 4.2-2 1.4a12 12 0 0 0 6.5 6.5l1.4-2 4.2 1.3v2.5a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg></span><strong>Never Miss an Opportunity</strong><small>A dependable first response, day or night</small></a><a href="/solutions/reactivate-your-database/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 3v5h5"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 21v-5h-5"/></svg></span><strong>Reactivate Your Database</strong><small>Reconnect with past inquiries</small></a><a class="d-all" href="/solutions/">View all solutions</a></div></li><li class="nav-item" data-dropdown><button class="nav-link" type="button" aria-expanded="false" aria-controls="dd-industries">Industries<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></button><div class="dropdown" id="dd-industries"><a href="/industries/#hospitality"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3"/></svg></span><strong>Hospitality &amp; venues</strong><small>Inquiries, tours and bookings</small></a><a href="/industries/#b2b"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><path d="M10 6.5h4a3.5 3.5 0 0 1 3.5 3.5v4M14 17.5h-4A3.5 3.5 0 0 1 6.5 14v-4"/></svg></span><strong>B2B &amp; industrial</strong><small>Longer buying cycles, clear handoffs</small></a><a href="/industries/#healthcare"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg></span><strong>Healthcare &amp; wellness</strong><small>Clear next steps for patients</small></a><a href="/industries/home-services/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.6 3.5h2.5l1.3 4.2-2 1.4a12 12 0 0 0 6.5 6.5l1.4-2 4.2 1.3v2.5a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg></span><strong>Home services</strong><small>Emergency Google calls to your phone</small></a><a class="d-all" href="/industries/">View all industries</a></div></li><li class="nav-item"><a class="nav-link" href="/about/">About</a></li><li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li></ul></nav><a class="btn btn-dark btn-sm header-cta" href="/contact/">Let’s Talk</a><button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu" data-menu><svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></header><nav class="mobile-nav" id="mobile-nav" aria-label="Mobile"><details><summary>Services<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary><a href="/services/">Overview</a><a href="/services/websites-branding/">Websites &amp; Branding</a><a href="/services/ai-agents-automation/">AI Agents &amp; Automation</a><a href="/services/paid-media/">Paid Media</a><a href="/services/content-creative/">Content &amp; Creative</a><a href="/services/crm-sales-enablement/">CRM &amp; Sales Enablement</a><a href="/services/ai-consulting-integration/">AI Consulting &amp; Integration</a></details><details><summary>Solutions<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary><a href="/solutions/">Overview</a><a href="/solutions/connect-your-systems/">Connect Your Systems</a><a href="/solutions/capture-convert-leads/">Capture &amp; Convert Leads</a><a href="/solutions/never-miss-an-opportunity/">Never Miss an Opportunity</a><a href="/solutions/reactivate-your-database/">Reactivate Your Database</a></details><details><summary>Industries<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary><a href="/industries/">Overview</a><a href="/industries/#hospitality">Hospitality &amp; venues</a><a href="/industries/#b2b">B2B &amp; industrial</a><a href="/industries/#healthcare">Healthcare &amp; wellness</a><a href="/industries/home-services/">Home services</a></details><a href="/about/">About</a><a href="/contact/">Contact</a><a class="btn btn-primary" href="/contact/">Let’s Talk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></nav>
+  <main id="main">
+    <section class="post-hero">
+      <div class="wrap post-wrap">
+        <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li><a href="/blog/">Insights</a></li><li aria-current="page">Grok Bot</li></ol>
+        <p class="eyebrow">Grok Bot</p>
+        <h1>Should Grok Bot Run on a Schedule or React to Events?</h1>
+        <p class="post-meta"><time datetime="2026-11-02">November 2, 2026</time> · By David McCormick · 6 min read</p>
+      </div>
+    </section>
+    <section class="section" style="padding-top:0">
+      <div class="wrap post-wrap">
+        <div class="post-cover"><img src="/assets/images/site/blog-automation.jpg" width="1536" height="1024" alt="Abstract glass blocks connected by glowing data lines" fetchpriority="high" decoding="async"></div>
+        <article class="post-body">
+<p><strong>Use a schedule when the work is tied to a time of day, like a morning summary or a weekly follow-up list, and use an event trigger when the work should start because something happened, like a new email, a form submission, or a Slack message.</strong> Most small businesses need both: a few well-timed routines for reporting, and triggers for anything a customer is waiting on. Picking the right one keeps your bot fast where it matters and quiet everywhere else.</p>
+<h2>What is the difference between a scheduled routine and an event trigger?</h2>
+<p><strong>A scheduled routine runs at a set time; an event trigger runs when something specific arrives.</strong> In Grok Bot, both are routines: a saved instruction the bot carries out on its own, even when you are not in the app.</p>
+<ul>
+<li><strong>Scheduled:</strong> "Every weekday at 8 AM, summarize yesterday's inquiries and anything waiting on me."</li>
+<li><strong>Event-driven:</strong> "When a new message arrives in this inbox, sort it, and draft a reply if it is a new customer."</li>
+</ul>
+<p>The instruction can be identical. What changes is when it runs, and that choice decides how quickly the bot responds and how much of your usage it spends doing nothing.</p>
+<h2>Why are people moving from timers to triggers?</h2>
+<p><strong>Because checking on a timer wastes runs when nothing has changed and still responds late when something does.</strong> A bot that checks your inbox every 15 minutes runs dozens of times a day, and a lead can still sit for 14 minutes before anyone looks.</p>
+<p>This has been a big topic on X this week. A widely shared summary of how people are <a href="https://x.com/i/trending/2116978259854328132" rel="noopener">building bot teams with event-driven handoffs instead of constant timers</a> describes the same pattern: narrow roles, bots that wake on events, and human approvals for anything sensitive. A simple version of the idea comes from <a href="https://x.com/CloudIT/status/2116181127685718042" rel="noopener">@CloudIT</a>, who suggests asking Grok Bot to keep an eye on something and let you know when it changes, so you don't have to keep checking.</p>
+<h2>Which business tasks should run on a schedule?</h2>
+<p><strong>Anything you want to read at a predictable time, or anything that only makes sense in batches.</strong> Good examples:</p>
+<ul>
+<li>A weekday morning brief: new leads, missed calls, today's appointments, and decisions waiting on you.</li>
+<li>An afternoon sweep for leads that got no reply, with a drafted follow-up for each one you approve.</li>
+<li>A weekly list of past customers who haven't heard from you in a while, for a reactivation message.</li>
+<li>A weekly ad or website check that flags only what needs attention.</li>
+</ul>
+<p>Keep schedules inside business hours unless the work truly cannot wait. A "daily" report that fires Saturday at 6 AM is usually a report nobody reads until Monday.</p>
+<h2>Which tasks should react to events instead?</h2>
+<p><strong>Anything where speed changes the outcome, especially first response to a new inquiry.</strong> Common triggers a bot can listen for include a new email arriving in an inbox, a message or keyword in a Slack channel, and a webhook, which is a notification another system sends when something happens.</p>
+<p>That last one is the bridge to most business tools. Many CRMs, form builders, and booking tools, GoHighLevel included, can send a webhook when a form is submitted or an appointment is booked. Point that webhook at a bot's routine and the bot starts work the moment the lead arrives, instead of on its next check.</p>
+<ul>
+<li>New web form or missed-call text: tag the lead, draft a reply, and alert the owner if it looks urgent.</li>
+<li>New booking: send a prep checklist for your approval and add it to the day's brief.</li>
+<li>A customer email that mentions a cancellation or complaint: flag it for a person right away.</li>
+</ul>
+<h2>How do you keep triggers from getting noisy?</h2>
+<p><strong>Filter hard, report only what someone can act on, and give short-term watches an end date.</strong> A trigger that fires on every message in a busy channel can be as wasteful as a timer.</p>
+<ul>
+<li><strong>Narrow the source.</strong> One inbox, one channel, one form, or a specific keyword, rather than "everything."</li>
+<li><strong>Stay quiet by default.</strong> Tell the bot to message you only when there is a decision or a problem, not to confirm every run.</li>
+<li><strong>Make watches expire.</strong> "Tell me when this invoice is paid" should stop once it's paid, not run forever.</li>
+<li><strong>Keep approvals on customer-facing sends.</strong> Speed is the point of a trigger, but a drafted reply you approve in seconds is still faster than a lead waiting until tomorrow.</li>
+</ul>
+<h2>How does Spark Media set this up for businesses?</h2>
+<p><strong>We map each job to the right starting signal before we write a single instruction.</strong> As a Las Vegas team that builds with Grok Bot and OpenClaw, we usually wire front-door intake to events (form webhooks from GoHighLevel or your website, and new inquiry emails), then put follow-up, lead reactivation, and ad or site checks on a small number of business-hours schedules.</p>
+<p>The result is a bot that answers new inquiries quickly, shows up with a summary when you start your day, and otherwise stays out of your way. Every customer-facing message stays a draft until you decide otherwise.</p>
+<h2>Frequently asked questions</h2>
+<h3>Can one Grok Bot use both schedules and triggers?</h3>
+<p>Yes. A bot can have several routines, some on a schedule and some waiting for events, and each one can have its own instruction.</p>
+<h3>How often can a scheduled routine run?</h3>
+<p>Grok Bot routines can run as often as every few minutes, but frequent checks use more of your plan. Start with the least frequent schedule that still gets the job done.</p>
+<h3>Can Grok Bot react to a GoHighLevel form submission?</h3>
+<p>It can if GoHighLevel sends a webhook to the bot's routine when the form is submitted. Test it with a sample submission first, and keep replies as drafts until you trust the setup.</p>
+<h3>Will an event-driven bot reply to customers on its own?</h3>
+<p>Only if you tell it to. You can have it draft every reply for your approval, which is what we recommend until it has handled real inquiries reliably.</p>
+<h3>What is the best first routine for a small business?</h3>
+<p>Usually an event trigger on new inquiries, because first response time is where most leads are lost, followed by a weekday morning brief so nothing waits on you unnoticed.</p>
+<p style="margin-top:32px">If you'd like help deciding which of your tasks should run on a schedule and which should react in real time, you can <a href="/book.html">book a conversation with us</a>.</p>
+
+</article>
+        <h2 class="related-title" style="margin-top:56px">More insights</h2>
+        <div class="mini-cards" style="grid-template-columns:1fr"><a class="mini-card" href="/blog/how-do-you-onboard-grok-bot-like-a-new-employee/"><img src="/assets/images/site/svc-ai.jpg" width="1536" height="1024" alt="" loading="lazy" decoding="async"><span><strong>How Do You Onboard Grok Bot Like a New Employee?</strong><small>October 31, 2026 · 7 min read</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="mini-card" href="/blog/post-2.html"><img src="/assets/images/site/blog-adspend.jpg" width="1536" height="1024" alt="" loading="lazy" decoding="async"><span><strong>Stop Wasting Money: How AI Cut Ad Spend by 40% in 2026</strong><small>March 7, 2026 · 6 min read</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap">
+        <div class="closing reveal">
+          <img class="closing-bg" src="/assets/images/site/abs-ribbons.jpg" width="1536" height="1024" alt="" loading="lazy" decoding="async">
+          <div class="closing-inner">
+            <h2>Ready to put this to work?</h2>
+            <p>Tell us where your customer journey breaks down. We’ll help you find a practical way to connect the pieces.</p>
+            <div class="btn-row"><a class="btn btn-primary" href="/contact/">Start a Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+  <section class="footer-cta" aria-labelledby="footer-cta-h">
+    <div class="wrap">
+      <div>
+        <h2 id="footer-cta-h">Good marketing should connect to what happens next.</h2>
+        <p>Tell us where your customer journey breaks down. We’ll help you find a practical way to connect the pieces.</p>
+      </div>
+      <div class="btn-row"><a class="btn btn-light" href="/contact/">Start a Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    </div>
+  </section>
+  <div class="wrap">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="/" aria-label="Spark Media home"><img src="/assets/logo/sparkmedia-logo-white.png" alt="Spark Media" width="600" height="159" loading="lazy"></a>
+        <p>Spark Media combines marketing, creative, AI and business systems to help companies attract customers, respond faster and work smarter.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col"><h3>Services</h3><ul><li><a href="/services/">All services</a></li><li><a href="/services/websites-branding/">Websites &amp; Branding</a></li><li><a href="/services/ai-agents-automation/">AI Agents &amp; Automation</a></li><li><a href="/services/paid-media/">Paid Media</a></li><li><a href="/services/content-creative/">Content &amp; Creative</a></li><li><a href="/services/crm-sales-enablement/">CRM &amp; Sales Enablement</a></li><li><a href="/services/ai-consulting-integration/">AI Consulting &amp; Integration</a></li><li><a href="/grok-bot-setup/">Grok Bot Setup</a></li></ul></div>
+        <div class="footer-col"><h3>Solutions</h3><ul><li><a href="/solutions/">All solutions</a></li><li><a href="/solutions/connect-your-systems/">Connect Your Systems</a></li><li><a href="/solutions/capture-convert-leads/">Capture &amp; Convert Leads</a></li><li><a href="/solutions/never-miss-an-opportunity/">Never Miss an Opportunity</a></li><li><a href="/solutions/reactivate-your-database/">Reactivate Your Database</a></li></ul></div>
+        <div class="footer-col"><h3>Company</h3><ul>
+          <li><a href="/industries/">Industries</a></li>
+          <li><a href="/industries/home-services/">Home services</a></li>
+          <li><a href="/pricing.html">Home services pricing</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Insights</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/book.html">Book a conversation</a></li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>
+        <p>SparkMedia.ai is a DBA of McCormick Solutions, LLC</p>
+        <p><a href="tel:+17027475589">(702) 747-5589</a></p>
+      </div>
+      <div class="row">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms &amp; Conditions</a>
+        <span>© <span data-year>2026</span> SparkMedia.ai. All rights reserved.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+  <script src="/js/site.js?v=4" defer></script>
+</body>
+</html>
