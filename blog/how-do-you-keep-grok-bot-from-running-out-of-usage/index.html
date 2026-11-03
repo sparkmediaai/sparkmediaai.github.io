@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How Do You Keep Grok Bot From Running Out of Usage? | Spark Media</title>
+  <meta name="description" content="Grok Bot burns through usage when bots poll too often, carry long chats, and read more than they need. Practical settings to cut usage without losing the work that matters.">
+  <link rel="canonical" href="https://sparkmedia.ai/blog/how-do-you-keep-grok-bot-from-running-out-of-usage/">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Spark Media">
+  <meta property="og:title" content="How Do You Keep Grok Bot From Running Out of Usage? | Spark Media">
+  <meta property="og:description" content="Grok Bot burns through usage when bots poll too often, carry long chats, and read more than they need. Practical settings to cut usage without losing the work that matters.">
+  <meta property="og:url" content="https://sparkmedia.ai/blog/how-do-you-keep-grok-bot-from-running-out-of-usage/">
+  <meta property="og:image" content="https://sparkmedia.ai/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" href="/assets/logo/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/logo/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css?v=4">
+  <script>document.documentElement.classList.add('js')</script>
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2026-11-03">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "How Do You Keep Grok Bot From Running Out of Usage?", "description": "Grok Bot burns through usage when bots poll too often, carry long chats, and read more than they need. Practical settings to cut usage without losing the work that matters.", "datePublished": "2026-11-03", "dateModified": "2026-11-03", "author": {"@type": "Person", "name": "David McCormick"}, "publisher": {"@type": "Organization", "name": "Spark Media", "logo": {"@type": "ImageObject", "url": "https://sparkmedia.ai/assets/logo/sparkmedia-logo.png"}}, "mainEntityOfPage": "https://sparkmedia.ai/blog/how-do-you-keep-grok-bot-from-running-out-of-usage/", "image": "https://sparkmedia.ai/assets/images/site/abs-network.jpg"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I see which bot is using the most?", "acceptedAnswer": {"@type": "Answer", "text": "Check usage in Grok Bot, which breaks down use by bot, routine, and day. You can also ask a bot directly which of your bots and routines used the most."}}, {"@type": "Question", "name": "Does deleting old conversations save usage?", "acceptedAnswer": {"@type": "Answer", "text": "What matters most is not carrying a long history into new work. Starting a fresh conversation for a new task keeps each run shorter."}}, {"@type": "Question", "name": "Is it better to have one big bot or several small ones?", "acceptedAnswer": {"@type": "Answer", "text": "Several small bots with one job each are usually easier to keep efficient, because each one reads less and its routines are easier to tune."}}, {"@type": "Question", "name": "Should I upgrade my plan or optimize first?", "acceptedAnswer": {"@type": "Answer", "text": "Optimize first. Trimming routines and long chats often frees up a meaningful share of usage, and you'll know what you actually need before paying for more."}}, {"@type": "Question", "name": "Will running routines less often make my bot slower to respond to leads?", "acceptedAnswer": {"@type": "Answer", "text": "Not if new leads arrive through an event trigger. Use triggers for anything a customer is waiting on and save schedules for reports and batch work."}}]}</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" data-header><div class="wrap header-inner"><a class="brand" href="/" aria-label="Spark Media home"><img src="/assets/logo/sparkmedia-logo-light.png" alt="Spark Media" width="600" height="159"></a><nav class="nav" aria-label="Primary"><ul class="nav-list"><li class="nav-item" data-dropdown><button class="nav-link" type="button" aria-expanded="false" aria-controls="dd-services">Services<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></button><div class="dropdown" id="dd-services"><a href="/services/websites-branding/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/><path d="M7 13h6M7 16h10"/></svg></span><strong>Websites &amp; Branding</strong><small>Positioning, websites and landing pages</small></a><a href="/services/ai-agents-automation/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 12.5a7.5 7.5 0 0 1-11 6.6L4 20l1-4.3A7.5 7.5 0 1 1 20 12.5z"/><path d="M12.5 8.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/></svg></span><strong>AI Agents &amp; Automation</strong><small>Voice, messaging and workflow automation</small></a><a href="/services/paid-media/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></span><strong>Paid Media</strong><small>Google and Meta campaigns, tracked end to end</small></a><a href="/services/content-creative/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="13" height="14" rx="2.5"/><path d="M16 10l5-3v10l-5-3"/><path d="M8 9.5v5l4-2.5z"/></svg></span><strong>Content &amp; Creative</strong><small>Campaign creative, short-form video and UGC</small></a><a href="/services/crm-sales-enablement/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><strong>CRM &amp; Sales Enablement</strong><small>Pipelines, routing and follow-up</small></a><a href="/services/ai-consulting-integration/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><path d="M10 6.5h4a3.5 3.5 0 0 1 3.5 3.5v4M14 17.5h-4A3.5 3.5 0 0 1 6.5 14v-4"/></svg></span><strong>AI Consulting &amp; Integration</strong><small>Connect your software and find useful AI</small></a><a class="d-all" href="/services/">View all services</a></div></li><li class="nav-item" data-dropdown><button class="nav-link" type="button" aria-expanded="false" aria-controls="dd-solutions">Solutions<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></button><div class="dropdown" id="dd-solutions"><a href="/solutions/connect-your-systems/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8.5 6h7M7.2 8.2l3.6 7.6M16.8 8.2l-3.6 7.6"/></svg></span><strong>Connect Your Systems</strong><small>Get your software sharing the right information</small></a><a href="/solutions/capture-convert-leads/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></span><strong>Capture &amp; Convert Leads</strong><small>Turn inquiries into real conversations</small></a><a href="/solutions/never-miss-an-opportunity/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.6 3.5h2.5l1.3 4.2-2 1.4a12 12 0 0 0 6.5 6.5l1.4-2 4.2 1.3v2.5a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg></span><strong>Never Miss an Opportunity</strong><small>A dependable first response, day or night</small></a><a href="/solutions/reactivate-your-database/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 3v5h5"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 21v-5h-5"/></svg></span><strong>Reactivate Your Database</strong><small>Reconnect with past inquiries</small></a><a class="d-all" href="/solutions/">View all solutions</a></div></li><li class="nav-item" data-dropdown><button class="nav-link" type="button" aria-expanded="false" aria-controls="dd-industries">Industries<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></button><div class="dropdown" id="dd-industries"><a href="/industries/#hospitality"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3"/></svg></span><strong>Hospitality &amp; venues</strong><small>Inquiries, tours and bookings</small></a><a href="/industries/#b2b"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><path d="M10 6.5h4a3.5 3.5 0 0 1 3.5 3.5v4M14 17.5h-4A3.5 3.5 0 0 1 6.5 14v-4"/></svg></span><strong>B2B &amp; industrial</strong><small>Longer buying cycles, clear handoffs</small></a><a href="/industries/#healthcare"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg></span><strong>Healthcare &amp; wellness</strong><small>Clear next steps for patients</small></a><a href="/industries/home-services/"><span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.6 3.5h2.5l1.3 4.2-2 1.4a12 12 0 0 0 6.5 6.5l1.4-2 4.2 1.3v2.5a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg></span><strong>Home services</strong><small>Emergency Google calls to your phone</small></a><a class="d-all" href="/industries/">View all industries</a></div></li><li class="nav-item"><a class="nav-link" href="/about/">About</a></li><li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li></ul></nav><a class="btn btn-dark btn-sm header-cta" href="/contact/">Let’s Talk</a><button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu" data-menu><svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></header><nav class="mobile-nav" id="mobile-nav" aria-label="Mobile"><details><summary>Services<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary><a href="/services/">Overview</a><a href="/services/websites-branding/">Websites &amp; Branding</a><a href="/services/ai-agents-automation/">AI Agents &amp; Automation</a><a href="/services/paid-media/">Paid Media</a><a href="/services/content-creative/">Content &amp; Creative</a><a href="/services/crm-sales-enablement/">CRM &amp; Sales Enablement</a><a href="/services/ai-consulting-integration/">AI Consulting &amp; Integration</a></details><details><summary>Solutions<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary><a href="/solutions/">Overview</a><a href="/solutions/connect-your-systems/">Connect Your Systems</a><a href="/solutions/capture-convert-leads/">Capture &amp; Convert Leads</a><a href="/solutions/never-miss-an-opportunity/">Never Miss an Opportunity</a><a href="/solutions/reactivate-your-database/">Reactivate Your Database</a></details><details><summary>Industries<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary><a href="/industries/">Overview</a><a href="/industries/#hospitality">Hospitality &amp; venues</a><a href="/industries/#b2b">B2B &amp; industrial</a><a href="/industries/#healthcare">Healthcare &amp; wellness</a><a href="/industries/home-services/">Home services</a></details><a href="/about/">About</a><a href="/contact/">Contact</a><a class="btn btn-primary" href="/contact/">Let’s Talk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></nav>
+  <main id="main">
+    <section class="post-hero">
+      <div class="wrap post-wrap">
+        <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li><a href="/blog/">Insights</a></li><li aria-current="page">Grok Bot</li></ol>
+        <p class="eyebrow">Grok Bot</p>
+        <h1>How Do You Keep Grok Bot From Running Out of Usage?</h1>
+        <p class="post-meta"><time datetime="2026-11-03">November 3, 2026</time> · By David McCormick · 6 min read</p>
+      </div>
+    </section>
+    <section class="section" style="padding-top:0">
+      <div class="wrap post-wrap">
+        <div class="post-cover"><img src="/assets/images/site/abs-network.jpg" width="1536" height="1024" alt="Abstract network of connected points" fetchpriority="high" decoding="async"></div>
+        <article class="post-body">
+<p><strong>Grok Bot uses up its allowance fastest when bots check things that haven't changed, carry long conversations from task to task, and read whole pages or logs when a few lines would do.</strong> The fix is mostly setup: give each bot one job, run routines less often or on events, start fresh conversations for new work, and keep durable instructions in memory and files instead of chat history. Most of these changes also make a bot more reliable, not just cheaper to run.</p>
+<h2>Why are people suddenly hitting Grok Bot usage limits?</h2>
+<p><strong>Because always-on agents do far more work per hour than a chat window, and usage this week got tighter for a lot of people.</strong> Over Halloween weekend many users reported hitting weekly limits early, and Elon Musk replied that <a href="https://x.com/elonmusk/status/2116992258520064397" rel="noopener">"the cost of serving Grok Bot was unsustainably high relative to revenue."</a> A <a href="https://x.com/i/trending/2117377186600796390" rel="noopener">summary of the discussion on X</a> notes he also floated higher-usage tiers.</p>
+<p>Whatever plans look like next month, the lesson for a business is the same: a bot that wastes runs costs you twice, once in usage and again when it isn't available for the work that matters.</p>
+<h2>Where does a bot's usage actually go?</h2>
+<p><strong>Mostly into reading: the conversation history, tool results, and pages it loads on every run.</strong> Each time a bot works, it rereads what it needs to understand the task. A long chat, a giant web page, or a full log file all get read again, even when only a sentence matters.</p>
+<p>Start by looking before you change anything. Grok Bot shows usage by bot, routine, and day, so you can see which ones use the most. One tip list that circulated this week, originally from <a href="https://x.com/lianyi520/status/2116798107648393422" rel="noopener">@lianyi520</a> and <a href="https://x.com/ChewieWins/status/2117054265784991912" rel="noopener">translated by @ChewieWins</a>, puts this first: find the bot or routine using the most, then pause idle ones or cut them to once or twice a day.</p>
+<h2>Which settings save the most usage?</h2>
+<p><strong>Routine frequency is usually the biggest lever, followed by how much each run has to read.</strong> Practical changes, roughly in order of impact:</p>
+<ul>
+<li><strong>Run less often.</strong> A check every 15 minutes is dozens of runs a day. Ask whether once each morning, or a few times during business hours, would do.</li>
+<li><strong>React to events instead of polling.</strong> Where a trigger exists, such as a new email or a form webhook, the bot only runs when there is something to do.</li>
+<li><strong>Keep routines inside business hours.</strong> Weekend and overnight runs rarely help if nobody acts on the result until Monday.</li>
+<li><strong>Stay quiet by default.</strong> Tell the bot to report only decisions and problems, not "nothing new" messages.</li>
+<li><strong>Pause what you aren't using.</strong> Old watches and test routines keep running until someone turns them off.</li>
+</ul>
+<h2>How should you structure bots and conversations?</h2>
+<p><strong>One job per bot, one task per conversation, and important facts stored where the bot can look them up.</strong> A popular starter guide from <a href="https://x.com/kirbyongeo/status/2117277086281019566" rel="noopener">@kirbyongeo</a> sums up the rule as one job per bot, a list of things it never does, and quiet when there's nothing to say.</p>
+<ul>
+<li><strong>Start fresh for new work.</strong> When a task is finished, start a new conversation for the next unrelated one so the bot isn't rereading a long history.</li>
+<li><strong>Put standing rules in memory or skills.</strong> Preferences and procedures saved once don't need to be repeated, or reread, in every chat.</li>
+<li><strong>Write progress to a file on long jobs.</strong> The next run reads a short progress note instead of the whole backstory.</li>
+<li><strong>Avoid changing setup mid-task.</strong> Several users suggest leaving tools and connections alone during long work, since changes can make the bot redo context.</li>
+</ul>
+<h2>Can scripts and filters cut usage further?</h2>
+<p><strong>Yes. Anything a bot does the same way every time can often become a small script it runs instead of reasoning through it again.</strong> <a href="https://x.com/HopefullySC/status/2117328631345316264" rel="noopener">@HopefullySC</a> shared a walkthrough of having Grok Bot write a Python script for a repeating task so it doesn't start from scratch each run, and you don't need to know Python to do it.</p>
+<p>The same thinking applies to tool results. Ask the bot to pull only the lines it needs, like new rows, changed prices, or error messages, rather than loading an entire page or log. A good instruction is: "Filter results to what changed before you read them."</p>
+<h2>How does Spark Media set this up for businesses?</h2>
+<p><strong>We design bots to be lean from day one, because a business needs them working on Friday afternoon, not out of allowance on Wednesday.</strong> As a Las Vegas team that builds with Grok Bot and OpenClaw, we wire front-door intake to events like GoHighLevel form webhooks and new inquiry emails, put follow-up, lead reactivation, and ad or site checks on a small number of business-hours schedules, and give each bot a narrow job with clear rules.</p>
+<p>We also review usage with clients after the first weeks, then trim or combine routines based on what the numbers show. Customer-facing messages stay drafts for approval until you decide otherwise.</p>
+<h2>Frequently asked questions</h2>
+<h3>How do I see which bot is using the most?</h3>
+<p>Check usage in Grok Bot, which breaks down use by bot, routine, and day. You can also ask a bot directly which of your bots and routines used the most.</p>
+<h3>Does deleting old conversations save usage?</h3>
+<p>What matters most is not carrying a long history into new work. Starting a fresh conversation for a new task keeps each run shorter.</p>
+<h3>Is it better to have one big bot or several small ones?</h3>
+<p>Several small bots with one job each are usually easier to keep efficient, because each one reads less and its routines are easier to tune.</p>
+<h3>Should I upgrade my plan or optimize first?</h3>
+<p>Optimize first. Trimming routines and long chats often frees up a meaningful share of usage, and you'll know what you actually need before paying for more.</p>
+<h3>Will running routines less often make my bot slower to respond to leads?</h3>
+<p>Not if new leads arrive through an event trigger. Use triggers for anything a customer is waiting on and save schedules for reports and batch work.</p>
+<p style="margin-top:32px">If you'd like help setting up bots that do more with less usage, you can <a href="/book.html">book a conversation with us</a>.</p>
+
+</article>
+        <h2 class="related-title" style="margin-top:56px">More insights</h2>
+        <div class="mini-cards" style="grid-template-columns:1fr"><a class="mini-card" href="/blog/should-grok-bot-run-on-a-schedule-or-react-to-events/"><img src="/assets/images/site/blog-automation.jpg" width="1536" height="1024" alt="" loading="lazy" decoding="async"><span><strong>Should Grok Bot Run on a Schedule or React to Events?</strong><small>November 2, 2026 · 6 min read</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="mini-card" href="/blog/how-do-you-onboard-grok-bot-like-a-new-employee/"><img src="/assets/images/site/svc-ai.jpg" width="1536" height="1024" alt="" loading="lazy" decoding="async"><span><strong>How Do You Onboard Grok Bot Like a New Employee?</strong><small>October 31, 2026 · 7 min read</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap">
+        <div class="closing reveal">
+          <img class="closing-bg" src="/assets/images/site/abs-ribbons.jpg" width="1536" height="1024" alt="" loading="lazy" decoding="async">
+          <div class="closing-inner">
+            <h2>Ready to put this to work?</h2>
+            <p>Tell us where your customer journey breaks down. We’ll help you find a practical way to connect the pieces.</p>
+            <div class="btn-row"><a class="btn btn-primary" href="/contact/">Start a Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+  <section class="footer-cta" aria-labelledby="footer-cta-h">
+    <div class="wrap">
+      <div>
+        <h2 id="footer-cta-h">Good marketing should connect to what happens next.</h2>
+        <p>Tell us where your customer journey breaks down. We’ll help you find a practical way to connect the pieces.</p>
+      </div>
+      <div class="btn-row"><a class="btn btn-light" href="/contact/">Start a Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    </div>
+  </section>
+  <div class="wrap">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="/" aria-label="Spark Media home"><img src="/assets/logo/sparkmedia-logo-white.png" alt="Spark Media" width="600" height="159" loading="lazy"></a>
+        <p>Spark Media combines marketing, creative, AI and business systems to help companies attract customers, respond faster and work smarter.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col"><h3>Services</h3><ul><li><a href="/services/">All services</a></li><li><a href="/services/websites-branding/">Websites &amp; Branding</a></li><li><a href="/services/ai-agents-automation/">AI Agents &amp; Automation</a></li><li><a href="/services/paid-media/">Paid Media</a></li><li><a href="/services/content-creative/">Content &amp; Creative</a></li><li><a href="/services/crm-sales-enablement/">CRM &amp; Sales Enablement</a></li><li><a href="/services/ai-consulting-integration/">AI Consulting &amp; Integration</a></li><li><a href="/grok-bot-setup/">Grok Bot Setup</a></li></ul></div>
+        <div class="footer-col"><h3>Solutions</h3><ul><li><a href="/solutions/">All solutions</a></li><li><a href="/solutions/connect-your-systems/">Connect Your Systems</a></li><li><a href="/solutions/capture-convert-leads/">Capture &amp; Convert Leads</a></li><li><a href="/solutions/never-miss-an-opportunity/">Never Miss an Opportunity</a></li><li><a href="/solutions/reactivate-your-database/">Reactivate Your Database</a></li></ul></div>
+        <div class="footer-col"><h3>Company</h3><ul>
+          <li><a href="/industries/">Industries</a></li>
+          <li><a href="/industries/home-services/">Home services</a></li>
+          <li><a href="/pricing.html">Home services pricing</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Insights</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/book.html">Book a conversation</a></li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div>
+        <p>SparkMedia.ai is a DBA of McCormick Solutions, LLC</p>
+        <p><a href="tel:+17027475589">(702) 747-5589</a></p>
+      </div>
+      <div class="row">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms &amp; Conditions</a>
+        <span>© <span data-year>2026</span> SparkMedia.ai. All rights reserved.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+  <script src="/js/site.js?v=4" defer></script>
+</body>
+</html>
