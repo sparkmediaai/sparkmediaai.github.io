@@ -155,6 +155,15 @@ def page(path, title, desc, body, current=None, canonical=None, extra_head="", j
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7Y99FEH4XK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{dataLayer.push(arguments);}}
+    gtag('js', new Date());
+
+    gtag('config', 'G-7Y99FEH4XK');
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{e(title)}</title>
   <meta name="description" content="{e(desc)}">
@@ -1076,6 +1085,15 @@ def build_redirects():
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7Y99FEH4XK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{dataLayer.push(arguments);}}
+    gtag('js', new Date());
+
+    gtag('config', 'G-7Y99FEH4XK');
+  </script>
   <title>Moved | Spark Media</title>
   <meta http-equiv="refresh" content="0; url={dest}">
   <link rel="canonical" href="{SITE}{dest}">
