@@ -138,6 +138,15 @@ def shell(page, path="index.html"):
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7Y99FEH4XK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7Y99FEH4XK');
+</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>%(title)s</title>
 <meta name="description" content="%(desc)s">
